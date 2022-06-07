@@ -1,5 +1,6 @@
+
 import { Component, OnInit } from '@angular/core';
-import {faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import {faInfoCircle} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-tooltip-white-small',
@@ -8,6 +9,7 @@ import {faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 })
 export class TooltipWhiteSmallComponent implements OnInit {
   faInfoCircle=faInfoCircle;
+
   constructor() { }
 
   ngOnInit(): void {

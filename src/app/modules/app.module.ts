@@ -1,3 +1,4 @@
+
 //Modules imported
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
@@ -6,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 //Module Local components imported
 import { AppComponent } from './app.component'
 import { HomeComponent } from './home/home.component'
+import { BodyComponent } from './body/body.component';
 //Shared Components imported
 import {SidenavComponent} from '../shared/components/sidenav/sidenav.component'
 
@@ -16,7 +18,8 @@ import { AppRoutingModule } from './app.routes';
   declarations: [
     AppComponent,
     SidenavComponent,
-    HomeComponent
+    HomeComponent,
+    BodyComponent
   ],
   imports: [
     BrowserModule,

@@ -5,7 +5,12 @@ import { NgModule } from '@angular/core';
 const UserRoutes: Routes = [
   {
     path: '',
-    component: UserJoinComponent
+    redirectTo:'iniciar-sesion',
+    pathMatch:'full'
+  },
+  {
+    path: 'iniciar-sesion',
+    component:UserJoinComponent
   }
 ];
 

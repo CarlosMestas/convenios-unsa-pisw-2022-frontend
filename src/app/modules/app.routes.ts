@@ -6,6 +6,21 @@ import { NgModule } from "@angular/core";
 const AppRoutes: Routes  = [
   {
     path:'',
+    redirectTo:'home',
+    pathMatch:'full'
+  },
+  {
+    path:'home',
+    component:HomeComponent,
+    pathMatch:'full'
+  },
+  {
+    path:'quienes-somos',
+    component:HomeComponent
+  },
+
+  {
+    path:'contacto',
     component:HomeComponent
   },
   {

@@ -1,17 +1,22 @@
-<div class="sidenav">
+<div class="sidenav" [ngClass] = "collapsed?'sidenav-collapsed':''">
   <div class="logo-container">
-    <button class="logo"></button>
-    <div class="logo-text"></div>
-    <button class="btn-close"></button>
+    <button class="btn-side" (click)="toggleSideNav()">
+      <fa-icon class= "side-icon" [icon]="faBars"></fa-icon>
+    </button>
+    <div class="logo-text" *ngIf = "!collapsed">Logo UNSA</div>
   </div>
+
   <ul class="sidenav-nav">
-    <li class="sidenav-nav-item">
-      <a class="sidenav-nav-link">
-        <i class="sidenav-link-icon">
-
-        </i>
-        <span class="sidenav-link-text">
-
+    <div class="general-user-menu-label">MOVILIDAD</div>
+    <li class="sidenav-nav-item" *ngFor="let data of sidenavData">
+      <a class="sidenav-nav-link" routerLink = {{data.routeLink}}
+        routerLinkActive = "active"
+        [routerLinkActiveOptions] = "{exact: true}"
+      >
+        <fa-icon class= "sidenav-link-icon" [icon]="data.icon">
+        </fa-icon>
+        <span class="sidenav-link-text" *ngIf = "!collapsed">
+          {{data.label}}
         </span>
       </a>
     </li>
