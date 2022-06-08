@@ -14,19 +14,23 @@ import {SidenavComponent} from '../shared/components/sidenav/sidenav.component'
 //Routes
 import { AppRoutingModule } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MaterialModule} from "../material.module";
+import {Button} from "../shared/components/button/button";
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
     HomeComponent,
-    BodyComponent
+    BodyComponent,
+    Button
   ],
   imports: [
+    MaterialModule,
     BrowserModule,
     FontAwesomeModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
