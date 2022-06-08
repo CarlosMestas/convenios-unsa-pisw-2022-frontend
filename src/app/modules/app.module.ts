@@ -13,6 +13,7 @@ import {SidenavComponent} from '../shared/components/sidenav/sidenav.component'
 
 //Routes
 import { AppRoutingModule } from './app.routes';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AppRoutingModule } from './app.routes';
   imports: [
     BrowserModule,
     FontAwesomeModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
