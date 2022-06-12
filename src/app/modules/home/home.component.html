@@ -1,4 +1,40 @@
-<p>home works!</p>
-<button routerLink = "/users">Ingresar al sistema</button>
+<div [ngClass]="prefix">
+  <div class="container-header">
+    <div class="label-news">NOTICIAS</div>
 
-<app-button></app-button>
+    <div class="left-news-box">
+      <app-of-home-carousel-news></app-of-home-carousel-news>
+    </div>
+    <div class="right-help-box">
+      <div class="guides-box">
+        <p class="text-guide">Instructivo para la postulación en Línea: <strong><a href="#" class="text-guide">Ver Instructivo</a></strong></p>
+        <p class="text-guide">Para una orientación técnica puede enviar su consulta al siguiente correo:
+          <strong><a href="#" class="text-guide">convenios@unsa.edu.pe</a></strong>
+        </p>
+      </div>
+      <div class="application-index">
+        <p class="text-program"> PROGRAMA DE INTERCAMBIO EDUCATIVO VIRTUAL - PIE 2022-2</p>
+        <app-button class="btn"></app-button>
+      </div>
+    </div>
+  </div>
+  <div class="container-convocations">
+    <!-- <button routerLink = "/users">Ingresar al sistema</button> -->
+    <div class="header-menu">
+      <mat-tab-group backgroundColor="warn" color="primary">
+        <mat-tab label="Próximas Convocatorias">
+          <div class="body-container">
+            <app-of-table-programs></app-of-table-programs>
+          </div>
+        </mat-tab>
+        <mat-tab label="En proceso"> Content 2 </mat-tab>
+        <mat-tab label="Convocatorias Concluidas"> Content 3 </mat-tab>
+        <mat-tab label="Convocatorias Canceladas"> Content 3 </mat-tab>
+      </mat-tab-group>
+    </div>
+
+  </div>
+
+</div>
+
+

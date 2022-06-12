@@ -10,23 +10,38 @@
 @include mat.core();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
+
+/*
+$my-primary-color:(
+  200: #ff546b,
+  500: #db0240,
+  700: #a1001a,
+  contrast:(
+    200: #eeeeee,
+    500: #eeeeee,
+    700: #eeeeee
+  )
+);
+*/
+
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$convenios-unsa-pisw-2022-frontend-primary: mat.define-palette(mat.$indigo-palette);
-$convenios-unsa-pisw-2022-frontend-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$of-primary: mat.define-palette(mat.$red-palette, 800);
+$of-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$convenios-unsa-pisw-2022-frontend-warn: mat.define-palette(mat.$red-palette);
+$of-warn: mat.define-palette(mat.$gray-palette, 300);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
 $convenios-unsa-pisw-2022-frontend-theme: mat.define-light-theme((
   color: (
-    primary: $convenios-unsa-pisw-2022-frontend-primary,
-    accent: $convenios-unsa-pisw-2022-frontend-accent,
-    warn: $convenios-unsa-pisw-2022-frontend-warn,
+    primary: $of-primary,
+    accent: $of-accent,
+    warn: $of-warn
   )
 ));
+
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component

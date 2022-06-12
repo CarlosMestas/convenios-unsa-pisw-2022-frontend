@@ -1,0 +1,28 @@
+<ng-container [ngClass]="prefix">
+<div class="container-search-filters">
+    <mat-form-field >
+      <span matPrefix> </span>
+      <input type="tel" matInput placeholder="Search" name= "search">
+      <button matSuffix mat-button><mat-icon >Buscar convovatoria</mat-icon></button>
+    </mat-form-field>
+
+    <span>Tipo de Convocatoria:</span>
+    <mat-form-field appearance="fill">
+      <mat-label>Tipo de Convocatoria</mat-label>
+      <mat-select disableRipple>
+        <mat-option value="1">Ordinario</mat-option>
+        <mat-option value="2">Extraordinario</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span>Periodo:</span>
+    <mat-form-field appearance="fill">
+      <mat-label>Periodo</mat-label>
+      <mat-select disableRipple>
+        <mat-option value="1">2022</mat-option>
+        <mat-option value="2">2021</mat-option>
+        <mat-option value="3">2020</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+<app-of-table></app-of-table>
+</ng-container>
