@@ -1,8 +1,11 @@
 .container{
-  background-color: #FFFFFF;
+  /*background-color: #FFFFFF;*/
   width: 287px;
-  height: 113.75px;
+  /*height: 113.75px;*/
   position: absolute;
+  display: none;
+  z-index: 2;
+  top: -122px;
 }
 
 .body-container{
