@@ -1,3 +1,5 @@
+import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from "@angular/core";
@@ -24,8 +26,20 @@ const AppRoutes: Routes  = [
     component:HomeComponent
   },
   {
+    path:'iniciar-sesion',
+    component:SigninComponent
+  },
+  {
+    path:'registrar-cuenta',
+    component:SignupComponent
+  },
+  {
     path: 'users',
-    loadChildren:()=>import('./user/user.module').then(m => m.UserModule)
+    loadChildren:()=>import('./user-data-register/user-data-register.module').then(m => m.UserModule)
+  },
+  {
+    path:'convocatorias',
+    loadChildren:()=>import('./convocatoria/convocatoria.module').then(m => m.ConvocatoriaModule)
   }
 ]
 

@@ -1,0 +1,21 @@
+
+<div class="convocatoria-timeline-container">
+  <div class="convocatoria-image-container">
+  </div>
+  <div class="timeline-container">
+    <p-timeline [value]="events1" align="alternate">
+      <ng-template pTemplate="marker" let-event>
+          <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
+              <i [ngClass]="event.icon"></i>
+          </span>
+      </ng-template>
+      <ng-template pTemplate="content" let-event>
+          <p-card class="p-card" [header]="event.status" [subheader]="event.date">
+              <img *ngIf="event.image" [src]="'./assets/images/' + event.image" [alt]="event.name" width="200" class="shadow-2" />
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          </p-card>
+      </ng-template>
+    </p-timeline>
+
+  </div>
+</div>

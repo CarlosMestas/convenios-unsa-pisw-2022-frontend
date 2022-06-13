@@ -1,0 +1,13 @@
+
+<div class="steps-container">
+  <div *ngFor ="let step of steps; index as i;" class="step-item"
+    [routerLink] = 'step.stepLink'
+    routerLinkActive = "active"
+    [routerLinkActiveOptions] = "{exact: true}"
+  >
+    <div class="active-circle step-item-circle">{{i+1}}</div>
+    <div class="step-item-name">{{step.stepName}}</div>
+    <div class="step-item-connect-line" *ngIf ="steps.length != i+1"></div>
+  </div>
+
+</div>
