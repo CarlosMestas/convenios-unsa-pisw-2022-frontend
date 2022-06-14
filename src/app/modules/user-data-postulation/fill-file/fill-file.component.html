@@ -1,1 +1,61 @@
-<p>fill-file works!</p>
+<div class="general-info-container">
+  <div class="form-container">
+    <div class="fields-form">
+      <div class="form-item form-item-field-typeevent">
+        <div class="form-label form-label-field-typeevent">
+          Evento
+        </div>
+        <select class="form-input-text form-input-field-typeevent" name="typeevent" id="typeevent">
+          <option value="Pivet">PIVET</option>
+          <option value="Alumno Externo">Alumno Externo</option>
+          <option value="Docente UNSA">Docente UNSA</option>
+          <option value="Docente Externo">Docente Externo</option>
+        </select>
+      </div>
+        <div class="form-item form-item-field-typecollege_career">
+          <div class="form-label form-label-field-typecollege_career">
+            Programa de Estudios
+          </div>
+          <select class="form-input-text form-input-field-typecollege_career" name="typecollege_career" id="typecollege_career">
+            <option value="Ingenieria Sistemas">Ingenieria de Sistemas</option>
+            <option value="Medicina">Medicina</option>
+            <option value="Derecho">Derecho</option>
+          </select>
+        </div>
+      <div class="form-item form-item-field-typeplace">
+        <div class="form-label form-label-field-typeplace">
+          Lugar
+        </div>
+        <select class="form-input-text form-input-field-typeplace" name="typeplace" id="typeplace">
+          <option value="Peru">Peru</option>
+          <option value="Colombia">Colombia</option>
+        </select>
+      </div>
+      <div class="form-item form-item-field-typcity">
+        <div class="form-label form-label-field-typecity">
+          Ciudad/Estado
+        </div>
+        <select class="form-input-text form-input-field-typecity" name="typecity" id="typecity">
+          <option value="Arequipa">Arequipa</option>
+          <option value="Amazonas">Amazonas</option>
+          <option value="Cajamarca">Cajamarca</option>
+          <option value="Tumbes">Tumbes</option>
+        </select>
+      </div>
+      <div class="form-item form-item-field-date">
+        <div class="form-label form-label-field-date">
+          Fecha de Evento
+        </div>
+        <input class="form-input-text form-input-field-date" type="text" name="date" id="date" placeholder="Ingresa Fecha de Evento">
+      </div>
+    </div>
+    <div class="buttons-handler">
+      <div class="form-back-step" routerLink="../verificacion-informacion-usuario">
+        Atrás
+      </div>
+      <div class="form-next-step" routerLink="../cargar-archivo-usuario">
+        Siguiente
+      </div>
+    </div>
+  </div>
+</div>

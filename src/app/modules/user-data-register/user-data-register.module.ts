@@ -41,6 +41,7 @@ import { UserRoutingModule } from './user-data-register.routes';
     ShareModuleModule
   ],
   exports: [
+    TooltipRedSmallComponent
   ]
 
 })

@@ -1,1 +1,12 @@
-<p>psotulacion works!</p>
+<div class="register-container">
+  <div class="header-container">
+    <div class="title">Datos del Postulante</div>
+    <div class="description">Proceso de postulación para poder participar de la movilidad estudiandil</div>
+  </div>
+  <div class="steper-container">
+    <app-steper [steps]="steps"></app-steper>
+    <div class="steper-forms-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

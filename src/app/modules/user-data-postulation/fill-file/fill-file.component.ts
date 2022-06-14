@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './fill-file.component.html',
   styleUrls: ['./fill-file.component.scss']
 })
+
 export class FillFileComponent implements OnInit {
 
   constructor() { }
@@ -13,3 +14,4 @@ export class FillFileComponent implements OnInit {
   }
 
 }
+

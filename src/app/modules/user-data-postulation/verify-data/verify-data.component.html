@@ -1,2 +1,41 @@
-<p>verify-data works!</p>
-<router-outlet></router-outlet>
+<div class="general-info-container">
+  <div class="form-container">
+    <div class="fields-form">
+      <div class="form-item form-item-field-names">
+        <div class="form-label form-label-field-name">
+          Nombres
+         </div>
+        <input class="form-input-text form-input-field-name" type="text" name="name" id="name" placeholder="Ingresa tu Nombre" >
+      </div>
+      <div class="form-item form-item-field-lastname">
+        <div class="form-label form-label-field-lastname">
+          Apellidos
+        </div>
+        <input class="form-input-text form-input-field-lastname" type="text" name="lastname" id="lastname" placeholder="Ingresa tu apellido">
+      </div>
+      <div class="form-item form-item-field-phonenumber">
+        <div class="form-label form-label-field-dni">
+          D.N.I.
+        </div>
+        <input class="form-input-text form-input-field-dni" type="text" name="dni" id="dni" placeholder="Ingresa tu D.N.I">
+      </div>
+        <div class="form-item form-item-field-phonenumber">
+        <div class="form-label form-label-field-phonenumber">
+          Número de Teléfono o Celular
+        </div>
+        <input class="form-input-text form-input-field-phonenumber" type="text" name="phonenumber" id="phonenumber" placeholder="Ingresa tu Número de teléfono">
+      </div>
+      <div class="form-item form-item-field-address">
+        <div class="form-label form-label-field-address">
+          Correo Electrónico
+        </div>
+        <input class="form-input-text form-input-field-email" type="email" name="email" id="email" placeholder="Ingresa tu Correo Electronico">
+      </div>
+    </div>
+    <div class="buttons-handler">
+      <div class="form-next-step" routerLink="../llenar-ficha-usuario">
+        Siguiente
+      </div>
+    </div>
+  </div>
+</div>

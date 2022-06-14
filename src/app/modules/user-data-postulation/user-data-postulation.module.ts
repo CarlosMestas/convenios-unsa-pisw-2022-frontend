@@ -14,6 +14,10 @@ import {SteperComponent} from "../../shared/components/steper/steper.component";
 import { TooltipWhiteSmallComponent } from '../../shared/components/tooltip-white-small/tooltip-white-small.component';
 import { TooltipRedComponent } from '../../shared/components/tooltip-red/tooltip-red.component'
 import {TooltipRedSmallComponent} from '../../shared/components/tooltip-red-small/tooltip-red-small.component'
+import {UserModule} from "../user-data-register/user-data-register.module";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 
 // @ts-ignore
@@ -28,7 +32,11 @@ import {TooltipRedSmallComponent} from '../../shared/components/tooltip-red-smal
   imports: [
     CommonModule,
     UserDataPostulationRoutingModule,
-    ShareModuleModule
+    ShareModuleModule,
+    UserModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   exports: [
 
