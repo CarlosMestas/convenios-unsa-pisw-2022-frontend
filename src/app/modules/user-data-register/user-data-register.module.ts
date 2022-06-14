@@ -39,7 +39,8 @@ import { UserRoutingModule } from './user-data-register.routes';
     FontAwesomeModule,
     CommonModule
   ],
-  exports:[
+  exports: [
+    SteperComponent
   ]
 
 })

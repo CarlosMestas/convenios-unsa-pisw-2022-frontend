@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {GoogleLoginProvider, SocialAuthService} from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-apply',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplyComponent implements OnInit {
 
-  constructor() { }
+  items: any [] = [];
+  constructor(
+    private router:Router,
+    private authService:SocialAuthService) {
+    this.items = [
+      {
+        img: "https://img.freepik.com/vector-gratis/gestion-tiempo-metodo-calendario-planificacion-citas-organizador-negocios-gente-dibujando-marca-personajes-dibujos-animados-horario-trabajo-trabajo-equipo-colegas_335657-2096.jpg?w=2000",
+        title: "Cronograma de Eventos"
+      },
+      {
+        img: "https://img.freepik.com/vector-gratis/banner-brillante-respuestas-preguntas-plano-dibujos-animados_81522-4229.jpg?w=2000",
+        title: "Preguntas Frecuentes"
+      },
+      {
+        img: "https://c8.alamy.com/compes/2j3ne8h/hombre-en-aventura-de-vacaciones-turismo-internacional-recorrido-turistico-mundial-programa-de-intercambio-de-estudiantes-turista-con-mochila-viajando-al-extranjero-vector-2j3ne8h.jpg",
+        title: "Portal de Movilidad Estudiantil"
+      }
+    ]
+  }
 
   ngOnInit(): void {
+  }
+  signInHandler():void{
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
 }

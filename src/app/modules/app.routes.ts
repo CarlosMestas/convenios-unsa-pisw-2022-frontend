@@ -40,6 +40,10 @@ const AppRoutes: Routes  = [
   {
     path:'convocatorias',
     loadChildren:()=>import('./convocatoria/convocatoria.module').then(m => m.ConvocatoriaModule)
+  },
+  {
+    path: 'postulacion',
+    loadChildren:()=>import('./user-data-postulation/user-data-postulation.module').then(m => m.UserDataPostulationModule)
   }
 ]
 
