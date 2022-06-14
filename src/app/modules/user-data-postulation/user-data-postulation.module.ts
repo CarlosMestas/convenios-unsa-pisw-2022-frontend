@@ -1,11 +1,13 @@
+import { ShareModuleModule } from './../share-module/share-module.module';
+import { UserDataPostulationRoutingModule } from './user-data-postulation.routes';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VerifyDataComponent } from './verify-data/verify-data.component';
 import { FillFileComponent } from './fill-file/fill-file.component';
 import { UploadFilesComponent } from './upload-files/upload-files.component';
 import { UserDataPostulationBodyComponent } from './user-data-postulation-body/user-data-postulation-body.component';
-import {UserModule} from "../user-data-register/user-data-register.module";
-import {RouterModule} from "@angular/router";
+
+
 import {SteperComponent} from "../../shared/components/steper/steper.component";
 
 // shared Components imported
@@ -22,15 +24,14 @@ import {TooltipRedSmallComponent} from '../../shared/components/tooltip-red-smal
     FillFileComponent,
     UploadFilesComponent,
     UserDataPostulationBodyComponent
-
   ],
   imports: [
     CommonModule,
-    UserModule,
-    RouterModule
+    UserDataPostulationRoutingModule,
+    ShareModuleModule
   ],
   exports: [
-    SteperComponent
+
   ]
 })
 export class UserDataPostulationModule { }

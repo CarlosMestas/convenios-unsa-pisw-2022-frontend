@@ -1,3 +1,4 @@
+import { ShareModuleModule } from './../share-module/share-module.module';
 import { CommonModule } from '@angular/common';
 import { SteperComponent } from './../../shared/components/steper/steper.component';
 import { UnsaStudentComponent } from './academic-info/unsa-student/unsa-student.component';
@@ -31,16 +32,15 @@ import { UserRoutingModule } from './user-data-register.routes';
     GeneralInfoComponent,
     AcademicInfoComponent,
     WelcomeComponent,
-    UnsaStudentComponent,
-    SteperComponent
+    UnsaStudentComponent
   ],
   imports: [
     UserRoutingModule,
     FontAwesomeModule,
-    CommonModule
+    CommonModule,
+    ShareModuleModule
   ],
   exports: [
-    SteperComponent
   ]
 
 })
