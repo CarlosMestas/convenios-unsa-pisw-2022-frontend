@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
-
-export interface PeriodicElement {
+export interface ConvElement {
   name: string;
+  correlative: string;
   position: number;
-  weight: number;
-  symbol: string;
+  bases: string;
+  preliminary: string;
+  news: string;
+  final: string;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
+const CONV_DATA: ConvElement[] = [
+  {position: 1, correlative: 'PIVE 2022-1', name: 'PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022', bases: "BASES", preliminary: 'PRELIMINAR', news: "COMUNICADO 10-03-2022", final: "RESULTADO"},
+  {position: 2, correlative: 'PIVE 2022-1', name: 'PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022', bases: "BASES", preliminary: 'PRELIMINAR', news: "COMUNICADO 10-03-2022", final: "RESULTADO"},
+  {position: 3, correlative: 'PIVE 2022-1', name: 'PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022', bases: "BASES", preliminary: 'PRELIMINAR', news: "COMUNICADO 10-03-2022", final: "RESULTADO"},
 ];
 
 @Component({
@@ -23,8 +22,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class OfHomeTable implements OnInit {
   prefix:string;
-  displayedColumns: string[] = ['demo-position', 'demo-name', 'demo-weight', 'demo-symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['demo-position', 'demo-correlative', 'demo-name', 'demo-bases', 'demo-preliminary', 'demo-news', 'demo-final'];
+  dataSource = CONV_DATA;
   constructor() {
     this.prefix = 'of-home-table'
   }
