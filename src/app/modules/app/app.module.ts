@@ -7,24 +7,22 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { FormsModule } from "@angular/forms";
 import {CommonModule} from '@angular/common';
 //Module Local components imported
-import { AppComponent } from './app.component'
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './pages/home/home.component'
 import { BodyComponent } from './body/body.component';
 //Shared Components imported
-import {SidenavComponent} from '../shared/components/sidenav/sidenav.component'
+import {SidenavComponent} from '../../shared/components/sidenav/sidenav.component'
 
 //Routes
 import { AppRoutingModule } from './app.routes';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
-import { SigninComponent } from './signin/signin.component';
-import { SignupComponent } from './signup/signup.component'
+import { SigninComponent } from './pages/signin/signin.component';
+import { SignupComponent } from './pages/signup/signup.component'
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
     SidenavComponent,
     HomeComponent,
     BodyComponent,
@@ -58,6 +56,6 @@ import { SignupComponent } from './signup/signup.component'
       } as SocialAuthServiceConfig
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [BodyComponent]
 })
 export class AppModule { }

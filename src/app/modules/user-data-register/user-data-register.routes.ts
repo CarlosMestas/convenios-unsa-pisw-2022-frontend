@@ -1,9 +1,9 @@
-import { WelcomeComponent } from './welcome/welcome.component';
-import { AcademicInfoComponent } from './academic-info/academic-info.component';
-import { GeneralInfoComponent } from './general-info/general-info.component';
+import { WelcomeComponent } from './pages/welcome/welcome.component';
+import { AcademicInfoComponent } from './pages/academic-info/academic-info.component';
+import { GeneralInfoComponent } from './pages/general-info/general-info.component';
 
 
-import { UserBodyComponent } from './user-data-register-body/user-body.component';
+import { UserBodyComponent } from './body/user-body.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 

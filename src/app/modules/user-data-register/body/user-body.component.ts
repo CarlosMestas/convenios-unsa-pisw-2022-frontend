@@ -1,4 +1,4 @@
-import { Step } from './../../../shared/interfaces/step.interface';
+import { Step } from '../../../shared/interfaces/step.interface';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

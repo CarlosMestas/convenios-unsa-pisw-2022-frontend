@@ -1,10 +1,10 @@
-import { ApplyComponent } from './apply/apply.component';
-import { ContactComponent } from './contact/contact.component';
-import { TimelineComponent } from './timeline/timeline.component';
-import { ProcessToApplyComponent } from './process-to-apply/process-to-apply.component';
-import { RequirementsToApplyComponent } from './requirements-to-apply/requirements-to-apply.component';
-import { WhoCanApplyComponent } from './who-can-apply/who-can-apply.component';
-import { ConvocatoriaBodyComponent } from './convocatoria-body/convocatoria-body.component';
+import { ApplyComponent } from './pages/apply/apply.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { TimelineComponent } from './pages/timeline/timeline.component';
+import { ProcessToApplyComponent } from './pages/process-to-apply/process-to-apply.component';
+import { RequirementsToApplyComponent } from './pages/requirements-to-apply/requirements-to-apply.component';
+import { WhoCanApplyComponent } from './pages/who-can-apply/who-can-apply.component';
+import { ConvocatoriaBodyComponent } from './body/convocatoria-body.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';

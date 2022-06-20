@@ -89,6 +89,14 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "dev":{
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -101,6 +109,9 @@
             },
             "development": {
               "browserTarget": "convenios-unsa-pisw-2022-frontend:build:development"
+            },
+            "dev": {
+              "browserTarget": "convenios-unsa-pisw-2022-frontend:build:dev"
             }
           },
           "defaultConfiguration": "development"
