@@ -14,25 +14,23 @@
       </div>
       <div class="application-index">
         <p class="text-program"> PROGRAMA DE INTERCAMBIO EDUCATIVO VIRTUAL - PIE 2022-2</p>
-        <app-button class="btn"></app-button>
+        <app-button-customized colorProp="primary" textBtn="Postular" size="big"></app-button-customized>
       </div>
     </div>
   </div>
   <div class="container-convocations">
     <!-- <button routerLink = "/users">Ingresar al sistema</button> -->
     <div class="header-menu">
-      <mat-tab-group backgroundColor="warn" color="primary">
-        <mat-tab label="Próximas Convocatorias">
-          <div class="body-container">
-            <app-of-table-programs></app-of-table-programs>
-          </div>
-        </mat-tab>
-        <mat-tab label="En proceso"> Content 2 </mat-tab>
-        <mat-tab label="Convocatorias Concluidas"> Content 3 </mat-tab>
-        <mat-tab label="Convocatorias Canceladas"> Content 3 </mat-tab>
-      </mat-tab-group>
+      <mat-button-toggle-group #group="matButtonToggleGroup">
+        <mat-button-toggle checked value="prox">Próximas Convocatorias</mat-button-toggle>
+        <mat-button-toggle value="current">En proceso</mat-button-toggle>
+        <mat-button-toggle value="finish">Convocatorias Concluidas</mat-button-toggle>
+        <mat-button-toggle value="cancel">Convocatorias Canceladas</mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
-
+    <div class="body-table">
+      <app-of-table-programs [typeConv]= "group.value"></app-of-table-programs>
+    </div>
   </div>
 
 </div>

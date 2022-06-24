@@ -16,11 +16,11 @@ import { AppRoutingModule } from './app.routes';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from "../material.module";
 import {Button} from "../shared/components/button/button";
+import {ButtonCustomized} from "../shared/components/button-customized/button-customized";
 import {OfHomeTablePrograms} from "./home/of-home-table-programs/of-home-table-programs";
 import {OfHomeTable} from "./home/of-home-table-programs/of-home-table/of-home-table";
 import {OfHomeCarouselNews} from "./home/of-home-carousel-news/of-home-carousel-news";
-import {MatInputModule} from "@angular/material/input";
-import {MatIconModule} from "@angular/material/icon";
+import {SearchBar} from "../shared/components/search-bar/search-bar";
 
 @NgModule({
   declarations: [
@@ -28,10 +28,12 @@ import {MatIconModule} from "@angular/material/icon";
     SidenavComponent,
     HomeComponent,
     BodyComponent,
+    ButtonCustomized,
     Button,
     OfHomeTablePrograms,
     OfHomeTable,
-    OfHomeCarouselNews
+    OfHomeCarouselNews,
+    SearchBar
   ],
   imports: [
     MaterialModule,
@@ -39,8 +41,6 @@ import {MatIconModule} from "@angular/material/icon";
     FontAwesomeModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatInputModule,
-    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

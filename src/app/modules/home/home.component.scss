@@ -61,12 +61,48 @@ $prefix: home-component;
   }
   .container-convocations {
     padding: 20px 10px;
-    width: 70vw;
-    height: 385px;
+    width: 80vw;
     margin: 0 auto;
-
     .header-menu{
+      background: #EBEBEB;
+      border: 1px solid #9A9292;
+      border-radius: 2px;
+      margin: 0 auto;
 
+      mat-button-toggle-group {
+        box-shadow: none;
+        width: 100%;
+        padding-left: 4%;
+      }
+
+      mat-button-toggle {
+        border: 1px rgba(0,0,0,0) solid;
+        margin: 5px 0;
+        background-color: #C5C1C2;
+        z-index: 3;
+        color: #FFFFFF;
+        width: 24%;
+        font-size: 22px;
+      }
+
+      mat-button-toggle:hover {
+        box-shadow: 2px 2px 2px #000;
+        background-color: #9C022D;
+      }
+
+      .mat-button-toggle-checked {
+        box-shadow: 2px 2px 2px #000;
+        background-color: #9C022D ;
+      }
+
+      .mat-button-toggle-input {
+        padding-left: 32px;
+      }
+    }
+    .body-table{
+      padding: 20px;
+      border: 1px solid #9C022D;
+      border-radius: 2px;
     }
   }
 }

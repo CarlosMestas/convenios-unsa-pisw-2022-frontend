@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 export interface ConvElement {
   name: string;
@@ -21,13 +21,42 @@ const CONV_DATA: ConvElement[] = [
   styleUrls: ['./of-home-table.scss']
 })
 export class OfHomeTable implements OnInit {
+  _typeConv: String = "";
+  get typeConv(): String{
+    return this._typeConv;
+  }
+  @Input() set typeConv(newFlag: String) {
+    this._typeConv= newFlag;
+    this.checkDisplayColumns();
+  }
   prefix:string;
-  displayedColumns: string[] = ['demo-position', 'demo-correlative', 'demo-name', 'demo-bases', 'demo-preliminary', 'demo-news', 'demo-final'];
+  displayedColumns: string[] = ['demo-position', 'demo-correlative', 'demo-name'];
   dataSource = CONV_DATA;
   constructor() {
     this.prefix = 'of-home-table'
   }
   ngOnInit(): void {
+
+  }
+  checkDisplayColumns():void {
+    switch (this._typeConv) {
+      case 'prox': {
+        this.displayedColumns = ['demo-position', 'demo-correlative', 'demo-name', 'demo-date', 'demo-bases']
+        break;
+      }
+      case 'current': {
+        this.displayedColumns = ['demo-position', 'demo-correlative', 'demo-name', 'demo-bases', 'demo-news', 'demo-details']
+        break;
+      }
+      case 'finish': {
+        this.displayedColumns = ['demo-position', 'demo-correlative', 'demo-name', 'demo-bases', 'demo-preliminary', 'demo-news', 'demo-final']
+        break;
+      }
+      case 'cancel': {
+        this.displayedColumns = ['demo-position', 'demo-correlative', 'demo-name', 'demo-bases', 'demo-news']
+        break;
+      }
+    }
   }
 
 }

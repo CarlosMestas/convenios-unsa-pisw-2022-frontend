@@ -1,28 +1,22 @@
-<ng-container [ngClass]="prefix">
-<div class="container-search-filters">
-    <mat-form-field >
-      <span matPrefix> </span>
-      <input type="tel" matInput placeholder="Search" name= "search">
-      <button matSuffix mat-button><mat-icon >Buscar convovatoria</mat-icon></button>
-    </mat-form-field>
-
-    <span>Tipo de Convocatoria:</span>
-    <mat-form-field appearance="fill">
-      <mat-label>Tipo de Convocatoria</mat-label>
-      <mat-select disableRipple>
-        <mat-option value="1">Ordinario</mat-option>
-        <mat-option value="2">Extraordinario</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <span>Periodo:</span>
-    <mat-form-field appearance="fill">
-      <mat-label>Periodo</mat-label>
-      <mat-select disableRipple>
-        <mat-option value="1">2022</mat-option>
-        <mat-option value="2">2021</mat-option>
-        <mat-option value="3">2020</mat-option>
-      </mat-select>
-    </mat-form-field>
+<div [ngClass]="prefix">
+  <div class="container-search-filters">
+    <app-search-bar></app-search-bar>
+    <div>
+      <span class="label-filter">Tipo de Convocatoria:</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="selectedType">
+          <mat-option *ngFor="let type of convocTypeList" [value]="type">{{type}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="select-period">
+      <span class="label-filter">Periodo:</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="selectedPeriod">
+          <mat-option *ngFor="let period of periodList" [value]="period">{{period}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
-<app-of-table></app-of-table>
-</ng-container>
+<app-of-table [typeConv]='typeConv'></app-of-table>
+</div>

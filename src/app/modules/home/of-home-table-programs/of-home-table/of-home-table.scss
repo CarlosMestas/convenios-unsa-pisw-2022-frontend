@@ -1,7 +1,8 @@
 $prefix: of-home-table;
 
-.demo-table {
-  width: 100%;
+.apply-table {
+  width: 95%;
+  margin: 0 auto;
 }
 
 .mat-column-demo-position {
@@ -10,18 +11,14 @@ $prefix: of-home-table;
   padding-right: 24px;
   text-align: center;
 }
-
-.mat-column-demo-name {
-  padding-left: 16px;
-  font-size: 20px;
-}
-
-.mat-column-demo-weight {
-  font-style: italic;
-}
-
-.mat-column-demo-symbol {
-  width: 32px;
+.mat-column-demo-correlative, .mat-column-demo-date,.mat-column-demo-news, .mat-column-demo-final, .mat-column-demo-details {
   text-align: center;
-  font-weight: bold;
+}
+.mat-column-demo-name {
+  width: 40%;
+  text-align: center;
+}
+.mat-column-demo-bases,  .mat-column-demo-preliminary{
+  width: 10%;
+  text-align: center;
 }

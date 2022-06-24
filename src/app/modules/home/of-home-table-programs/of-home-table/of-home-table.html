@@ -1,12 +1,12 @@
 <ng-container [ngClass]="prefix">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
-    <!-- Position Column -->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 apply-table">
+    <!-- Number Column -->
     <ng-container matColumnDef="demo-position">
       <th mat-header-cell *matHeaderCellDef> No. </th>
       <td mat-cell *matCellDef="let element"> {{element.position}} </td>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- Correlative Column -->
     <ng-container matColumnDef="demo-correlative">
       <th mat-header-cell *matHeaderCellDef> CORRELATIVO</th>
       <td mat-cell *matCellDef="let element"> {{element.correlative}} </td>
@@ -17,28 +17,50 @@
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- Date Process Column -->
+    <ng-container matColumnDef="demo-date">
+      <th mat-header-cell *matHeaderCellDef> INICIO/FIN POSTULACIÓN </th>
+      <td mat-cell *matCellDef="let element"> 10/08/2022 - 14/09/2022 </td>
+    </ng-container>
+
+    <!-- Bases Column -->
     <ng-container matColumnDef="demo-bases">
       <th mat-header-cell *matHeaderCellDef> BASES </th>
-      <td mat-cell *matCellDef="let element"> {{element.bases}} </td>
+      <td mat-cell *matCellDef="let element">
+        <app-button-customized colorProp="white" textBtn="BASES"></app-button-customized>
+      </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Preliminary Column -->
     <ng-container matColumnDef="demo-preliminary">
       <th mat-header-cell *matHeaderCellDef> REVISIÓN PRELIMINAR </th>
-      <td mat-cell *matCellDef="let element"> {{element.preliminary}} </td>
+      <td mat-cell *matCellDef="let element">
+        <app-button-customized colorProp="blue" textBtn="PRELIMINAR"></app-button-customized>
+      </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- News Column -->
     <ng-container matColumnDef="demo-news">
       <th mat-header-cell *matHeaderCellDef> COMUNICADOS </th>
-      <td mat-cell *matCellDef="let element"> {{element.news}} </td>
+      <td mat-cell *matCellDef="let element">
+        <app-button-customized colorProp="brown" textBtn="{{element.news}}"></app-button-customized>
+      </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- Final Column -->
     <ng-container matColumnDef="demo-final">
       <th mat-header-cell *matHeaderCellDef> RESULTADO FINAL </th>
-      <td mat-cell *matCellDef="let element"> {{element.final}} </td>
+      <td mat-cell *matCellDef="let element">
+        <app-button-customized colorProp="green" textBtn="RESULTADO"></app-button-customized>
+      </td>
+    </ng-container>
+
+    <!-- More Details Column -->
+    <ng-container matColumnDef="demo-details">
+      <th mat-header-cell *matHeaderCellDef> VER MÁS</th>
+      <td mat-cell *matCellDef="let element">
+        <app-button-customized colorProp="green" textBtn="VER MÁS"></app-button-customized>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
