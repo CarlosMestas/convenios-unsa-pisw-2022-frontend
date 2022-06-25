@@ -2,6 +2,9 @@
   width: 100%;
   /*background-color:azure;*/
 }
+input[type=date]:focus{
+  border-color: #8d8f8f !important;
+}
 
 .form-container{
   padding: 1rem 3rem;
@@ -21,7 +24,6 @@
       display: flex;
     }
   }
-
 
 }
 

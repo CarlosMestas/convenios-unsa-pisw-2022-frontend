@@ -2,6 +2,7 @@
   "name": "convenios-unsa-pisw-2022-frontend",
   "version": "0.0.0",
   "scripts": {
+    "start": "ng serve",
     "ng": "ng",
     "start:dev": "ng serve --c=dev",
     "start:production": "ng serve --c=production",
