@@ -1,3 +1,4 @@
+import { AuthGuard } from '../../core/guards/auth/auth.guard';
 import { ApplyComponent } from './pages/apply/apply.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { TimelineComponent } from './pages/timeline/timeline.component';
@@ -9,6 +10,15 @@ import { ConvocatoriaBodyComponent } from './body/convocatoria-body.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
+const ConvocatoriaRoutesValues = {
+  ROUTE_CONVOCATORIA_SCHEDULE: "cronograma",
+  ROUTE_CONVOCATORIA_WHO_CAN_APPLY: "dirigido-a",
+  ROUTE_CONVOCATORIA_REQUIREMENTS_TO_APPLY: "requisitos-para-postular",
+  ROUTE_CONVOCATORIA_PROCESS_TO_APPLY: "proceso-de-aplicacion",
+  ROUTE_CONVOCATORIA_CONTACT: "contacto",
+  ROUTE_CONVOCATORIA_APPLY: "postular"
+};
+
 const ConvocatoriaRoutes: Routes = [
   {
     path: '',
@@ -16,32 +26,33 @@ const ConvocatoriaRoutes: Routes = [
     children:[
       {
         path:'',
-        redirectTo:'cronograma',
+        redirectTo:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_SCHEDULE,
         pathMatch:'full'
       },
       {
-        path: 'dirigido-a',
+        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_WHO_CAN_APPLY,
         component:WhoCanApplyComponent,
       },
       {
-        path: 'requisitos-para-postular',
+        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_REQUIREMENTS_TO_APPLY,
         component:RequirementsToApplyComponent,
       },
       {
-        path: 'proceso-de-aplicacion',
+        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_PROCESS_TO_APPLY,
         component:ProcessToApplyComponent,
       },
       {
-        path: 'cronograma',
+        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_SCHEDULE,
         component:TimelineComponent,
       },
       {
-        path: 'contacto',
+        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_CONTACT,
         component:ContactComponent,
       },
       {
-        path:'postular',
-        component:ApplyComponent
+        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_APPLY,
+        component:ApplyComponent,
+        canActivate:[AuthGuard]
       }
     ]
   }
@@ -56,4 +67,6 @@ const ConvocatoriaRoutes: Routes = [
     RouterModule
   ]
 })
-export class ConvocatoriaRoutingModule { }
+export class ConvocatoriaRoutingModule {
+  public static ROUTES_VALUES = ConvocatoriaRoutesValues;
+}

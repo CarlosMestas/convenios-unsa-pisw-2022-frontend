@@ -17,8 +17,8 @@ export const sidenavItems = [
     label:'Contact'
   },
   {
-    routeLink:'users',
+    routeLink:'iniciar-sesion',
     icon:faUser,
-    label:'Inicio Sesión'
+    label:'Iniciar Sesión'
   }
 ];

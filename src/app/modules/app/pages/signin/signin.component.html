@@ -5,30 +5,29 @@
   <div class="container-form-signin">
     <div class="body-form-signin">
         <div class="icon-form-signin">
-
         </div>
         <div class="header-form-signin">
           Iniciar Sesión
         </div>
-        <div class="fields-form-signin">
+        <form class="fields-form-signin" [formGroup] = "signInForm" (ngSubmit) = "submitSignIn()">
           <div class="form-item form-item-field-email">
             <div class="form-label form-signin-label-field-email">
               Correo
             </div>
-            <input class="form-input-text form-signin-input-field-email" type="email" name="email" id="email" placeholder="Ingresa tu correo">
+            <input class="form-input-text form-signin-input-field-email" type="email" formControlName="email" id="email" placeholder="Ingresa tu correo">
+            <span class="invalid-field" *ngIf = "email && email.invalid && email.touched">El correo ingresado es incorrecto</span>
           </div>
           <div class="form-item form-item-field-password">
             <div class="form-label form-signin-label-field-password">
               Contraseña
             </div>
-            <input class="form-input-text form-signin-input-field-password" type="password" name="password" id="password" placeholder="Ingresa tu contraseña">
+            <input class="form-input-text form-signin-input-field-password" type="password" formControlName="password" id="password" placeholder="Ingresa tu contraseña">
+            <span class="invalid-field" *ngIf = "password && password.invalid && password.touched">El contenido ingresado es incorrecto</span>
           </div>
-        </div>
-        <div class="submit-form-signin" routerLink = '/home'>
-          Iniciar Sesión
-        </div>
-        <div class="google-form-signin" (click)="signInHandler()">
-          Login Con google
+          <input class="submit-form" type="submit" [disabled] = "signInForm.invalid" value="Iniciar Sesión">
+        </form>
+
+        <div id="signInDiv">
         </div>
         <div class="form-label no-account">
           ¿Aún no estás registrado?

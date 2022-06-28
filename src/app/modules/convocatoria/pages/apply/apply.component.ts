@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {GoogleLoginProvider, SocialAuthService} from "@abacritt/angularx-social-login";
 
 @Component({
   selector: 'app-apply',
@@ -12,7 +11,7 @@ export class ApplyComponent implements OnInit {
   items: any [] = [];
   constructor(
     private router:Router,
-    private authService:SocialAuthService) {
+    ) {
     this.items = [
       {
         img: "https://img.freepik.com/vector-gratis/gestion-tiempo-metodo-calendario-planificacion-citas-organizador-negocios-gente-dibujando-marca-personajes-dibujos-animados-horario-trabajo-trabajo-equipo-colegas_335657-2096.jpg?w=2000",
@@ -31,8 +30,6 @@ export class ApplyComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  signInHandler():void{
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
+
 
 }
