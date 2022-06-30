@@ -1,8 +1,11 @@
+@import "../../../../../assets/scss/mixins";
+@import "../../../../../assets/scss/variables";
+
 $prefix: home-component;
 .#{$prefix} {
   .container-header{
     width: 100vw;
-    height: 48vh;
+    //height: 48vh;
     background: #DFDFDF;
     display: grid;
     column-gap: 20px;
@@ -12,7 +15,7 @@ $prefix: home-component;
       background: #500117;
       position: absolute;
       color: #FFFFFF;
-      font-size: 32px;
+      @include font-size-32-26;
       z-index: 3;
       padding: 13px;
       margin-top: 8px;
@@ -32,7 +35,7 @@ $prefix: home-component;
         padding: 20px;
         opacity: 0.8;
         .text-guide{
-          font-size: 18px;
+          @include font-size-18-16;
           text-align: justify;
           color: #FFFFFF;
         }
@@ -48,7 +51,7 @@ $prefix: home-component;
         grid-template-columns: auto auto;
         .text-program{
           font-weight: 400;
-          font-size: 32px;
+          @include font-size-32-22;
           line-height: 39px;
           color: #011847;
         }
@@ -81,7 +84,7 @@ $prefix: home-component;
         z-index: 3;
         color: #FFFFFF;
         width: 24%;
-        font-size: 22px;
+        @include font-size-22-16;
       }
 
       mat-button-toggle:hover {
@@ -103,5 +106,50 @@ $prefix: home-component;
       border: 1px solid #9C022D;
       border-radius: 2px;
     }
+  }
+  @media screen and (min-width:$res-1366) and (max-width:$res-1500) {
+    .container-header{
+      .right-help-box {
+        .guides-box {
+          width: 85%;
+        }
+
+        .application-index {
+          display: block;
+          width: 85%;
+        }
+      }
+    }
+  }
+  @media screen and(max-width:$res-1366) {
+    .container-header{
+      .right-help-box {
+        .guides-box {
+          width: 80%;
+        }
+        .application-index {
+          display: block;
+          width: 80%;
+        }
+        .application-index {
+           .text-program{
+             line-height: 24px;
+           }
+         }
+      }
+    }
+    .container-convocations {
+      .header-menu {
+        mat-button-toggle-group {
+          padding-left: 2%;
+        }
+        mat-button-toggle {
+          width: 24.5%;
+        }
+      }
+    }
+  }
+  @media screen and(max-width:$res-1024) {
+
   }
 }
