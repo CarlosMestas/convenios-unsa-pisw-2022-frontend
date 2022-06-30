@@ -1,45 +1,73 @@
 {
-  "convocatorias":[
+  "convocatorias": [
     {
-      "convocatoriaId":1,
+      "convocatoriaId": 1,
       "ConvocatoriaDetail": "Este es el detalle de la convocatoria 1",
-      "convocatoriaPlace":"este es el Lugar 1",
-      "convocatoriaCareer":"Esta es la carrera 1",
-      "convocatoriaDays":21,
-      "convocatoriaDateStart":"18/09/2022",
-      "convocatoriaDateEnd":"18/12/2022",
-      "tipoConvocatoriaId":1
+      "convocatoriaPlace": "este es el Lugar 1",
+      "convocatoriaCareer": "Esta es la carrera 1",
+      "convocatoriaDays": 21,
+      "convocatoriaDateStart": "18/09/2022",
+      "convocatoriaDateEnd": "18/12/2022",
+      "tipoConvocatoriaId": 1
     },
     {
-      "convocatoriaId":2,
+      "convocatoriaId": 2,
       "ConvocatoriaDetail": "Este es el detalle de la convocatoria 2",
-      "convocatoriaPlace":"este es el Lugar 2",
-      "convocatoriaCareer":"Esta es la carrera 2",
-      "convocatoriaDays":4,
-      "convocatoriaDateStart":"18/09/2022",
-      "convocatoriaDateEnd":"18/12/2022",
-      "tipoConvocatoriaId":1
+      "convocatoriaPlace": "este es el Lugar 2",
+      "convocatoriaCareer": "Esta es la carrera 2",
+      "convocatoriaDays": 4,
+      "convocatoriaDateStart": "18/09/2022",
+      "convocatoriaDateEnd": "18/12/2022",
+      "tipoConvocatoriaId": 1
     },
     {
-      "convocatoriaId":3,
+      "convocatoriaId": 3,
       "ConvocatoriaDetail": "Este es el detalle de la convocatoria 3",
-      "convocatoriaPlace":"este es el Lugar 3",
-      "convocatoriaCareer":"Esta es la carrera 3",
-      "convocatoriaDays":5,
-      "convocatoriaDateStart":"18/09/2022",
-      "convocatoriaDateEnd":"18/12/2022",
-      "tipoConvocatoriaId":1
+      "convocatoriaPlace": "este es el Lugar 3",
+      "convocatoriaCareer": "Esta es la carrera 3",
+      "convocatoriaDays": 5,
+      "convocatoriaDateStart": "18/09/2022",
+      "convocatoriaDateEnd": "18/12/2022",
+      "tipoConvocatoriaId": 1
     },
     {
-      "convocatoriaId":4,
+      "convocatoriaId": 4,
       "ConvocatoriaDetail": "Este es el detalle de la convocatoria 4",
-      "convocatoriaPlace":"este es el Lugar 4",
-      "convocatoriaCareer":"Esta es la carrera 4",
-      "convocatoriaDays":12,
-      "convocatoriaDateStart":"18/09/2022",
-      "convocatoriaDateEnd":"18/12/2022",
-      "tipoConvocatoriaId":1
+      "convocatoriaPlace": "este es el Lugar 4",
+      "convocatoriaCareer": "Esta es la carrera 4",
+      "convocatoriaDays": 12,
+      "convocatoriaDateStart": "18/09/2022",
+      "convocatoriaDateEnd": "18/12/2022",
+      "tipoConvocatoriaId": 1
     }
-
+  ],
+  "users": [
+    {
+      "userId": 1,
+      "userName": "Juan Javier",
+      "userLastname": "Perez",
+      "userEmail": "abc@gmail.com",
+      "userPassword": "abcabc",
+      "userStatus": 1,
+      "userPicture": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+    },
+    {
+      "userId": 2,
+      "userName": "Percy Juan",
+      "userLastname": "Chavez",
+      "userEmail": "def@gmail.com",
+      "userPassword": "defdef",
+      "userStatus": 1,
+      "userPicture": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+    },
+    {
+      "id": 2,
+      "userName": "Percy Juan",
+      "userLastname": "Chavez",
+      "userEmail": "def@gmail.com",
+      "userPassword": "defdef",
+      "userStatus": 1,
+      "userPicture": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+    }
   ]
 }

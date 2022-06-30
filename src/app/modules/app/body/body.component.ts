@@ -1,6 +1,8 @@
+import { AuthService } from './../../../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { SideNavToggle } from './../../../shared/interfaces/sidenav.interface';
 import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-body',
   templateUrl: './body.component.html',
@@ -20,14 +22,22 @@ screenWidth = 0;
     }
     return styleClass;
   }
-  constructor(private titleService:Title) { }
+  constructor(
+    private titleService:Title,
+    private authService:AuthService
+    ) { }
 
-  onToggleSideNav(sideNavData:SideNavToggle):void{
+  onToggleSideNav(sideNavData:SideNavToggle,):void{
     this.isSideNavCollapsed = sideNavData.collapsed
     this.screenWidth = sideNavData.screenWidth
   }
   ngOnInit(): void {
-    this.titleService.setTitle('Home')
-  }
+    console.log("NG ON INIT calling")
+    // @ts-ignore
+    window.onGoogleLibraryLoad  = () => {
+      this.authService.initializeGoogleAuthService()
 
+      this.authService.promptGoogleOneTap()
+    }
+  }
 }

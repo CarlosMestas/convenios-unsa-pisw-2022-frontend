@@ -5,18 +5,27 @@ import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { FormsModule } from "@angular/forms";
-import {CommonModule} from '@angular/common';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Module Local components imported
 import { HomeComponent } from './pages/home/home.component'
 import { BodyComponent } from './body/body.component';
+import { OfHomeTableProgramsComponent } from './components/of-home-table-programs/of-home-table-programs.component';
+import { OfHomeTableComponent } from './components/of-home-table/of-home-table.component';
+import { OfHomeCarouselNewsComponent } from './components/of-home-carousel-news/of-home-carousel-news.component';
+
+
 //Shared Components imported
 import {SidenavComponent} from '../../shared/components/sidenav/sidenav.component'
 
 //Routes
 import { AppRoutingModule } from './app.routes';
-import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component'
+import { SharedModule } from '../shared/shared.module';
+
 
 
 
@@ -27,34 +36,25 @@ import { SignupComponent } from './pages/signup/signup.component'
     HomeComponent,
     BodyComponent,
     SigninComponent,
-    SignupComponent
+    SignupComponent,
+    OfHomeTableProgramsComponent,
+    OfHomeTableComponent,
+    OfHomeCarouselNewsComponent
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
     AppRoutingModule,
-    SocialLoginModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    SharedModule,
+    BrowserAnimationsModule
+
+
   ],
   providers: [
-    {
-      provide:'SocialAuthServiceConfig',
-      useValue: {
-        autoLogin:false,
-        providers:[
-          {
-            id:GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '759619919579-k8fci80tiq63alhfh9ome4dihlaiqm8q.apps.googleusercontent.com'
-            )
-          }
-        ],
-        onerror: (err:any) =>{
-          console.log(err)
-        }
-      } as SocialAuthServiceConfig
-    }
   ],
   bootstrap: [BodyComponent]
 })

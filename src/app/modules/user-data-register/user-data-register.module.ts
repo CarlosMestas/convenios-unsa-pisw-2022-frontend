@@ -15,7 +15,7 @@ import { GeneralInfoComponent } from './pages/general-info/general-info.componen
 // shared Components imported
 
 //user-routing
-import { UserRoutingModule } from './user-data-register.routes';
+import { UserDataRegisterRoutingModule } from './user-data-register.routes';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { UserRoutingModule } from './user-data-register.routes';
     UnsaStudentComponent
   ],
   imports: [
-    UserRoutingModule,
+    UserDataRegisterRoutingModule,
     FontAwesomeModule,
     CommonModule,
     SharedModule
@@ -36,4 +36,4 @@ import { UserRoutingModule } from './user-data-register.routes';
   ]
 
 })
-export class UserModule { }
+export class UserDataRegisterModule { }
