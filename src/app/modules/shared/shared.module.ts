@@ -7,6 +7,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {RouterModule} from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
+import { Button } from 'src/app/shared/components/button/button';
+import { MaterialModule } from '../material/material.module';
+import { ButtonCustomizedComponent } from 'src/app/shared/components/button-customized/button-customized.component';
+import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -14,19 +22,27 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
     TooltipWhiteSmallComponent,
     TooltipRedSmallComponent,
     SidenavUserInfoComponent,
-    SidenavItemComponent
+    SidenavItemComponent,
+    Button,
+    ButtonCustomizedComponent,
+    SearchBarComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MaterialModule,
   ],
   exports:[
     SteperComponent,
     TooltipWhiteSmallComponent,
     TooltipRedSmallComponent,
     SidenavUserInfoComponent,
-    SidenavItemComponent
+    SidenavItemComponent,
+    Button,
+    MaterialModule,
+    ButtonCustomizedComponent,
+    SearchBarComponent
   ]
 
 })

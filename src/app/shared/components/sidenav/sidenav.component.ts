@@ -60,7 +60,6 @@ export class SidenavComponent implements OnInit {
     this.screenWidth = window.innerWidth;
     this.authService.getUser().subscribe(user =>{
       this.user = user
-      console.log("user-----:" )
       console.log(this.user)
     });
     this.sidenavService.getSidenavItems().subscribe(items=>{

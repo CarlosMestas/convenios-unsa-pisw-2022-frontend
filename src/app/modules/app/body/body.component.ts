@@ -35,7 +35,6 @@ screenWidth = 0;
     console.log("NG ON INIT calling")
     // @ts-ignore
     window.onGoogleLibraryLoad  = () => {
-      console.log('holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
       this.authService.initializeGoogleAuthService()
 
       this.authService.promptGoogleOneTap()

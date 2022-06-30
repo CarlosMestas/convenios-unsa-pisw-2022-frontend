@@ -1,10 +1,10 @@
-import { FillFileComponent } from './fill-file/fill-file.component';
+import { FillFileComponent } from './pages/fill-file/fill-file.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
-import {VerifyDataComponent} from "./verify-data/verify-data.component";
-import {UploadFilesComponent} from "./upload-files/upload-files.component";
-import {UserDataPostulationBodyComponent} from "./user-data-postulation-body/user-data-postulation-body.component";
+import {VerifyDataComponent} from "./pages/verify-data/verify-data.component";
+import {UploadFilesComponent} from "./pages/upload-files/upload-files.component";
+import {UserDataPostulationBodyComponent} from "./body/user-data-postulation-body.component";
 
 const UserDataPostulationRoutes: Routes = [
   {

@@ -16,7 +16,6 @@ export class SidenavItemComponent implements OnInit {
     this.icon = faQuestion //default icon
     this.label = ''
     this.collapsed = true
-    console.log("loaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
   }
 
   ngOnInit(): void {

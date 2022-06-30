@@ -8,17 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  prefix:string;
   constructor() {
-
+    this.prefix = 'home-component'
   }
 
   ngOnInit(): void {
-
-
-
   }
-
-
-
 
 }

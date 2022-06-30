@@ -52,7 +52,7 @@ const AppRoutes: Routes  = [
   },
   {
     path: AppRoutesValues.ROUTE_APP_APPLY,
-    loadChildren:()=>import('../user-data-postulation/user-data-postulation.module').then(m => m.UserDataPostulationModule)
+    loadChildren:()=>import('../postulation/user-data-postulation.module').then(m => m.UserDataPostulationModule)
   }
 ]
 
