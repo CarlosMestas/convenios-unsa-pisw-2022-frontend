@@ -44,8 +44,6 @@
   "users": [
     {
       "userId": 1,
-      "userName": "Juan Javier",
-      "userLastname": "Perez",
       "userEmail": "abc@gmail.com",
       "userPassword": "abcabc",
       "userStatus": 1,
@@ -53,21 +51,202 @@
     },
     {
       "userId": 2,
-      "userName": "Percy Juan",
-      "userLastname": "Chavez",
       "userEmail": "def@gmail.com",
       "userPassword": "defdef",
       "userStatus": 1,
       "userPicture": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+    }
+  ],
+  "perfiles":[
+    {
+      "perfilId":1,
+      "perfilName": "Juan Javier",
+      "perfilLastname":"Perez",
+      "perfilPhone":"9845121321",
+      "usuariosId":1,
+      "tipoUsuarioId": 2,
+      "programaProfesionalId":2,
+      "semestreId": 2,
+      "tipoDocumentoId": 1,
+      "perfilDocument": "wawdadawdadadaawdadawdawdawdawdaw",
+      "perfilAddress": "wawdadawdadadaawdadawdawdawdawdaw",
+      "perfilStatus": "wawdadawdadadaawdadawdawdawdawdaw",
+      "perfilDateCreated": "wawdadawdadadaawdadawdawdawdawdaw",
+      "perfilDateModified": "wawdadawdadadaawdadawdawdawdawdaw"
     },
     {
-      "id": 2,
-      "userName": "Percy Juan",
-      "userLastname": "Chavez",
-      "userEmail": "def@gmail.com",
-      "userPassword": "defdef",
-      "userStatus": 1,
-      "userPicture": "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+      "perfilId":2,
+      "perfilName": "Percy Juan",
+      "perfilLastname":"Perez",
+      "perfilPhone":"9845121321",
+      "usuariosId":2,
+      "tipoUsuarioId": 2,
+      "programaProfesionalId":2,
+      "semestreId": 2,
+      "tipoDocumentoId": 1,
+      "perfilDocument": "wawdadawdadadaawdadawdawdawdawdaw",
+      "perfilAddress": "wawdadawdadadaawdadawdawdawdawdaw",
+      "perfilStatus": "wawdadawdadadaawdadawdawdawdawdaw",
+      "perfilDateCreated": "wawdadawdadadaawdadawdawdawdawdaw",
+      "perfilDateModified": "wawdadawdadadaawdadawdawdawdawdaw"
+    }
+  ],
+  "tipos-usuario":[
+    {
+      "tipoUsuarioId": 1,
+      "tipoUsuarioName": "Alumno UNSA",
+      "tipoUsuarioStatus": 1
+    },
+    {
+      "tipoUsuarioId": 2,
+      "tipoUsuarioName": "Alumno Externo",
+      "tipoUsuarioStatus": 1
+    },
+    {
+      "tipoUsuarioId": 3,
+      "tipoUsuarioName": "Docente UNSA",
+      "tipoUsuarioStatus": 1
+    },
+    {
+      "tipoUsuarioId": 4,
+      "tipoUsuarioName": "Docente Externo",
+      "tipoUsuarioStatus": 1
+    }
+  ],
+  "programas-profesionales":[
+    {
+      "programaProfesionalId":1,
+      "programaProfesionalName": "Ingenieria de Sistemas",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":2,
+      "programaProfesionalName": "Ingenieria de Electrónica",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":3,
+      "programaProfesionalName": "Ingenieria de Electrica",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":4,
+      "programaProfesionalName": "Ingenieria de Mecánica",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":5,
+      "programaProfesionalName": "Ingenieria de Civil",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":6,
+      "programaProfesionalName": "Ingenieria de Industrias Alimentarias",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":7,
+      "programaProfesionalName": "Ingenieria de Sanitaria",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":8,
+      "programaProfesionalName": "Ingenieria de Telecomunicaciones",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":9,
+      "programaProfesionalName": "Ingenieria de Geológica",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":10,
+      "programaProfesionalName": "Ingenieria de Minas",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":11,
+      "programaProfesionalName": "Ingenieria de Geofisica",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":12,
+      "programaProfesionalName": "Medicina",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":13,
+      "programaProfesionalName": "Enfermeria",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":14,
+      "programaProfesionalName": "Nutricion",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":15,
+      "programaProfesionalName": "Ingenieria Pesquera",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":16,
+      "programaProfesionalName": "Derecho",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":17,
+      "programaProfesionalName": "Educacion",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":18,
+      "programaProfesionalName": "Psicologia",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":19,
+      "programaProfesionalName": "Contabilidad",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":20,
+      "programaProfesionalName": "Literatura",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":21,
+      "programaProfesionalName": "Turismo y Hoteleria",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":22,
+      "programaProfesionalName": "Artes",
+      "programaProfesionalStatus": 1
+    },
+    {
+      "programaProfesionalId":23,
+      "programaProfesionalName": "Economia",
+      "programaProfesionalStatus": 1
+    }
+  ],
+  "semestres":[
+    {
+      "semestreId":1,
+      "semestreName":"2022-A",
+      "semestreStatus": 1
+    }
+  ],
+  "tipo-documento":[
+    {
+      "tipoConvocatoriaId":1,
+      "tipoConvocatoriaName": "DNI",
+      "tipoConvocatoriaStatus":1
+    },
+    {
+      "tipoConvocatoriaId":2,
+      "tipoConvocatoriaName": "Carnet Extranjería",
+      "tipoConvocatoriaStatus":1
     }
   ]
 }

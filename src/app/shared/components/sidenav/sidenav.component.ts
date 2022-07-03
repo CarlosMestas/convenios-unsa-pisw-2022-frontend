@@ -1,10 +1,9 @@
+import { UserData } from './../../models/user-data.model';
 import { SidenavItem } from './../../interfaces/sidenav-item.interface';
 import { SidenavService } from './../../../core/services/sidenav/sidenav.service';
-import { User } from './../../models/user.model';
 import { AuthService } from './../../../core/services/auth/auth.service';
 import { Component, OnInit, Output,EventEmitter, HostListener } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { sidenavItems } from 'src/app/core/mocks/items-sidenav.mock';
 
 
 //interfaces
@@ -22,7 +21,7 @@ export class SidenavComponent implements OnInit {
   //sidenavData = sidenavItems;
   sidenavData:{[name:string]:SidenavItem} ={}
 
-  user:User | null = null;
+  user:UserData | null = null;
 
   collapsed:boolean = true
   screenWidth:number = 0

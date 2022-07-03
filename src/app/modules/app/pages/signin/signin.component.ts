@@ -18,6 +18,7 @@ export class SigninComponent implements OnInit {
   private googleAuthServiceInitialized:boolean
 
   constructor(
+    private router:Router,
     private authService:AuthService
   )
   {
@@ -63,7 +64,10 @@ export class SigninComponent implements OnInit {
 
   submitSignIn():void{
     this.authService.normalUserSignin(this.signInForm.value["email"],this.signInForm.value["password"]).subscribe(data =>{
-      console.log(data.data[0])
+      if(data.data[0]!=null){
+        this.router.navigate(["/home"])
+      }
+
     })
   }
 }

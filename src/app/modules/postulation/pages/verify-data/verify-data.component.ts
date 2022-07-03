@@ -1,3 +1,6 @@
+import { UserData } from './../../../../shared/models/user-data.model';
+import { User } from 'src/app/shared/models/user.model';
+import { AuthService } from './../../../../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerifyDataComponent implements OnInit {
 
-  constructor() { }
+  user: UserData|null
+  constructor( private authService: AuthService ) {
+    this.user = null;
+  }
 
   ngOnInit(): void {
+    this.authService.getUser().subscribe(user => {
+      this.user = user
+    })
   }
 
 }

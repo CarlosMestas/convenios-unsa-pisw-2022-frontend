@@ -1,3 +1,5 @@
+import { UserData } from './../../../shared/models/user-data.model';
+import { PerfilService } from './../perfil/perfil.service';
 import { HttpClient } from '@angular/common/http';
 import { SidenavService } from './../sidenav/sidenav.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -15,16 +17,17 @@ import { BehaviorSubject, catchError, map, Observable, Subject } from "rxjs";
 export class AuthService extends AuthHelper{
 
 
-  private user$:BehaviorSubject<User | null>;
+  private user$:BehaviorSubject<UserData | null>;
   private googleAuthServiceInitialized$: BehaviorSubject<boolean>;
   constructor(
     private router:Router,
     private activatedRoute:ActivatedRoute,
     private sidenavService:SidenavService,
-    protected override http:HttpClient
+    protected override http:HttpClient,
+    private perfilService:PerfilService
   ){
     super(http)
-    this.user$ = new BehaviorSubject<User | null>(null);
+    this.user$ = new BehaviorSubject<UserData | null>(null);
     this.googleAuthServiceInitialized$= new BehaviorSubject<boolean>(false)
     this.loadUser()
   }
@@ -70,16 +73,17 @@ export class AuthService extends AuthHelper{
    * Shows google one tap
    */
   promptGoogleOneTap(){
-
-      // @ts-ignore
-      google.accounts.id.prompt((notification: PromptMomentNotification) => {
-        if (notification.isSkippedMoment() && notification.getSkippedReason() === 'user_cancel'){
-          // @ts-ignore
-          console.log("user canceled------------------")
-        }
-        if (notification.getDismissedReason() === 'credential_returned') {
-        }
-      });
+      if(this.user$.getValue()?.user==null){
+        // @ts-ignore
+        google.accounts.id.prompt((notification: PromptMomentNotification) => {
+          if (notification.isSkippedMoment() && notification.getSkippedReason() === 'user_cancel'){
+            // @ts-ignore
+            console.log("user canceled------------------")
+          }
+          if (notification.getDismissedReason() === 'credential_returned') {
+          }
+        });
+      }
   }
   /**
    * catch callback when user signin
@@ -89,9 +93,13 @@ export class AuthService extends AuthHelper{
     // Decoding  JWT token...
       try {
         let tempUser:User = this.getUserFromJWTCredential(response?.credential)
-        this.user$.next(tempUser)
+        this.user$.next(new UserData(tempUser,null))
+        this.perfilService.fetchPerfil(tempUser.userId).subscribe(profile =>{
+          this.user$.next(new UserData(this.user$.getValue()?.user,profile.data))
+        })
         this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(tempUser));
         this.sidenavService.sidenavUserLogged()
+        this.router.navigate(["/home"])
       } catch (e) {
         console.error('Error while trying to decode token', e);
       }
@@ -101,7 +109,7 @@ export class AuthService extends AuthHelper{
    *
    * @returns User Observable to be able to subscribe and be notified when User changes whether it's signed or not
    */
-  getUser():Observable<User | null>{
+  getUser():Observable<UserData | null>{
     return this.user$.asObservable();
   }
 
@@ -111,7 +119,11 @@ export class AuthService extends AuthHelper{
   private loadUser():void{
     const token = localStorage.getItem(AuthHelper.USER_OMBP_SESION)
     if(token){
-      this.user$.next(this.getUserFromNormalToken(token))
+      let tempUser:User = this.getUserFromNormalToken(token)
+      this.user$.next(new UserData(tempUser,null))
+      this.perfilService.fetchPerfil(tempUser.userId).subscribe(profile=>{
+        this.user$.next(new UserData(this.user$.getValue()?.user,profile.data))
+      })
       this.sidenavService.sidenavUserLogged()
     }
   }
@@ -131,12 +143,12 @@ export class AuthService extends AuthHelper{
     /*let credential:string = JSON.stringify({gmail:gmail,password:password})
     this.http.get<IUser[]>(this.url + "users" + '?token=' + btoa(credential))*/
     //return this.http.get<IUser[]>(this.url + "users?userId=1")
-    console.log(JSON.stringify(new User(3,email.split('@')[0],'',email,password,0,'')))
-    return this.http.post<User>(this.url + "users", new User(3,email.split('@')[0],'',email,password,0,''))
+    //console.log(JSON.stringify(new User(3, email,password,0,'')))
+    return this.http.post<User>(this.url + "users", new User(3,email,password,0,''))
     .pipe(
       map( r =>{
         response.data = r;
-        this.user$.next(response.data)
+        this.user$.next(new UserData(response.data,null))
         this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data))
         return response
       }),
@@ -171,14 +183,21 @@ export class AuthService extends AuthHelper{
     .pipe(
       map( r =>{
         response.data = r;
-        this.user$.next(response.data[0])
+        this.user$.next(new UserData( response.data[0],null))
         this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data[0]))
+        console.log("user id ---------", response.data[0].userId)
+        this.perfilService.fetchPerfil(response.data[0].userId).subscribe(profile =>{
+          this.user$.next(new UserData(this.user$.getValue()?.user,profile.data))
+        })
         return response
       }),
       catchError(this.errorSignIn)
     );
   }
   isUserSigned():boolean{
-    return this.user$.getValue()!=null
+    return this.user$.getValue()?.user!=null
+  }
+  isUserProfileCreated():boolean{
+    return this.user$.getValue()?.profile!=null
   }
 }

@@ -1,3 +1,4 @@
+import { UserData } from './../../models/user-data.model';
 import { User } from './../../models/user.model';
 import { Component, Input, OnInit } from '@angular/core';
 
@@ -8,10 +9,10 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class SidenavUserInfoComponent implements OnInit {
 
-  @Input() user: User ;
+  @Input() user: UserData | null ;
   @Input() collapsed: boolean ;
   constructor() {
-    this.user = {} as User
+    this.user = {} as UserData
     this.collapsed = true;
   }
 
@@ -19,6 +20,6 @@ export class SidenavUserInfoComponent implements OnInit {
   }
 
   get existUser():boolean{
-    return this.user != {} as User
+    return this.user != {} as UserData
   }
 }

@@ -1,8 +1,8 @@
 <div class="sidenav-user-container" >
-  <img [src]="user.userPicture" alt="user image" class="user-image">
+  <img [src]="user?.user?.userPicture" alt="user image" class="user-image">
   <div class="user-info" *ngIf = "!collapsed">
     <div class="user-name">
-      {{user.userName}} {{user.userLastname}}
+      {{user?.profile?.perfilName}} {{user?.profile?.perfilLastname}}
     </div>
     <div class="user-type">
       student

@@ -14,7 +14,6 @@ export class AuthHelper{
 
   }
 
-
   saveLocalStorageUserNormalToken(token:string){
     localStorage.setItem(AuthHelper.USER_OMBP_SESION,token)
   }
@@ -29,9 +28,7 @@ export class AuthHelper{
   getUserFromNormalToken(token:string){
     let decodedToken = JSON.parse(atob(token));
     return new User(
-      0,
-      decodedToken.userName,
-      decodedToken.userLastname,
+      decodedToken.userId,
       decodedToken.userEmail,
       '',
       0,
@@ -47,16 +44,12 @@ export class AuthHelper{
     let decodedToken = JSON.parse(atob(jwtCredential.split('.')[1]));
     return new User(
       0,
-      decodedToken.given_name,
-      decodedToken.family_name,
       decodedToken.email,
       '',
       0,
       decodedToken.picture
     )
   }
-
-
 
   errorSignIn(error:HttpErrorResponse){
     let errorMessage = ''

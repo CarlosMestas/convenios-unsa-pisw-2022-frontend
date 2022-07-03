@@ -51,7 +51,7 @@ const ConvocatoriaRoutes: Routes = [
       },
       {
         path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_APPLY,
-        component:ApplyComponent,
+        loadChildren:()=>import('../postulation/user-data-postulation.module').then(m => m.UserDataPostulationModule),
         canActivate:[AuthGuard]
       }
     ]
