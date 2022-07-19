@@ -13,6 +13,7 @@ const AppRoutesValues = {
   ROUTE_APP_USERS: "usuarios",
   ROUTE_APP_CONVOCATORIA: "convocatorias",
   ROUTE_APP_APPLY: "postulacion",
+  ROUTE_APP_POSTULACION: "usuario-postulacion"
 };
 const AppRoutes: Routes  = [
   {
@@ -49,6 +50,10 @@ const AppRoutes: Routes  = [
   {
     path:AppRoutesValues.ROUTE_APP_CONVOCATORIA+"/:id",
     loadChildren:()=>import('../convocatoria/convocatoria.module').then(m => m.ConvocatoriaModule)
+  },
+  {
+    path:AppRoutesValues.ROUTE_APP_POSTULACION+"/:id",
+    loadChildren:()=>import('../postulation/user-data-postulation.module').then(m=> m.UserDataPostulationModule)
   },
   {
     path: AppRoutesValues.ROUTE_APP_APPLY,

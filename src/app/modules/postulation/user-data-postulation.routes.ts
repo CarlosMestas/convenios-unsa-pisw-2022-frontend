@@ -6,6 +6,11 @@ import {VerifyDataComponent} from "./pages/verify-data/verify-data.component";
 import {UploadFilesComponent} from "./pages/upload-files/upload-files.component";
 import {UserDataPostulationBodyComponent} from "./body/user-data-postulation-body.component";
 
+const PostulacionRoutesValues = {
+  ROUTE_POSTULACION_VERIFY_DATA: "verificacion",
+  ROUTE_POSTULACION_FILL_FILE: "llenar-ficha",
+  ROUTE_POSTULACION_UPOLOAD_FILES: "cargar-archivos"
+};
 const UserDataPostulationRoutes: Routes = [
   {
     path: '',
@@ -13,19 +18,19 @@ const UserDataPostulationRoutes: Routes = [
     children:[
       {
         path:'',
-        redirectTo:'verificacion-informacion-usuario',
+        redirectTo:PostulacionRoutesValues.ROUTE_POSTULACION_VERIFY_DATA,
         pathMatch:'full'
       },
       {
-        path: 'verificacion-informacion-usuario',
+        path: PostulacionRoutesValues.ROUTE_POSTULACION_VERIFY_DATA,
         component:VerifyDataComponent,
       },
       {
-        path: 'llenar-ficha-usuario',
+        path: PostulacionRoutesValues.ROUTE_POSTULACION_FILL_FILE,
         component:FillFileComponent,
       },
       {
-        path: 'cargar-archivo-usuario',
+        path: PostulacionRoutesValues.ROUTE_POSTULACION_UPOLOAD_FILES,
         component:UploadFilesComponent,
       }
     ]
@@ -41,4 +46,6 @@ const UserDataPostulationRoutes: Routes = [
     RouterModule
   ]
 })
-export class UserDataPostulationRoutingModule { }
+export class UserDataPostulationRoutingModule {
+  public static  ROUTES_VALUES = PostulacionRoutesValues;
+}
