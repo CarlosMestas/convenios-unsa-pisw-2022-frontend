@@ -1,8 +1,8 @@
 <div class="sidenav-user-container" >
-  <img [src]="user?.user?.userPicture" alt="user image" class="user-image">
+  <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user image" class="user-image">
   <div class="user-info" *ngIf = "!collapsed">
     <div class="user-name">
-      {{user?.profile?.perfilName}} {{user?.profile?.perfilLastname}}
+      {{user?.user?.email}}
     </div>
     <div class="user-type">
       student

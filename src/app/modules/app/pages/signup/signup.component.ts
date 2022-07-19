@@ -55,7 +55,7 @@ export class SignupComponent implements OnInit {
 
   submitSignUp():void{
     this.authService.normalUserSignUp(this.signUpForm.value["email"],this.signUpForm.value["password"]).subscribe(data =>{
-      console.log(data.data)
+
     })
   }
 }

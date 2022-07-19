@@ -68,6 +68,7 @@ export class SidenavComponent implements OnInit {
 
   }
   cerrarSesion(){
-    this.authService.logout()
+    this.authService.logout().subscribe(data =>{
+    })
   }
 }

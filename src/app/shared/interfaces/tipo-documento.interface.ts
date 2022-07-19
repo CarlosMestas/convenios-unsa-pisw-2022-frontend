@@ -1,5 +1,5 @@
 export interface ITipoDocumento{
-  tipoConvocatoriaId:number,
-  tipoConvocatoriaName: string,
-  tipoConvocatoriaStatus:number
+  documentId:number,
+  documentName: string,
+  documentStatus:string
 }

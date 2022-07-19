@@ -1,3 +1,5 @@
+import { ITipoDocumento } from './../../../../shared/interfaces/tipo-documento.interface';
+import { TipoDocumentoService } from './../../../../core/services/tipo-documento/tipo-documento.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneralInfoComponent implements OnInit {
 
-  constructor() { }
+  typesDocument:ITipoDocumento[]|null = null
+  constructor(
+    private tipoDocumentoService:TipoDocumentoService
+  ) { }
 
   ngOnInit(): void {
+    this.tipoDocumentoService.fetchDocuments().subscribe( documents => {
+      this.typesDocument = documents.data
+    })
   }
 
 }

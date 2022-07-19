@@ -41,7 +41,10 @@
         <div class="form-label form-label-field-dni">
           Número de DNI
         </div>
-        <input class="form-input-text form-input-field-dni" type="text" name="dni" id="dni" placeholder="Ingresa tu Número de DNI">
+        <select class="form-input-text form-input-field-document" name="typedoc" id="typedoc" *ngIf = "typesDocument">
+          <option value="Alumno UNSA"   *ngFor = "let typeDocument of typesDocument">{{typeDocument.documentName}}</option>
+        </select>
+
       </div>
     </div>
     <div class="buttons-handler">

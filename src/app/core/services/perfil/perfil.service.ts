@@ -27,7 +27,7 @@ export class PerfilService extends PerfilHelper{
     return this.perfil$.asObservable();
   }
 
-  fetchPerfil(userId:number):Observable<
+  fetchProfile(userId:number|null):Observable<
   {
     error:boolean,
     msg:string,

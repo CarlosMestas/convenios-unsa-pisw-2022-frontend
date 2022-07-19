@@ -1,3 +1,4 @@
+import { AuthInterceptor, AuthInterceptorProviders } from './../../core/interceptors/auth.interceptor';
 
 
 //Modules imported
@@ -55,6 +56,7 @@ import { SharedModule } from '../shared/shared.module';
 
   ],
   providers: [
+    AuthInterceptorProviders
   ],
   bootstrap: [BodyComponent]
 })

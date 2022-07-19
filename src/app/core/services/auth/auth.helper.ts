@@ -6,6 +6,15 @@ import { User } from "src/app/shared/models/user.model";
 
 export class AuthHelper{
   public static USER_OMBP_SESION:string = "userOMBPSession";
+  public static USER_LOGIN_TOKEN:string = "userLoginToken";
+
+  protected static API_AUTH_SERVICE_ROUTES = {
+    LOGOUT:"logout",
+    LOGIN:"login",
+    SIGNUP:"users"
+  }
+
+
   public url = environment.url
   public isProduction = environment.production
   constructor(
@@ -28,11 +37,11 @@ export class AuthHelper{
   getUserFromNormalToken(token:string){
     let decodedToken = JSON.parse(atob(token));
     return new User(
-      decodedToken.userId,
-      decodedToken.userEmail,
-      '',
-      0,
-      decodedToken.userPicture
+      decodedToken.token,
+      decodedToken.id,
+      decodedToken.email,
+      decodedToken.email_verified_at,
+      decodedToken.status
     )
   }
   /**
@@ -43,11 +52,11 @@ export class AuthHelper{
   getUserFromJWTCredential(jwtCredential:string){
     let decodedToken = JSON.parse(atob(jwtCredential.split('.')[1]));
     return new User(
-      0,
+      decodedToken.sub,
+      null,
       decodedToken.email,
-      '',
-      0,
-      decodedToken.picture
+      null,
+      null
     )
   }
 
@@ -61,7 +70,7 @@ export class AuthHelper{
     return of({
       error:true,
       msg: errorMessage,
-      data: [] as IUser[]
+      data: {} as IUser
     })
   }
   errorSignUp(error:HttpErrorResponse){
@@ -76,5 +85,23 @@ export class AuthHelper{
       msg: errorMessage,
       data: {} as IUser
     })
+  }
+  errorLogout(error:HttpErrorResponse){
+    let errorMessage = ''
+    if(error.error instanceof ErrorEvent){
+      errorMessage = error.error.message
+    }else{
+      errorMessage = `Error status :${error.status} \n message: ${error.message}`
+    }
+    return of({
+      error:true,
+      msg: errorMessage
+    })
+  }
+  /**
+   * Delete user session from local storage
+   */
+   removeLocalStorageSesion(){
+    localStorage.removeItem(AuthHelper.USER_OMBP_SESION)
   }
 }

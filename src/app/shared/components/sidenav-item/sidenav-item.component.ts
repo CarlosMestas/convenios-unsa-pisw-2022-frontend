@@ -7,12 +7,12 @@ import {faQuestion} from '@fortawesome/free-solid-svg-icons'
   styleUrls: ['./sidenav-item.component.scss']
 })
 export class SidenavItemComponent implements OnInit {
-  @Input() url:string
+  @Input() url:string|null
   @Input() icon:IconDefinition
   @Input() label:string
   @Input() collapsed: boolean
   constructor() {
-    this.url=''
+    this.url=null
     this.icon = faQuestion //default icon
     this.label = ''
     this.collapsed = true

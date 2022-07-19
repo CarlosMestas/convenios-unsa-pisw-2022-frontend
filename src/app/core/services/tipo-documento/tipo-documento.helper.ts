@@ -5,7 +5,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 export class TipoDocumentoHelper{
 
-  public url = environment.url
+  // public url = environment.url
+  public url = "https://api-oficina-convenios.herokuapp.com/api/document"
   public isProduction = environment.production
   constructor(
     protected http:HttpClient
@@ -22,7 +23,7 @@ export class TipoDocumentoHelper{
     return of({
       error:true,
       msg: errorMessage,
-      data: [] as ITipoDocumento[]
+      data: [] as ITipoDocumento []
     })
   }
 

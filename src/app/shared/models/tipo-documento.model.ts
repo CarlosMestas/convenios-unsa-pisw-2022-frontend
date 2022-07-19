@@ -1,15 +1,15 @@
 import { ITipoDocumento } from './../interfaces/tipo-documento.interface';
 export class TipoDocumento implements ITipoDocumento{
-  tipoConvocatoriaId: number;
-  tipoConvocatoriaName: string;
-  tipoConvocatoriaStatus: number;
+  documentId: number;
+  documentName: string;
+  documentStatus: string;
   constructor(
-    tipoConvocatoriaId: number,
-    tipoConvocatoriaName: string,
-    tipoConvocatoriaStatus: number
+    documentId: number,
+    documentName: string,
+    documentStatus: string
     ){
-    this.tipoConvocatoriaId = tipoConvocatoriaId,
-    this.tipoConvocatoriaName = tipoConvocatoriaName,
-    this.tipoConvocatoriaStatus = tipoConvocatoriaStatus
+    this.documentId = documentId,
+    this.documentName = documentName,
+    this.documentStatus = documentStatus
   }
 }

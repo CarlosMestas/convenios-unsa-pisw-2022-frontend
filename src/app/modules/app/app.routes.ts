@@ -10,7 +10,7 @@ const AppRoutesValues = {
   ROUTE_APP_CONTACT: "contacto",
   ROUTE_APP_SINGIN: "iniciar-sesion",
   ROUTE_APP_SIGNUP: "registrar-cuenta",
-  ROUTE_APP_USERS: "usuarios",
+  ROUTE_APP_REGISTER_USER_DATA: "registrar-datos-usuario",
   ROUTE_APP_CONVOCATORIA: "convocatorias",
   ROUTE_APP_APPLY: "postulacion",
 };
@@ -43,7 +43,7 @@ const AppRoutes: Routes  = [
     component:SignupComponent
   },
   {
-    path: AppRoutesValues.ROUTE_APP_USERS,
+    path: AppRoutesValues.ROUTE_APP_REGISTER_USER_DATA,
     loadChildren:()=>import('../user-data-register/user-data-register.module').then(m => m.UserDataRegisterModule)
   },
   {
