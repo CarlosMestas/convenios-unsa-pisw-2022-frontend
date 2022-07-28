@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgModel} from "@angular/forms";
 
 @Component({
   selector: 'app-upload-files',
@@ -12,4 +13,7 @@ export class UploadFilesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  clickView() {
+    alert('Cargar constancia de Ranking')
+  }
 }
