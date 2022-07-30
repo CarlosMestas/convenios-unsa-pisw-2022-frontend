@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
         {
           return true;
         }else{
-          this.router.navigate(['/usuarios'])
+          this.router.navigate(['/registrar-datos-usuario'])
           return false;
         }
       }else{

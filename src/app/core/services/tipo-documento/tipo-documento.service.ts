@@ -36,11 +36,15 @@ export class TipoDocumentoService extends TipoDocumentoHelper{
     data:[] as ITipoDocumento[]
   };
 
-  return this.http.get<ITipoDocumento[]>(this.url)
+  return this.http.get<any[]>(this.url)
   .pipe(
     map( r =>{
       console.log(r)
-      response.data = r
+      var data1 = new TipoDocumento(r[0]["id"],r[0]["name"],r[0]["status"])
+      var data2 = new TipoDocumento(r[1]["id"],r[1]["name"],r[1]["status"])
+      var data3 = new TipoDocumento(r[2]["id"],r[2]["name"],r[2]["status"])
+      var data4 = new TipoDocumento(r[3]["id"],r[3]["name"],r[3]["status"])
+      response.data =[data1,data2,data3,data4]
       this.tipoDocumento$.next(response.data)
       return response
     }),

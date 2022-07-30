@@ -2,6 +2,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { HomeComponent } from './pages/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
+import {UserProfileComponent} from './pages/user-profile/user-profile.component'
 import { NgModule } from "@angular/core";
 
 const AppRoutesValues = {
@@ -13,7 +14,8 @@ const AppRoutesValues = {
   ROUTE_APP_REGISTER_USER_DATA: "registrar-datos-usuario",
   ROUTE_APP_CONVOCATORIA: "convocatorias",
   ROUTE_APP_APPLY: "postulacion",
-  ROUTE_APP_POSTULACION: "usuario-postulacion"
+  ROUTE_APP_POSTULACION: "usuario-postulacion",
+  ROUTE_APP_USER_PROFILE: "profile"
 };
 const AppRoutes: Routes  = [
   {
@@ -58,7 +60,11 @@ const AppRoutes: Routes  = [
   {
     path: AppRoutesValues.ROUTE_APP_APPLY,
     loadChildren:()=>import('../postulation/user-data-postulation.module').then(m => m.UserDataPostulationModule)
-  }
+  },
+  {
+    path: AppRoutesValues.ROUTE_APP_USER_PROFILE,
+    component: UserProfileComponent
+  },
 ]
 
 @NgModule({

@@ -26,6 +26,9 @@
   @return $number;
 }
 
+@mixin font-size-40-37 {
+  @include fluid-type(font-size, $res-1024, $res-1920, $pix-37, $pix-40)
+}
 @mixin font-size-35-16 {
   @include fluid-type(font-size, $res-1024, $res-1920, $pix-16, $pix-35)
 }
