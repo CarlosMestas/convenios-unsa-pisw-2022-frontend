@@ -19,12 +19,14 @@ import { OfHomeCarouselNewsComponent } from './components/of-home-carousel-news/
 
 //Shared Components imported
 import {SidenavComponent} from '../../shared/components/sidenav/sidenav.component'
+import {UserProfileComponent} from '../../modules/app/pages/user-profile/user-profile.component'
 
 //Routes
 import { AppRoutingModule } from './app.routes';
 import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component'
 import { SharedModule } from '../shared/shared.module';
+import {uploadPhotoComponent} from "./pages/user-profile/upload-photo/upload-photo.component";
 
 
 
@@ -39,7 +41,9 @@ import { SharedModule } from '../shared/shared.module';
     SignupComponent,
     OfHomeTableProgramsComponent,
     OfHomeTableComponent,
-    OfHomeCarouselNewsComponent
+    OfHomeCarouselNewsComponent,
+    UserProfileComponent,
+    uploadPhotoComponent
   ],
   imports: [
     BrowserModule,

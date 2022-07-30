@@ -1,5 +1,9 @@
 <div class="sidenav-user-container" >
-  <img [src]="user.userPicture" alt="user image" class="user-image">
+  <a  routerLink = 'profile'
+      routerLinkActive = "active"
+      [routerLinkActiveOptions] = "{exact: true}"
+  ><img [src]="user.userPicture" alt="user image" class="user-image">
+  </a>
   <div class="user-info" *ngIf = "!collapsed">
     <div class="user-name">
       {{user.userName}} {{user.userLastname}}

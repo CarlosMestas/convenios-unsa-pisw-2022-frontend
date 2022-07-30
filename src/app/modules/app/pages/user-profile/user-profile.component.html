@@ -1,0 +1,47 @@
+  <div class="container-profile">
+    <p class="title">Mi perfil </p>
+    <p class="subtitle">Modifica tus datos </p>
+    <div class="sections-data">
+      <div class="container-form-data">
+        <div class="item-form">
+          <p class="label-input">Nombres</p>
+          <input class="form-input-text" type="text"  id="name-form" placeholder="Ingresa tu nombre" value="Juan Ramón" disabled>
+        </div>
+
+        <div class="item-form">
+          <p class="label-input">Apellidos</p>
+          <input class="form-input-text" type="text" id="lastname-form" placeholder="Ingresa tu(s) apellido(s)" value="Pérez Tapia" disabled>
+        </div>
+
+        <div class="item-form">
+          <p class="label-input">Dirección</p>
+          <input class="form-input-text" type="text"  id="adress-form" placeholder="Ingresa tu dirección" value="Villa la mar, Número 215|">
+        </div>
+
+        <div class="item-form">
+          <p class="label-input">DNI</p>
+          <input class="form-input-text"  formControlName="number" id="dni-form" placeholder="Ingresa tu dni" value="7295481" >
+        </div>
+
+        <div class="bi-container">
+          <div class="item-form">
+            <p class="label-input">Número móvil</p>
+            <input class="form-input-text" formControlName="number" id="movil-form" placeholder="Ingresa tu número" value="987295481">
+          </div>
+
+          <div class="item-form">
+            <p class="label-input">Tipo usuario</p>
+            <mat-form-field appearance="outline">
+              <mat-select disabled>
+                <mat-option *ngFor="let type of convocTypeList" [value]="type" >{{type}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+    </div>
+    <div class="container-img-data">
+      <app-upload-photo></app-upload-photo>
+    </div>
+    </div>
+  </div>
