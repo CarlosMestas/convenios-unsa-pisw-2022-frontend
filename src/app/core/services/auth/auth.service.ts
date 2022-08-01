@@ -1,7 +1,10 @@
+import { IUserRegisterResponse } from './../../../shared/interfaces/transactions/user-register-response.interface';
+import { IUserLogoutResponse } from './../../../shared/interfaces/transactions/user-logout-response.interface';
+import { IUserLoginResponse } from './../../../shared/interfaces/transactions/user-login-response.interface';
 import { AppRoutingModule } from './../../../modules/app/app.routes';
 import { UserData } from './../../../shared/models/user-data.model';
-import { PerfilService } from './../perfil/perfil.service';
-import { HttpClient } from '@angular/common/http';
+import { PerfilService } from '../profile/perfil.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { SidenavService } from './../sidenav/sidenav.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { AuthHelper } from './auth.helper';
@@ -17,7 +20,7 @@ import { BehaviorSubject, catchError, map, Observable, Subject } from "rxjs";
 
 export class AuthService extends AuthHelper{
 
-  private user$:BehaviorSubject<UserData | null>;
+  private user$:BehaviorSubject<User|null>;
   private googleAuthServiceInitialized$: BehaviorSubject<boolean>;
 
   constructor(
@@ -28,7 +31,7 @@ export class AuthService extends AuthHelper{
     private perfilService:PerfilService
   ){
     super(http)
-    this.user$ = new BehaviorSubject<UserData | null>(null);
+    this.user$ = new BehaviorSubject<User|null>({} as User);
     this.googleAuthServiceInitialized$= new BehaviorSubject<boolean>(false)
     this.loadUser()
   }
@@ -58,7 +61,7 @@ export class AuthService extends AuthHelper{
   /**
    *  clean user session
    */
-  logout():Observable<
+  userLogout():Observable<
   {
     error:boolean,
     msg:string
@@ -68,18 +71,18 @@ export class AuthService extends AuthHelper{
       error:false,
       msg:''
     };
-    console.log(this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.LOGOUT)
-    return this.http.post<any>(this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.LOGOUT,{}
+
+    return this.http.post<IUserLogoutResponse>(this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.LOGOUT,{}
     )
     .pipe(
       map( r =>{
         console.log("Logout response")
         console.log(r)
-        response.msg = r;
+        response.msg = r.msg;
         this.removeLocalStorageSesion()
         this.user$.next(null)
         this.sidenavService.sidenavUserNotLogged()
-        this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SINGIN])
+        this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
         return response
       }),
       catchError(this.errorLogout)
@@ -91,7 +94,7 @@ export class AuthService extends AuthHelper{
    * Shows google one tap
    */
   promptGoogleOneTap(){
-      if(this.user$.getValue()?.user==null){
+      if(this.user$.getValue()==null){
         // @ts-ignore
         google.accounts.id.prompt((notification: PromptMomentNotification) => {
           if (notification.isSkippedMoment() && notification.getSkippedReason() === 'user_cancel'){
@@ -113,23 +116,17 @@ export class AuthService extends AuthHelper{
     console.log(this.router.url)
     try {
       if(this.router.url == "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SIGNUP){
-          let tempUser:User = this.getUserFromJWTCredential(response?.credential)
-          this.googleUserSignUp(tempUser.email, tempUser.token).subscribe(resp =>{
-            this.user$.next(new UserData(resp.data,null))
-            this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(resp.data))
+          let jwtDecodedToken = this.decodeJWTCredential(response?.credential)
+          console.log(jwtDecodedToken.picture)
+          this.userSignUp(jwtDecodedToken.email, jwtDecodedToken.picture).subscribe(resp =>{
+
           })
-          this.sidenavService.sidenavUserLogged()
           this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
       }else if(this.router.url == "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SINGIN){
-          let tempUser:User = this.getUserFromJWTCredential(response?.credential)
-          this.googleUserSignIn(tempUser.email, tempUser.token).subscribe(resp =>{
-            this.user$.next(new UserData(resp.data,null))
-            this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(resp.data))
-            if(resp.data.email_verified_at ==null){
-              console.log("OFC-KELVIN","account is not verified")
-            }
+          let jwtDecodedToken = this.decodeJWTCredential(response?.credential)
+          console.log(jwtDecodedToken.picture)
+          this.userSignIn(jwtDecodedToken.email).subscribe(resp =>{
           })
-          this.sidenavService.sidenavUserLogged()
           this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
       }
     } catch (e) {
@@ -156,26 +153,52 @@ export class AuthService extends AuthHelper{
    *
    * @returns User Observable to be able to subscribe and be notified when User changes whether it's signed or not
    */
-  getUser():Observable<UserData | null>{
+  getUser():Observable<User | null>{
     return this.user$.asObservable();
+  }
+
+
+  fetchUser(userId:number):Observable<
+  {
+    error:boolean,
+    msg:string,
+    data:IUser
+  }>{
+    const response = {
+      error:false,
+      msg:'',
+      data:{} as IUser
+    };
+    return this.http.get<IUserLoginResponse>(
+      this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.LOGIN,
+      {
+          params:new HttpParams().set('email', userId)
+      }
+      )
+      .pipe(
+        map( r =>{
+          console.log(r)
+          response.data = new User(r.data.user.id,r.data.user.email);
+          this.user$.next(response.data)
+          return response
+        }),
+        catchError(this.errorSignIn)
+      );
   }
 
   /**
    * Load User if it exists in local storage
    */
   private loadUser():void{
-    const token = localStorage.getItem(AuthHelper.USER_OMBP_SESION)
+    const token = localStorage.getItem(AuthHelper.USER_LOGIN_TOKEN)
     if(token){
-      let tempUser:User = this.getUserFromNormalToken(token)
-      this.user$.next(new UserData(tempUser,null))
-      /*this.perfilService.fetchProfile(tempUser.id).subscribe(profile=>{
-        this.user$.next(new UserData(this.user$.getValue()?.user,profile.data))
-      })*/
+      const userId:number = Number(localStorage.getItem(AuthHelper.USER_ID_ENCODED))
+      this.fetchUser(userId)
       this.sidenavService.sidenavUserLogged()
     }
   }
 
-  normalUserSignUp(email: string, password: string): Observable<
+  userSignUp(email: string, image:string): Observable<
   {
     error:boolean,
     msg:string,
@@ -187,14 +210,20 @@ export class AuthService extends AuthHelper{
       data:{} as IUser
     };
 
-    return this.http.post<any>(this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.SIGNUP,
-    {"email":email, "password":password}
+    return this.http.post<IUserRegisterResponse>(
+      this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.SIGNUP,
+      {
+        "email":email,
+        "image":image
+      }
     )
     .pipe(
       map( r =>{
-        console.log(r.message)
-        response.data = new User(r.data.token,r.data.user.id,r.data.user.email);
-        this.user$.next(new UserData(response.data,null))
+        console.log(r)
+        response.data = new User(r.data.user.id,r.data.user.email);
+        this.user$.next(response.data)
+        this.sidenavService.sidenavUserLogged()
+        this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)
         //this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data))
         return response
       }),
@@ -209,7 +238,7 @@ export class AuthService extends AuthHelper{
    * @param password user password
    * @returns
    */
-  normalUserSignin(email:string, password:string):Observable<
+  userSignIn(email:string):Observable<
   {
     error:boolean,
     msg:string,
@@ -221,36 +250,32 @@ export class AuthService extends AuthHelper{
       msg:'',
       data:{} as IUser
     };
-    return this.http.post<any>(
+    console.log("kelvin-test", email)
+    return this.http.post<IUserLoginResponse>(
       this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.LOGIN,
     {
-      "email":email,
-      "password":password
+      "email":email
     }
     )
     .pipe(
       map( r =>{
-        console.log(r.data.token)
+        console.log(r)
 
         let tempuser:User = new User(
-          r.data.token,
           r.data.user.id,
-          r.data.user.email,
-          r.data.user.email_verified_at,
-          r.data.user.status
+          r.data.user.email
         )
-
         response.data = tempuser;
-        this.user$.next(new UserData( response.data,null))
-        this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data))
-        /*this.perfilService.fetchPerfil(response.data[0].userId).subscribe(profile =>{
-        this.user$.next(new UserData(this.user$.getValue()?.user,profile.data))
-        })*/
+        this.user$.next(response.data)
+        this.sidenavService.sidenavUserLogged()
+        this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)
         return response
       }),
       catchError(this.errorSignIn)
     );
   }
+
+  /*
   googleUserSignUp(email:string, identifier:string): Observable<{
     error:boolean,
     msg:string,
@@ -306,47 +331,15 @@ export class AuthService extends AuthHelper{
         catchError(this.errorSignUp)
       );
   }
-
+*/
 
   getUserLoginToken():string|null|undefined {
-    console.log("fail")
-    return this.user$.value?.user?.token
+    return this.getLocalStorageSesionToken()
   }
   isUserSigned():boolean{
-    return this.user$.getValue()?.user!=null
+    return this.user$.getValue()!=null
   }
   isUserProfileCreated():boolean{
-    return this.user$.getValue()?.profile!=null
-  }
-  fetchUser():Observable<
-  {
-    error:boolean,
-    msg:string,
-    data:IUser
-  }>{
-    const response = {
-      error:false,
-      msg:'',
-      data:{} as IUser
-    };
-    return this.http.get<any>(
-      this.url+"users",
-    )
-    .pipe(
-      map( r =>{
-        console.log(r.access_token)
-
-        //response.data = r;
-        //this.user$.next(new UserData( response.data[0],null))
-        //this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data[0]))
-        //console.log("user id ---------", response.data[0].userId)
-        //this.perfilService.fetchPerfil(response.data[0].userId).subscribe(profile =>{
-        // this.user$.next(new UserData(this.user$.getValue()?.user,profile.data))
-        //})
-        return response
-      }),
-      catchError(this.errorSignIn)
-    );
-
+    return this.user$.getValue()!=null
   }
 }

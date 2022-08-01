@@ -1,3 +1,4 @@
+import { User } from 'src/app/shared/models/user.model';
 import { UserData } from './../../models/user-data.model';
 import { SidenavItem } from './../../interfaces/sidenav-item.interface';
 import { SidenavService } from './../../../core/services/sidenav/sidenav.service';
@@ -21,7 +22,7 @@ export class SidenavComponent implements OnInit {
   //sidenavData = sidenavItems;
   sidenavData:{[name:string]:SidenavItem} ={}
 
-  user:UserData | null = null;
+  user:User| null = null;
 
   collapsed:boolean = true
   screenWidth:number = 0
@@ -68,7 +69,10 @@ export class SidenavComponent implements OnInit {
 
   }
   cerrarSesion(){
-    this.authService.logout().subscribe(data =>{
+    this.authService.userLogout().subscribe(data =>{
+
     })
   }
+
+
 }

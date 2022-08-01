@@ -7,58 +7,51 @@ import { User } from "src/app/shared/models/user.model";
 export class AuthHelper{
   public static USER_OMBP_SESION:string = "userOMBPSession";
   public static USER_LOGIN_TOKEN:string = "userLoginToken";
+  public static USER_ID_ENCODED:string = "userIdCoded";
 
   protected static API_AUTH_SERVICE_ROUTES = {
     LOGOUT:"logout",
     LOGIN:"login",
-    SIGNUP:"users"
+    SIGNUP:"register"
   }
-
 
   public url = environment.url
   public isProduction = environment.production
+
   constructor(
     protected http:HttpClient
   ){
 
   }
 
-  saveLocalStorageUserNormalToken(token:string){
-    localStorage.setItem(AuthHelper.USER_OMBP_SESION,token)
+  //INSTEAD
+  saveLocalStorageSesionToken(token:string, userId:number){
+    localStorage.setItem(AuthHelper.USER_LOGIN_TOKEN,token)
+    localStorage.setItem(AuthHelper.USER_ID_ENCODED,userId.toString())
   }
+  getLocalStorageSesionToken():string|null{
+    return localStorage.getItem(AuthHelper.USER_LOGIN_TOKEN)
+  }
+  getLocalStorageSesionId():string|null{
+    return localStorage.getItem(AuthHelper.USER_ID_ENCODED)
+  }
+
+
+  //NOT
   getNormalTokenFromUser(user:User):string{
     return btoa(JSON.stringify(user))
   }
-  /**
-   * takes a normal token and return a User created with this data
-   * @param token
-   * @returns
-   */
-  getUserFromNormalToken(token:string){
-    let decodedToken = JSON.parse(atob(token));
-    return new User(
-      decodedToken.token,
-      decodedToken.id,
-      decodedToken.email,
-      decodedToken.email_verified_at,
-      decodedToken.status
-    )
-  }
-  /**
-  * takes a jwt credential and returns User created with this data
-  * @param jwtCredential is a JWT credential
-  * @returns
-  */
-  getUserFromJWTCredential(jwtCredential:string){
+
+
+
+
+  //INSTEAD
+  decodeJWTCredential(jwtCredential:string):any {
     let decodedToken = JSON.parse(atob(jwtCredential.split('.')[1]));
-    return new User(
-      decodedToken.sub,
-      null,
-      decodedToken.email,
-      null,
-      null
-    )
+    return decodedToken
   }
+
+
 
   errorSignIn(error:HttpErrorResponse){
     let errorMessage = ''
@@ -73,6 +66,9 @@ export class AuthHelper{
       data: {} as IUser
     })
   }
+
+
+
   errorSignUp(error:HttpErrorResponse){
     let errorMessage = ''
     if(error.error instanceof ErrorEvent){
@@ -86,6 +82,7 @@ export class AuthHelper{
       data: {} as IUser
     })
   }
+
   errorLogout(error:HttpErrorResponse){
     let errorMessage = ''
     if(error.error instanceof ErrorEvent){
@@ -102,6 +99,7 @@ export class AuthHelper{
    * Delete user session from local storage
    */
    removeLocalStorageSesion(){
-    localStorage.removeItem(AuthHelper.USER_OMBP_SESION)
+    localStorage.removeItem(AuthHelper.USER_LOGIN_TOKEN)
+    localStorage.removeItem(AuthHelper.USER_ID_ENCODED)
   }
 }

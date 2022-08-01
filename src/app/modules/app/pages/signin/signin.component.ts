@@ -63,7 +63,7 @@ export class SigninComponent implements OnInit {
 
 
   submitSignIn():void{
-    this.authService.normalUserSignin(this.signInForm.value["email"],this.signInForm.value["password"]).subscribe(data =>{
+    this.authService.userSignIn(this.signInForm.value["email"]).subscribe(data =>{
       /*if(data.data[0]!=null){
         this.router.navigate(["/home"])
       }

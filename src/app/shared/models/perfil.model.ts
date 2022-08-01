@@ -1,48 +1,38 @@
-import { IPerfil } from './../interfaces/perfil.interface';
-export class Perfil implements IPerfil{
-  perfilId: number;
-  perfilName: string;
-  perfilLastname: string;
-  perfilPhone: string;
-  usuariosId: number;
-  tipoUsuarioId: number;
-  programaProfesionalId: number;
-  semestreId: number;
-  tipoDocumentoId: number;
-  perfilDocument: string;
-  perfilAddress: string;
-  perfilStatus: string;
-  perfilDateCreated: string;
-  perfilDateModified: string;
+import { IProfileType } from './../interfaces/profile-type.interface';
+import { IUserIdentification } from './../interfaces/user-identification.interface';
+import { IProfile } from '../interfaces/profile.interface';
+export class Profile implements IProfile{
+  id: string
+  image:string
+  name:string
+  last_name:string
+  address:string
+  type:IProfileType
+  phone:string
+  identification:IUserIdentification
+  birthdate:string
+  profile_created:number
   constructor(
-    perfilId:number,
-    perfilName:string,
-    perfilLastname:string,
-    perfilPhone:string,
-    usuariosId:number,
-    tipoUsuarioId:number,
-    programaProfesionalId: number,
-    semestreId: number,
-    tipoDocumentoId: number,
-    perfilDocument: string,
-    perfilAddress: string,
-    perfilStatus: string,
-    perfilDateCreated: string,
-    perfilDateModified: string
-    ){
-    this.perfilId = perfilId ,
-    this.perfilName= perfilName,
-    this.perfilLastname = perfilLastname ,
-    this.perfilPhone = perfilPhone,
-    this.usuariosId = usuariosId,
-    this.tipoUsuarioId = tipoUsuarioId,
-    this.programaProfesionalId = programaProfesionalId,
-    this.semestreId = semestreId,
-    this.tipoDocumentoId = tipoDocumentoId,
-    this.perfilDocument = perfilDocument,
-    this.perfilAddress = perfilAddress,
-    this.perfilStatus = perfilStatus,
-    this.perfilDateCreated = perfilDateCreated,
-    this.perfilDateModified = perfilDateModified
+    id: string,
+    image:string,
+    name:string,
+    last_name:string,
+    address:string,
+    type:IProfileType,
+    phone:string,
+    identification:IUserIdentification,
+    birthdate:string,
+    profile_created:number
+  ){
+    this.id = id ,
+    this.image= image,
+    this.name = name ,
+    this.last_name = last_name,
+    this.address = address,
+    this.type = type,
+    this.phone = phone,
+    this.identification = identification,
+    this.birthdate = birthdate,
+    this.profile_created = profile_created
   }
 }
