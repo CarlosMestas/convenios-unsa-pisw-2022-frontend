@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faTrash, faEdit} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -7,23 +8,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload-photo.component.scss']
 })
 export class uploadPhotoComponent implements OnInit {
+  faTrash = faTrash
+  faEdit = faEdit
   selected: boolean = false
   imgPreview  = null
   constructor(){
   }
   ngOnInit(): void {
   }
-  onFileSelected =(event:any) => {
-    let reader, files = event.target.files
+  onFileSelected (event:any) {
+    let files = event.target.files
     if (files.length === 0) {
       console.log('Empty')
     }
-    reader = new FileReader();
-
-    reader.onload = (event:any) => {
-      this.imgPreview = event.target.result
+    const mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      console.log('Only images are supported.')
+      return;
     }
-    reader.readAsDataURL(files[0])
+    let reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        // @ts-ignore
+        this.imgPreview = reader.result;
+        this.selected = true
+      };
+    }
   }
 
   deletePhoto():void {
