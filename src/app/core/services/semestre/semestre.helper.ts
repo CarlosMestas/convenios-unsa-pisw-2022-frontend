@@ -1,5 +1,5 @@
 import { ISemestre } from './../../../shared/interfaces/semestre.interface';
-import { IPerfil } from './../../../shared/interfaces/perfil.interface';
+import { IProfile } from '../../../shared/interfaces/profile.interface';
 import { of } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';

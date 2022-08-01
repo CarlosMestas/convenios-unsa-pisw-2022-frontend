@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerifyDataComponent implements OnInit {
 
-  user: UserData|null
+  user: User|null
   constructor( private authService: AuthService ) {
     this.user = null;
   }

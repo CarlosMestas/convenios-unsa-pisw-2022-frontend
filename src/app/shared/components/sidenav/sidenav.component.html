@@ -7,7 +7,7 @@
   </div>
 
   <ul class="sidenav-nav">
-    <app-sidenav-user-info class="sidenav-nav-user" *ngIf = "user?.user" [user] = 'user' [collapsed] = "collapsed"></app-sidenav-user-info>
+    <app-sidenav-user-info class="sidenav-nav-user" *ngIf = "user" [user] = 'user' [collapsed] = "collapsed"></app-sidenav-user-info>
     <div class="general-user-menu-label">MOVILIDAD</div>
     <app-sidenav-item class="sidenav-nav-item" [icon] = "sidenavData['home'].icon" [label]="sidenavData['home'].label" [url] = "sidenavData['home'].url" *ngIf="sidenavData['home'].visible" [collapsed]="collapsed" ></app-sidenav-item>
     <app-sidenav-item class="sidenav-nav-item" [icon] = "sidenavData['quienes-somos'].icon" [label]="sidenavData['quienes-somos'].label" [url] = "sidenavData['quienes-somos'].url" *ngIf="sidenavData['quienes-somos'].visible" [collapsed]="collapsed" ></app-sidenav-item>

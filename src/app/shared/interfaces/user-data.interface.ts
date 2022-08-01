@@ -1,6 +1,6 @@
-import { IPerfil } from './perfil.interface';
+import { IProfile } from './profile.interface';
 import { IUser } from './user.interface';
 export interface IUserData{
   user:IUser | null|undefined,
-  profile:IPerfil | null|undefined
+  profile:IProfile | null|undefined
 }

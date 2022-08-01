@@ -1,16 +1,9 @@
 import { IUser } from './../interfaces/user.interface';
 export class User implements IUser{
-  id: number|null;
+  id: number;
   email: string;
-  email_verified_at: string|null;
-  status: string|null;
-  token:string
-  constructor(token:string, id:number|null = null,email:string,email_verified_at:string|null = null, status:string|null = null){
+  constructor(id:number,email:string){
     this.id= id
     this.email = email
-    this.email_verified_at = email_verified_at
-    this.status = status
-    this.token = token
   }
-
 }
