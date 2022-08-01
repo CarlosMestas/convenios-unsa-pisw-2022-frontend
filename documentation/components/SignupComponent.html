@@ -1,0 +1,865 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>convenios-unsa-pisw-2022-frontend documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">convenios-unsa-pisw-2022-frontend documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li
+  >
+  SignupComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/modules/app/pages/signup/signup.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-signup</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./signup.component.scss</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./signup.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#googleAuthServiceInitialized" >googleAuthServiceInitialized</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#signUpForm" >signUpForm</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#renderButtonSignUp" >renderButtonSignUp</a>
+                            </li>
+                            <li>
+                                <a href="#submitSignUp" >submitSignUp</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#email" >email</a>
+                                </li>
+                                <li>
+                                    <a href="#password" >password</a>
+                                </li>
+                                <li>
+                                    <a href="#repeatPassword" >repeatPassword</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(authService: <a href="../injectables/AuthService.html" target="_self">AuthService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/modules/app/pages/signup/signup.component.ts:13</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>authService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="25"
+                            class="link-to-prism">src/app/modules/app/pages/signup/signup.component.ts:25</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="renderButtonSignUp"></a>
+                    <span class="name">
+                        <span ><b>renderButtonSignUp</b></span>
+                        <a href="#renderButtonSignUp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>renderButtonSignUp()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="31"
+                            class="link-to-prism">src/app/modules/app/pages/signup/signup.component.ts:31</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="submitSignUp"></a>
+                    <span class="name">
+                        <span ><b>submitSignUp</b></span>
+                        <a href="#submitSignUp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>submitSignUp()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="56"
+                            class="link-to-prism">src/app/modules/app/pages/signup/signup.component.ts:56</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="googleAuthServiceInitialized"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>googleAuthServiceInitialized</b></span>
+                        <a href="#googleAuthServiceInitialized"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/modules/app/pages/signup/signup.component.ts:13</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="signUpForm"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>signUpForm</b></span>
+                        <a href="#signUpForm"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/forms/FormGroup" target="_blank" >FormGroup</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/modules/app/pages/signup/signup.component.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="email"></a>
+                        <span class="name"><b>email</b><a href="#email"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>email()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/modules/app/pages/signup/signup.component.ts:46</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="password"></a>
+                        <span class="name"><b>password</b><a href="#password"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>password()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/modules/app/pages/signup/signup.component.ts:49</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="repeatPassword"></a>
+                        <span class="name"><b>repeatPassword</b><a href="#repeatPassword"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>repeatPassword()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/modules/app/pages/signup/signup.component.ts:52</a></div>
+                                </td>
+                            </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { FormGroup, FormControl, Validators, AbstractControl } from &#x27;@angular/forms&#x27;;
+import { AuthService } from &#x27;./../../../../core/services/auth/auth.service&#x27;;
+import { Component, OnInit } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;app-signup&#x27;,
+  templateUrl: &#x27;./signup.component.html&#x27;,
+  styleUrls: [&#x27;./signup.component.scss&#x27;]
+})
+export class SignupComponent implements OnInit {
+
+  public signUpForm: FormGroup
+  private googleAuthServiceInitialized:boolean
+
+  constructor(
+    private authService:AuthService
+  ) {
+    this.googleAuthServiceInitialized &#x3D; false;
+    this.signUpForm &#x3D; new FormGroup({
+      email: new FormControl(&#x27;&#x27;,[Validators.required,Validators.email]),
+      password: new FormControl(&#x27;&#x27;,[Validators.required]),
+      repeatPassword: new FormControl(&#x27;&#x27;,[Validators.required])
+    })
+  }
+  ngOnInit(): void {
+    this.authService.isGoogleAuthServiceInitialized().subscribe(isInitialized &#x3D;&gt;{
+        this.googleAuthServiceInitialized &#x3D; isInitialized;
+        this.renderButtonSignUp();
+      })
+  }
+  renderButtonSignUp(){
+    if(this.googleAuthServiceInitialized){
+      // @ts-ignore
+      google.accounts.id.renderButton(
+        document.getElementById(&quot;signUpDiv&quot;) as HTMLElement,
+        {
+          theme:&#x27;filled_blue&#x27;,
+          size:&#x27;large&#x27;,
+          width: 270,
+          text:&#x27;continue_with&#x27;
+        }
+      )
+    }
+  }
+
+  public get email() : AbstractControl | null {
+    return this.signUpForm.get(&#x27;email&#x27;);
+  }
+  public get password() : AbstractControl | null {
+    return this.signUpForm.get(&#x27;password&#x27;);
+  }
+  public get repeatPassword() : AbstractControl | null{
+    return this.signUpForm.get(&#x27;repeatPassword&#x27;);
+  }
+
+  submitSignUp():void{
+    this.authService.normalUserSignUp(this.signUpForm.value[&quot;email&quot;],this.signUpForm.value[&quot;password&quot;]).subscribe(data &#x3D;&gt;{
+      console.log(data.data)
+    })
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!--&lt;app-tooltip-white-small&gt;&lt;/app-tooltip-white-small&gt;
+&lt;app-tooltip-red-small&gt;&lt;/app-tooltip-red-small&gt;
+--&gt;
+&lt;div class&#x3D;&quot;container-signup&quot;&gt;
+  &lt;div class&#x3D;&quot;container-form-signup&quot;&gt;
+    &lt;div class&#x3D;&quot;body-form-signup&quot;&gt;
+        &lt;div class&#x3D;&quot;icon-form-signup&quot;&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;header-form-signup&quot;&gt;
+          Registrarse
+        &lt;/div&gt;
+        &lt;form class&#x3D;&quot;fields-form-signup&quot; [formGroup]&#x3D;&quot;signUpForm&quot; (ngSubmit)&#x3D;&quot;submitSignUp()&quot;&gt;
+          &lt;div class&#x3D;&quot;form-item form-item-field-email&quot;&gt;
+            &lt;div class&#x3D;&quot;form-label form-signup-label-field-email&quot;&gt;
+              Correo
+            &lt;/div&gt;
+            &lt;input class&#x3D;&quot;form-input-text form-signup-input-field-email&quot; type&#x3D;&quot;email&quot; formControlName&#x3D;&quot;email&quot; id&#x3D;&quot;email&quot; placeholder&#x3D;&quot;Ingresa tu correo&quot;&gt;
+            &lt;span class&#x3D;&quot;invalid-field&quot; *ngIf &#x3D; &quot;email &amp;&amp; email.invalid &amp;&amp; email.touched&quot;&gt;El correo ingresado es incorrecto&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;form-item form-item-field-password&quot;&gt;
+            &lt;div class&#x3D;&quot;form-label form-signup-label-field-password&quot;&gt;
+              Contraseña
+            &lt;/div&gt;
+            &lt;input class&#x3D;&quot;form-input-text form-signup-input-field-password&quot; type&#x3D;&quot;password&quot; formControlName&#x3D;&quot;password&quot; id&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Ingresa tu contraseña&quot;&gt;
+            &lt;span class&#x3D;&quot;invalid-field&quot; *ngIf &#x3D; &quot;password &amp;&amp; password.invalid &amp;&amp; password.touched&quot;&gt;El contenido ingresado es incorrecto&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;form-item form-item-field-repeat-password&quot;&gt;
+            &lt;div class&#x3D;&quot;form-label form-signup-label-field-repeat-password&quot;&gt;
+              Repetir Contraseña
+            &lt;/div&gt;
+            &lt;input class&#x3D;&quot;form-input-text form-signup-input-field-password&quot; type&#x3D;&quot;password&quot; formControlName&#x3D;&quot;repeatPassword&quot; id&#x3D;&quot;repeat-password&quot; placeholder&#x3D;&quot;Ingresa tu contraseña&quot;&gt;
+            &lt;span class&#x3D;&quot;invalid-field&quot; *ngIf &#x3D; &quot;repeatPassword &amp;&amp; repeatPassword.invalid &amp;&amp; repeatPassword.touched&quot;&gt;El contenido ingresado es incorrecto&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;input class&#x3D;&quot;submit-form&quot; type&#x3D;&quot;submit&quot; [disabled] &#x3D; &quot;signUpForm.invalid&quot; value&#x3D;&quot;Registrarse&quot;&gt;
+        &lt;/form&gt;
+
+        &lt;div id&#x3D;&quot;signUpDiv&quot;&gt;
+
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-label no-account&quot;&gt;
+          ¿Ya tienes una cuenta?
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;google-form-signin&quot; routerLink &#x3D; &#x27;/iniciar-sesion&#x27;&gt;
+          Iniciar Sesión
+        &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class&#x3D;&quot;container-banner-signup-over&quot;&gt;
+    &lt;div class&#x3D;&quot;container-banner-signup-under&quot;&gt;
+      &lt;div class&#x3D;&quot;banner-signup-under-text-container&quot;&gt;
+        &lt;div class&#x3D;&quot;banner-big-text&quot;&gt;Oficina de Movilidad Becas y Pasantías &lt;/div&gt;
+        &lt;div class&#x3D;&quot;banner-small-text&quot;&gt;Accede a la plataforma de la Oficina de Movilidad Becas y pasantías y postula a la convocatoria que se adecue a tu perfil&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./signup.component.scss</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.container-signup{
+  width: calc(100% - 12rem);
+  height: calc(100vh - 6rem);
+  border-radius: 1rem;
+  margin: 0 6rem;
+  display: flex;
+  align-items: stretch;
+  min-width: 728px;
+  box-shadow: 1px 1px 1rem 2px rgba($color: #707070, $alpha: .05),
+              -1px -1px 1rem 2px rgba($color: #707070, $alpha: .05);
+}
+.container-form-signup{
+  width: 50%;
+  height: 100%;
+  background-color: rgb(244, 244, 252);
+  border-radius: 1rem 0 0 1rem;
+  display: flex;
+  align-items: center;
+
+}
+.container-banner-signup-over{
+  width: 50%;
+  height: 100%;
+  background-color: rgba($color: #F2F2F2, $alpha: 1);
+  border-radius: 0 1rem 1rem 0;
+  background-image: url(../../../../../assets/images/bg-join-form.svg);
+}
+
+.container-banner-signup-under{
+  width: 100%;
+  height: 100%;
+  /*background-color: rgba($color: #DB0240, $alpha: .8);*/
+  background-color: rgba($color: #440114, $alpha: .8);
+  border-radius: 0 1rem 1rem 0;
+  color: #F2F2F2;
+  padding: 0 10%;
+  display: flex;
+  align-items: center;
+  .banner-signup-under-text-container{
+    width: 100%;
+    height: auto;
+  }
+  .banner-big-text{
+    width: 100%;
+    font-size: 2rem;
+    font-weight: 580;
+    margin-bottom: 1rem;
+  }
+  .banner-small-text{
+    width: 100%;
+    font-size: 12px;
+    font-weight: 580;
+    color: #c7c7c7;
+  }
+}
+
+.body-form-signup{
+  width: 270px;
+  /*border: solid 1px rgb(209, 209, 209);*/
+  margin: 0 auto;
+
+  .header-form-signup{
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+    margin: .5rem 0;
+  }
+
+  .form-item{
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .form-label{
+    width: 100%;
+    font-size: 12px;
+    color: #888888;
+    margin: .5rem 0;
+  }
+  .form-input-text{
+    width: 100%;
+    height: 40px;
+    padding: 0 .6rem;
+    border: 1px solid rgba($color: #C1C1C1, $alpha: 1);
+    border-radius: 3px;
+    background-color: rgb(244, 244, 252);
+  }
+  .submit-form-signup{
+    background-color: #DB0240;
+    color: #F2F2F2;
+    font-size: 14px;
+    height: 40px;
+    border-radius: 3px;
+    text-align: center;
+    margin-bottom: 1rem;
+    line-height: 40px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .google-form-signup{
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    border: 1px solid #DB0240;
+    background-color: rgb(244, 244, 252);
+    border-radius: 3px;
+    line-height: 40px;
+    text-align: center;
+    color: #DB0240;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .google-form-signin{
+    background-color: #570B21;
+    color: #F2F2F2;
+    font-size: 14px;
+    height: 40px;
+    border-radius: 3px;
+    text-align: center;
+    margin-bottom: 1rem;
+    line-height: 40px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!--<app-tooltip-white-small></app-tooltip-white-small><app-tooltip-red-small></app-tooltip-red-small>--><div class="container-signup">  <div class="container-form-signup">    <div class="body-form-signup">        <div class="icon-form-signup">        </div>        <div class="header-form-signup">          Registrarse        </div>        <form class="fields-form-signup" [formGroup]="signUpForm" (ngSubmit)="submitSignUp()">          <div class="form-item form-item-field-email">            <div class="form-label form-signup-label-field-email">              Correo            </div>            <input class="form-input-text form-signup-input-field-email" type="email" formControlName="email" id="email" placeholder="Ingresa tu correo">            <span class="invalid-field" *ngIf = "email && email.invalid && email.touched">El correo ingresado es incorrecto</span>          </div>          <div class="form-item form-item-field-password">            <div class="form-label form-signup-label-field-password">              Contraseña            </div>            <input class="form-input-text form-signup-input-field-password" type="password" formControlName="password" id="password" placeholder="Ingresa tu contraseña">            <span class="invalid-field" *ngIf = "password && password.invalid && password.touched">El contenido ingresado es incorrecto</span>          </div>          <div class="form-item form-item-field-repeat-password">            <div class="form-label form-signup-label-field-repeat-password">              Repetir Contraseña            </div>            <input class="form-input-text form-signup-input-field-password" type="password" formControlName="repeatPassword" id="repeat-password" placeholder="Ingresa tu contraseña">            <span class="invalid-field" *ngIf = "repeatPassword && repeatPassword.invalid && repeatPassword.touched">El contenido ingresado es incorrecto</span>          </div>          <input class="submit-form" type="submit" [disabled] = "signUpForm.invalid" value="Registrarse">        </form>        <div id="signUpDiv">        </div>        <div class="form-label no-account">          ¿Ya tienes una cuenta?        </div>        <div class="google-form-signin" routerLink = \'/iniciar-sesion\'>          Iniciar Sesión        </div>    </div>  </div>  <div class="container-banner-signup-over">    <div class="container-banner-signup-under">      <div class="banner-signup-under-text-container">        <div class="banner-big-text">Oficina de Movilidad Becas y Pasantías </div>        <div class="banner-small-text">Accede a la plataforma de la Oficina de Movilidad Becas y pasantías y postula a la convocatoria que se adecue a tu perfil</div>      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AcademicInfoComponent', 'selector': 'app-academic-info'},{'name': 'ApplyComponent', 'selector': 'app-apply'},{'name': 'BodyComponent', 'selector': 'app-body'},{'name': 'Button', 'selector': 'app-button'},{'name': 'ContactComponent', 'selector': 'app-contact'},{'name': 'ConvocatoriaBodyComponent', 'selector': 'app-convocatoria-body'},{'name': 'ExternalStudentComponent', 'selector': 'app-external-student'},{'name': 'FillFileComponent', 'selector': 'app-fill-file'},{'name': 'GeneralInfoComponent', 'selector': 'app-general-info'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ProcessToApplyComponent', 'selector': 'app-process-to-apply'},{'name': 'RequirementsToApplyComponent', 'selector': 'app-requirements-to-apply'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavItemComponent', 'selector': 'app-sidenav-item'},{'name': 'SidenavUserInfoComponent', 'selector': 'app-sidenav-user-info'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'SteperComponent', 'selector': 'app-steper'},{'name': 'TimelineComponent', 'selector': 'app-timeline'},{'name': 'TooltipRedComponent', 'selector': 'app-tooltip-red'},{'name': 'TooltipRedSmallComponent', 'selector': 'app-tooltip-red-small'},{'name': 'TooltipWhiteSmallComponent', 'selector': 'app-tooltip-white-small'},{'name': 'UnsaAdministrativeComponent', 'selector': 'app-unsa-administrative'},{'name': 'UnsaStudentComponent', 'selector': 'app-unsa-student'},{'name': 'UnsaTeacherComponent', 'selector': 'app-unsa-teacher'},{'name': 'UploadFilesComponent', 'selector': 'app-upload-files'},{'name': 'UserBodyComponent', 'selector': 'app-user-body'},{'name': 'UserDataPostulationBodyComponent', 'selector': 'app-user-data-postulation-body'},{'name': 'VerifyDataComponent', 'selector': 'app-verify-data'},{'name': 'WelcomeComponent', 'selector': 'app-welcome'},{'name': 'WhoCanApplyComponent', 'selector': 'app-who-can-apply'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'SignupComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SignupComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

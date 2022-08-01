@@ -1,0 +1,56 @@
+<div class="register-container">
+
+   <div class="sub-side-bar-container">
+    <a routerLink ='dirigido-a' class="sidebar-item-link"
+       routerLinkActive = "active"
+       [ngClass]="{'sidebar-item-link-selected': true}"
+       [routerLinkActiveOptions] = "{exact: true}"
+    >
+      <span class="sidebar-item-text"> Dirigido a</span>
+    </a>
+    <a routerLink ='requisitos-para-postular' class="sidebar-item-link"
+       routerLinkActive = "active"
+
+       [routerLinkActiveOptions] = "{exact: true}"
+    >
+      <span class="sidebar-item-text"> Requisitos para Postular</span>
+    </a>
+    <a routerLink ='proceso-de-aplicacion' class="sidebar-item-link"
+       routerLinkActive = "active"
+
+       [routerLinkActiveOptions] = "{exact: true}"
+    >
+      <span class="sidebar-item-text"> Proceso de Aplicación</span>
+    </a>
+    <a routerLink ='cronograma' class="sidebar-item-link"
+       routerLinkActive = "active"
+       [routerLinkActiveOptions] = "{exact: true}"
+    >
+      <span class="sidebar-item-text"> Cronograma</span>
+    </a>
+    <a routerLink ='contacto' class="sidebar-item-link"
+       routerLinkActive = "active"
+       [routerLinkActiveOptions] = "{exact: true}"
+    >
+      <span class="sidebar-item-text"> Contacto</span>
+    </a>
+    <a [routerLink] ='rutaApply' class="sidebar-item-link"
+       routerLinkActive = "active"
+       [routerLinkActiveOptions] = "{exact: true}"
+    >
+      <span class="sidebar-item-text"> Postular</span>
+    </a>
+  </div>
+  <div class="container-content">
+    <div class="header-container">
+      <div class="title">Datos del Postulante</div>
+      <div class="description">Proceso de postulación para poder participar de la movilidad estudiandil</div>
+    </div>
+    <div class="steper-container">
+      <app-steper [steps]="steps"></app-steper>
+      <div class="steper-forms-container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

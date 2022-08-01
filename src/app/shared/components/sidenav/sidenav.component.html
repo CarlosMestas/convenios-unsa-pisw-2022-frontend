@@ -7,18 +7,12 @@
   </div>
 
   <ul class="sidenav-nav">
+    <app-sidenav-user-info class="sidenav-nav-user" *ngIf = "user?.user" [user] = 'user' [collapsed] = "collapsed"></app-sidenav-user-info>
     <div class="general-user-menu-label">MOVILIDAD</div>
-    <li class="sidenav-nav-item" *ngFor="let data of sidenavData">
-      <a class="sidenav-nav-link" routerLink = {{data.routeLink}}
-        routerLinkActive = "active"
-        [routerLinkActiveOptions] = "{exact: true}"
-      >
-        <fa-icon class= "sidenav-link-icon" [icon]="data.icon">
-        </fa-icon>
-        <span class="sidenav-link-text" *ngIf = "!collapsed">
-          {{data.label}}
-        </span>
-      </a>
-    </li>
+    <app-sidenav-item class="sidenav-nav-item" [icon] = "sidenavData['home'].icon" [label]="sidenavData['home'].label" [url] = "sidenavData['home'].url" *ngIf="sidenavData['home'].visible" [collapsed]="collapsed" ></app-sidenav-item>
+    <app-sidenav-item class="sidenav-nav-item" [icon] = "sidenavData['quienes-somos'].icon" [label]="sidenavData['quienes-somos'].label" [url] = "sidenavData['quienes-somos'].url" *ngIf="sidenavData['quienes-somos'].visible" [collapsed]="collapsed" ></app-sidenav-item>
+    <app-sidenav-item class="sidenav-nav-item" [icon] = "sidenavData['contacto'].icon" [label]="sidenavData['contacto'].label" [url] = "sidenavData['contacto'].url" *ngIf="sidenavData['contacto'].visible" [collapsed]="collapsed" ></app-sidenav-item>
+    <app-sidenav-item class="sidenav-nav-item" [icon] = "sidenavData['iniciar-sesion'].icon" [label]="sidenavData['iniciar-sesion'].label" [url] = "sidenavData['iniciar-sesion'].url" *ngIf="sidenavData['iniciar-sesion'].visible" [collapsed]="collapsed" ></app-sidenav-item>
+    <app-sidenav-item class="sidenav-nav-item" [icon] = "sidenavData['cerrar-sesion'].icon" [label]="sidenavData['cerrar-sesion'].label" (click)="cerrarSesion()" [url] = "sidenavData['cerrar-sesion'].url" *ngIf="sidenavData['cerrar-sesion'].visible" [collapsed]="collapsed" ></app-sidenav-item>
   </ul>
 </div>

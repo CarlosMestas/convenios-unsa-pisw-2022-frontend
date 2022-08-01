@@ -1,0 +1,31 @@
+$prefix: of-home-table;
+
+.apply-table {
+  width: 95%;
+  margin: 0 auto;
+}
+
+
+.mat-column-demo-position {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-demo-correlative, .mat-column-demo-date,.mat-column-demo-news, .mat-column-demo-final, .mat-column-demo-details {
+  text-align: center;
+}
+
+
+.mat-column-demo-name {
+  width: 40%;
+  text-align: center;
+}
+
+.mat-column-demo-symbol {
+  .mat-column-demo-bases,  .mat-column-demo-preliminary{
+    width: 10%;
+    text-align: center;
+  }
+}

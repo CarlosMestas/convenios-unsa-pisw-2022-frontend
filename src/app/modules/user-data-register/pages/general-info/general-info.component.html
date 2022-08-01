@@ -1,0 +1,56 @@
+<div class="general-info-container">
+  <div class="form-container">
+    <div class="fields-form">
+      <div class="form-item form-item-field-names">
+        <div class="form-label form-label-field-name">
+          Nombres
+        </div>
+        <input class="form-input-text form-input-field-name" type="text" name="name" id="name" placeholder="Ingresa tu Nombre">
+      </div>
+      <div class="form-item form-item-field-lastname">
+        <div class="form-label form-label-field-lastname">
+          Apellidos
+
+        </div>
+        <input class="form-input-text form-input-field-lastname" type="text" name="lastname" id="lastname" placeholder="Ingresa tu apellido">
+      </div>
+      <div class="form-item form-item-field-address">
+        <div class="form-label form-label-field-address">
+          Dirección
+        </div>
+        <input class="form-input-text form-input-field-address" type="text" name="address" id="address" placeholder="Ingresa tu Dirección">
+      </div>
+      <div class="form-item form-item-field-typeuser">
+        <div class="form-label form-label-field-typeuser">
+          Tipo de Usuario
+        </div>
+        <select class="form-input-text form-input-field-typeuser" name="typeuser" id="typeuser">
+          <option value="Alumno UNSA">Alumno UNSA</option>
+          <option value="Alumno Externo">Alumno Externo</option>
+          <option value="Docente UNSA">Docente UNSA</option>
+          <option value="Docente Externo">Docente Externo</option>
+        </select>
+      </div>
+      <div class="form-item form-item-field-phonenumber">
+        <div class="form-label form-label-field-phonenumber">
+          Número de Teléfono o Celular
+        </div>
+        <input class="form-input-text form-input-field-phonenumber" type="text" name="phonenumber" id="phonenumber" placeholder="Ingresa tu Número de teléfono">
+      </div>
+      <div class="form-item form-item-field-phonenumber">
+        <div class="form-label form-label-field-dni">
+          Número de DNI
+        </div>
+        <select class="form-input-text form-input-field-document" name="typedoc" id="typedoc" *ngIf = "typesDocument">
+          <option value="Alumno UNSA"   *ngFor = "let typeDocument of typesDocument">{{typeDocument.documentName}}</option>
+        </select>
+
+      </div>
+    </div>
+    <div class="buttons-handler">
+      <div class="form-next-step" routerLink="../informacion-academica-usuario">
+        Siguiente
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="sidenav-user-container" >
+
+  <a  routerLink = 'profile'
+      routerLinkActive = "active"
+      [routerLinkActiveOptions] = "{exact: true}"
+  ><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user image" class="user-image">
+  </a>
+  <div class="user-info" *ngIf = "!collapsed">
+    <div class="user-name">
+      {{user?.user?.email}}
+    </div>
+    <div class="user-type">
+      student
+    </div>
+  </div>
+</div>

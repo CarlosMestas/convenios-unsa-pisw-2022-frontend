@@ -2,11 +2,15 @@
   "name": "convenios-unsa-pisw-2022-frontend",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "ng": "ng",
+    "start:dev": "ng serve --c=dev",
+    "start:production": "ng serve --c=production",
+    "build:dev": "ng build --c=dev",
+    "build:production": "ng build --c=production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "oficina": "json-server --watch ./src/app/core/mocks/dev-oficina-mobilidad-db.mock.json"
   },
   "private": true,
   "dependencies": {
@@ -23,9 +27,14 @@
     "@fortawesome/angular-fontawesome": "^0.10.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@types/google-one-tap": "^1.2.0",
     "angular-responsive-carousel": "^2.1.2",
+    "json-server": "^0.17.0",
+    "primeflex": "^3.2.1",
+    "primeicons": "^5.0.0",
+    "primeng": "^13.4.1",
     "rxjs": "~7.5.0",
-    "tslib": "^2.3.0",
+    "tslib": "^2.4.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

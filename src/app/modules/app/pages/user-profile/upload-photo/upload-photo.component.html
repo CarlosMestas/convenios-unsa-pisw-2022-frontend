@@ -1,0 +1,40 @@
+<div class="erp-cfg-carga-logo" >
+
+    <div class="previsualizar"  id="preview-logo" >
+
+      <div *ngIf ="selected===false" class="previsualizar-determinado">
+
+        <div  class="mensaje-pre-visualizar">
+          <span> Tamaño maximo de 200x130px</span>
+        </div>
+
+        <em aria-hidden="true" class="fas fa-trash-alt"> </em>
+      </div>
+
+      <div *ngIf ="selected===true" class="previsualizar-imagen-local" >
+        <img  class ="imagen-local" [src]="imgPreview" alt="logo" />
+        <div class="contenedor-acciones" >
+
+          <div class="boton-accion boton-editar">
+            <em aria-hidden="true" class="fas fa-pen"> </em>
+          </div>
+
+          <div class="boton-accion boton-eliminar"  onClick="deletePhoto()">
+            <em aria-hidden="true" class="fas fa-trash-alt"> </em>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="boton-cargar">
+
+      <input class="input-file" (change)="onFileSelected" type="file"  accept="image/png">
+      <span class="texto-cargar"> CARGAR FOTO </span>
+
+    </div>
+
+
+  </div>
