@@ -3,7 +3,7 @@ import { IUserLogoutResponse } from './../../../shared/interfaces/transactions/u
 import { IUserLoginResponse } from './../../../shared/interfaces/transactions/user-login-response.interface';
 import { AppRoutingModule } from './../../../modules/app/app.routes';
 import { UserData } from './../../../shared/models/user-data.model';
-import { PerfilService } from '../profile/perfil.service';
+import { ProfileService } from '../profile/profile.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { SidenavService } from './../sidenav/sidenav.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
@@ -27,8 +27,7 @@ export class AuthService extends AuthHelper{
     private router:Router,
     private activatedRoute:ActivatedRoute,
     private sidenavService:SidenavService,
-    protected override http:HttpClient,
-    private perfilService:PerfilService
+    protected override http:HttpClient
   ){
     super(http)
     this.user$ = new BehaviorSubject<User|null>({} as User);

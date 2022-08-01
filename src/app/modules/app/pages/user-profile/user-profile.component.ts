@@ -1,3 +1,5 @@
+import { IProfile } from './../../../../shared/interfaces/profile.interface';
+import { ProfileService } from './../../../../core/services/profile/profile.service';
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../../../core/services/auth/auth.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -8,9 +10,19 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  constructor(){
+  profile:IProfile|null
+  constructor(
+    private profileService:ProfileService,
+    private authService:AuthService
+  ){
+    this.profile = null
   }
   ngOnInit(): void {
+    this.authService.getUser().subscribe( user =>{
+      this.profileService.fetchProfile(Number(user?.id)).subscribe(profile =>{
+        this.profile = profile.data
+      })
+    })
   }
 
   convocTypeList: string[] = ['Ordinario', 'Extraordinario'];

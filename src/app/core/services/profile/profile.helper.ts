@@ -4,7 +4,7 @@ import { IUser } from '../../../shared/interfaces/user.interface';
 import { environment } from 'src/environments/environment.prod';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-export class PerfilHelper{
+export class ProfileHelper{
 
   public url = environment.url
   public isProduction = environment.production
@@ -13,6 +13,11 @@ export class PerfilHelper{
   ){
 
   }
+  protected static API_PROFILE_SERVICE_ROUTES = {
+    FETCH_PROFILE:"profile",
+    UPDATE_PROFILE:"profile"
+  }
+
 
 
   error(error:HttpErrorResponse){
