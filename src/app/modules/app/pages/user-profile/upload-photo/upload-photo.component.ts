@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 
 @Component({
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./upload-photo.component.scss']
 })
 export class uploadPhotoComponent implements OnInit {
+  @Input() imgValue: Object | null | undefined ;
   selected: boolean = false
   imgPreview  = null
   constructor(){

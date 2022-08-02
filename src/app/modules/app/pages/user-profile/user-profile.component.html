@@ -3,30 +3,32 @@
     <p class="subtitle">Modifica tus datos </p>
     <div class="sections-data">
       <div class="container-form-data">
+        <p class="label-input">Correo: {{email}}</p>
+
         <div class="item-form">
           <p class="label-input">Nombres</p>
-          <input class="form-input-text" type="text"  id="name-form" placeholder="Ingresa tu nombre" value="Juan Ramón" disabled>
+          <input class="form-input-text" type="text"  id="name-form" placeholder="Ingresa tu nombre" value="{{profile?.name}}" disabled>
         </div>
 
         <div class="item-form">
           <p class="label-input">Apellidos</p>
-          <input class="form-input-text" type="text" id="lastname-form" placeholder="Ingresa tu(s) apellido(s)" value="Pérez Tapia" disabled>
+          <input class="form-input-text" type="text" id="lastname-form" placeholder="Ingresa tu(s) apellido(s)" value="{{profile?.last_name}}" disabled>
         </div>
 
         <div class="item-form">
           <p class="label-input">Dirección</p>
-          <input class="form-input-text" type="text"  id="adress-form" placeholder="Ingresa tu dirección" value="Villa la mar, Número 215|">
+          <input class="form-input-text" type="text"  id="adress-form" placeholder="Ingresa tu dirección" value="{{profile?.address}}">
         </div>
 
         <div class="item-form">
           <p class="label-input">DNI</p>
-          <input class="form-input-text"  formControlName="number" id="dni-form" placeholder="Ingresa tu dni" value="7295481" >
+          <input class="form-input-text"  formControlName="number" id="dni-form" placeholder="Ingresa tu dni" value="{{profile?.identification?.value}}" >
         </div>
 
         <div class="bi-container">
           <div class="item-form">
             <p class="label-input">Número móvil</p>
-            <input class="form-input-text" formControlName="number" id="movil-form" placeholder="Ingresa tu número" value="987295481">
+            <input class="form-input-text" formControlName="number" id="movil-form" placeholder="Ingresa tu número" value="{{profile?.phone}}">
           </div>
 
           <div class="item-form">
@@ -39,9 +41,11 @@
           </div>
         </div>
 
+        <app-button-customized colorProp="primary" textBtn="{{isPcreated?'Guardar cambios':'Crear perfíl' }}" size="big"></app-button-customized>
+
     </div>
     <div class="container-img-data">
-      <app-upload-photo></app-upload-photo>
+      <app-upload-photo imgValue="{{profile?.image}}"></app-upload-photo>
     </div>
     </div>
   </div>

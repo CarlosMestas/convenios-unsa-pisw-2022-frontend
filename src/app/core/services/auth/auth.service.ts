@@ -2,7 +2,6 @@ import { IUserRegisterResponse } from './../../../shared/interfaces/transactions
 import { IUserLogoutResponse } from './../../../shared/interfaces/transactions/user-logout-response.interface';
 import { IUserLoginResponse } from './../../../shared/interfaces/transactions/user-login-response.interface';
 import { AppRoutingModule } from './../../../modules/app/app.routes';
-import { UserData } from './../../../shared/models/user-data.model';
 import { ProfileService } from '../profile/profile.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { SidenavService } from './../sidenav/sidenav.service';
