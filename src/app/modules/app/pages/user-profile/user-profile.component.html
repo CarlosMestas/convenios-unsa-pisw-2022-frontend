@@ -1,36 +1,52 @@
   <div class="container-profile">
     <p class="title">Mi perfil </p>
-    <p class="subtitle">Modifica tus datos </p>
+    <p *ngIf="isEdit" class="subtitle">Modifica tus datos </p>
     <div class="sections-data">
       <div class="container-form-data">
         <p class="label-input">Correo: {{email}}</p>
 
+        <form  [formGroup] = "profileForm" (ngSubmit) = "submitProfile()">
         <div class="item-form">
           <p class="label-input">Nombres</p>
-          <input class="form-input-text" type="text"  id="name-form" placeholder="Ingresa tu nombre" value="{{profile?.name}}" disabled>
+          <input class="form-input-text" type="text" formControlName="name"  id="name-form" placeholder="Ingresa tu nombre" value="{{profile?.name}}" [disabled]="!isEdit">
         </div>
 
         <div class="item-form">
           <p class="label-input">Apellidos</p>
-          <input class="form-input-text" type="text" id="lastname-form" placeholder="Ingresa tu(s) apellido(s)" value="{{profile?.last_name}}" disabled>
+          <input class="form-input-text" type="text" formControlName="lastname" id="lastname-form" placeholder="Ingresa tu(s) apellido(s)" value="{{profile?.last_name}}" [disabled]="!isEdit">
         </div>
 
         <div class="item-form">
           <p class="label-input">Dirección</p>
-          <input class="form-input-text" type="text"  id="adress-form" placeholder="Ingresa tu dirección" value="{{profile?.address}}">
+          <input class="form-input-text" type="text"  formControlName="address" id="adress-form" placeholder="Ingresa tu dirección" value="{{profile?.address}}" >
         </div>
 
-        <div class="item-form">
-          <p class="label-input">DNI</p>
-          <input class="form-input-text"  id="dni-form" placeholder="Ingresa tu dni" value="{{profile?.identification?.value}}" >
-        </div>
+
 
         <div class="bi-container">
           <div class="item-form">
-            <p class="label-input">Número móvil</p>
-            <input class="form-input-text"  id="movil-form" placeholder="Ingresa tu número" value="{{profile?.phone}}">
+            <p class="label-input">DNI</p>
+            <input class="form-input-text"  id="dni-form" formControlName="dni" placeholder="Ingresa tu dni" value="{{profile?.identification?.value}}" >
           </div>
-
+          <div class="item-form">
+            <p class="label-input">Fecha de nacimiento</p>
+            <mat-form-field appearance="outline" class="example-form-field">
+              <input matInput [matDatepicker]="datepicker">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+              <mat-datepicker #datepicker>
+                <mat-datepicker-actions>
+                  <button mat-button matDatepickerCancel>Cancel</button>
+                  <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                </mat-datepicker-actions>
+              </mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+          <div class="item-form">
+            <p class="label-input">Número móvil</p>
+            <input class="form-input-text"  formControlName="phone" id="movil-form" placeholder="Ingresa tu número" value="{{profile?.phone}}">
+          </div>
           <div class="item-form">
             <p class="label-input">Tipo usuario</p>
             <mat-form-field appearance="outline">
@@ -39,13 +55,13 @@
               </mat-select>
             </mat-form-field>
           </div>
-        </div>
 
-        <app-button-customized colorProp="primary" textBtn="{{isPcreated?'Guardar cambios':'Crear perfíl' }}" size="big"></app-button-customized>
-
+          <input *ngIf="isEdit" class="submit-form" type="submit"  value="{{isPcreated?'Guardar cambios':'Crear perfíl'}}">
+        </form>
+        <app-button-customized *ngIf="!isEdit" colorProp="primary" size="normal" textBtn="Modificar datos " (click)="editProfile()"></app-button-customized>
     </div>
     <div class="container-img-data">
-      <app-upload-photo imgValue="{{profile?.image}}"></app-upload-photo>
+      <app-upload-photo [profile]="profile"></app-upload-photo>
     </div>
     </div>
   </div>

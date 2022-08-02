@@ -10,7 +10,9 @@
       </div>
 
       <div *ngIf ="selected===true" class="previsualizar-imagen-local" >
-        <img  class ="imagen-local" [src]="imgPreview" alt="logo" />
+        <img *ngIf="!isUpload" class ="imagen-local" [src]="profile?.image" alt="user-image" />
+        <img *ngIf="isUpload" class ="imagen-local" [src]="imgPreview" alt="user-image" />
+
         <div class="contenedor-acciones" >
           <div class="boton-accion boton-eliminar"  (click)="deletePhoto()">
             <fa-icon class= "side-icon" [icon]="faTrash"></fa-icon>

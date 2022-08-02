@@ -1,5 +1,6 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { faTrash, faEdit} from '@fortawesome/free-solid-svg-icons';
+import {IProfile} from "../../../../../shared/interfaces/profile.interface";
 
 
 @Component({
@@ -8,16 +9,21 @@ import { faTrash, faEdit} from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./upload-photo.component.scss']
 })
 export class uploadPhotoComponent implements OnInit {
-  @Input() imgValue: Object | null | undefined ;
+  @Input()   profile:IProfile|null
   faTrash = faTrash
   faEdit = faEdit
   selected: boolean = false
+  isUpload: boolean = false
   imgPreview  = null
   constructor(){
+    this.profile = {} as IProfile
   }
   ngOnInit(): void {
+    if(this.profile?.image!='')
+      this.selected = true
   }
   onFileSelected (event:any) {
+    this.isUpload = true
     let files = event.target.files
     if (files.length === 0) {
       console.log('Empty')
