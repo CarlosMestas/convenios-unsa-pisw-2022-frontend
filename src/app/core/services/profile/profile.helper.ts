@@ -14,8 +14,8 @@ export class ProfileHelper{
 
   }
   protected static API_PROFILE_SERVICE_ROUTES = {
-    FETCH_PROFILE:"profile",
-    UPDATE_PROFILE:"profile"
+    FETCH_PROFILE:"profiles",
+    UPDATE_PROFILE:"profiles"
   }
 
 

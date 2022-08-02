@@ -29,6 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }else{
       console.log("token is null")
     }
+    console.log(authReq)
     return next.handle(authReq);
   }
 }

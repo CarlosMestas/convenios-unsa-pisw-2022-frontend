@@ -1,9 +1,8 @@
+import { DialogYesNoComponent } from './../../../shared/components/dialog-yes-no/dialog-yes-no.component';
 import { IUserRegisterResponse } from './../../../shared/interfaces/transactions/user-register-response.interface';
 import { IUserLogoutResponse } from './../../../shared/interfaces/transactions/user-logout-response.interface';
 import { IUserLoginResponse } from './../../../shared/interfaces/transactions/user-login-response.interface';
 import { AppRoutingModule } from './../../../modules/app/app.routes';
-import { UserData } from './../../../shared/models/user-data.model';
-import { ProfileService } from '../profile/profile.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { SidenavService } from './../sidenav/sidenav.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
@@ -14,6 +13,10 @@ import { Injectable } from "@angular/core";
 import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
 import { BehaviorSubject, catchError, map, Observable, Subject } from "rxjs";
 
+import {MatDialog} from '@angular/material/dialog';
+
+
+
 @Injectable({
   providedIn:'root'
 })
@@ -22,17 +25,20 @@ export class AuthService extends AuthHelper{
 
   private user$:BehaviorSubject<User|null>;
   private googleAuthServiceInitialized$: BehaviorSubject<boolean>;
-
+  private login$:BehaviorSubject<boolean>;
+  private signup$:BehaviorSubject<boolean>;
   constructor(
     private router:Router,
     private activatedRoute:ActivatedRoute,
     private sidenavService:SidenavService,
-    protected override http:HttpClient
+    protected override http:HttpClient,
+    private matDialog:MatDialog
   ){
     super(http)
     this.user$ = new BehaviorSubject<User|null>({} as User);
     this.googleAuthServiceInitialized$= new BehaviorSubject<boolean>(false)
-    this.loadUser()
+    this.login$ = new BehaviorSubject<boolean>(false)
+    this.signup$ = new BehaviorSubject<boolean>(false)
   }
 
   /**
@@ -110,42 +116,18 @@ export class AuthService extends AuthHelper{
    * @param response
    */
   handleCredentialResponse(response: CredentialResponse) {
-    console.log("/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SIGNUP)
-    console.log("/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SINGIN)
-    console.log(this.router.url)
     try {
       if(this.router.url == "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SIGNUP){
           let jwtDecodedToken = this.decodeJWTCredential(response?.credential)
-          console.log(jwtDecodedToken.picture)
-          this.userSignUp(jwtDecodedToken.email, jwtDecodedToken.picture).subscribe(resp =>{
-
-          })
-          this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
+          this.userSignUp(jwtDecodedToken.email,jwtDecodedToken.picture).subscribe()
       }else if(this.router.url == "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SINGIN){
           let jwtDecodedToken = this.decodeJWTCredential(response?.credential)
-          console.log(jwtDecodedToken.picture)
-          this.userSignIn(jwtDecodedToken.email).subscribe(resp =>{
-          })
-          this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
+          this.userSignIn(jwtDecodedToken.email).subscribe()
+
       }
     } catch (e) {
       console.error('Error while trying to decode token', e);
     }
-    // Decoding  JWT token...
-    /*
-      try {
-        let tempUser:User = this.getUserFromJWTCredential(response?.credential)
-        this.user$.next(new UserData(tempUser,null))
-        this.perfilService.fetchProfile(tempUser.id).subscribe(profile =>{
-          this.user$.next(new UserData(this.user$.getValue()?.user,profile.data))
-        })
-        this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(tempUser));
-        this.sidenavService.sidenavUserLogged()
-        this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
-      } catch (e) {
-        console.error('Error while trying to decode token', e);
-      }*/
-
   }
 
   /**
@@ -169,14 +151,10 @@ export class AuthService extends AuthHelper{
       data:{} as IUser
     };
     return this.http.get<IUserLoginResponse>(
-      this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.LOGIN,
-      {
-          params:new HttpParams().set('email', userId)
-      }
+      this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.FETCH_USER+"/"+userId
       )
       .pipe(
         map( r =>{
-          console.log(r)
           response.data = new User(r.data.user.id,r.data.user.email);
           this.user$.next(response.data)
           return response
@@ -188,13 +166,19 @@ export class AuthService extends AuthHelper{
   /**
    * Load User if it exists in local storage
    */
-  private loadUser():void{
-    const token = localStorage.getItem(AuthHelper.USER_LOGIN_TOKEN)
-    if(token){
+  loadUser():Observable<{
+    error: boolean;
+    msg: string;
+    data: IUser;
+  }>{
       const userId:number = Number(localStorage.getItem(AuthHelper.USER_ID_ENCODED))
-      this.fetchUser(userId)
       this.sidenavService.sidenavUserLogged()
-    }
+      return this.fetchUser(userId)
+  }
+
+  isSesionUp(){
+    const token = localStorage.getItem(AuthHelper.USER_LOGIN_TOKEN)
+    return token!=null
   }
 
   userSignUp(email: string, image:string): Observable<
@@ -224,6 +208,7 @@ export class AuthService extends AuthHelper{
         this.sidenavService.sidenavUserLogged()
         this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)
         //this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data))
+        this.signup$.next(true)
         return response
       }),
       catchError(this.errorSignUp)
@@ -249,7 +234,6 @@ export class AuthService extends AuthHelper{
       msg:'',
       data:{} as IUser
     };
-    console.log("kelvin-test", email)
     return this.http.post<IUserLoginResponse>(
       this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.LOGIN,
     {
@@ -259,7 +243,6 @@ export class AuthService extends AuthHelper{
     .pipe(
       map( r =>{
         console.log(r)
-
         let tempuser:User = new User(
           r.data.user.id,
           r.data.user.email
@@ -268,70 +251,19 @@ export class AuthService extends AuthHelper{
         this.user$.next(response.data)
         this.sidenavService.sidenavUserLogged()
         this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)
+        this.login$.next(true)
         return response
       }),
       catchError(this.errorSignIn)
     );
   }
 
-  /*
-  googleUserSignUp(email:string, identifier:string): Observable<{
-    error:boolean,
-    msg:string,
-    data:IUser
-  }>{
-    const response = {
-      error:false,
-      msg:'',
-      data:{} as IUser
-    };
-    return this.http.post<any>(this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.SIGNUP,
-      {"email":email, "password":identifier}
-      )
-      .pipe(
-        map( r =>{
-          console.log(r.message)
-          response.data = new User(
-            r.data.token,
-            r.data.user.id,
-            r.data.user.email
-            );
-          return response
-        }),
-        catchError(this.errorSignUp)
-      );
+  loginStatus():Observable<boolean>{
+    return this.login$.asObservable();
   }
-
-  googleUserSignIn(email:string, identifier:string): Observable<{
-    error:boolean,
-    msg:string,
-    data:IUser
-  }>{
-    const response = {
-      error:false,
-      msg:'',
-      data:{} as IUser
-    };
-    return this.http.post<any>(this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.LOGIN,
-      {"email":email, "password":identifier}
-      )
-      .pipe(
-        map( r =>{
-          console.log(r.message)
-          response.data = new User(
-            r.data.token,
-            r.data.user.id,
-            r.data.user.email,
-            r.data.user.email_verified_at,
-            r.data.user.status
-            );
-          return response
-        }),
-        catchError(this.errorSignUp)
-      );
+  signupStatus():Observable<boolean>{
+    return this.signup$.asObservable();
   }
-*/
-
   getUserLoginToken():string|null|undefined {
     return this.getLocalStorageSesionToken()
   }
@@ -340,5 +272,11 @@ export class AuthService extends AuthHelper{
   }
   isUserProfileCreated():boolean{
     return this.user$.getValue()!=null
+  }
+  setLoginStatus(status:boolean){
+    this.login$.next(status)
+  }
+  setSignUpStatus(status:boolean){
+    this.signup$.next(status)
   }
 }

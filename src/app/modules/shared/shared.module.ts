@@ -1,3 +1,5 @@
+import { ButtonFormComponent } from './../../shared/components/button-form/button-form.component';
+import { DialogYesNoComponent } from './../../shared/components/dialog-yes-no/dialog-yes-no.component';
 import { SidenavItemComponent } from './../../shared/components/sidenav-item/sidenav-item.component';
 import { SidenavUserInfoComponent } from './../../shared/components/sidenav-user-info/sidenav-user-info.component';
 import { TooltipRedSmallComponent } from '../../shared/components/tooltip-red-small/tooltip-red-small.component';
@@ -25,7 +27,9 @@ import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-
     SidenavItemComponent,
     Button,
     ButtonCustomizedComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    DialogYesNoComponent,
+    ButtonFormComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +46,9 @@ import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-
     Button,
     MaterialModule,
     ButtonCustomizedComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    DialogYesNoComponent,
+    ButtonFormComponent
   ]
 
 })

@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { ITransactionResponse } from './../../../shared/interfaces/transactions/transaction-response.interface';
 import { IProfileGetResponse } from './../../../shared/interfaces/transactions/profile-get-response.interface';
 import { IProfile } from '../../../shared/interfaces/profile.interface';
@@ -20,13 +21,23 @@ export class ProfileService extends ProfileHelper{
   private profile$:BehaviorSubject<IProfile | null>;
   constructor(
     private router:Router,
-    protected override http:HttpClient
+    protected override http:HttpClient,
+    private authService:AuthService
   ){
     super(http)
     this.profile$ = new BehaviorSubject<IProfile | null>(null);
+    this.authService.getUser().subscribe(user=>{
+      if(user && user.id!=undefined){
+        console.log("testing user",user)
+        this.fetchProfile(user.id).subscribe()
+      }
+    })
   }
   getPerfil(): Observable<IProfile | null>{
     return this.profile$.asObservable();
+  }
+  getProfileValue():IProfile{
+    return this.profile$.getValue() as IProfile
   }
 
   fetchProfile(userId:number):Observable<
@@ -44,14 +55,15 @@ export class ProfileService extends ProfileHelper{
 
 
     return this.http.get<IProfileGetResponse>(
-      this.url + ProfileHelper.API_PROFILE_SERVICE_ROUTES.FETCH_PROFILE,
-      {
+      this.url + ProfileHelper.API_PROFILE_SERVICE_ROUTES.FETCH_PROFILE + "/"+userId,
+      /*{
         params: new HttpParams().set("user_id",userId)
-      }
+      }*/
       )
     .pipe(
       map( r =>{
-        response.data =r.data
+        console.log("callingfetchprofile")
+        response.data =r.data.profile
         this.profile$.next(response.data)
         return response
       }),
