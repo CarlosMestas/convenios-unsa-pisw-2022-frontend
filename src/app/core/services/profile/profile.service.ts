@@ -84,7 +84,7 @@ export class ProfileService extends ProfileHelper{
     const params:HttpParams = new HttpParams()
 
     return this.http.put<ITransactionResponse>(
-      this.url + ProfileHelper.API_PROFILE_SERVICE_ROUTES.UPDATE_PROFILE,
+      this.url + ProfileHelper.API_PROFILE_SERVICE_ROUTES.UPDATE_PROFILE+"/"+profile.id,
         {
           params: profile
         }
