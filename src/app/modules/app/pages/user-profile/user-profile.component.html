@@ -22,19 +22,19 @@
 
         <div class="item-form">
           <p class="label-input">DNI</p>
-          <input class="form-input-text"  formControlName="number" id="dni-form" placeholder="Ingresa tu dni" value="{{profile?.identification?.value}}" >
+          <input class="form-input-text"  id="dni-form" placeholder="Ingresa tu dni" value="{{profile?.identification?.value}}" >
         </div>
 
         <div class="bi-container">
           <div class="item-form">
             <p class="label-input">Número móvil</p>
-            <input class="form-input-text" formControlName="number" id="movil-form" placeholder="Ingresa tu número" value="{{profile?.phone}}">
+            <input class="form-input-text"  id="movil-form" placeholder="Ingresa tu número" value="{{profile?.phone}}">
           </div>
 
           <div class="item-form">
             <p class="label-input">Tipo usuario</p>
             <mat-form-field appearance="outline">
-              <mat-select disabled>
+              <mat-select >
                 <mat-option *ngFor="let type of convocTypeList" [value]="type" >{{type}}</mat-option>
               </mat-select>
             </mat-form-field>
