@@ -49,7 +49,6 @@ export class UserProfileComponent implements OnInit {
   submitProfile():void{
     // @ts-ignore
     let profileUpdate: IProfile = this.profile
-    let tipo_doc :
     // @ts-ignore
     profileUpdate.name = this.profileForm.value["name"]
     // @ts-ignore
@@ -63,7 +62,8 @@ export class UserProfileComponent implements OnInit {
     profileUpdate.profile_created= 1
     console.log("Profile", profileUpdate)
     this.profileService.updateProfile(profileUpdate).subscribe(data =>{
-      console.log("PERFIL CREADO")
+
+      console.log("PERFIL CREADO", profileUpdate)
     })
     this.isEdit = false
   }
