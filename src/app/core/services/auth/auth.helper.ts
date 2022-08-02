@@ -12,7 +12,8 @@ export class AuthHelper{
   protected static API_AUTH_SERVICE_ROUTES = {
     LOGOUT:"logout",
     LOGIN:"login",
-    SIGNUP:"register"
+    SIGNUP:"register",
+    FETCH_USER:"users"
   }
 
   public url = environment.url

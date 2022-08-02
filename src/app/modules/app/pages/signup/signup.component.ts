@@ -1,6 +1,13 @@
+import { Router } from '@angular/router';
+import { AppRoutingModule } from './../../app.routes';
+import { DialogYesNoComponent } from './../../../../shared/components/dialog-yes-no/dialog-yes-no.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ProfileService } from './../../../../core/services/profile/profile.service';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { AuthService } from './../../../../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
+
+
 
 @Component({
   selector: 'app-signup',
@@ -13,7 +20,10 @@ export class SignupComponent implements OnInit {
   private googleAuthServiceInitialized:boolean
 
   constructor(
-    private authService:AuthService
+    private authService:AuthService,
+    private profileService:ProfileService,
+    private matDialog:MatDialog,
+    private router:Router
   ) {
     this.googleAuthServiceInitialized = false;
     this.signUpForm = new FormGroup({
@@ -26,6 +36,26 @@ export class SignupComponent implements OnInit {
     this.authService.isGoogleAuthServiceInitialized().subscribe(isInitialized =>{
         this.googleAuthServiceInitialized = isInitialized;
         this.renderButtonSignUp();
+      })
+      this.authService.signupStatus().subscribe(status=>{
+        if(status){
+          if(this.profileService.getProfileValue!=null&&this.profileService.getProfileValue!=undefined){
+            const config = new MatDialogConfig()
+            config.disableClose = true
+            config.width = '40%'
+            const dialogRef=this.matDialog.open(DialogYesNoComponent,config)
+            dialogRef.afterClosed().subscribe(result => {
+              this.authService.setSignUpStatus(false)
+              if(result == true){
+                this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_USER_PROFILE])
+              }else if(result == false){
+                this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
+              }else{
+                this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
+              }
+            });
+          }
+        }
       })
   }
   renderButtonSignUp(){

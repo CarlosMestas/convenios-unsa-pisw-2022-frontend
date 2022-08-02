@@ -1,3 +1,7 @@
+import { AppRoutingModule } from './../../app.routes';
+import { ProfileService } from './../../../../core/services/profile/profile.service';
+import { DialogYesNoComponent } from './../../../../shared/components/dialog-yes-no/dialog-yes-no.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 //Import Services
 import { AuthService } from './../../../../core/services/auth/auth.service';
 
@@ -19,7 +23,9 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private router:Router,
-    private authService:AuthService
+    private authService:AuthService,
+    private matDialog:MatDialog,
+    private profileService:ProfileService
   )
   {
     this.googleAuthServiceInitialized = false;
@@ -34,6 +40,27 @@ export class SigninComponent implements OnInit {
     this.authService.isGoogleAuthServiceInitialized().subscribe(isInitialized =>{
       this.googleAuthServiceInitialized = isInitialized;
       this.renderButtonSignIn();
+    })
+
+    this.authService.loginStatus().subscribe(status=>{
+      if(status){
+        if(this.profileService.getProfileValue!=null&&this.profileService.getProfileValue!=undefined){
+          const config = new MatDialogConfig()
+          config.disableClose = true
+          config.width = '40%'
+          const dialogRef=this.matDialog.open(DialogYesNoComponent,config)
+          dialogRef.afterClosed().subscribe(result => {
+            this.authService.setLoginStatus(false)
+            if(result == true){
+              this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_USER_PROFILE])
+            }else if(result == false){
+              this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
+            }else{
+              this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
+            }
+          });
+        }
+      }
     })
   }
 

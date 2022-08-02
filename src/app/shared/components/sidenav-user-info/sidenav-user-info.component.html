@@ -1,11 +1,11 @@
-<div class="sidenav-user-container" >
+<div class="sidenav-user-container" *ngIf="profile" >
 
   <a  routerLink = 'profile'
       routerLinkActive = "active"
       [routerLinkActiveOptions] = "{exact: true}"
-  ><img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user image" class="user-image">
+  ><img [src]="profile?.image" alt="user image" class="user-image">
   </a>
-  <div class="user-info" *ngIf = "!collapsed">
+  <div class="user-info" *ngIf="!collapsed">
     <div class="user-name">
       {{user?.email}}
     </div>

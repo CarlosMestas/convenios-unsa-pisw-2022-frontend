@@ -11,7 +11,7 @@ import {AuthService} from "../../../../core/services/auth/auth.service";
 export class UserProfileComponent implements OnInit {
   profile:IProfile|null
   email: string | undefined
-  isPcreated: number
+  isPcreated: number | undefined
 
   constructor(
     private profileService:ProfileService,
@@ -23,10 +23,10 @@ export class UserProfileComponent implements OnInit {
   }
   ngOnInit(): void {
     this.authService.getUser().subscribe( user =>{
-      this.profileService.fetchProfile(Number(user?.id)).subscribe(profile =>{
-        this.profile = profile.data
+      this.profileService.getPerfil().subscribe(profile =>{
+        this.profile = profile
         this.email = user?.email
-        this.isPcreated = profile.data.profile_created
+        this.isPcreated = profile?.profile_created
       })
     })
   }

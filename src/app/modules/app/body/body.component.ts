@@ -34,10 +34,15 @@ screenWidth = 0;
   ngOnInit(): void {
     console.log("NG ON INIT calling")
     // @ts-ignore
+
     window.onGoogleLibraryLoad  = () => {
       this.authService.initializeGoogleAuthService()
-
       this.authService.promptGoogleOneTap()
+    }
+    if(this.authService.isSesionUp()){
+      this.authService.loadUser().subscribe(resp =>{
+        console.log(resp.data)
+      })
     }
   }
 }
