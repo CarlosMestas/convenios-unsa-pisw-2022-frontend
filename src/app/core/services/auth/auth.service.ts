@@ -1,3 +1,4 @@
+import { DialogErrorEmailComponent } from './../../../shared/components/dialog-error-email/dialog-error-email.component';
 import { DialogYesNoComponent } from './../../../shared/components/dialog-yes-no/dialog-yes-no.component';
 import { IUserRegisterResponse } from './../../../shared/interfaces/transactions/user-register-response.interface';
 import { IUserLogoutResponse } from './../../../shared/interfaces/transactions/user-logout-response.interface';
@@ -119,11 +120,15 @@ export class AuthService extends AuthHelper{
     try {
       if(this.router.url == "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SIGNUP){
           let jwtDecodedToken = this.decodeJWTCredential(response?.credential)
-          this.userSignUp(jwtDecodedToken.email,jwtDecodedToken.picture).subscribe()
+          console.log("correoooo",jwtDecodedToken.email.toString().split('@')[1])
+          if(jwtDecodedToken.email.toString().split('@')[1]=="unsa.edu.pe"){
+            this.userSignUp(jwtDecodedToken.email,jwtDecodedToken.picture).subscribe()
+          }else{
+            this.matDialog.open(DialogErrorEmailComponent)
+          }
       }else if(this.router.url == "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SINGIN){
           let jwtDecodedToken = this.decodeJWTCredential(response?.credential)
           this.userSignIn(jwtDecodedToken.email).subscribe()
-
       }
     } catch (e) {
       console.error('Error while trying to decode token', e);

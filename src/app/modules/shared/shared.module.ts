@@ -1,3 +1,4 @@
+import { DialogErrorEmailComponent } from './../../shared/components/dialog-error-email/dialog-error-email.component';
 import { ButtonFormComponent } from './../../shared/components/button-form/button-form.component';
 import { DialogYesNoComponent } from './../../shared/components/dialog-yes-no/dialog-yes-no.component';
 import { SidenavItemComponent } from './../../shared/components/sidenav-item/sidenav-item.component';
@@ -29,7 +30,8 @@ import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-
     ButtonCustomizedComponent,
     SearchBarComponent,
     DialogYesNoComponent,
-    ButtonFormComponent
+    ButtonFormComponent,
+    DialogErrorEmailComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,8 @@ import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-
     ButtonCustomizedComponent,
     SearchBarComponent,
     DialogYesNoComponent,
-    ButtonFormComponent
+    ButtonFormComponent,
+    DialogErrorEmailComponent
   ]
 
 })
