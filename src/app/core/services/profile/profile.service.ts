@@ -95,13 +95,9 @@ export class ProfileService extends ProfileHelper{
           "birthdate":profile.birthdate,
           "type":profile.type,
           "identification":{
-            "value":profile.identification,
+            "value":profile.identification.value,
             "type":1
           }
-          /*
-          "id_type_profile": 1,
-          "id_type_identificacion": 1,
-          "valor_identificatio": "74578099"*/
         }
       )
     .pipe(

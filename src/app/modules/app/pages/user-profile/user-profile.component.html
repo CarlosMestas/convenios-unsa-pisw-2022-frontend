@@ -8,25 +8,31 @@
         <form  [formGroup] = "profileForm" (ngSubmit) = "submitProfile()">
         <div class="item-form">
           <p class="label-input">Nombres</p>
-          <input class="form-input-text" type="text" formControlName="name"  id="name-form" placeholder="Ingresa tu nombre" value="{{profile?.name}}" [disabled]="!isEdit">
+          <input class="form-input-text" type="text" formControlName="name"  id="name-form" placeholder="Ingresa tu nombre">
         </div>
 
         <div class="item-form">
           <p class="label-input">Apellidos</p>
-          <input class="form-input-text" type="text" formControlName="lastname" id="lastname-form" placeholder="Ingresa tu(s) apellido(s)" value="{{profile?.last_name}}" [disabled]="!isEdit">
+          <input class="form-input-text" type="text" formControlName="lastname" id="lastname-form" placeholder="Ingresa tu(s) apellido(s)">
         </div>
 
         <div class="item-form">
           <p class="label-input">Dirección</p>
-          <input class="form-input-text" type="text"  formControlName="address" id="adress-form" placeholder="Ingresa tu dirección" value="{{profile?.address}}" >
+          <input class="form-input-text" type="text"  formControlName="address" id="adress-form" placeholder="Ingresa tu dirección">
         </div>
 
 
 
         <div class="bi-container">
           <div class="item-form">
-            <p class="label-input">DNI</p>
-            <input class="form-input-text"  id="dni-form" formControlName="dni" placeholder="Ingresa tu dni" value="{{profile?.identification?.value}}" >
+            <p class="label-input">Documento de identididad</p>
+            <mat-form-field appearance="outline">
+              <mat-label>Tipo de documento</mat-label>
+              <mat-select formControlName = "typeUserIdentification">
+                <mat-option *ngFor="let type of typesIdentification" [value]="type.id" >{{type.description}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <input class="form-input-text"  id="dni-form" formControlName="valueIdentification" placeholder="Nro." >
           </div>
           <div class="item-form">
             <p class="label-input">Fecha de nacimiento</p>
@@ -36,8 +42,8 @@
               <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
               <mat-datepicker #datepicker>
                 <mat-datepicker-actions>
-                  <button mat-button matDatepickerCancel>Cancel</button>
-                  <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+                  <button mat-button matDatepickerCancel>Cancelar</button>
+                  <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
                 </mat-datepicker-actions>
               </mat-datepicker>
             </mat-form-field>
@@ -45,18 +51,19 @@
         </div>
           <div class="item-form">
             <p class="label-input">Número móvil</p>
-            <input class="form-input-text"  formControlName="phone" id="movil-form" placeholder="Ingresa tu número" value="{{profile?.phone}}">
+            <input class="form-input-text"  formControlName="phone" id="movil-form" placeholder="Ingresa tu número">
           </div>
           <div class="item-form">
             <p class="label-input">Tipo usuario</p>
             <mat-form-field appearance="outline">
-              <mat-select formControlName = "type">
+              <mat-label>Tipo usuario</mat-label>
+              <mat-select formControlName = "typeUser">
                 <mat-option *ngFor="let type of typesProfile" [value]="type.id" >{{type.description}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>
 
-          <input *ngIf="isEdit" class="submit-form" type="submit"  value="{{isPcreated?'Guardar cambios':'Crear perfíl'}}">
+          <input *ngIf="isEdit" class="submit-form" type="submit"  value="{{profile?.profile_created==1?'Guardar cambios':'Crear perfíl'}}">
         </form>
         <app-button-customized *ngIf="!isEdit" colorProp="primary" size="normal" textBtn="Modificar datos " (click)="editProfile()"></app-button-customized>
     </div>
