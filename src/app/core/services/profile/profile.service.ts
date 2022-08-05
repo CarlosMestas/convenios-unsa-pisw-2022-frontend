@@ -10,6 +10,7 @@ import { IUser } from '../../../shared/interfaces/user.interface';
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, catchError, map, Observable, Subject } from "rxjs";
 import { ProfileHelper } from './profile.helper';
+import {IProfileType} from "../../../shared/interfaces/profile-type.interface";
 
 @Injectable({
   providedIn:'root'
@@ -84,9 +85,18 @@ export class ProfileService extends ProfileHelper{
     const params:HttpParams = new HttpParams()
 
     return this.http.put<ITransactionResponse>(
-      this.url + ProfileHelper.API_PROFILE_SERVICE_ROUTES.UPDATE_PROFILE,
+      this.url + ProfileHelper.API_PROFILE_SERVICE_ROUTES.UPDATE_PROFILE+"/"+profile.id,
         {
-          params: profile
+          "name": profile.name,
+          "last_name": profile.last_name,
+          "address": profile.address,
+          "phone": profile.phone,
+
+          "profile_created": 1,
+          /*
+          "id_type_profile": 1,
+          "id_type_identificacion": 1,
+          "valor_identificatio": "74578099"*/
         }
       )
     .pipe(

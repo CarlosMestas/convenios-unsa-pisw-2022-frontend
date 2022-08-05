@@ -7,12 +7,11 @@
     -moz-border-radius:70px;
     -webkit-border-radius:70px;
     border-radius:70px;
-    width: 70%;
+    width: 80%;
     height: 18vw;
     margin: 0 auto;
 
     .previsualizar-determinado {
-      font-family: 'Open Sans';
       font-style: normal;
       font-weight: 400;
       @include font-size-21-12;
@@ -88,31 +87,25 @@
           justify-items: center;
 
         }
-
         .boton-editar {
-          color: #41B883;
-
+          color: #41be7b;
         }
-
         .boton-eliminar {
           color: #F92B60;
-
         }
 
-
       }
-
 
     }
   }
 
   .boton-cargar {
-    border: 2px solid #41B883;
+    border: 2px solid #717a76;
     box-sizing: border-box;
     border-radius: 8px;
     position: relative;
     height: 2.715rem;
-    width: 76.5%;
+    width: 40%;
     display: grid;
     align-items: center;
     margin: auto;
@@ -129,7 +122,6 @@
     }
 
     .texto-cargar {
-      font-family: 'Roboto';
       font-style: normal;
       font-weight: 700;
       //font-size: 25px;
@@ -138,8 +130,7 @@
       /* or 100% */
 
       text-align: center;
-
-      color: #41B883;
+      color: #717a76;
     }
 
   }

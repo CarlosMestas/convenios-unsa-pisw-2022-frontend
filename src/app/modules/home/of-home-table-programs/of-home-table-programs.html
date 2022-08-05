@@ -1,0 +1,22 @@
+<div [ngClass]="prefix">
+  <div class="container-search-filters">
+    <app-search-bar></app-search-bar>
+    <div>
+      <span class="label-filter">Tipo de Convocatoria:</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="selectedType">
+          <mat-option *ngFor="let type of convocTypeList" [value]="type">{{type}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="select-period">
+      <span class="label-filter">Periodo:</span>
+      <mat-form-field appearance="outline">
+        <mat-select [(value)]="selectedPeriod">
+          <mat-option *ngFor="let period of periodList" [value]="period">{{period}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+<app-of-table [typeConv]='typeConv'></app-of-table>
+</div>

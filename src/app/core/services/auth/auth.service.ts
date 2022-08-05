@@ -1,9 +1,12 @@
+
 import { DialogErrorEmailComponent } from './../../../shared/components/dialog-error-email/dialog-error-email.component';
 import { DialogYesNoComponent } from './../../../shared/components/dialog-yes-no/dialog-yes-no.component';
+
 import { IUserRegisterResponse } from './../../../shared/interfaces/transactions/user-register-response.interface';
 import { IUserLogoutResponse } from './../../../shared/interfaces/transactions/user-logout-response.interface';
 import { IUserLoginResponse } from './../../../shared/interfaces/transactions/user-login-response.interface';
 import { AppRoutingModule } from './../../../modules/app/app.routes';
+import { ProfileService } from '../profile/profile.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { SidenavService } from './../sidenav/sidenav.service';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';

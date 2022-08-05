@@ -1,0 +1,15 @@
+$prefix: of-home-table-programs;
+
+.#{$prefix} {
+  .container-search-filters{
+    display: grid;
+    grid-template-columns: 2.2fr 1fr 1fr ;
+    .select-period{
+      margin-left: 20px;
+      .label-filter{
+        padding-right: 10px;
+      }
+
+    }
+  }
+}
