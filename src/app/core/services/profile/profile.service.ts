@@ -93,7 +93,11 @@ export class ProfileService extends ProfileHelper{
           "phone": profile.phone,
           "profile_created": 1,
           "birthdate":profile.birthdate,
-          "type":profile.type
+          "type":profile.type,
+          "identification":{
+            "value":profile.identification,
+            "type":1
+          }
           /*
           "id_type_profile": 1,
           "id_type_identificacion": 1,

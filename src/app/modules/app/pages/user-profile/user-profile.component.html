@@ -50,7 +50,7 @@
           <div class="item-form">
             <p class="label-input">Tipo usuario</p>
             <mat-form-field appearance="outline">
-              <mat-select >
+              <mat-select formControlName = "type">
                 <mat-option *ngFor="let type of typesProfile" [value]="type.id" >{{type.description}}</mat-option>
               </mat-select>
             </mat-form-field>

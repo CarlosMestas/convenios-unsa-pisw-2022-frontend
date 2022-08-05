@@ -30,6 +30,7 @@ export class UserProfileComponent implements OnInit {
       lastname: new FormControl('',[Validators.required]),
       address: new FormControl('',[Validators.maxLength(100)]),
       birthdate: new FormControl('',[Validators.required]),
+      type: new FormControl('',[Validators.required]),
       dni: new FormControl('',[Validators.required, Validators.maxLength(8)]),
       phone: new FormControl('')
     })
@@ -80,6 +81,10 @@ export class UserProfileComponent implements OnInit {
 
     // @ts-ignore
     profileUpdate.profile_created= 1
+    profileUpdate.type = this.profileForm.value["type"]
+    profileUpdate.identification = this.profileForm.value["dni"]
+
+
     console.log("Profile", profileUpdate)
     this.profileService.updateProfile(profileUpdate).subscribe(data =>{
       console.log("PERFIL CREADO", profileUpdate)
@@ -107,6 +112,9 @@ export class UserProfileComponent implements OnInit {
   }
   public get birthDate() : AbstractControl | null {
     return this.profileForm.get('birthdate')
+  }
+  public get type() : AbstractControl | null {
+    return this.profileForm.get('type')
   }
 
   onDate(event:any):void{
