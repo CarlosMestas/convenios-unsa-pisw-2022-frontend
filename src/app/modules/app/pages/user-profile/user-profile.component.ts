@@ -13,21 +13,6 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 })
 export class UserProfileComponent implements OnInit {
 
-
-  moths :any= {
-    "Jan":1,
-    "Feb":2,
-    "Mar":3,
-    "Apr":4,
-    "May":5,
-    "Jun":6,
-    "Jul":7,
-    "Aug":8,
-    "Sep":9,
-    "Oct":10,
-    "Nov":11,
-    "Dic":12
-  }
   public profileForm: FormGroup
   profile:IProfile|null
   email: string | undefined
@@ -92,8 +77,6 @@ export class UserProfileComponent implements OnInit {
 
     let date:any = this.profileForm.value["birthdate"]
     profileUpdate.birthdate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
-
-    console.log("ttypee",profileUpdate.birthdate)
 
     // @ts-ignore
     profileUpdate.profile_created= 1
