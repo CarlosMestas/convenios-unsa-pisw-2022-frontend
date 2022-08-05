@@ -31,7 +31,7 @@
           <div class="item-form">
             <p class="label-input">Fecha de nacimiento</p>
             <mat-form-field appearance="outline" class="example-form-field">
-              <input matInput [matDatepicker]="datepicker">
+              <input matInput [matDatepicker]="datepicker" formControlName="birthdate">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
               <mat-datepicker #datepicker>
@@ -51,7 +51,7 @@
             <p class="label-input">Tipo usuario</p>
             <mat-form-field appearance="outline">
               <mat-select >
-                <mat-option *ngFor="let type of convocTypeList" [value]="type" >{{type}}</mat-option>
+                <mat-option *ngFor="let type of typesProfile" [value]="type.id" >{{type.description}}</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

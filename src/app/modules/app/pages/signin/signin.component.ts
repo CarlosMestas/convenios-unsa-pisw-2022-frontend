@@ -44,7 +44,7 @@ export class SigninComponent implements OnInit {
 
     this.authService.loginStatus().subscribe(status=>{
       if(status){
-        if(this.profileService.getProfileValue!=null&&this.profileService.getProfileValue!=undefined){
+        if(this.profileService.getProfileValue()!=null&&this.profileService.getProfileValue()!=undefined && this.profileService.getProfileValue().profile_created!=1 ){
           const config = new MatDialogConfig()
           config.disableClose = true
           config.width = '40%'

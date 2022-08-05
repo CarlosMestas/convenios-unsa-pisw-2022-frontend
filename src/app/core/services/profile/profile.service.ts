@@ -63,7 +63,7 @@ export class ProfileService extends ProfileHelper{
       )
     .pipe(
       map( r =>{
-        console.log("callingfetchprofile")
+        console.log("callingfetchprofile" , r)
         response.data =r.data.profile
         this.profile$.next(response.data)
         return response
@@ -91,7 +91,6 @@ export class ProfileService extends ProfileHelper{
           "last_name": profile.last_name,
           "address": profile.address,
           "phone": profile.phone,
-
           "profile_created": 1,
           /*
           "id_type_profile": 1,
@@ -101,6 +100,7 @@ export class ProfileService extends ProfileHelper{
       )
     .pipe(
       map( r =>{
+        console.log("test - profile", profile)
         if(r.code!= 200){
           console.log(r.msg)
         }

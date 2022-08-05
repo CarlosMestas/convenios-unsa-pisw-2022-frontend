@@ -29,7 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
     }else{
       console.log("token is null")
     }
-    console.log(authReq)
+    console.log("test-------------",authReq)
     return next.handle(authReq);
   }
 }

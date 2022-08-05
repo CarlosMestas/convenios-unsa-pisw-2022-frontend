@@ -1,3 +1,5 @@
+import { IProfileType } from './../../../../shared/interfaces/profile-type.interface';
+import { TypeProfileService } from './../../../../core/services/type-profile/type-profile.service';
 import { IProfile } from './../../../../shared/interfaces/profile.interface';
 import { ProfileService } from './../../../../core/services/profile/profile.service';
 import { Component, OnInit } from '@angular/core';
@@ -10,20 +12,39 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent implements OnInit {
-  public profileForm: FormGroup
 
+
+  moths :any= {
+    "Jan":1,
+    "Feb":2,
+    "Mar":3,
+    "Apr":4,
+    "May":5,
+    "Jun":6,
+    "Jul":7,
+    "Aug":8,
+    "Sep":9,
+    "Oct":10,
+    "Nov":11,
+    "Dic":12
+  }
+  public profileForm: FormGroup
   profile:IProfile|null
   email: string | undefined
   isPcreated: number | undefined
   isEdit:boolean
+  typesProfile:IProfileType[] = [];
+  birthdate:string = ""
   constructor(
     private profileService:ProfileService,
-    private authService:AuthService
+    private authService:AuthService,
+    private typeProfileService: TypeProfileService
   ){
     this.profileForm = new FormGroup({
       name: new FormControl('',[Validators.required]),
       lastname: new FormControl('',[Validators.required]),
       address: new FormControl('',[Validators.maxLength(100)]),
+      birthdate: new FormControl('',[Validators.required]),
       dni: new FormControl('',[Validators.required, Validators.maxLength(8)]),
       phone: new FormControl('')
     })
@@ -45,6 +66,13 @@ export class UserProfileComponent implements OnInit {
       })
     })
 
+      this.typeProfileService.fetchTypeProfile().subscribe(resp =>{
+        this.typesProfile = resp.data
+        console.log(resp.data[0])
+      })
+
+
+
   }
   submitProfile():void{
     // @ts-ignore
@@ -58,17 +86,23 @@ export class UserProfileComponent implements OnInit {
 
     // @ts-ignore
     profileUpdate.phone = this.profileForm.value["phone"]
+
+    // @ts-ignore
+
+
+    let date:any = this.profileForm.value["birthdate"]
+    profileUpdate.birthdate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+
+    console.log("ttypee",profileUpdate.birthdate)
+
     // @ts-ignore
     profileUpdate.profile_created= 1
     console.log("Profile", profileUpdate)
     this.profileService.updateProfile(profileUpdate).subscribe(data =>{
-
       console.log("PERFIL CREADO", profileUpdate)
     })
     this.isEdit = false
   }
-
-  convocTypeList: string[] = ['Estudiante', 'Docente'];
 
   editProfile():void{
     this.isEdit = true
@@ -87,5 +121,12 @@ export class UserProfileComponent implements OnInit {
   }
   public get number() : AbstractControl | null {
     return this.profileForm.get('number');
+  }
+  public get birthDate() : AbstractControl | null {
+    return this.profileForm.get('birthdate')
+  }
+
+  onDate(event:any):void{
+    console.log(event)
   }
 }
