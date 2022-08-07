@@ -3,7 +3,7 @@
     <p *ngIf="isEdit" class="subtitle">Modifica tus datos </p>
     <div class="sections-data">
       <div class="container-form-data">
-        <p class="label-input">Correo: {{email}}</p>
+        <p class="label-input">Correo: {{email$|async}}</p>
 
         <form  [formGroup] = "profileForm" (ngSubmit) = "submitProfile()">
         <div class="item-form">

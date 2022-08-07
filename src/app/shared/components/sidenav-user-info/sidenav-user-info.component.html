@@ -1,9 +1,8 @@
-<div class="sidenav-user-container" *ngIf="profile" >
-
+<div class="sidenav-user-container">
   <a  routerLink = 'profile'
       routerLinkActive = "active"
       [routerLinkActiveOptions] = "{exact: true}"
-  ><img [src]="profile?.image" alt="user image" class="user-image">
+  ><img [src]="" alt="user image" class="user-image">
   </a>
   <div class="user-info" *ngIf="!collapsed">
     <div class="user-name">

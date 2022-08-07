@@ -1,3 +1,6 @@
+import { userLoadRequestAction } from './../../../ngrx/actions/auth/user-auth.actions';
+import { IAppState } from './../../../ngrx/app.state';
+import { Store } from '@ngrx/store';
 import { AuthService } from './../../../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { SideNavToggle } from './../../../shared/interfaces/sidenav.interface';
@@ -24,7 +27,8 @@ screenWidth = 0;
   }
   constructor(
     private titleService:Title,
-    private authService:AuthService
+    private authService:AuthService,
+    private store:Store<IAppState>
     ) { }
 
   onToggleSideNav(sideNavData:SideNavToggle,):void{
@@ -39,10 +43,13 @@ screenWidth = 0;
       this.authService.initializeGoogleAuthService()
       this.authService.promptGoogleOneTap()
     }
-    if(this.authService.isSesionUp()){
-      this.authService.loadUser().subscribe(resp =>{
-        console.log(resp.data)
-      })
-    }
+
+    this.store.dispatch(userLoadRequestAction())
+
+    // if(this.authService.isSesionUp()){
+    //   this.authService.loadUser().subscribe(resp =>{
+    //     console.log(resp.data)
+    //   })
+    // }
   }
 }

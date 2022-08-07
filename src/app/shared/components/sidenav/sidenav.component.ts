@@ -1,3 +1,9 @@
+import { userLogoutRequestAction } from './../../../ngrx/actions/auth/user-auth.actions';
+import { IAppState } from './../../../ngrx/app.state';
+import { userAuthUserStateSelector } from './../../../ngrx/selectors/auth/user-auth.selector';
+import { Store } from '@ngrx/store';
+import { IUser } from './../../interfaces/user.interface';
+import { Observable } from 'rxjs';
 import { User } from 'src/app/shared/models/user.model';
 import { UserData } from './../../models/user-data.model';
 import { SidenavItem } from './../../interfaces/sidenav-item.interface';
@@ -22,7 +28,7 @@ export class SidenavComponent implements OnInit {
   //sidenavData = sidenavItems;
   sidenavData:{[name:string]:SidenavItem} ={}
 
-  user:User| null = null;
+  user$:Observable<IUser|null>;
 
   collapsed:boolean = true
   screenWidth:number = 0
@@ -30,9 +36,10 @@ export class SidenavComponent implements OnInit {
 
   constructor(
     private authService:AuthService,
-    private sidenavService:SidenavService
+    private sidenavService:SidenavService,
+    private store:Store<IAppState>
   ) {
-
+    this.user$ = new Observable<IUser>()
   }
 
   @HostListener('window:resize',['$event'])
@@ -58,19 +65,18 @@ export class SidenavComponent implements OnInit {
 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
-    this.authService.getUser().subscribe(user =>{
-      this.user = user
-    });
+
+    this.user$ = this.store.select(userAuthUserStateSelector)//TODO: user selector return and observable
+
     this.sidenavService.getSidenavItems().subscribe(items=>{
       this.sidenavData = items
       console.log(items["home"])
     })
 
   }
-  cerrarSesion(){
-    this.authService.userLogout().subscribe(data =>{
 
-    })
+  cerrarSesion(){
+    this.store.dispatch(userLogoutRequestAction())//TODO: call user logout action
   }
 
 

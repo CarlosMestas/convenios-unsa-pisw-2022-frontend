@@ -1,3 +1,9 @@
+import { Observable } from 'rxjs';
+import { userEmailStateSelector } from './../../../../ngrx/selectors/auth/user-auth.selector';
+import { profileProfileStateSelector } from './../../../../ngrx/selectors/profile/profile.selector';
+import { profileLoadRequestAction } from './../../../../ngrx/actions/profile/profile.actions';
+import { Store } from '@ngrx/store';
+import { IAppState } from './../../../../ngrx/app.state';
 import { IProfileType } from './../../../../shared/interfaces/profile-type.interface';
 import { TypeProfileService } from './../../../../core/services/type-profile/type-profile.service';
 import { IProfile } from './../../../../shared/interfaces/profile.interface';
@@ -10,6 +16,7 @@ import {
 } from "../../../../core/services/type-user-identification/type-user-identification.service";
 import {IUserIdentification} from "../../../../shared/interfaces/user-identification.interface";
 import {IUserIdentificationType} from "../../../../shared/interfaces/user-identification-type.interface";
+import { userAuthUserStateSelector } from 'src/app/ngrx/selectors/auth/user-auth.selector';
 
 @Component({
   selector: 'app-user-profile',
@@ -20,7 +27,7 @@ export class UserProfileComponent implements OnInit {
 
   public profileForm: FormGroup
   profile:IProfile|null
-  email: string | undefined
+  email$: Observable<string|null>
   isPcreated: number | undefined
   isEdit:boolean
   typesProfile:IProfileType[] = [];
@@ -31,10 +38,11 @@ export class UserProfileComponent implements OnInit {
     private profileService:ProfileService,
     private authService:AuthService,
     private typeProfileService: TypeProfileService,
-    private typeUserIdentificationService: TypeUserIdentificationService
+    private typeUserIdentificationService: TypeUserIdentificationService,
+    private store:Store<IAppState>,
   ){
     this.profile = {} as IProfile
-    this.email = ''
+    this.email$ = new Observable<string|null>()
     this.isPcreated = 0
     this.isEdit = false
     this.profileForm = new FormGroup({
@@ -50,22 +58,26 @@ export class UserProfileComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-    this.authService.getUser().subscribe( user =>{
-      this.profileService.getPerfil().subscribe(profile =>{
-        console.log("USUARIO", profile)
-        this.profile = profile
-        this.email = user?.email
-        if (profile?.profile_created == 0){
-          this.isEdit = true
-        }
-        this.profileForm.controls['name'].reset({ value: profile?.name, disabled: !this.isEdit });
-        this.profileForm.controls['lastname'].reset({ value: profile?.last_name, disabled: !this.isEdit });
-        this.profileForm.controls['address'].reset({ value: profile?.address, disabled: !this.isEdit });
-        this.profileForm.controls['typeUserIdentification'].setValue(profile?.identification.type.id);
-        this.profileForm.controls['valueIdentification'].reset({ value: profile?.identification.value, disabled: !this.isEdit });
-        this.profileForm.controls['phone'].reset({ value: profile?.phone, disabled: !this.isEdit });
-        this.profileForm.controls['typeUser'].setValue(profile?.type.id);
-      })
+
+    this.store.select(userAuthUserStateSelector).subscribe(user=>{
+      this.store.dispatch(profileLoadRequestAction({idUser:user?.id?user.id:-1}))
+    })
+
+    this.email$ = this.store.select(userEmailStateSelector)
+
+    this.store.select(profileProfileStateSelector).subscribe(profile=>{
+      console.log("USUARIO", profile)
+      this.profile = profile
+      if (profile?.profile_created == 0){
+        this.isEdit = true
+      }
+      this.profileForm.controls['name'].reset({ value: profile?.name, disabled: !this.isEdit });
+      this.profileForm.controls['lastname'].reset({ value: profile?.last_name, disabled: !this.isEdit });
+      this.profileForm.controls['address'].reset({ value: profile?.address, disabled: !this.isEdit });
+      this.profileForm.controls['typeUserIdentification'].setValue(profile?.identification.type.id);
+      this.profileForm.controls['valueIdentification'].reset({ value: profile?.identification.value, disabled: !this.isEdit });
+      this.profileForm.controls['phone'].reset({ value: profile?.phone, disabled: !this.isEdit });
+      this.profileForm.controls['typeUser'].setValue(profile?.type.id);
     })
 
       this.typeProfileService.fetchTypeProfile().subscribe(resp =>{
@@ -94,6 +106,9 @@ export class UserProfileComponent implements OnInit {
     profileUpdate.type = this.profileForm.value["typeUser"]
     profileUpdate.identification.type = this.profileForm.value["typeUserIdentification"]
     profileUpdate.identification.value = this.profileForm.value["valueIdentification"]
+
+    console.log("testing profileUpdate",profileUpdate)
+
 
     this.profileService.updateProfile(profileUpdate).subscribe(data =>{
       console.log("PERFIL CREADO", profileUpdate)

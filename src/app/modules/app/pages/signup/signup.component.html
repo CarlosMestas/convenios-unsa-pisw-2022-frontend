@@ -1,6 +1,7 @@
 <!--<app-tooltip-white-small></app-tooltip-white-small>
 <app-tooltip-red-small></app-tooltip-red-small>
 -->
+
 <div class="container-signup">
   <div class="container-form-signup">
     <div class="body-form-signup">
@@ -43,6 +44,7 @@
         <div class="google-form-signin" routerLink = '/iniciar-sesion'>
           Iniciar Sesión
         </div>
+        <div *ngIf="(userLoadingState$ | async)">Cargando...</div>
     </div>
   </div>
   <div class="container-banner-signup-over">

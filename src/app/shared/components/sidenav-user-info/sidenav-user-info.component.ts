@@ -1,3 +1,5 @@
+import { IUser } from './../../interfaces/user.interface';
+import { Observable } from 'rxjs';
 import { IProfile } from './../../interfaces/profile.interface';
 import { ProfileService } from './../../../core/services/profile/profile.service';
 import { UserData } from './../../models/user-data.model';
@@ -10,14 +12,16 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
   styleUrls: ['./sidenav-user-info.component.scss']
 })
 export class SidenavUserInfoComponent implements OnInit {
-
-  @Input() user: User | null ;
+  @Input() user: IUser|null;
   @Input() collapsed: boolean ;
   profile:IProfile|null;
+
+
+
   constructor(private profileService:ProfileService) {
-    this.user = {} as User
     this.collapsed = true;
     this.profile = null
+    this.user = null
   }
 
 
