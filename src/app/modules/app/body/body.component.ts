@@ -1,3 +1,5 @@
+import { profileLoadRequestAction } from './../../../ngrx/actions/profile/profile.actions';
+import { userAuthUserStateSelector } from './../../../ngrx/selectors/auth/user-auth.selector';
 import { userLoadRequestAction } from './../../../ngrx/actions/auth/user-auth.actions';
 import { IAppState } from './../../../ngrx/app.state';
 import { Store } from '@ngrx/store';
@@ -45,11 +47,8 @@ screenWidth = 0;
     }
 
     this.store.dispatch(userLoadRequestAction())
-
-    // if(this.authService.isSesionUp()){
-    //   this.authService.loadUser().subscribe(resp =>{
-    //     console.log(resp.data)
-    //   })
-    // }
+    this.store.select(userAuthUserStateSelector).subscribe(user=>{
+      this.store.dispatch(profileLoadRequestAction({idUser:user?.id?user.id:-1}))
+    })
   }
 }

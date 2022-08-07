@@ -4,11 +4,8 @@ import { userAuthUserStateSelector } from './../../../ngrx/selectors/auth/user-a
 import { Store } from '@ngrx/store';
 import { IUser } from './../../interfaces/user.interface';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/shared/models/user.model';
-import { UserData } from './../../models/user-data.model';
 import { SidenavItem } from './../../interfaces/sidenav-item.interface';
 import { SidenavService } from './../../../core/services/sidenav/sidenav.service';
-import { AuthService } from './../../../core/services/auth/auth.service';
 import { Component, OnInit, Output,EventEmitter, HostListener } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
@@ -35,7 +32,6 @@ export class SidenavComponent implements OnInit {
   @Output() OnToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
 
   constructor(
-    private authService:AuthService,
     private sidenavService:SidenavService,
     private store:Store<IAppState>
   ) {
@@ -72,6 +68,8 @@ export class SidenavComponent implements OnInit {
       this.sidenavData = items
       console.log(items["home"])
     })
+
+
 
   }
 

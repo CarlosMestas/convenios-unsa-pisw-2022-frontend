@@ -9,3 +9,13 @@ export const profileProfileStateSelector = createSelector( //TODO: this is a sel
 profileStateSelector,
   (profileState:IProfileState) => profileState.profile
 )
+
+export const profileImageStateSelector = createSelector(
+  profileStateSelector,
+  (profileState:IProfileState) => profileState.profile?.image
+)
+
+export const profileTypeDescription = createSelector(
+  profileStateSelector,
+  (profileState:IProfileState) => profileState.profile?.type.description
+)

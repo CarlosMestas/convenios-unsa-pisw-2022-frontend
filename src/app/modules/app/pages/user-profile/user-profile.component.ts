@@ -1,7 +1,6 @@
 import { Observable } from 'rxjs';
 import { userEmailStateSelector } from './../../../../ngrx/selectors/auth/user-auth.selector';
 import { profileProfileStateSelector } from './../../../../ngrx/selectors/profile/profile.selector';
-import { profileLoadRequestAction } from './../../../../ngrx/actions/profile/profile.actions';
 import { Store } from '@ngrx/store';
 import { IAppState } from './../../../../ngrx/app.state';
 import { IProfileType } from './../../../../shared/interfaces/profile-type.interface';
@@ -59,9 +58,7 @@ export class UserProfileComponent implements OnInit {
   }
   ngOnInit(): void {
 
-    this.store.select(userAuthUserStateSelector).subscribe(user=>{
-      this.store.dispatch(profileLoadRequestAction({idUser:user?.id?user.id:-1}))
-    })
+
 
     this.email$ = this.store.select(userEmailStateSelector)
 

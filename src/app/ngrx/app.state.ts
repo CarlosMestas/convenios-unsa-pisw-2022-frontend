@@ -9,7 +9,7 @@ export interface IAppState{
 }
 
 
-export const ROOT_REDUCERS: ActionReducerMap<IAppState> = {
+export const ROOT_REDUCERS: ActionReducerMap<IAppState> = { //TODO: FIXME:
   userAuth:userAuthReducer,
   profile:profileReducer
 }

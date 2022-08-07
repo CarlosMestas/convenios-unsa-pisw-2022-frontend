@@ -19,7 +19,6 @@ export class SidenavItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
 }
