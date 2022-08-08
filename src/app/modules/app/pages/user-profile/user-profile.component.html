@@ -6,37 +6,31 @@
         <p class="label-input">Correo: {{email}}</p>
 
         <form  [formGroup] = "profileForm" (ngSubmit) = "submitProfile()">
-        <div class="item-form">
-          <p class="label-input">Nombres</p>
-          <input class="form-input-text" type="text" formControlName="name"  id="name-form" placeholder="Ingresa tu nombre">
-        </div>
-
-        <div class="item-form">
-          <p class="label-input">Apellidos</p>
-          <input class="form-input-text" type="text" formControlName="lastname" id="lastname-form" placeholder="Ingresa tu(s) apellido(s)">
-        </div>
-
-        <div class="item-form">
-          <p class="label-input">Dirección</p>
-          <input class="form-input-text" type="text"  formControlName="address" id="adress-form" placeholder="Ingresa tu dirección">
-        </div>
-
-
-
-        <div class="bi-container">
-          <div class="item-form">
-            <p class="label-input">Documento de identididad</p>
-            <mat-form-field appearance="outline">
-              <mat-label>Tipo de documento</mat-label>
-              <mat-select formControlName = "typeUserIdentification">
-                <mat-option *ngFor="let type of typesIdentification" [value]="type.id" >{{type.description}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <input class="form-input-text"  id="dni-form" formControlName="valueIdentification" placeholder="Nro." >
+          <div class="bi-container">
+            <div class="item-form">
+              <p class="label-input">Nombres</p>
+              <input class="form-input-text" type="text" formControlName="name"  id="name-form" placeholder="Ingresa tu nombre">
+            </div>
+            <div class="item-form">
+              <p class="label-input">Apellidos</p>
+              <input class="form-input-text" type="text" formControlName="lastname" id="lastname-form" placeholder="Ingresa tu(s) apellido(s)">
+            </div>
           </div>
-          <div class="item-form">
+          <div class="bi-container">
+            <div class="item-form">
+              <p class="label-input">Documento de identididad</p>
+              <mat-form-field appearance="outline" class="id-item-form">
+                <mat-label>Tipo de documento</mat-label>
+                <mat-select formControlName = "typeUserIdentification">
+                  <mat-option *ngFor="let type of typesIdentification" [value]="type.id" >{{type.description}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <input class="form-input-text id-input-item-form"  id="value-form" formControlName="valueIdentification" placeholder="Nro." >
+            </div>
+
+          <div class="item-form" >
             <p class="label-input">Fecha de nacimiento</p>
-            <mat-form-field appearance="outline" class="example-form-field">
+            <mat-form-field appearance="outline" >
               <input matInput [matDatepicker]="datepicker" formControlName="birthdate">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
@@ -48,11 +42,20 @@
               </mat-datepicker>
             </mat-form-field>
           </div>
-        </div>
           <div class="item-form">
             <p class="label-input">Número móvil</p>
             <input class="form-input-text"  formControlName="phone" id="movil-form" placeholder="Ingresa tu número">
           </div>
+        </div>
+
+          <div class="bi-container">
+          </div>
+
+          <div class="item-form">
+            <p class="label-input">Dirección</p>
+            <input class="form-input-text" type="text"  formControlName="address" id="adress-form" placeholder="Ingresa tu dirección">
+          </div>
+
           <div class="item-form">
             <p class="label-input">Tipo usuario</p>
             <mat-form-field appearance="outline">

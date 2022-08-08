@@ -85,10 +85,9 @@ export class UserProfileComponent implements OnInit {
     profileUpdate.phone = this.profileForm.value["phone"]
 
     // @ts-ignore
-/*
     let date:any = this.profileForm.value["birthdate"]
     profileUpdate.birthdate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
-*/
+
     // @ts-ignore
     profileUpdate.profile_created= 1
     profileUpdate.type = this.profileForm.value["typeUser"]
