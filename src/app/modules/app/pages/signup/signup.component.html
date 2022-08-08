@@ -1,6 +1,7 @@
 <!--<app-tooltip-white-small></app-tooltip-white-small>
 <app-tooltip-red-small></app-tooltip-red-small>
 -->
+
 <div class="container-signup">
   <div class="container-form-signup">
     <div class="body-form-signup">
@@ -9,7 +10,7 @@
         <div class="header-form-signup">
           Registrarse
         </div>
-        <form class="fields-form-signup" [formGroup]="signUpForm" (ngSubmit)="submitSignUp()">
+        <!-- <form class="fields-form-signup" [formGroup]="signUpForm" (ngSubmit)="submitSignUp()">
           <div class="form-item form-item-field-email">
             <div class="form-label form-signup-label-field-email">
               Correo
@@ -32,10 +33,17 @@
             <span class="invalid-field" *ngIf = "repeatPassword && repeatPassword.invalid && repeatPassword.touched">El contenido ingresado es incorrecto</span>
           </div>
           <input class="submit-form" type="submit" [disabled] = "signUpForm.invalid" value="Registrarse">
-        </form>
+        </form> -->
+
 
         <div id="signUpDiv">
 
+        </div>
+        <div class="form-label no-account">
+          No tienes una cuenta institucional?
+        </div>
+        <div class="google-form-signin">
+          Solicitar Acceso
         </div>
         <div class="form-label no-account">
           ¿Ya tienes una cuenta?
@@ -43,6 +51,7 @@
         <div class="google-form-signin" routerLink = '/iniciar-sesion'>
           Iniciar Sesión
         </div>
+
     </div>
   </div>
   <div class="container-banner-signup-over">

@@ -1,4 +1,8 @@
-import { AuthInterceptor, AuthInterceptorProviders } from './../../core/interceptors/auth.interceptor';
+import { ProfileEffect } from './../../ngrx/effects/profile/profile.effects';
+import { UserAuthEffect } from './../../ngrx/effects/auth/user-auth.effects';
+import { ROOT_REDUCERS } from './../../ngrx/app.state';
+import { environment } from 'src/environments/environment.prod';
+import { AuthInterceptorProviders } from './../../core/interceptors/auth.interceptor';
 
 
 //Modules imported
@@ -29,6 +33,11 @@ import { SignupComponent } from './pages/signup/signup.component'
 import { SharedModule } from '../shared/shared.module';
 import {uploadPhotoComponent} from "./pages/user-profile/upload-photo/upload-photo.component";
 
+//Store NGRX
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+
 
 
 
@@ -55,9 +64,10 @@ import {uploadPhotoComponent} from "./pages/user-profile/upload-photo/upload-pho
     HttpClientModule,
     ReactiveFormsModule,
     SharedModule,
-    BrowserAnimationsModule
-
-
+    BrowserAnimationsModule,
+    StoreModule.forRoot(ROOT_REDUCERS),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    EffectsModule.forRoot([UserAuthEffect,ProfileEffect])
   ],
   providers: [
     AuthInterceptorProviders

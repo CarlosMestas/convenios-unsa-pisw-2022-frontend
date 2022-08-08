@@ -1,3 +1,6 @@
+import { dialogUserRegisterWrongEmailAction, userSignInRequestAction } from './../../../ngrx/actions/auth/user-auth.actions';
+import { IAppState } from './../../../ngrx/app.state';
+import { userRegisterRequestAction } from 'src/app/ngrx/actions/auth/user-auth.actions';
 
 import { DialogErrorEmailComponent } from './../../../shared/components/dialog-error-email/dialog-error-email.component';
 import { DialogYesNoComponent } from './../../../shared/components/dialog-yes-no/dialog-yes-no.component';
@@ -18,6 +21,7 @@ import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
 import { BehaviorSubject, catchError, map, Observable, Subject } from "rxjs";
 
 import {MatDialog} from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 
 
 
@@ -33,10 +37,9 @@ export class AuthService extends AuthHelper{
   private signup$:BehaviorSubject<boolean>;
   constructor(
     private router:Router,
-    private activatedRoute:ActivatedRoute,
     private sidenavService:SidenavService,
     protected override http:HttpClient,
-    private matDialog:MatDialog
+    private store:Store<IAppState>
   ){
     super(http)
     this.user$ = new BehaviorSubject<User|null>({} as User);
@@ -85,11 +88,8 @@ export class AuthService extends AuthHelper{
     )
     .pipe(
       map( r =>{
-        console.log("Logout response")
-        console.log(r)
         response.msg = r.msg;
         this.removeLocalStorageSesion()
-        this.user$.next(null)
         this.sidenavService.sidenavUserNotLogged()
         this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
         return response
@@ -123,15 +123,15 @@ export class AuthService extends AuthHelper{
     try {
       if(this.router.url == "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SIGNUP){
           let jwtDecodedToken = this.decodeJWTCredential(response?.credential)
-          console.log("correoooo",jwtDecodedToken.email.toString().split('@')[1])
           if(jwtDecodedToken.email.toString().split('@')[1]=="unsa.edu.pe"){
-            this.userSignUp(jwtDecodedToken.email,jwtDecodedToken.picture).subscribe()
+            this.store.dispatch(userRegisterRequestAction({email:jwtDecodedToken.email.toString()}))//TODO: calling register request action and send parameter email
           }else{
-            this.matDialog.open(DialogErrorEmailComponent)
+            this.store.dispatch(dialogUserRegisterWrongEmailAction())
           }
       }else if(this.router.url == "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SINGIN){
+
           let jwtDecodedToken = this.decodeJWTCredential(response?.credential)
-          this.userSignIn(jwtDecodedToken.email).subscribe()
+          this.store.dispatch(userSignInRequestAction({email:jwtDecodedToken.email.toString()}))
       }
     } catch (e) {
       console.error('Error while trying to decode token', e);
@@ -163,8 +163,12 @@ export class AuthService extends AuthHelper{
       )
       .pipe(
         map( r =>{
-          response.data = new User(r.data.user.id,r.data.user.email);
-          this.user$.next(response.data)
+          if(r.code!=404){
+            response.data = r.data.user;
+            this.sidenavService.sidenavUserLogged()
+          }else{
+            response.error = true;
+          }
           return response
         }),
         catchError(this.errorSignIn)
@@ -180,7 +184,6 @@ export class AuthService extends AuthHelper{
     data: IUser;
   }>{
       const userId:number = Number(localStorage.getItem(AuthHelper.USER_ID_ENCODED))
-      this.sidenavService.sidenavUserLogged()
       return this.fetchUser(userId)
   }
 
@@ -212,11 +215,9 @@ export class AuthService extends AuthHelper{
       map( r =>{
         console.log(r)
         response.data = new User(r.data.user.id,r.data.user.email);
-        this.user$.next(response.data)
         this.sidenavService.sidenavUserLogged()
         this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)
         //this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data))
-        this.signup$.next(true)
         return response
       }),
       catchError(this.errorSignUp)
@@ -250,16 +251,13 @@ export class AuthService extends AuthHelper{
     )
     .pipe(
       map( r =>{
-        console.log(r)
         let tempuser:User = new User(
           r.data.user.id,
           r.data.user.email
         )
         response.data = tempuser;
-        this.user$.next(response.data)
         this.sidenavService.sidenavUserLogged()
         this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)
-        this.login$.next(true)
         return response
       }),
       catchError(this.errorSignIn)

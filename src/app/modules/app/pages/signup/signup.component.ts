@@ -1,3 +1,9 @@
+import { IAppState } from './../../../../ngrx/app.state';
+import { profileLoadRequestAction } from './../../../../ngrx/actions/profile/profile.actions';
+import { IUser } from './../../../../shared/interfaces/user.interface';
+import { userRegisterRequestedStateSelector, userAuthUserStateSelector } from './../../../../ngrx/selectors/auth/user-auth.selector';
+import { Observable } from 'rxjs';
+
 import { Router } from '@angular/router';
 import { AppRoutingModule } from './../../app.routes';
 import { DialogYesNoComponent } from './../../../../shared/components/dialog-yes-no/dialog-yes-no.component';
@@ -6,9 +12,11 @@ import { ProfileService } from './../../../../core/services/profile/profile.serv
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { AuthService } from './../../../../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 
-
+import { userRegisterRequestAction } from '../../../../ngrx/actions/auth/user-auth.actions';
+import { User } from 'src/app/shared/models/user.model';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -16,6 +24,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
+
+
+  userLoaded:Observable<IUser> = new Observable<IUser>()
   public signUpForm: FormGroup
   private googleAuthServiceInitialized:boolean
 
@@ -23,7 +34,8 @@ export class SignupComponent implements OnInit {
     private authService:AuthService,
     private profileService:ProfileService,
     private matDialog:MatDialog,
-    private router:Router
+    private router:Router,
+    private store:Store<IAppState>,
   ) {
     this.googleAuthServiceInitialized = false;
     this.signUpForm = new FormGroup({
@@ -36,26 +48,6 @@ export class SignupComponent implements OnInit {
     this.authService.isGoogleAuthServiceInitialized().subscribe(isInitialized =>{
         this.googleAuthServiceInitialized = isInitialized;
         this.renderButtonSignUp();
-      })
-      this.authService.signupStatus().subscribe(status=>{
-        if(status){
-          if(this.profileService.getProfileValue!=null&&this.profileService.getProfileValue!=undefined){
-            const config = new MatDialogConfig()
-            config.disableClose = true
-            config.width = '40%'
-            const dialogRef=this.matDialog.open(DialogYesNoComponent,config)
-            dialogRef.afterClosed().subscribe(result => {
-              this.authService.setSignUpStatus(false)
-              if(result == true){
-                this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_USER_PROFILE])
-              }else if(result == false){
-                this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
-              }else{
-                this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
-              }
-            });
-          }
-        }
       })
   }
   renderButtonSignUp(){

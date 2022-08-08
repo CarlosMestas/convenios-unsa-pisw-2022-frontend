@@ -38,7 +38,6 @@ export class TypeProfileService extends TypeProfileHelper{
       msg:'',
       data:{} as ITypeProfile[]
     };
-    console.log("nth - test",this.url + TypeProfileHelper.API_TYPE_PROFILE_SERVICE_ROUTES.FETCH_TYPE_PROFILE)
     return this.http.get<ITypeProfileResponse>(
       this.url + TypeProfileHelper.API_TYPE_PROFILE_SERVICE_ROUTES.FETCH_TYPE_PROFILE,
       )

@@ -41,7 +41,6 @@ export class TypeUserIdentificationService extends TypeUserIdentificationHelper{
       msg:'',
       data:{} as IUserIdentificationType[]
     };
-    console.log("nth - test",this.url + TypeUserIdentificationHelper.API_TYPE_USER_IDENTIFICATION_SERVICE_ROUTES.FETCH_TYPE_USER_IDENTIFICATION)
     return this.http.get<ITypeUserIdentificationResponse>(
       this.url + TypeUserIdentificationHelper.API_TYPE_USER_IDENTIFICATION_SERVICE_ROUTES.FETCH_TYPE_USER_IDENTIFICATION,
       )

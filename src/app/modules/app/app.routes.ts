@@ -6,6 +6,7 @@ import {UserProfileComponent} from './pages/user-profile/user-profile.component'
 import { NgModule } from "@angular/core";
 
 const AppRoutesValues = {
+  ROUTE_ADMIN_HOME:"admin",
   ROUTE_APP_HOME: "home",
   ROUTE_APP_WHO_WE_ARE: "quienes-somos",
   ROUTE_APP_CONTACT: "contacto",
@@ -60,6 +61,10 @@ const AppRoutes: Routes  = [
   {
     path: AppRoutesValues.ROUTE_APP_APPLY,
     loadChildren:()=>import('../postulation/user-data-postulation.module').then(m => m.UserDataPostulationModule)
+  },
+  {
+    path:AppRoutesValues.ROUTE_ADMIN_HOME,
+    loadChildren:()=>import('../admin/admin.module').then(m=>m.AdminModule)
   },
   {
     path: AppRoutesValues.ROUTE_APP_USER_PROFILE,
