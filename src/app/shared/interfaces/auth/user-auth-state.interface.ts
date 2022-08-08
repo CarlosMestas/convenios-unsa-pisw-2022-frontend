@@ -3,5 +3,6 @@ export interface IUserAuthState{
   working:boolean,
   email:string|null,
   user:IUser|null
-  id:number
+  id:number,
+  dialogUserRegisterWrongEmail:boolean
 }

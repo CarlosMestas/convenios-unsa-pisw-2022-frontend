@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { SideNavToggle } from './../../../shared/interfaces/sidenav.interface';
 import { Title } from '@angular/platform-browser';
 import { dialogProfileNotConfiguredSelector } from 'src/app/ngrx/selectors/profile/profile.selector';
+import { dialogUserRegisterWrongEmailSelector } from 'src/app/ngrx/selectors/auth/user-auth.selector';
 
 @Component({
   selector: 'app-body',
@@ -18,6 +19,7 @@ export class BodyComponent implements OnInit {
 isSideNavCollapsed:boolean = false;
 screenWidth = 0;
 dialogProfileNotConfigured$: Observable<boolean>
+dialogUserRegisterWrongEmail$: Observable<boolean>
   getClass():string{
     let styleClass = ''
     if(!this.isSideNavCollapsed && this.screenWidth > 768){
@@ -34,6 +36,7 @@ dialogProfileNotConfigured$: Observable<boolean>
 
     ) {
       this.dialogProfileNotConfigured$ = new Observable<boolean>()
+      this.dialogUserRegisterWrongEmail$ = new Observable<boolean>()
     }
 
   onToggleSideNav(sideNavData:SideNavToggle,):void{
@@ -51,6 +54,7 @@ dialogProfileNotConfigured$: Observable<boolean>
 
     this.store.dispatch(userLoadRequestAction())
     this.dialogProfileNotConfigured$ = this.store.select(dialogProfileNotConfiguredSelector)
+    this.dialogUserRegisterWrongEmail$ =this.store.select(dialogUserRegisterWrongEmailSelector)
     // .subscribe(dialogProfileNotConfigured =>{
     //   if(dialogProfileNotConfigured){
     //     const config = new MatDialogConfig()

@@ -1,4 +1,4 @@
-import { userSignInRequestAction } from './../../../ngrx/actions/auth/user-auth.actions';
+import { dialogUserRegisterWrongEmailAction, userSignInRequestAction } from './../../../ngrx/actions/auth/user-auth.actions';
 import { IAppState } from './../../../ngrx/app.state';
 import { userRegisterRequestAction } from 'src/app/ngrx/actions/auth/user-auth.actions';
 
@@ -39,7 +39,6 @@ export class AuthService extends AuthHelper{
     private router:Router,
     private sidenavService:SidenavService,
     protected override http:HttpClient,
-    private matDialog:MatDialog,
     private store:Store<IAppState>
   ){
     super(http)
@@ -127,7 +126,7 @@ export class AuthService extends AuthHelper{
           if(jwtDecodedToken.email.toString().split('@')[1]=="unsa.edu.pe"){
             this.store.dispatch(userRegisterRequestAction({email:jwtDecodedToken.email.toString()}))//TODO: calling register request action and send parameter email
           }else{
-            this.matDialog.open(DialogErrorEmailComponent)
+            this.store.dispatch(dialogUserRegisterWrongEmailAction())
           }
       }else if(this.router.url == "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SINGIN){
 

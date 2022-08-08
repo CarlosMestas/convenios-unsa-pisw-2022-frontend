@@ -3,5 +3,6 @@ export const UserAuthInitialState:IUserAuthState = {
   working:false,
   user:null,
   email:null,
-  id:-1
+  id:-1,
+  dialogUserRegisterWrongEmail:false
 }

@@ -1,5 +1,5 @@
 <app-dialog-yes-no *ngIf="dialogProfileNotConfigured$ | async"></app-dialog-yes-no>
-
+<app-dialog-error-email *ngIf="dialogUserRegisterWrongEmail$ | async"></app-dialog-error-email>
 <div class="adwda" *ngIf="dialogProfileNotConfigured$ | async"></div>
 <app-sidenav (OnToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
 <div class="body" [ngClass]="getClass()">

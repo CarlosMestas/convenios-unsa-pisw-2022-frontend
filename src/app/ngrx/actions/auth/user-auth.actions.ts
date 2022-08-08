@@ -13,7 +13,9 @@ export const UserAuthActions = {
   USER_SIGNIN_REQUEST_ACTION:"[SignIn - Page] User SignIn Request",
   USER_SIGNIN_SUCCESS_ACTION:"[API - Heroku] User SignIn Success",
   USER_SIGNIN_ERROR_ACTION:"[API - Heroku] User SignIn Error",
-  USER_DATA_SUCCESS_ACTION:"[API - Heroku] User Data Success"
+  USER_DATA_SUCCESS_ACTION:"[API - Heroku] User Data Success",
+  DIALOG_USER_REGISTER_WRONG_EMAIL_ACTION:"[Register Component] Dialog User Register Wrong Email",
+  DIALOG_USER_REGISTER_WRONG_EMAIL_DISMISS_ACTION:"[Register Component] Dialog User Register Wrong Email Dismiss"
 }
 
 
@@ -64,4 +66,12 @@ export const userLogoutSuccessAction = createAction(
 export const userDataSuccessAction = createAction(
   UserAuthActions.USER_DATA_SUCCESS_ACTION,
   props<{user:IUser}>()
+)
+
+export const dialogUserRegisterWrongEmailAction = createAction(
+  UserAuthActions.DIALOG_USER_REGISTER_WRONG_EMAIL_ACTION
+)
+
+export const dialogUserRegisterWrongEmailDismissAction = createAction(
+  UserAuthActions.DIALOG_USER_REGISTER_WRONG_EMAIL_DISMISS_ACTION
 )

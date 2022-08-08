@@ -20,3 +20,8 @@ export const userAuthUserStateSelector = createSelector(
     userAuthStateSelector,
    (userAuthState:IUserAuthState) =>userAuthState.user
 )
+
+export const dialogUserRegisterWrongEmailSelector = createSelector(
+  userAuthStateSelector,
+  (userAuthSate:IUserAuthState) => userAuthSate.dialogUserRegisterWrongEmail
+)

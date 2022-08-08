@@ -1,4 +1,4 @@
-import { userDataSuccessAction, userLoadErrorAction, userLoadRequestAction, userLoadSuccessAction, userLogoutRequestAction, userLogoutSuccessAction, userSignInErrorAction, userSignInRequestAction, userSignInSuccessAction } from './../../actions/auth/user-auth.actions';
+import { dialogUserRegisterWrongEmailAction, dialogUserRegisterWrongEmailDismissAction, userDataSuccessAction, userLoadErrorAction, userLoadRequestAction, userLoadSuccessAction, userLogoutRequestAction, userLogoutSuccessAction, userSignInErrorAction, userSignInRequestAction, userSignInSuccessAction } from './../../actions/auth/user-auth.actions';
 import { userRegisterSuccessAction } from '../../actions/auth/user-auth.actions';
 import { UserAuthInitialState } from '../../initial-states/auth/user-auth.initial_state';
 import { userRegisterRequestAction } from 'src/app/ngrx/actions/auth/user-auth.actions';
@@ -38,6 +38,13 @@ export const userAuthReducer = createReducer(
   }),
   on(userDataSuccessAction,(state,params)=>{
     return {...state, working:false, user:params.user}
+  }),
+  on(dialogUserRegisterWrongEmailAction,(state)=>{
+    return {...state,dialogUserRegisterWrongEmail:true}
+  })
+  ,
+  on(dialogUserRegisterWrongEmailDismissAction,(state)=>{
+    return {...state,dialogUserRegisterWrongEmail:false}
   })
 
 )
