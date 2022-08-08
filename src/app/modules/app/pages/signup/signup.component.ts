@@ -25,7 +25,7 @@ import { User } from 'src/app/shared/models/user.model';
 export class SignupComponent implements OnInit {
 
 
-  userLoadingState$:Observable<boolean> = new Observable<boolean>()
+
   userLoaded:Observable<IUser> = new Observable<IUser>()
   public signUpForm: FormGroup
   private googleAuthServiceInitialized:boolean
@@ -49,35 +49,6 @@ export class SignupComponent implements OnInit {
         this.googleAuthServiceInitialized = isInitialized;
         this.renderButtonSignUp();
       })
-      this.authService.signupStatus().subscribe(status=>{
-        if(status){
-          if(this.profileService.getProfileValue!=null&&this.profileService.getProfileValue!=undefined){
-            const config = new MatDialogConfig()
-            config.disableClose = true
-            config.width = '40%'
-            const dialogRef=this.matDialog.open(DialogYesNoComponent,config)
-            dialogRef.afterClosed().subscribe(result => {
-              this.authService.setSignUpStatus(false)
-              if(result == true){
-                this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_USER_PROFILE])
-              }else if(result == false){
-                this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
-              }else{
-                this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
-              }
-            });
-          }
-        }
-      })
-      this.userLoadingState$ = this.store.select(userRegisterRequestedStateSelector)
-      this.store.select(userAuthUserStateSelector).subscribe( user =>{
-        console.log("test-------",user)
-        if(user!=null){
-          this.store.dispatch(profileLoadRequestAction({idUser:user.id}))
-        }
-      }
-      )
-      //this.store.dispatch(userRegisterRequestAction({email:"example.email"}))
   }
   renderButtonSignUp(){
     if(this.googleAuthServiceInitialized){

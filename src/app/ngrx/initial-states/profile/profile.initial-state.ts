@@ -2,5 +2,6 @@ import { IProfileState } from './../../../shared/interfaces/profile/profile-stat
 export const ProfileInitialState:IProfileState = {
   working:false,
   profile:null,
-  idUser:-1
+  idUser:-1,
+  dialogProfileNotConfigured:false
 }

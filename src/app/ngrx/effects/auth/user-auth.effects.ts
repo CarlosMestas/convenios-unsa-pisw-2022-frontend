@@ -1,6 +1,6 @@
-import { userLoadRequestAction, userLogoutRequestAction, userSignInRequestAction } from './../../actions/auth/user-auth.actions';
+import { userLoadRequestAction, userLogoutRequestAction, userSignInRequestAction, userRegisterSuccessAction, userSignInSuccessAction, userLoadSuccessAction } from './../../actions/auth/user-auth.actions';
 import { UserAuthActions } from '../../actions/auth/user-auth.actions';
-import { catchError, EMPTY } from 'rxjs';
+import { catchError, EMPTY, Observable, of } from 'rxjs';
 import { userRegisterRequestAction } from 'src/app/ngrx/actions/auth/user-auth.actions';
 import { map } from 'rxjs';
 import { AuthService } from './../../../core/services/auth/auth.service';
@@ -76,6 +76,33 @@ export class UserAuthEffect{
       })),
       catchError(()=>EMPTY)
     ))
+  ))
+
+  userAuthRegisterSuccessEffect$ = createEffect(()=>this.actions$.pipe(
+    ofType(userRegisterSuccessAction),
+    mergeMap((action)=> of({
+      type:UserAuthActions.USER_DATA_SUCCESS_ACTION,
+      user:action.user
+    })
+    )
+  ))
+  userAuthSignInSuccessEffect$ = createEffect(()=>this.actions$.pipe(
+    ofType(userSignInSuccessAction),
+    mergeMap((action)=> of({
+      type:UserAuthActions.USER_DATA_SUCCESS_ACTION,
+      user:action.user
+    })
+    )
+  ))
+
+
+  userAuthLoadSuccessEffect$ = createEffect(()=>this.actions$.pipe(
+    ofType(userLoadSuccessAction),
+    mergeMap((resp)=> of({
+      type:UserAuthActions.USER_DATA_SUCCESS_ACTION,
+      user:resp.user
+    })
+    )
   ))
 
 }

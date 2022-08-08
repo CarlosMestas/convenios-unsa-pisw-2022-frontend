@@ -1,4 +1,4 @@
-import { profileImageStateSelector } from './../../../ngrx/selectors/profile/profile.selector';
+import { profileImageStateSelector, profileTypeDescriptionSelector } from './../../../ngrx/selectors/profile/profile.selector';
 import { Store } from '@ngrx/store';
 import { IUser } from './../../interfaces/user.interface';
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ export class SidenavUserInfoComponent implements OnInit {
   @Input() collapsed: boolean ;
   profile:IProfile|null;
   userImage$:Observable<string|undefined>;
-
+  profileType$:Observable<string|undefined>;
 
 
   constructor(
@@ -29,6 +29,7 @@ export class SidenavUserInfoComponent implements OnInit {
     this.profile = null
     this.user = null
     this.userImage$ = new Observable<string>()
+    this.profileType$ = new Observable<string>()
   }
 
 
@@ -38,6 +39,7 @@ export class SidenavUserInfoComponent implements OnInit {
     })
 
     this.userImage$ = this.store.select(profileImageStateSelector)
+    this.profileType$ = this.store.select(profileTypeDescriptionSelector)
   }
 
   get existUser():boolean{

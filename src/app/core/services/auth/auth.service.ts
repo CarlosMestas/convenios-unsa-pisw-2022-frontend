@@ -133,7 +133,6 @@ export class AuthService extends AuthHelper{
 
           let jwtDecodedToken = this.decodeJWTCredential(response?.credential)
           this.store.dispatch(userSignInRequestAction({email:jwtDecodedToken.email.toString()}))
-          this.userSignIn(jwtDecodedToken.email).subscribe()
       }
     } catch (e) {
       console.error('Error while trying to decode token', e);
@@ -217,11 +216,9 @@ export class AuthService extends AuthHelper{
       map( r =>{
         console.log(r)
         response.data = new User(r.data.user.id,r.data.user.email);
-        this.user$.next(response.data)
         this.sidenavService.sidenavUserLogged()
         this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)
         //this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data))
-        this.signup$.next(true)
         return response
       }),
       catchError(this.errorSignUp)

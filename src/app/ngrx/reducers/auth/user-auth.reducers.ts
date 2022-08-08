@@ -1,4 +1,4 @@
-import { userLoadErrorAction, userLoadRequestAction, userLoadSuccessAction, userLogoutRequestAction, userLogoutSuccessAction, userSignInErrorAction, userSignInRequestAction, userSignInSuccessAction } from './../../actions/auth/user-auth.actions';
+import { userDataSuccessAction, userLoadErrorAction, userLoadRequestAction, userLoadSuccessAction, userLogoutRequestAction, userLogoutSuccessAction, userSignInErrorAction, userSignInRequestAction, userSignInSuccessAction } from './../../actions/auth/user-auth.actions';
 import { userRegisterSuccessAction } from '../../actions/auth/user-auth.actions';
 import { UserAuthInitialState } from '../../initial-states/auth/user-auth.initial_state';
 import { userRegisterRequestAction } from 'src/app/ngrx/actions/auth/user-auth.actions';
@@ -35,6 +35,9 @@ export const userAuthReducer = createReducer(
   }),
   on(userSignInErrorAction,(state)=>{
     return{...state, working:false}
+  }),
+  on(userDataSuccessAction,(state,params)=>{
+    return {...state, working:false, user:params.user}
   })
 
 )

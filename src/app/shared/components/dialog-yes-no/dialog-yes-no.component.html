@@ -1,9 +1,14 @@
 
-<mat-dialog-content class="mat-typography" align="center">
-  <h4><b>Bienvenido a la Oficina de Movilidad Becas y pasantías</b></h4>
-  <p class="content">Para poder brindarte una mejor experiencia dentro de la plataforma, ayúdanos completando tu perfil</p>
-</mat-dialog-content>
-<mat-dialog-actions align="center">
-  <app-button-form text = "En otro momento" color = "#000000" background = "#FFFFFF" bordercolor="#c1c1c1" [mat-dialog-close]="false"></app-button-form>
-  <app-button-form text = "Continuar" [mat-dialog-close]="true" cdkFocusInitial></app-button-form>
-</mat-dialog-actions>
+<div class="main-container">
+  <div class="dialog-container">
+    <mat-dialog-content class="mat-typography" align="center">
+      <h4><b>Bienvenido a la Oficina de Movilidad Becas y pasantías</b></h4>
+      <p class="content">Para poder brindarte una mejor experiencia dentro de la plataforma, ayúdanos completando tu perfil</p>
+    </mat-dialog-content>
+    <mat-dialog-actions class="buttons" align="center">
+      <app-button-form (click)="no()" text = "En otro momento" color = "#000000" background = "#e6edff" bordercolor="#acb5d3"></app-button-form>
+      <app-button-form (click)="yes()" text = "Continuar" cdkFocusInitial></app-button-form>
+    </mat-dialog-actions>
+  </div>
+</div>
+

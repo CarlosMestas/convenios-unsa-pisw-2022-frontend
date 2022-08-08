@@ -12,7 +12,8 @@ export const UserAuthActions = {
   USER_LOGOUT_SUCCESS_ACTION:"[API - Heroku] User Logout Success",
   USER_SIGNIN_REQUEST_ACTION:"[SignIn - Page] User SignIn Request",
   USER_SIGNIN_SUCCESS_ACTION:"[API - Heroku] User SignIn Success",
-  USER_SIGNIN_ERROR_ACTION:"[API - Heroku] User SignIn Error"
+  USER_SIGNIN_ERROR_ACTION:"[API - Heroku] User SignIn Error",
+  USER_DATA_SUCCESS_ACTION:"[API - Heroku] User Data Success"
 }
 
 
@@ -57,5 +58,10 @@ export const userLogoutRequestAction = createAction(
 )
 
 export const userLogoutSuccessAction = createAction(
-  UserAuthActions.USER_LOGOUT_SUCCESS_ACTION,
+  UserAuthActions.USER_LOGOUT_SUCCESS_ACTION
+)
+
+export const userDataSuccessAction = createAction(
+  UserAuthActions.USER_DATA_SUCCESS_ACTION,
+  props<{user:IUser}>()
 )

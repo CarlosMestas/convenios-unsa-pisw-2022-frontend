@@ -15,7 +15,11 @@ export const profileImageStateSelector = createSelector(
   (profileState:IProfileState) => profileState.profile?.image
 )
 
-export const profileTypeDescription = createSelector(
+export const profileTypeDescriptionSelector = createSelector(
   profileStateSelector,
   (profileState:IProfileState) => profileState.profile?.type.description
+)
+export const dialogProfileNotConfiguredSelector =createSelector(
+  profileStateSelector,
+  (profileState:IProfileState) => profileState.dialogProfileNotConfigured
 )
