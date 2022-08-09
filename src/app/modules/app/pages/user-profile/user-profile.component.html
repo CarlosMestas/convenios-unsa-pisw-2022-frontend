@@ -42,13 +42,22 @@
               </mat-datepicker>
             </mat-form-field>
           </div>
-          <div class="item-form">
-            <p class="label-input">Número móvil</p>
-            <input class="form-input-text"  formControlName="phone" id="movil-form" placeholder="Ingresa tu número">
-          </div>
-        </div>
 
+        </div>
           <div class="bi-container">
+            <div class="item-form">
+              <p class="label-input">Número móvil</p>
+              <input class="form-input-text"  formControlName="phone" id="movil-form" placeholder="Ingresa tu número">
+            </div>
+            <div class="item-form">
+              <p class="label-input">Tipo usuario</p>
+              <mat-form-field appearance="outline">
+                <mat-label>Tipo usuario</mat-label>
+                <mat-select formControlName = "typeUser">
+                  <mat-option *ngFor="let type of typesProfile" [value]="type.id" >{{type.description}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
 
           <div class="item-form">
@@ -56,19 +65,9 @@
             <input class="form-input-text" type="text"  formControlName="address" id="adress-form" placeholder="Ingresa tu dirección">
           </div>
 
-          <div class="item-form">
-            <p class="label-input">Tipo usuario</p>
-            <mat-form-field appearance="outline">
-              <mat-label>Tipo usuario</mat-label>
-              <mat-select formControlName = "typeUser">
-                <mat-option *ngFor="let type of typesProfile" [value]="type.id" >{{type.description}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-          <input *ngIf="isEdit" class="submit-form" type="submit"  value="{{profile?.profile_created==1?'Guardar cambios':'Crear perfíl'}}">
+          <input *ngIf="isEdit" class="submit-form top-space-btn" type="submit"  value="{{profile?.profile_created==1?'Guardar cambios':'Crear perfíl'}}">
         </form>
-        <app-button-customized *ngIf="!isEdit" colorProp="primary" size="normal" textBtn="Modificar datos " (click)="editProfile()"></app-button-customized>
+        <app-button-customized *ngIf="!isEdit" colorProp="primary" size="big" textBtn="Modificar datos " (click)="editProfile()" class="top-space-btn"></app-button-customized>
     </div>
     <div class="container-img-data">
       <app-upload-photo [profile]="profile"></app-upload-photo>

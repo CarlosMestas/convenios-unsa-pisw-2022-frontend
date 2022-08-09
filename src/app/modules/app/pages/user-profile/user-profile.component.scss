@@ -41,7 +41,6 @@
           font-weight: 500;
           @include font-size-12-10;
           color: #888888;
-
         }
         .id-item-form{
           width: 40%;
@@ -60,5 +59,11 @@
         }
     }
   }
-
+  .top-space-btn{
+    margin-top: 20px;
+  }
+  @media screen and(max-width:$res-1366) {
+    margin: 0 2rem;
+    width: calc(100% - 4rem);
+  }
 }

@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
-import { userEmailStateSelector } from './../../../../ngrx/selectors/auth/user-auth.selector';
-import { profileProfileStateSelector } from './../../../../ngrx/selectors/profile/profile.selector';
+import { userEmailStateSelector } from '../../../../ngrx/selectors/auth/user-auth.selector';
+import { profileProfileStateSelector } from '../../../../ngrx/selectors/profile/profile.selector';
 import { Store } from '@ngrx/store';
-import { IAppState } from './../../../../ngrx/app.state';
+import { IAppState } from '../../../../ngrx/app.state';
 import { IProfileType } from './../../../../shared/interfaces/profile-type.interface';
 import { TypeProfileService } from './../../../../core/services/type-profile/type-profile.service';
 import { IProfile } from './../../../../shared/interfaces/profile.interface';
@@ -31,7 +31,6 @@ export class UserProfileComponent implements OnInit {
   isEdit:boolean
   typesProfile:IProfileType[] = [];
   typesIdentification:IUserIdentificationType[] = [];
-
   birthdate:string = ""
   constructor(
     private profileService:ProfileService,
@@ -57,8 +56,6 @@ export class UserProfileComponent implements OnInit {
     })
   }
   ngOnInit(): void {
-
-
 
     this.email$ = this.store.select(userEmailStateSelector)
 
@@ -86,9 +83,11 @@ export class UserProfileComponent implements OnInit {
       })
   }
   submitProfile():void{
+    console.log("ds")
+
     // @ts-ignore
     let profileUpdate: IProfile = this.profile
-    profileUpdate.name = this.profileForm.value["name"]
+    profileUpdate.name = this.profileForm.get('name')?.value
     profileUpdate.last_name = this.profileForm.value["lastname"]
     profileUpdate.address = this.profileForm.value["address"]
     profileUpdate.phone = this.profileForm.value["phone"]
