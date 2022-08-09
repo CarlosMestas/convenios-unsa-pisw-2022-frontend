@@ -42,26 +42,6 @@ export class SigninComponent implements OnInit {
       this.renderButtonSignIn();
     })
 
-    this.authService.loginStatus().subscribe(status=>{
-      if(status){
-        if(this.profileService.getProfileValue()!=null&&this.profileService.getProfileValue()!=undefined && this.profileService.getProfileValue().profile_created!=1 ){
-          const config = new MatDialogConfig()
-          config.disableClose = true
-          config.width = '40%'
-          const dialogRef=this.matDialog.open(DialogYesNoComponent,config)
-          dialogRef.afterClosed().subscribe(result => {
-            this.authService.setLoginStatus(false)
-            if(result == true){
-              this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_USER_PROFILE])
-            }else if(result == false){
-              this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
-            }else{
-              this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
-            }
-          });
-        }
-      }
-    })
   }
 
   /**
@@ -91,10 +71,6 @@ export class SigninComponent implements OnInit {
 
   submitSignIn():void{
     this.authService.userSignIn(this.signInForm.value["email"]).subscribe(data =>{
-      /*if(data.data[0]!=null){
-        this.router.navigate(["/home"])
-      }
-*/
     })
   }
 }

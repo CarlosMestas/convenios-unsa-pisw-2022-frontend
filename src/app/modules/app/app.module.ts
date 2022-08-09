@@ -37,6 +37,7 @@ import {uploadPhotoComponent} from "./pages/user-profile/upload-photo/upload-pho
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
+import { RequestAccessComponent } from './pages/request-access/request-access.component';
 
 
 
@@ -53,7 +54,8 @@ import { EffectsModule } from '@ngrx/effects';
     OfHomeTableComponent,
     OfHomeCarouselNewsComponent,
     UserProfileComponent,
-    uploadPhotoComponent
+    uploadPhotoComponent,
+    RequestAccessComponent
   ],
   imports: [
     BrowserModule,

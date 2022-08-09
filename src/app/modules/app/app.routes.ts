@@ -1,3 +1,4 @@
+import { RequestAccessComponent } from './pages/request-access/request-access.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -12,6 +13,7 @@ const AppRoutesValues = {
   ROUTE_APP_CONTACT: "contacto",
   ROUTE_APP_SINGIN: "iniciar-sesion",
   ROUTE_APP_SIGNUP: "registrar-cuenta",
+  ROUTE_APP_REQUEST_ACCESS: "solicitar-acceso",
   ROUTE_APP_REGISTER_USER_DATA: "registrar-datos-usuario",
   ROUTE_APP_CONVOCATORIA: "convocatorias",
   ROUTE_APP_APPLY: "postulacion",
@@ -45,6 +47,10 @@ const AppRoutes: Routes  = [
   {
     path:AppRoutesValues.ROUTE_APP_SIGNUP,
     component:SignupComponent
+  },
+  {
+    path:AppRoutesValues.ROUTE_APP_REQUEST_ACCESS,
+    component:RequestAccessComponent
   },
   {
     path: AppRoutesValues.ROUTE_APP_REGISTER_USER_DATA,

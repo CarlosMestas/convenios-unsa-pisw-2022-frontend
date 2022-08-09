@@ -80,4 +80,8 @@ export class SignupComponent implements OnInit {
 
     })
   }
+
+  get requestAccessRoute():string{
+    return "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_REQUEST_ACCESS
+  }
 }
