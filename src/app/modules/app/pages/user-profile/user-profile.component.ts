@@ -86,7 +86,7 @@ export class UserProfileComponent implements OnInit {
     console.log("ds")
 
     // @ts-ignore
-    let profileUpdate: IProfile = this.profile
+    const profileUpdate: IProfile = this.profile;
     profileUpdate.name = this.profileForm.get('name')?.value
     profileUpdate.last_name = this.profileForm.value["lastname"]
     profileUpdate.address = this.profileForm.value["address"]
