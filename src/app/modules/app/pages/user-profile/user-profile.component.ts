@@ -84,31 +84,32 @@ export class UserProfileComponent implements OnInit {
   }
   submitProfile():void{
     console.log("ds")
+    let profileUpdate: IProfile|null = this.profile;
+    if(profileUpdate!=null){
+      profileUpdate.name = this.profileForm.get('name')?.value
+      profileUpdate.last_name = this.profileForm.value["lastname"]
+      profileUpdate.address = this.profileForm.value["address"]
+      profileUpdate.phone = this.profileForm.value["phone"]
 
-    // @ts-ignore
-    const profileUpdate: IProfile = this.profile;
-    profileUpdate.name = this.profileForm.get('name')?.value
-    profileUpdate.last_name = this.profileForm.value["lastname"]
-    profileUpdate.address = this.profileForm.value["address"]
-    profileUpdate.phone = this.profileForm.value["phone"]
+      // @ts-ignore
+      let date:any = this.profileForm.value["birthdate"]
+      profileUpdate.birthdate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
 
-    // @ts-ignore
-    let date:any = this.profileForm.value["birthdate"]
-    profileUpdate.birthdate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+      // @ts-ignore
+      profileUpdate.profile_created= 1
+      profileUpdate.type = this.profileForm.value["typeUser"]
+      profileUpdate.identification.type = this.profileForm.value["typeUserIdentification"]
+      profileUpdate.identification.value = this.profileForm.value["valueIdentification"]
 
-    // @ts-ignore
-    profileUpdate.profile_created= 1
-    profileUpdate.type = this.profileForm.value["typeUser"]
-    profileUpdate.identification.type = this.profileForm.value["typeUserIdentification"]
-    profileUpdate.identification.value = this.profileForm.value["valueIdentification"]
-
-    console.log("testing profileUpdate",profileUpdate)
+      console.log("testing profileUpdate",profileUpdate)
 
 
-    this.profileService.updateProfile(profileUpdate).subscribe(data =>{
-      console.log("PERFIL CREADO", profileUpdate)
-    })
-    this.isEdit = false
+      this.profileService.updateProfile(profileUpdate).subscribe(data =>{
+        console.log("PERFIL CREADO", profileUpdate)
+      })
+      this.isEdit = false
+    }
+
   }
 
   editProfile():void{
