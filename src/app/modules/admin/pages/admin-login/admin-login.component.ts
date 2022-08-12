@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../../../core/services/auth/auth.service";
 
 @Component({
   selector: 'app-admin-login',
@@ -7,9 +9,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminLoginComponent implements OnInit {
 
-  constructor() { }
+  public signInForm: FormGroup
+
+  constructor(
+    private authService:AuthService,
+  ) {
+    this.signInForm = new FormGroup({
+      email: new FormControl('',[Validators.required,Validators.email]),
+      password: new FormControl('',[Validators.required])
+    })
+  }
 
   ngOnInit(): void {
+  }
+  public get email() : AbstractControl | null {
+    return this.signInForm.get('email');
+  }
+  public get password() : AbstractControl | null {
+    return this.signInForm.get('password');
+  }
+  submitSignIn():void{
+    this.authService.userSignIn(this.signInForm.value["email"]).subscribe(data =>{
+    })
   }
 
 }

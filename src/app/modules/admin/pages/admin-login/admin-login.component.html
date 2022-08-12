@@ -1,1 +1,34 @@
-<p>admin-login works!</p>
+<section class="login-container">
+  <div class="login-container__left">
+    <div class="login-container__left__header">
+      <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" alt="avatar" width="80px" height="80px">
+      <h1>Iniciar Sesión</h1>
+    </div>
+    <div class="login-container__left__body">
+      <form class="fields-form-signin" (ngSubmit) = "submitSignIn()">
+        <div class="form-item form-item-field-email">
+          <div class="form-label form-signin-label-field-email">
+            Correo
+          </div>
+          <input class="form-input-text form-signin-input-field-email" type="email" formControlName="email" id="email" placeholder="Ingresa tu correo">
+          <span class="invalid-field"  *ngIf = "email && email.invalid && email.touched">El correo ingresado es incorrecto</span>
+        </div>
+        <div class="form-item form-item-field-password">
+          <div class="form-label form-signin-label-field-password">
+            Contraseña
+          </div>
+          <input class="form-input-text form-signin-input-field-password" type="password" formControlName="password" id="password" placeholder="Ingresa tu contraseña">
+          <span class="invalid-field"  *ngIf = "password && password.invalid && password.touched">El contenido ingresado es incorrecto</span>
+        </div>
+        <input class="submit-form" type="submit" value="Iniciar Sesión"  [disabled] = "signInForm.invalid" style="margin-top: 10px">
+      </form>
+    </div>
+  </div>
+  <div class="login-container__rigth">
+    <div class="login-container__rigth__under">
+      <h1>Oficina de Movilidad Becas y Pasantías</h1>
+      <span>Accede a la plataforma de la Oficina de Movilidad Becas y pasantías y postula a la convocatoria que se adecue a tu perfil</span>
+    </div>
+  </div>
+</section>
+
