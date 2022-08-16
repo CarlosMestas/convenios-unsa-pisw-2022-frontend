@@ -1,0 +1,83 @@
+
+<div class="convocation-timeline-container" *ngIf="convocation$ | async as convocation">
+  <div class="convocation-container">
+    <div class="header">
+      <div class="title">
+        {{convocation.title}}
+      </div>
+      <app-button-form bordercolor = "#FFFFFF" text = "Postular" cdkFocusInitial></app-button-form>
+    </div>
+    <div class="convocatoria-image-container">
+      <img src="https://www.unsa.edu.pe/wp-content/uploads/2022/05/PIVE-2022-2da.-1_001-878x426.png" class="image" alt="convocation image">
+      <div class="gray-layer">
+
+      </div>
+    </div>
+
+
+
+      <div class="card-container">
+        <div class="title">Descripción</div>
+        <div class="card-content">
+          <div class="description">
+            {{convocation.description}}
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="title">Requerimientos</div>
+
+        <div class="card-content">
+          <div class="item-container" *ngFor="let item of requirements">
+            <div class="item-circle-number">
+              <span class="icon-container">
+
+                <i class="icon" [ngClass] = "item.icon">
+                </i>
+              </span>
+            </div>
+            <div class="item-description">
+              {{item.title}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="title">Documentos</div>
+        <div class="card-content">
+          <div class="item-container" *ngFor="let item of documents">
+            <div class="item-circle-number">
+              <span class="icon-container">
+                <i class="icon" [ngClass] = "item.icon">
+                </i>
+              </span>
+            </div>
+            <div class="item-description">
+              {{item.title}}
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <div class="timeline-container">
+    <p-timeline [value]="events1" align="alternate">
+      <ng-template pTemplate="marker" let-event>
+          <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
+              <i [ngClass]="event.icon"></i>
+          </span>
+      </ng-template>
+      <ng-template pTemplate="content" let-event>
+          <p-card class="p-card" [header]="event.status" [subheader]="event.date">
+              <img *ngIf="event.image" [src]="'./assets/images/' + event.image" [alt]="event.name" width="200" class="shadow-2" />
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          </p-card>
+      </ng-template>
+    </p-timeline>
+
+  </div>
+</div>
+<!-- <ng-template #loading>
+  <p> loading ...</p>
+</ng-template> -->

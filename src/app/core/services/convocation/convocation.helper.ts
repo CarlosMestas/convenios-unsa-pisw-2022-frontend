@@ -1,9 +1,9 @@
-import { IConvocatoria } from './../../../shared/interfaces/convocatoria.interface';
+import { IConvocation } from '../../../shared/interfaces/convocation.interface';
 import { environment } from 'src/environments/environment.prod';
 import{HttpClient,HttpErrorResponse} from '@angular/common/http'
 import { of } from 'rxjs';
 environment
-export class ConvocatoriaHelper{
+export class ConvocationHelper{
   public url = environment.url
   public isProduction = environment.production
   constructor(
@@ -20,7 +20,7 @@ export class ConvocatoriaHelper{
     return of({
       error:true,
       msg: errorMessage,
-      data: [] as IConvocatoria[]
+      data: {} as IConvocation
     })
   }
 }

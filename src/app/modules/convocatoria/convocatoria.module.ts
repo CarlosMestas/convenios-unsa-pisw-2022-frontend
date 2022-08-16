@@ -2,11 +2,7 @@ import { ConvocatoriaBodyComponent } from './body/convocatoria-body.component';
 import { ConvocatoriaRoutingModule } from './convocatoria.routes';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WhoCanApplyComponent } from './pages/who-can-apply/who-can-apply.component';
-import { RequirementsToApplyComponent } from './pages/requirements-to-apply/requirements-to-apply.component';
-import { ProcessToApplyComponent } from './pages/process-to-apply/process-to-apply.component';
-import { TimelineComponent } from './pages/timeline/timeline.component';
-import { ContactComponent } from './pages/contact/contact.component';
+import { TimelineComponent } from './pages/detail/detail.component';
 import { ApplyComponent } from './pages/apply/apply.component';
 
 
@@ -16,14 +12,11 @@ import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {TabViewModule} from 'primeng/tabview';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    WhoCanApplyComponent,
-    RequirementsToApplyComponent,
-    ProcessToApplyComponent,
     TimelineComponent,
-    ContactComponent,
     ApplyComponent,
     ConvocatoriaBodyComponent
   ],
@@ -34,7 +27,8 @@ import {TabViewModule} from 'primeng/tabview';
     CardModule,
     ButtonModule,
     SplitButtonModule,
-    TabViewModule
+    TabViewModule,
+    SharedModule
   ]
 })
 export class ConvocatoriaModule { }

@@ -4,7 +4,6 @@ import { PostulacionHelper } from './postulacion.helper';
 
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable } from 'rxjs';
-import { IConvocatoria } from 'src/app/shared/interfaces/convocatoria.interface';
 import { HttpClient } from '@angular/common/http';
 import {IPostulacion} from "../../../shared/interfaces/postulacion.interface";
 

@@ -1,8 +1,13 @@
-import { IConvocatoria } from './../../../shared/interfaces/convocatoria.interface';
-import { ConvocatoriaService } from './../../../core/services/convocatoria/convocatoria.service';
+import { convocationFetchRequestAction } from './../../../ngrx/actions/convocation/convocation.actions';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { IConvocation } from '../../../shared/interfaces/convocation.interface';
+import { ConvocationService } from '../../../core/services/convocation/convocation.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ConvocatoriaRoutingModule } from '../convocatoria.routes';
+import { IAppState } from 'src/app/ngrx/app.state';
+import { convocationConvocationStateSelector } from 'src/app/ngrx/selectors/convocation/convocation.selector';
 
 @Component({
   selector: 'app-convocatoria-body',
@@ -10,24 +15,21 @@ import { ConvocatoriaRoutingModule } from '../convocatoria.routes';
   styleUrls: ['./convocatoria-body.component.scss']
 })
 export class ConvocatoriaBodyComponent implements OnInit {
-  convocatoria:IConvocatoria;
   id:number;
   rutaApply = ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_APPLY
   constructor(
     private route:ActivatedRoute,
-    private convocatoriaService:ConvocatoriaService
+    private store:Store<IAppState>
   ) {
     this.id = route.snapshot.params['id'];
-    this.convocatoria={} as IConvocatoria;
-
   }
 
   ngOnInit(): void {
-    this.convocatoriaService.getConvocatoria(this.id).subscribe(resp =>{
-      this.convocatoria = resp.data[0]
-      console.log("convocatoria detaleeeee----------")
-      console.log(this.convocatoria.ConvocatoriaDetail)
-    })
+    this.store.dispatch(convocationFetchRequestAction({id:this.id}))
+    // this.convocatoriaService.getConvocatoria(this.id).subscribe(resp =>{
+    //   this.convocatoria = resp.data[0]
+    //   console.log("convocatoria detaleeeee----------")
+    // })
   }
 
 }
