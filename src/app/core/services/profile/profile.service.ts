@@ -91,13 +91,13 @@ export class ProfileService extends ProfileHelper{
           "last_name": profile.last_name,
           "address": profile.address,
           "phone": profile.phone,
-          "profile_created": 1,
+          "profile_created": profile.profile_created,
           "birthdate":profile.birthdate,
           "type":profile.type,
           "identification":{
             "id":profile.id,
             "value":profile.identification.value,
-            "type":1
+            "type":profile.identification.type.id
           }
         }
       )

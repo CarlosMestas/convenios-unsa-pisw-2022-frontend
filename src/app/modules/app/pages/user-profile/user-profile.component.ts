@@ -13,9 +13,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 import {
   TypeUserIdentificationService
 } from "../../../../core/services/type-user-identification/type-user-identification.service";
-import {IUserIdentification} from "../../../../shared/interfaces/user-identification.interface";
 import {IUserIdentificationType} from "../../../../shared/interfaces/user-identification-type.interface";
-import { userAuthUserStateSelector } from 'src/app/ngrx/selectors/auth/user-auth.selector';
 
 @Component({
   selector: 'app-user-profile',
@@ -27,11 +25,11 @@ export class UserProfileComponent implements OnInit {
   public profileForm: FormGroup
   profile:IProfile|null
   email$: Observable<string|null>
-  isPcreated: number | undefined
   isEdit:boolean
   typesProfile:IProfileType[] = [];
   typesIdentification:IUserIdentificationType[] = [];
   birthdate:string = ""
+  img:string=""
   constructor(
     private profileService:ProfileService,
     private authService:AuthService,
@@ -41,13 +39,12 @@ export class UserProfileComponent implements OnInit {
   ){
     this.profile = {} as IProfile
     this.email$ = new Observable<string|null>()
-    this.isPcreated = 0
     this.isEdit = false
     this.profileForm = new FormGroup({
       name: new FormControl( {value:'', disabled:!this.isEdit},[Validators.required]),
       lastname: new FormControl({value:'', disabled:!this.isEdit},[Validators.required]),
       address: new FormControl({value:'', disabled:!this.isEdit},[Validators.maxLength(100)]),
-      birthdate: new FormControl('',[Validators.required]),
+      datepicker: new FormControl('',[Validators.required]),
       typeUser: new FormControl('',[Validators.required]),
       valueIdentification: new FormControl({value:'', disabled:!this.isEdit},[Validators.required, Validators.maxLength(8)]),
       phone: new FormControl({value:'', disabled:!this.isEdit}),
@@ -67,7 +64,9 @@ export class UserProfileComponent implements OnInit {
       }
       this.profileForm.controls['name'].reset({ value: profile?.name, disabled: !this.isEdit });
       this.profileForm.controls['lastname'].reset({ value: profile?.last_name, disabled: !this.isEdit });
-      this.profileForm.controls['address'].reset({ value: profile?.address, disabled: !this.isEdit });
+      this.profileForm.controls['address'].reset( { value: profile?.address, disabled: !this.isEdit });
+      // @ts-ignore
+      this.profileForm.controls['datepicker'].setValue(this.convertDate(profile?.birthdate));
       this.profileForm.controls['typeUserIdentification'].setValue(profile?.identification.type.id);
       this.profileForm.controls['valueIdentification'].reset({ value: profile?.identification.value, disabled: !this.isEdit });
       this.profileForm.controls['phone'].reset({ value: profile?.phone, disabled: !this.isEdit });
@@ -82,36 +81,46 @@ export class UserProfileComponent implements OnInit {
         this.typesIdentification = resp.data
       })
   }
-  submitProfile():void{
-    console.log("ds")
+  convertDate(_cadena: string):any {
+    let startDate = new Date()
+    startDate.setFullYear(Number(_cadena.slice(0,4)))
+    startDate.setDate(Number(_cadena.slice(8,10)))
+    startDate.setMonth(Number(_cadena.slice(5,7))-1)
+    return startDate
+  }
+    submitProfile():void{
     let profileUpdate: IProfile|null = this.profile;
+
     if(profileUpdate!=null){
-      profileUpdate.name = this.profileForm.get('name')?.value
+      profileUpdate.name = this.profileForm.value["name"]
       profileUpdate.last_name = this.profileForm.value["lastname"]
       profileUpdate.address = this.profileForm.value["address"]
       profileUpdate.phone = this.profileForm.value["phone"]
 
       // @ts-ignore
-      let date:any = this.profileForm.value["birthdate"]
+      let date:Date = this.profileForm.value["datepicker"]
       profileUpdate.birthdate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
 
       // @ts-ignore
       profileUpdate.profile_created= 1
       profileUpdate.type = this.profileForm.value["typeUser"]
-      profileUpdate.identification.type = this.profileForm.value["typeUserIdentification"]
-      profileUpdate.identification.value = this.profileForm.value["valueIdentification"]
 
-      console.log("testing profileUpdate",profileUpdate)
+      profileUpdate.identification.type.id = this.profileForm.value["typeUserIdentification"]
+      profileUpdate.identification.value = this.profileForm.value["valueIdentification"]
 
 
       this.profileService.updateProfile(profileUpdate).subscribe(data =>{
         console.log("PERFIL CREADO", profileUpdate)
+        console.log("ERROR?", data)
       })
       this.isEdit = false
     }
 
   }
-
+  receiveMessage($event: any) {
+    this.img = $event
+    console.log("EVEMNTO IAMGEN RECIBIDO", $event)
+  }
   editProfile():void{
     this.isEdit = true
   }
