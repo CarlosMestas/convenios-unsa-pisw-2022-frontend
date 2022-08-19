@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TimelineComponent } from './pages/detail/detail.component';
 import { ApplyComponent } from './pages/apply/apply.component';
-
+import {NewConvocationComponent} from "./pages/new-convocation/new-convocation.component";
 
 
 import {TimelineModule} from 'primeng/timeline';
@@ -18,7 +18,8 @@ import { SharedModule } from '../shared/shared.module';
   declarations: [
     TimelineComponent,
     ApplyComponent,
-    ConvocatoriaBodyComponent
+    ConvocatoriaBodyComponent,
+    NewConvocationComponent
   ],
   imports: [
     CommonModule,
