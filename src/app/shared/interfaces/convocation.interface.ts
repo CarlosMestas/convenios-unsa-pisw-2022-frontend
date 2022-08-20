@@ -1,8 +1,9 @@
+import { IConvocationType } from './convocation/convocation-type.interface';
 export interface IConvocation{
   id:number,
   title:string,
   correlative:string,
-  type:number,
+  type:IConvocationType,
   description:string,
   start_date:string,
   end_date:string,

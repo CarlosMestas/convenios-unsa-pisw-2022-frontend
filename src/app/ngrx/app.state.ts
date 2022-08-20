@@ -8,7 +8,7 @@ import { convocationReducer } from './reducers/convocation/convocation.reducer';
 export interface IAppState{
   userAuth:IUserAuthState,
   profile:IProfileState,
-  convocation:IConvocationState
+  convocation:IConvocationState,
 }
 
 

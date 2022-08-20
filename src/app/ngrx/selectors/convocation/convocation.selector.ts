@@ -9,3 +9,16 @@ export const convocationConvocationStateSelector = createSelector(
   convocationStateSelector,
   (convocationState:IConvocationState)=>convocationState.convocation
 )
+
+export const convocationDocumentsStateSelector = createSelector(
+  convocationStateSelector,
+  (convocationState:IConvocationState)=>convocationState.documents
+)
+export const convocationRequirementsStateSelector = createSelector(
+  convocationStateSelector,
+  (convocationState:IConvocationState)=>convocationState.requirements
+)
+export const convocationDetailStateSelector = createSelector(
+  convocationStateSelector,
+  (convocationState:IConvocationState)=>convocationState.convocationDetail
+)
