@@ -4,5 +4,4 @@ export interface IAdminAuthState{
   email:string|null,
   admin:IAdmin|null
   id:number,
-  dialogUserRegisterWrongEmail:boolean
 }

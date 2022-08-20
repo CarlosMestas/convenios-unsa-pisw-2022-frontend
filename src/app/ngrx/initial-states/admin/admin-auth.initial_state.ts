@@ -4,5 +4,4 @@ export const AdminAuthInitialState:IAdminAuthState = {
   admin:null,
   email:null,
   id:-1,
-  dialogUserRegisterWrongEmail:false
-}
+ }
