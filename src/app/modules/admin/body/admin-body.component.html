@@ -1,4 +1,19 @@
-<p>Holaaaa</p>
-<router-outlet>
-
-</router-outlet>
+<section class="home-admin-container">
+  <div class="home-admin-container__header">
+    <h1>Bienvenidos a la parte administrativa de la  Oficina Universitaria de Cooperación, Convenios e Internacionalización</h1>
+    <span></span>
+  </div>
+  <div class="home-admin-container__body">
+    <div class="home-admin-container__body__description">
+      <span>La Oficina Universitaria de Cooperación, Convenios e Internacionalización es un órgano de apoyo
+      al Rectorado de la Universidad Nacional de San Agustín, encargada de coordinar las políticas de cooperación
+      técnica y la formulación de convenios interinstitucionales.</span>
+    </div>
+    <div class="home-admin-container__body__gallery-header">
+      <h2>Galería de Proyectos</h2>
+    </div>
+    <div class="home-admin-container__body__gallery">
+      <img *ngFor="let item of fotos; index as i" [src]="item">
+    </div>
+  </div>
+</section>
