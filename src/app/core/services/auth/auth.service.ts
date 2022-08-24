@@ -158,8 +158,10 @@ export class AuthService extends AuthHelper{
       msg:'',
       data:{} as IUser
     };
+    const params = new HttpParams()
+    .set('id',userId)
     return this.http.get<IUserLoginResponse>(
-      this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.FETCH_USER+"/"+userId
+      this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.FETCH_USER,{params}
       )
       .pipe(
         map( r =>{

@@ -2,7 +2,7 @@ import { ConvocatoriaBodyComponent } from './body/convocatoria-body.component';
 import { ConvocatoriaRoutingModule } from './convocatoria.routes';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TimelineComponent } from './pages/detail/detail.component';
+import { DetailComponent } from './pages/detail/detail.component';
 import { ApplyComponent } from './pages/apply/apply.component';
 
 
@@ -13,12 +13,24 @@ import {ButtonModule} from 'primeng/button';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {TabViewModule} from 'primeng/tabview';
 import { SharedModule } from '../shared/shared.module';
+import { DetailPiveComponent } from './pages/detail-pive/detail-pive.component';
+import { DetailPivdoComponent } from './pages/detail-pivdo/detail-pivdo.component';
+import { DetailEstVanComponent } from './pages/detail-est-van/detail-est-van.component';
+import { DetailEstVienenComponent } from './pages/detail-est-vienen/detail-est-vienen.component';
+import { DetailDocVanComponent } from './pages/detail-doc-van/detail-doc-van.component';
+import { DetailDocVienenComponent } from './pages/detail-doc-vienen/detail-doc-vienen.component';
 
 @NgModule({
   declarations: [
-    TimelineComponent,
+    DetailComponent,
     ApplyComponent,
-    ConvocatoriaBodyComponent
+    ConvocatoriaBodyComponent,
+    DetailPiveComponent,
+    DetailPivdoComponent,
+    DetailEstVanComponent,
+    DetailEstVienenComponent,
+    DetailDocVanComponent,
+    DetailDocVienenComponent
   ],
   imports: [
     CommonModule,

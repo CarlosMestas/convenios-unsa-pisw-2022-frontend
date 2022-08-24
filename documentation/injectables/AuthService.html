@@ -89,7 +89,20 @@
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
+                                <a href="#login$" >login$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#signup$" >signup$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#user$" >user$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Protected</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#API_AUTH_SERVICE_ROUTES" >API_AUTH_SERVICE_ROUTES</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
@@ -98,6 +111,14 @@
                             <li>
                                     <span class="modifier">Public</span>
                                 <a href="#url" >url</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#USER_ID_ENCODED" >USER_ID_ENCODED</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Static</span>
+                                <a href="#USER_LOGIN_TOKEN" >USER_LOGIN_TOKEN</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
@@ -116,7 +137,13 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#fetchUser" >fetchUser</a>
+                            </li>
+                            <li>
                                 <a href="#getUser" >getUser</a>
+                            </li>
+                            <li>
+                                <a href="#getUserLoginToken" >getUserLoginToken</a>
                             </li>
                             <li>
                                 <a href="#handleCredentialResponse" >handleCredentialResponse</a>
@@ -128,26 +155,49 @@
                                 <a href="#isGoogleAuthServiceInitialized" >isGoogleAuthServiceInitialized</a>
                             </li>
                             <li>
+                                <a href="#isSesionUp" >isSesionUp</a>
+                            </li>
+                            <li>
+                                <a href="#isUserProfileCreated" >isUserProfileCreated</a>
+                            </li>
+                            <li>
                                 <a href="#isUserSigned" >isUserSigned</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
                                 <a href="#loadUser" >loadUser</a>
                             </li>
                             <li>
-                                <a href="#logout" >logout</a>
-                            </li>
-                            <li>
-                                <a href="#normalUserSignin" >normalUserSignin</a>
-                            </li>
-                            <li>
-                                <a href="#normalUserSignUp" >normalUserSignUp</a>
+                                <a href="#loginStatus" >loginStatus</a>
                             </li>
                             <li>
                                 <a href="#promptGoogleOneTap" >promptGoogleOneTap</a>
                             </li>
                             <li>
-                                <a href="#removeLocalStorageSesion" >removeLocalStorageSesion</a>
+                                <a href="#setLoginStatus" >setLoginStatus</a>
+                            </li>
+                            <li>
+                                <a href="#setSignUpStatus" >setSignUpStatus</a>
+                            </li>
+                            <li>
+                                <a href="#signupStatus" >signupStatus</a>
+                            </li>
+                            <li>
+                                <a href="#userLogout" >userLogout</a>
+                            </li>
+                            <li>
+                                <a href="#userSignIn" >userSignIn</a>
+                            </li>
+                            <li>
+                                <a href="#userSignUp" >userSignUp</a>
+                            </li>
+                            <li>
+                                <a href="#decodeJWTCredential" >decodeJWTCredential</a>
+                            </li>
+                            <li>
+                                <a href="#errorFetch" >errorFetch</a>
+                            </li>
+                            <li>
+                                <a href="#errorLogout" >errorLogout</a>
                             </li>
                             <li>
                                 <a href="#errorSignIn" >errorSignIn</a>
@@ -156,16 +206,19 @@
                                 <a href="#errorSignUp" >errorSignUp</a>
                             </li>
                             <li>
+                                <a href="#getLocalStorageSesionId" >getLocalStorageSesionId</a>
+                            </li>
+                            <li>
+                                <a href="#getLocalStorageSesionToken" >getLocalStorageSesionToken</a>
+                            </li>
+                            <li>
                                 <a href="#getNormalTokenFromUser" >getNormalTokenFromUser</a>
                             </li>
                             <li>
-                                <a href="#getUserFromJWTCredential" >getUserFromJWTCredential</a>
+                                <a href="#removeLocalStorageSesion" >removeLocalStorageSesion</a>
                             </li>
                             <li>
-                                <a href="#getUserFromNormalToken" >getUserFromNormalToken</a>
-                            </li>
-                            <li>
-                                <a href="#saveLocalStorageUserNormalToken" >saveLocalStorageUserNormalToken</a>
+                                <a href="#saveLocalStorageSesionToken" >saveLocalStorageSesionToken</a>
                             </li>
                         </ul>
                     </td>
@@ -185,12 +238,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, activatedRoute: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, sidenavService: <a href="../injectables/SidenavService.html" target="_self">SidenavService</a>, http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>)</code>
+<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, sidenavService: <a href="../injectables/SidenavService.html" target="_self">SidenavService</a>, http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, store: <a href="../interfaces/IAppState.html" target="_self">Store&lt;IAppState&gt;</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/core/services/auth/auth.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/core/services/auth/auth.service.ts:37</a></div>
                             </td>
                         </tr>
 
@@ -212,18 +265,6 @@
                                                   
                                                         <td>
                                                                         <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
-                                                        </td>
-                                                  
-                                                    <td>
-                                                            No
-                                                    </td>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                        <td>activatedRoute</td>
-                                                  
-                                                        <td>
-                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -255,6 +296,18 @@
                                                     </td>
                                                     
                                                 </tr>
+                                                <tr>
+                                                        <td>store</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../interfaces/IAppState.html" target="_self" >Store&lt;IAppState&gt;</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
                                         </tbody>
                                     </table>
                             </div>
@@ -269,6 +322,75 @@
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchUser"></a>
+                    <span class="name">
+                        <span ><b>fetchUser</b></span>
+                        <a href="#fetchUser"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>fetchUser(userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="150"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:150</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;literal type&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -289,8 +411,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="104"
-                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:104</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:145</a></div>
                 </td>
             </tr>
 
@@ -306,6 +428,43 @@
                     </div>
                     <div class="io-description">
                         <p>User Observable to be able to subscribe and be notified when User changes whether it&#39;s signed or not</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getUserLoginToken"></a>
+                    <span class="name">
+                        <span ><b>getUserLoginToken</b></span>
+                        <a href="#getUserLoginToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getUserLoginToken()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="275"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:275</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>string | null | undefined</code>
 
                     </div>
                 </td>
@@ -332,8 +491,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:122</a></div>
                 </td>
             </tr>
 
@@ -403,8 +562,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:54</a></div>
                 </td>
             </tr>
 
@@ -442,8 +601,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:69</a></div>
                 </td>
             </tr>
 
@@ -459,6 +618,80 @@
                     </div>
                     <div class="io-description">
                         <p>a Boolean Observable to know if google services are initialized and if our client configured</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isSesionUp"></a>
+                    <span class="name">
+                        <span ><b>isSesionUp</b></span>
+                        <a href="#isSesionUp"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isSesionUp()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="192"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:192</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isUserProfileCreated"></a>
+                    <span class="name">
+                        <span ><b>isUserProfileCreated</b></span>
+                        <a href="#isUserProfileCreated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>isUserProfileCreated()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="281"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:281</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
 
                     </div>
                 </td>
@@ -485,8 +718,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="181"
-                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:181</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="278"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:278</a></div>
                 </td>
             </tr>
 
@@ -508,7 +741,6 @@
                 <td class="col-md-4">
                     <a name="loadUser"></a>
                     <span class="name">
-                        <span class="modifier">Private</span>
                         <span ><b>loadUser</b></span>
                         <a href="#loadUser"><span class="icon ion-ios-link"></span></a>
                     </span>
@@ -516,16 +748,15 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>loadUser()</code>
+<code>loadUser()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="183"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:183</a></div>
                 </td>
             </tr>
 
@@ -536,7 +767,7 @@
 </div>
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>    <code>Observable&lt;literal type&gt;</code>
 
                     </div>
                 </td>
@@ -547,31 +778,68 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="logout"></a>
+                    <a name="loginStatus"></a>
                     <span class="name">
-                        <span ><b>logout</b></span>
-                        <a href="#logout"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>loginStatus</b></span>
+                        <a href="#loginStatus"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>logout()</code>
+<code>loginStatus()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="269"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:269</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p> clean user session</p>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="promptGoogleOneTap"></a>
+                    <span class="name">
+                        <span ><b>promptGoogleOneTap</b></span>
+                        <a href="#promptGoogleOneTap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>promptGoogleOneTap()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="105"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:105</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Shows google one tap</p>
 </div>
 
                     <div class="io-description">
@@ -586,24 +854,238 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="normalUserSignin"></a>
+                    <a name="setLoginStatus"></a>
                     <span class="name">
-                        <span ><b>normalUserSignin</b></span>
-                        <a href="#normalUserSignin"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>setLoginStatus</b></span>
+                        <a href="#setLoginStatus"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>normalUserSignin(gmail: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>setLoginStatus(status: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="154"
-                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:154</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="284"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:284</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>status</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setSignUpStatus"></a>
+                    <span class="name">
+                        <span ><b>setSignUpStatus</b></span>
+                        <a href="#setSignUpStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setSignUpStatus(status: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="287"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:287</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>status</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="signupStatus"></a>
+                    <span class="name">
+                        <span ><b>signupStatus</b></span>
+                        <a href="#signupStatus"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>signupStatus()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="272"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:272</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userLogout"></a>
+                    <span class="name">
+                        <span ><b>userLogout</b></span>
+                        <a href="#userLogout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>userLogout()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:76</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p> clean user session</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;literal type&gt;</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userSignIn"></a>
+                    <span class="name">
+                        <span ><b>userSignIn</b></span>
+                        <a href="#userSignIn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>userSignIn(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="236"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:236</a></div>
                 </td>
             </tr>
 
@@ -622,12 +1104,11 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>gmail</td>
+                                    <td>email</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -637,26 +1118,6 @@
                                     </td>
 
 
-                                    <td>
-                                        <p>user email</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>password</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>user password</p>
-
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -678,24 +1139,24 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="normalUserSignUp"></a>
+                    <a name="userSignUp"></a>
                     <span class="name">
-                        <span ><b>normalUserSignUp</b></span>
-                        <a href="#normalUserSignUp"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>userSignUp</b></span>
+                        <a href="#userSignUp"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>normalUserSignUp(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, password: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>userSignUp(email: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, image: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="119"
-                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:119</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="197"
+                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:197</a></div>
                 </td>
             </tr>
 
@@ -728,7 +1189,7 @@
 
                                 </tr>
                                 <tr>
-                                    <td>password</td>
+                                    <td>image</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -759,36 +1220,72 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="promptGoogleOneTap"></a>
+                    <a name="decodeJWTCredential"></a>
                     <span class="name">
-                        <span ><b>promptGoogleOneTap</b></span>
-                        <a href="#promptGoogleOneTap"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>decodeJWTCredential</b></span>
+                        <a href="#decodeJWTCredential"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>promptGoogleOneTap()</code>
+<code>decodeJWTCredential(jwtCredential: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:72</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Shows google one tap</p>
+                    <div class="io-line">Inherited from         <code><a href="../classes/AuthHelper.html" target="_self" >AuthHelper</a></code>
 </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:50</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>jwtCredential</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
 
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -798,36 +1295,147 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="removeLocalStorageSesion"></a>
+                    <a name="errorFetch"></a>
                     <span class="name">
-                        <span ><b>removeLocalStorageSesion</b></span>
-                        <a href="#removeLocalStorageSesion"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>errorFetch</b></span>
+                        <a href="#errorFetch"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>removeLocalStorageSesion()</code>
+<code>errorFetch(error: <a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank">HttpErrorResponse</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="66"
-                            class="link-to-prism">src/app/core/services/auth/auth.service.ts:66</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Delete user session from local storage</p>
+                    <div class="io-line">Inherited from         <code><a href="../classes/AuthHelper.html" target="_self" >AuthHelper</a></code>
 </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:86</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
 
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>error</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank" >HttpErrorResponse</a></code>
+                                    </td>
 
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorLogout"></a>
+                    <span class="name">
+                        <span ><b>errorLogout</b></span>
+                        <a href="#errorLogout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>errorLogout(error: <a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank">HttpErrorResponse</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../classes/AuthHelper.html" target="_self" >AuthHelper</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:100</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>error</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank" >HttpErrorResponse</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
                     </div>
                 </td>
             </tr>
@@ -859,7 +1467,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:61</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:57</a></code>
 </div>
                 </td>
             </tr>
@@ -934,7 +1542,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:74</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:73</a></code>
 </div>
                 </td>
             </tr>
@@ -987,6 +1595,92 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="getLocalStorageSesionId"></a>
+                    <span class="name">
+                        <span ><b>getLocalStorageSesionId</b></span>
+                        <a href="#getLocalStorageSesionId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getLocalStorageSesionId()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../classes/AuthHelper.html" target="_self" >AuthHelper</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:36</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>string | null</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getLocalStorageSesionToken"></a>
+                    <span class="name">
+                        <span ><b>getLocalStorageSesionToken</b></span>
+                        <a href="#getLocalStorageSesionToken"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getLocalStorageSesionToken()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../classes/AuthHelper.html" target="_self" >AuthHelper</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:33</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>string | null</code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getNormalTokenFromUser"></a>
                     <span class="name">
                         <span ><b>getNormalTokenFromUser</b></span>
@@ -1009,7 +1703,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:21</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:42</a></code>
 </div>
                 </td>
             </tr>
@@ -1062,16 +1756,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getUserFromJWTCredential"></a>
+                    <a name="removeLocalStorageSesion"></a>
                     <span class="name">
-                        <span ><b>getUserFromJWTCredential</b></span>
-                        <a href="#getUserFromJWTCredential"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>removeLocalStorageSesion</b></span>
+                        <a href="#removeLocalStorageSesion"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getUserFromJWTCredential(jwtCredential: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>removeLocalStorageSesion()</code>
                 </td>
             </tr>
 
@@ -1084,7 +1778,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:46</a></code>
+                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:115</a></code>
 </div>
                 </td>
             </tr>
@@ -1092,49 +1786,12 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>takes a jwt credential and returns User created with this data</p>
+                    <div class="io-description"><p>Delete user session from local storage</p>
 </div>
 
                     <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>jwtCredential</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>is a JWT credential</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
                     </div>
                 </td>
             </tr>
@@ -1144,16 +1801,16 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getUserFromNormalToken"></a>
+                    <a name="saveLocalStorageSesionToken"></a>
                     <span class="name">
-                        <span ><b>getUserFromNormalToken</b></span>
-                        <a href="#getUserFromNormalToken"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>saveLocalStorageSesionToken</b></span>
+                        <a href="#saveLocalStorageSesionToken"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getUserFromNormalToken(token: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>saveLocalStorageSesionToken(token: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, userId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
@@ -1174,8 +1831,6 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>takes a normal token and return a User created with this data</p>
-</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -1201,73 +1856,10 @@
 
 
                                 </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="saveLocalStorageUserNormalToken"></a>
-                    <span class="name">
-                        <span ><b>saveLocalStorageUserNormalToken</b></span>
-                        <a href="#saveLocalStorageUserNormalToken"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>saveLocalStorageUserNormalToken(token: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../classes/AuthHelper.html" target="_self" >AuthHelper</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:18</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        
-                        <table class="params">
-                            <thead>
                                 <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>token</td>
+                                    <td>userId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
                                     </td>
 
                                     <td>
@@ -1318,7 +1910,61 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/core/services/auth/auth.service.ts:19</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/core/services/auth/auth.service.ts:35</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="login$"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>login$</b></span>
+                        <a href="#login$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BehaviorSubject&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/core/services/auth/auth.service.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="signup$"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>signup$</b></span>
+                        <a href="#signup$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>BehaviorSubject&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/core/services/auth/auth.service.ts:37</a></div>
                         </td>
                     </tr>
 
@@ -1345,7 +1991,52 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/core/services/auth/auth.service.ts:18</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/core/services/auth/auth.service.ts:34</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="API_AUTH_SERVICE_ROUTES"></a>
+                    <span class="name">
+                            <span class="modifier">Protected</span>
+                            <span class="modifier">Static</span>
+                        <span ><b>API_AUTH_SERVICE_ROUTES</b></span>
+                        <a href="#API_AUTH_SERVICE_ROUTES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    LOGOUT:&quot;logout&quot;,
+    LOGIN:&quot;login&quot;,
+    SIGNUP:&quot;register&quot;,
+    FETCH_USER:&quot;users&quot;
+  }</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/AuthHelper.html" target="_self" >AuthHelper</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:12</a></code>
+</div>
                         </td>
                     </tr>
 
@@ -1377,7 +2068,7 @@
                         </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:10</a></code>
+                                <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:20</a></code>
 </div>
                         </td>
                     </tr>
@@ -1400,6 +2091,84 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>environment.url</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/AuthHelper.html" target="_self" >AuthHelper</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:19</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="USER_ID_ENCODED"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>USER_ID_ENCODED</b></span>
+                        <a href="#USER_ID_ENCODED"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;userIdCoded&quot;</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Inherited from         <code><a href="../classes/AuthHelper.html" target="_self" >AuthHelper</a></code>
+</div>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/AuthHelper.html#source" target="_self" >AuthHelper:10</a></code>
+</div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="USER_LOGIN_TOKEN"></a>
+                    <span class="name">
+                            <span class="modifier">Static</span>
+                        <span ><b>USER_LOGIN_TOKEN</b></span>
+                        <a href="#USER_LOGIN_TOKEN"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&quot;userLoginToken&quot;</code>
                     </td>
                 </tr>
                         <tr>
@@ -1463,9 +2232,21 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpClient } from &#x27;@angular/common/http&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { dialogUserRegisterWrongEmailAction, userSignInRequestAction } from &#x27;./../../../ngrx/actions/auth/user-auth.actions&#x27;;
+import { IAppState } from &#x27;./../../../ngrx/app.state&#x27;;
+import { userRegisterRequestAction } from &#x27;src/app/ngrx/actions/auth/user-auth.actions&#x27;;
+
+import { DialogErrorEmailComponent } from &#x27;./../../../shared/components/dialog-error-email/dialog-error-email.component&#x27;;
+import { DialogYesNoComponent } from &#x27;./../../../shared/components/dialog-yes-no/dialog-yes-no.component&#x27;;
+
+import { IUserRegisterResponse } from &#x27;./../../../shared/interfaces/transactions/user-register-response.interface&#x27;;
+import { IUserLogoutResponse } from &#x27;./../../../shared/interfaces/transactions/user-logout-response.interface&#x27;;
+import { IUserLoginResponse } from &#x27;./../../../shared/interfaces/transactions/user-login-response.interface&#x27;;
+import { AppRoutingModule } from &#x27;./../../../modules/app/app.routes&#x27;;
+import { ProfileService } from &#x27;../profile/profile.service&#x27;;
+import { HttpClient, HttpParams } from &#x27;@angular/common/http&#x27;;
 import { SidenavService } from &#x27;./../sidenav/sidenav.service&#x27;;
-import { Router, ActivatedRoute } from &#x27;@angular/router&#x27;;
+import { Router, ActivatedRoute, NavigationEnd } from &#x27;@angular/router&#x27;;
 import { AuthHelper } from &#x27;./auth.helper&#x27;;
 import { User } from &#x27;./../../../shared/models/user.model&#x27;;
 import { IUser } from &#x27;./../../../shared/interfaces/user.interface&#x27;;
@@ -1473,25 +2254,32 @@ import { Injectable } from &quot;@angular/core&quot;;
 import { CredentialResponse, PromptMomentNotification } from &#x27;google-one-tap&#x27;;
 import { BehaviorSubject, catchError, map, Observable, Subject } from &quot;rxjs&quot;;
 
+import {MatDialog} from &#x27;@angular/material/dialog&#x27;;
+import { Store } from &#x27;@ngrx/store&#x27;;
+
+
+
 @Injectable({
   providedIn:&#x27;root&#x27;
 })
 
 export class AuthService extends AuthHelper{
 
-
-  private user$:BehaviorSubject&lt;User | null&gt;;
+  private user$:BehaviorSubject&lt;User|null&gt;;
   private googleAuthServiceInitialized$: BehaviorSubject&lt;boolean&gt;;
+  private login$:BehaviorSubject&lt;boolean&gt;;
+  private signup$:BehaviorSubject&lt;boolean&gt;;
   constructor(
     private router:Router,
-    private activatedRoute:ActivatedRoute,
     private sidenavService:SidenavService,
-    protected override http:HttpClient
+    protected override http:HttpClient,
+    private store:Store&lt;IAppState&gt;
   ){
     super(http)
-    this.user$ &#x3D; new BehaviorSubject&lt;User | null&gt;(null);
+    this.user$ &#x3D; new BehaviorSubject&lt;User|null&gt;({} as User);
     this.googleAuthServiceInitialized$&#x3D; new BehaviorSubject&lt;boolean&gt;(false)
-    this.loadUser()
+    this.login$ &#x3D; new BehaviorSubject&lt;boolean&gt;(false)
+    this.signup$ &#x3D; new BehaviorSubject&lt;boolean&gt;(false)
   }
 
   /**
@@ -1503,7 +2291,7 @@ export class AuthService extends AuthHelper{
         // Ref: https://developers.google.com/identity/gsi/web/reference/js-reference#IdConfiguration
         client_id: &#x27;759619919579-k8fci80tiq63alhfh9ome4dihlaiqm8q.apps.googleusercontent.com&#x27;,
         callback: this.handleCredentialResponse.bind(this), // Whatever function you want to trigger...
-        auto_select: true,
+        auto_select: false,
         cancel_on_tap_outside:false
       });
       this.googleAuthServiceInitialized$.next(true);
@@ -1519,47 +2307,69 @@ export class AuthService extends AuthHelper{
   /**
    *  clean user session
    */
-  logout(){
-    this.removeLocalStorageSesion()
-    this.user$.next(null)
-    this.sidenavService.sidenavUserNotLogged()
+  userLogout():Observable&lt;
+  {
+    error:boolean,
+    msg:string
+  }&gt;{
+
+    const response &#x3D; {
+      error:false,
+      msg:&#x27;&#x27;
+    };
+
+    return this.http.post&lt;IUserLogoutResponse&gt;(this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.LOGOUT,{}
+    )
+    .pipe(
+      map( r &#x3D;&gt;{
+        response.msg &#x3D; r.msg;
+        this.removeLocalStorageSesion()
+        this.sidenavService.sidenavUserNotLogged()
+        this.router.navigate([&quot;/&quot;+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
+        return response
+      }),
+      catchError(this.errorLogout)
+    );
   }
 
-  /**
-   * Delete user session from local storage
-   */
-   removeLocalStorageSesion(){
-    localStorage.removeItem(AuthHelper.USER_OMBP_SESION)
-  }
+
   /**
    * Shows google one tap
    */
   promptGoogleOneTap(){
-
-      // @ts-ignore
-      google.accounts.id.prompt((notification: PromptMomentNotification) &#x3D;&gt; {
-        if (notification.isSkippedMoment() &amp;&amp; notification.getSkippedReason() &#x3D;&#x3D;&#x3D; &#x27;user_cancel&#x27;){
-          // @ts-ignore
-          console.log(&quot;user canceled------------------&quot;)
-        }
-        if (notification.getDismissedReason() &#x3D;&#x3D;&#x3D; &#x27;credential_returned&#x27;) {
-        }
-      });
+      if(this.user$.getValue()&#x3D;&#x3D;null){
+        // @ts-ignore
+        google.accounts.id.prompt((notification: PromptMomentNotification) &#x3D;&gt; {
+          if (notification.isSkippedMoment() &amp;&amp; notification.getSkippedReason() &#x3D;&#x3D;&#x3D; &#x27;user_cancel&#x27;){
+            // @ts-ignore
+            console.log(&quot;user canceled------------------&quot;)
+          }
+          if (notification.getDismissedReason() &#x3D;&#x3D;&#x3D; &#x27;credential_returned&#x27;) {
+          }
+        });
+      }
   }
   /**
    * catch callback when user signin
    * @param response
    */
   handleCredentialResponse(response: CredentialResponse) {
-    // Decoding  JWT token...
-      try {
-        let tempUser:User &#x3D; this.getUserFromJWTCredential(response?.credential)
-        this.user$.next(tempUser)
-        this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(tempUser));
-        this.sidenavService.sidenavUserLogged()
-      } catch (e) {
-        console.error(&#x27;Error while trying to decode token&#x27;, e);
+    try {
+      if(this.router.url &#x3D;&#x3D; &quot;/&quot;+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SIGNUP){
+          let jwtDecodedToken &#x3D; this.decodeJWTCredential(response?.credential)
+          if(jwtDecodedToken.email.toString().split(&#x27;@&#x27;)[1]&#x3D;&#x3D;&quot;unsa.edu.pe&quot;){
+            this.store.dispatch(userRegisterRequestAction({email:jwtDecodedToken.email.toString()}))//TODO: calling register request action and send parameter email
+          }else{
+            this.store.dispatch(dialogUserRegisterWrongEmailAction())
+          }
+      }else if(this.router.url &#x3D;&#x3D; &quot;/&quot;+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SINGIN){
+
+          let jwtDecodedToken &#x3D; this.decodeJWTCredential(response?.credential)
+          this.store.dispatch(userSignInRequestAction({email:jwtDecodedToken.email.toString()}))
       }
+    } catch (e) {
+      console.error(&#x27;Error while trying to decode token&#x27;, e);
+    }
   }
 
   /**
@@ -1570,18 +2380,55 @@ export class AuthService extends AuthHelper{
     return this.user$.asObservable();
   }
 
+
+  fetchUser(userId:number):Observable&lt;
+  {
+    error:boolean,
+    msg:string,
+    data:IUser
+  }&gt;{
+    const response &#x3D; {
+      error:false,
+      msg:&#x27;&#x27;,
+      data:{} as IUser
+    };
+    const params &#x3D; new HttpParams()
+    .set(&#x27;id&#x27;,userId)
+    return this.http.get&lt;IUserLoginResponse&gt;(
+      this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.FETCH_USER,{params}
+      )
+      .pipe(
+        map( r &#x3D;&gt;{
+          if(r.code!&#x3D;404){
+            response.data &#x3D; r.data.user;
+            this.sidenavService.sidenavUserLogged()
+          }else{
+            response.error &#x3D; true;
+          }
+          return response
+        }),
+        catchError(this.errorSignIn)
+      );
+  }
+
   /**
    * Load User if it exists in local storage
    */
-  private loadUser():void{
-    const token &#x3D; localStorage.getItem(AuthHelper.USER_OMBP_SESION)
-    if(token){
-      this.user$.next(this.getUserFromNormalToken(token))
-      this.sidenavService.sidenavUserLogged()
-    }
+  loadUser():Observable&lt;{
+    error: boolean;
+    msg: string;
+    data: IUser;
+  }&gt;{
+      const userId:number &#x3D; Number(localStorage.getItem(AuthHelper.USER_ID_ENCODED))
+      return this.fetchUser(userId)
   }
 
-  normalUserSignUp(email: string, password: string): Observable&lt;
+  isSesionUp(){
+    const token &#x3D; localStorage.getItem(AuthHelper.USER_LOGIN_TOKEN)
+    return token!&#x3D;null
+  }
+
+  userSignUp(email: string, image:string): Observable&lt;
   {
     error:boolean,
     msg:string,
@@ -1593,16 +2440,20 @@ export class AuthService extends AuthHelper{
       data:{} as IUser
     };
 
-    /*let credential:string &#x3D; JSON.stringify({gmail:gmail,password:password})
-    this.http.get&lt;IUser[]&gt;(this.url + &quot;users&quot; + &#x27;?token&#x3D;&#x27; + btoa(credential))*/
-    //return this.http.get&lt;IUser[]&gt;(this.url + &quot;users?userId&#x3D;1&quot;)
-    console.log(JSON.stringify(new User(3,email.split(&#x27;@&#x27;)[0],&#x27;&#x27;,email,password,0,&#x27;&#x27;)))
-    return this.http.post&lt;IUser&gt;(this.url + &quot;users&quot;, new User(3,email.split(&#x27;@&#x27;)[0],&#x27;&#x27;,email,password,0,&#x27;&#x27;))
+    return this.http.post&lt;IUserRegisterResponse&gt;(
+      this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.SIGNUP,
+      {
+        &quot;email&quot;:email,
+        &quot;image&quot;:image
+      }
+    )
     .pipe(
       map( r &#x3D;&gt;{
-        response.data &#x3D; r;
-        this.user$.next(response.data)
-        this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data))
+        console.log(r)
+        response.data &#x3D; new User(r.data.user.id,r.data.user.email);
+        this.sidenavService.sidenavUserLogged()
+        this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)
+        //this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data))
         return response
       }),
       catchError(this.errorSignUp)
@@ -1616,35 +2467,59 @@ export class AuthService extends AuthHelper{
    * @param password user password
    * @returns
    */
-  normalUserSignin(gmail:string, password:string):Observable&lt;
+  userSignIn(email:string):Observable&lt;
   {
     error:boolean,
     msg:string,
-    data:IUser[]
+    data:IUser
   }&gt;{
 
     const response &#x3D; {
       error:false,
       msg:&#x27;&#x27;,
-      data:[] as IUser[]
+      data:{} as IUser
     };
-
-    /*let credential:string &#x3D; JSON.stringify({gmail:gmail,password:password})
-    this.http.get&lt;IUser[]&gt;(this.url + &quot;users&quot; + &#x27;?token&#x3D;&#x27; + btoa(credential))*/
-    //return this.http.get&lt;IUser[]&gt;(this.url + &quot;users?userId&#x3D;1&quot;)
-    return this.http.get&lt;IUser[]&gt;(this.url + &quot;users&quot; + &#x27;?userEmail&#x3D;&#x27; +gmail+ &#x27;&amp;userPassword&#x3D;&#x27;+ password)
+    return this.http.post&lt;IUserLoginResponse&gt;(
+      this.url+AuthHelper.API_AUTH_SERVICE_ROUTES.LOGIN,
+    {
+      &quot;email&quot;:email
+    }
+    )
     .pipe(
       map( r &#x3D;&gt;{
-        response.data &#x3D; r;
-        this.user$.next(response.data[0])
-        this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data[0]))
+        let tempuser:User &#x3D; new User(
+          r.data.user.id,
+          r.data.user.email
+        )
+        response.data &#x3D; tempuser;
+        this.sidenavService.sidenavUserLogged()
+        this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)
         return response
       }),
       catchError(this.errorSignIn)
     );
   }
+
+  loginStatus():Observable&lt;boolean&gt;{
+    return this.login$.asObservable();
+  }
+  signupStatus():Observable&lt;boolean&gt;{
+    return this.signup$.asObservable();
+  }
+  getUserLoginToken():string|null|undefined {
+    return this.getLocalStorageSesionToken()
+  }
   isUserSigned():boolean{
     return this.user$.getValue()!&#x3D;null
+  }
+  isUserProfileCreated():boolean{
+    return this.user$.getValue()!&#x3D;null
+  }
+  setLoginStatus(status:boolean){
+    this.login$.next(status)
+  }
+  setSignUpStatus(status:boolean){
+    this.signup$.next(status)
   }
 }
 </code></pre>

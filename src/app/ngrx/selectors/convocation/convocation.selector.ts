@@ -22,3 +22,7 @@ export const convocationDetailStateSelector = createSelector(
   convocationStateSelector,
   (convocationState:IConvocationState)=>convocationState.convocationDetail
 )
+export const convocationTypeStateSelector = createSelector(
+  convocationStateSelector,
+  (convocationState:IConvocationState)=>convocationState.convocation?.type
+)

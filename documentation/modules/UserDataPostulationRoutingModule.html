@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/modules/user-data-postulation/user-data-postulation.routes.ts</code>
+            <code>src/app/modules/postulation/user-data-postulation.routes.ts</code>
         </p>
 
 
@@ -72,14 +72,19 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { FillFileComponent } from &#x27;./fill-file/fill-file.component&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { FillFileComponent } from &#x27;./pages/fill-file/fill-file.component&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { NgModule } from &#x27;@angular/core&#x27;;
 
-import {VerifyDataComponent} from &quot;./verify-data/verify-data.component&quot;;
-import {UploadFilesComponent} from &quot;./upload-files/upload-files.component&quot;;
-import {UserDataPostulationBodyComponent} from &quot;./user-data-postulation-body/user-data-postulation-body.component&quot;;
+import {VerifyDataComponent} from &quot;./pages/verify-data/verify-data.component&quot;;
+import {UploadFilesComponent} from &quot;./pages/upload-files/upload-files.component&quot;;
+import {UserDataPostulationBodyComponent} from &quot;./body/user-data-postulation-body.component&quot;;
 
+const PostulacionRoutesValues &#x3D; {
+  ROUTE_POSTULACION_VERIFY_DATA: &quot;verificacion&quot;,
+  ROUTE_POSTULACION_FILL_FILE: &quot;llenar-ficha&quot;,
+  ROUTE_POSTULACION_UPOLOAD_FILES: &quot;cargar-archivos&quot;
+};
 const UserDataPostulationRoutes: Routes &#x3D; [
   {
     path: &#x27;&#x27;,
@@ -87,19 +92,19 @@ const UserDataPostulationRoutes: Routes &#x3D; [
     children:[
       {
         path:&#x27;&#x27;,
-        redirectTo:&#x27;verificacion-informacion-usuario&#x27;,
+        redirectTo:&quot;verificacion&quot;,
         pathMatch:&#x27;full&#x27;
       },
       {
-        path: &#x27;verificacion-informacion-usuario&#x27;,
+        path: &quot;verificacion&quot;,
         component:VerifyDataComponent,
       },
       {
-        path: &#x27;llenar-ficha-usuario&#x27;,
+        path: &quot;llenar-ficha&quot;,
         component:FillFileComponent,
       },
       {
-        path: &#x27;cargar-archivo-usuario&#x27;,
+        path: &quot;cargar-archivos&quot;,
         component:UploadFilesComponent,
       }
     ]
@@ -115,7 +120,9 @@ const UserDataPostulationRoutes: Routes &#x3D; [
     RouterModule
   ]
 })
-export class UserDataPostulationRoutingModule { }
+export class UserDataPostulationRoutingModule {
+  public static  ROUTES_VALUES &#x3D; PostulacionRoutesValues;
+}
 </code></pre>
     </div>
 </div>

@@ -11,6 +11,10 @@ import { HttpClient } from '@angular/common/http';
 import { ENUMConvocationType } from 'src/app/shared/enum/convocation-type.enum';
 
 
+/**
+ * Esta clase cubre la necesidad de obtener toda la información correspondiente a la entidad Convocation del modelo de base de datos
+ */
+
 @Injectable({
   providedIn:'root'
 })
@@ -42,7 +46,7 @@ export class ConvocationService extends ConvocationHelper{
       correlative:"PIVE-2022",
       type:{
         id:0,
-        name:ENUMConvocationType.PIVE
+        name:ENUMConvocationType.PIVDO
       },
       description: "ALUMNO AGUSTINO, ANUNCIAMOS LA SEGUNDA CONVOCATORIA DEL PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022 Selecciona tu evento internacional o nacional, que se realice hasta diciembre de este año, y postula!!",
       start_date:'15/10/2022 10:30',
@@ -110,6 +114,15 @@ export class ConvocationService extends ConvocationHelper{
           type:{
             id:1,
             description:ENUMDocumentType.ConvocationDocument
+          }
+        },
+        {
+          id:2,
+          path:"https://www.unsa.edu.pe/wp-content/uploads/2022/05/PIVE-2022-2da.-1_001-878x426.png",
+          description:"Banner de convocatoria",
+          type:{
+            id:2,
+            description:ENUMDocumentType.ConvocationBanner
           }
         }
       ],

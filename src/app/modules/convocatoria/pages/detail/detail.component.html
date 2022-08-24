@@ -44,22 +44,8 @@
         </div>
       </div>
 
-      <div class="card-container" *ngIf=" documents$ | async as documents">
-        <div class="title">Documentos</div>
-        <div class="card-content">
-          <div class="item-container" *ngFor="let item of documents">
-            <div class="item-circle-number">
-              <span class="icon-container">
-                <i class="icon" ngClass = "pi pi-shopping-cart">
-                </i>
-              </span>
-            </div>
-            <div class="item-description">
-              {{item.description}}
-            </div>
-          </div>
-        </div>
-      </div>
+      <router-outlet></router-outlet>
+
   </div>
   <div class="timeline-container">
     <p-timeline [value]="events1" align="alternate">
