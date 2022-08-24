@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../../../core/services/auth/auth.service";
+import {AdminService} from "../../../../core/services/admin/admin.service";
+import {IAdmin} from "../../../../shared/interfaces/admin.interface";
+import {Store} from "@ngrx/store";
+import {IAppState} from "../../../../ngrx/app.state";
+import {adminSignInRequestAction} from "../../../../ngrx/actions/admin/admin-auth.actions";
 
 @Component({
   selector: 'app-admin-login',
@@ -12,7 +16,8 @@ export class AdminLoginComponent implements OnInit {
   public signInForm: FormGroup
 
   constructor(
-    private authService:AuthService,
+    private adminService:AdminService,
+    private store:Store<IAppState>,
   ) {
     this.signInForm = new FormGroup({
       email: new FormControl('',[Validators.required,Validators.email]),
@@ -29,8 +34,12 @@ export class AdminLoginComponent implements OnInit {
     return this.signInForm.get('password');
   }
   submitSignIn():void{
-    this.authService.userSignIn(this.signInForm.value["email"]).subscribe(data =>{
-    })
+    let userAdmin: IAdmin|null= {}as IAdmin
+    userAdmin.email = this.signInForm.value["email"],
+    userAdmin.password = this.signInForm.value["password"]
+    console.log("admin",userAdmin)
+    this.store.dispatch(adminSignInRequestAction(userAdmin))
+
   }
 
 }

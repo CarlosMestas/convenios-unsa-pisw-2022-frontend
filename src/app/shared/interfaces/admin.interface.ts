@@ -1,4 +1,5 @@
 export interface IAdmin{
   id:number,
-  email:string
+  email:string,
+  password:string
 }

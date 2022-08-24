@@ -3,5 +3,6 @@ export const AdminAuthInitialState:IAdminAuthState = {
   working:false,
   admin:null,
   email:null,
+  password:null,
   id:-1,
  }

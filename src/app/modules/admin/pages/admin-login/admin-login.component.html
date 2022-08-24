@@ -5,7 +5,7 @@
       <h1>Iniciar Sesión</h1>
     </div>
     <div class="login-container__left__body">
-      <form class="fields-form-signin" (ngSubmit) = "submitSignIn()">
+      <form [formGroup] = "signInForm" class="fields-form-signin" (ngSubmit) = "submitSignIn()">
         <div class="form-item form-item-field-email">
           <div class="form-label form-signin-label-field-email">
             Correo
@@ -20,7 +20,7 @@
           <input class="form-input-text form-signin-input-field-password" type="password" formControlName="password" id="password" placeholder="Ingresa tu contraseña">
           <span class="invalid-field"  *ngIf = "password && password.invalid && password.touched">El contenido ingresado es incorrecto</span>
         </div>
-        <input class="submit-form" type="submit" value="Iniciar Sesión"  [disabled] = "signInForm.invalid" style="margin-top: 10px">
+        <input class="submit-form" type="submit" value="Iniciar Sesión"  style="margin-top: 10px">
       </form>
     </div>
   </div>
