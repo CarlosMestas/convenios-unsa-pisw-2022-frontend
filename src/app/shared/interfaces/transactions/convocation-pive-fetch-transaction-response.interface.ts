@@ -1,6 +1,6 @@
 import { IRequirement } from './../requirements/requirement.interface';
 import { IDocument } from './../documents-convocation/document.interface';
-import { IConvocationPIVE } from './../convocation/convocation-pive.interface';
+import { IConvocationPIV } from '../convocation/convocation-piv.interface';
 export interface IConvocationPIVEFetchTransactionResponse{
-  detail:IConvocationPIVE
+  detail:IConvocationPIV
 }

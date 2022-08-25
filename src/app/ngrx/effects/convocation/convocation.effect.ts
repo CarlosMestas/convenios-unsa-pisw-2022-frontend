@@ -3,6 +3,7 @@ import { mergeMap, map, catchError, EMPTY } from 'rxjs';
 import { ConvocationService } from './../../../core/services/convocation/convocation.service';
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { DocumentActions } from '../../actions/convocation/document.actions';
 
 
 @Injectable()
@@ -42,33 +43,5 @@ export class ConvocationEffect{
       catchError(()=>EMPTY)
     )
     )
-  ))
-
-  convocationFetchSuccessToRequirementEffect = createEffect(()=>this.actions$.pipe(
-    ofType(convocationFetchSuccessAction),
-    mergeMap((action)=>this.convocationService.getRequirements(action.convocation.id)
-    .pipe(
-      map((resp)=>{
-        return {
-          type: ConvocationActions.CONVOCATION_REQUIREMENTS_FETCH_SUCCESS_ACTION,
-          requirements:resp.data
-        }
-      }),
-      catchError(()=>EMPTY)
-    ))
-  ))
-
-  convocationFetchSuccessToDocumentEffect = createEffect(()=>this.actions$.pipe(
-    ofType(convocationFetchSuccessAction),
-    mergeMap((action)=>this.convocationService.getRequirements(action.convocation.id)
-    .pipe(
-      map((resp)=>{
-        return {
-          type: ConvocationActions.CONVOCATION_REQUIREMENTS_FETCH_SUCCESS_ACTION,
-          requirements:resp.data
-        }
-      }),
-      catchError(()=>EMPTY)
-    ))
   ))
 }
