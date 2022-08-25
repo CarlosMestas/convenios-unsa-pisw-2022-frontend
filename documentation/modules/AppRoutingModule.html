@@ -72,21 +72,27 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { SignupComponent } from &#x27;./pages/signup/signup.component&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { RequestAccessComponent } from &#x27;./pages/request-access/request-access.component&#x27;;
+import { SignupComponent } from &#x27;./pages/signup/signup.component&#x27;;
 import { SigninComponent } from &#x27;./pages/signin/signin.component&#x27;;
 import { HomeComponent } from &#x27;./pages/home/home.component&#x27;;
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
+import {UserProfileComponent} from &#x27;./pages/user-profile/user-profile.component&#x27;
 import { NgModule } from &quot;@angular/core&quot;;
 
 const AppRoutesValues &#x3D; {
+  ROUTE_ADMIN_HOME:&quot;admin&quot;,
   ROUTE_APP_HOME: &quot;home&quot;,
   ROUTE_APP_WHO_WE_ARE: &quot;quienes-somos&quot;,
   ROUTE_APP_CONTACT: &quot;contacto&quot;,
   ROUTE_APP_SINGIN: &quot;iniciar-sesion&quot;,
   ROUTE_APP_SIGNUP: &quot;registrar-cuenta&quot;,
-  ROUTE_APP_USERS: &quot;usuarios&quot;,
+  ROUTE_APP_REQUEST_ACCESS: &quot;solicitar-acceso&quot;,
+  ROUTE_APP_REGISTER_USER_DATA: &quot;registrar-datos-usuario&quot;,
   ROUTE_APP_CONVOCATORIA: &quot;convocatorias&quot;,
   ROUTE_APP_APPLY: &quot;postulacion&quot;,
+  ROUTE_APP_POSTULACION: &quot;usuario-postulacion&quot;,
+  ROUTE_APP_USER_PROFILE: &quot;profile&quot;
 };
 const AppRoutes: Routes  &#x3D; [
   {
@@ -117,7 +123,11 @@ const AppRoutes: Routes  &#x3D; [
     component:SignupComponent
   },
   {
-    path: &quot;usuarios&quot;,
+    path:&quot;solicitar-acceso&quot;,
+    component:RequestAccessComponent
+  },
+  {
+    path: &quot;registrar-datos-usuario&quot;,
     loadChildren:()&#x3D;&gt;&quot;import(&#x27;../user-data-register/user-data-register.module&#x27;).then(m &#x3D;&gt; m.UserDataRegisterModule)&quot;
   },
   {
@@ -125,9 +135,21 @@ const AppRoutes: Routes  &#x3D; [
     loadChildren:()&#x3D;&gt;&quot;import(&#x27;../convocatoria/convocatoria.module&#x27;).then(m &#x3D;&gt; m.ConvocatoriaModule)&quot;
   },
   {
+    path:&quot;usuario-postulacion&quot;+&quot;/:id&quot;,
+    loadChildren:()&#x3D;&gt;&quot;import(&#x27;../postulation/user-data-postulation.module&#x27;).then(m&#x3D;&gt; m.UserDataPostulationModule)&quot;
+  },
+  {
     path: &quot;postulacion&quot;,
-    loadChildren:()&#x3D;&gt;&quot;import(&#x27;../user-data-postulation/user-data-postulation.module&#x27;).then(m &#x3D;&gt; m.UserDataPostulationModule)&quot;
-  }
+    loadChildren:()&#x3D;&gt;&quot;import(&#x27;../postulation/user-data-postulation.module&#x27;).then(m &#x3D;&gt; m.UserDataPostulationModule)&quot;
+  },
+  {
+    path:&quot;admin&quot;,
+    loadChildren:()&#x3D;&gt;&quot;import(&#x27;../admin/admin.module&#x27;).then(m&#x3D;&gt;m.AdminModule)&quot;
+  },
+  {
+    path: &quot;profile&quot;,
+    component: UserProfileComponent
+  },
 ]
 
 @NgModule({

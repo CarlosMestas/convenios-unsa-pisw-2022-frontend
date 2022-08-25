@@ -1,4 +1,4 @@
-import { IConvocatoria } from './../../../shared/interfaces/convocatoria.interface';
+import { IConvocation } from '../../../shared/interfaces/convocation.interface';
 import { environment } from 'src/environments/environment.prod';
 import{HttpClient,HttpErrorResponse} from '@angular/common/http'
 import { of } from 'rxjs';
@@ -20,7 +20,7 @@ export class PostulacionHelper {
     return of({
       error:true,
       msg: errorMessage,
-      data: [] as IConvocatoria[]
+      data: [] as IConvocation[]
     })
   }
 }

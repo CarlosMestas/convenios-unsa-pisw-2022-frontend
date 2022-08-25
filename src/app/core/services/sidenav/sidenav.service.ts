@@ -5,7 +5,6 @@ import { AppRoutingModule } from './../../../modules/app/app.routes';
 
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable } from 'rxjs';
-import { IConvocatoria } from 'src/app/shared/interfaces/convocatoria.interface';
 import { SidenavHelper } from './sidenav.helper';
 
 import { faHouseUser,faQuestion, faPhone,faUser} from '@fortawesome/free-solid-svg-icons';

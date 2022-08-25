@@ -3,7 +3,7 @@ import { userLoadRequestAction } from './../../../ngrx/actions/auth/user-auth.ac
 import { IAppState } from './../../../ngrx/app.state';
 import { Store } from '@ngrx/store';
 import { AuthService } from './../../../core/services/auth/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SideNavToggle } from './../../../shared/interfaces/sidenav.interface';
 import { Title } from '@angular/platform-browser';
 import { dialogProfileNotConfiguredSelector } from 'src/app/ngrx/selectors/profile/profile.selector';

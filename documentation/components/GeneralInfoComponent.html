@@ -125,6 +125,20 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#typesDocument" >typesDocument</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -155,15 +169,45 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor()</code>
+<code>constructor(tipoDocumentoService: <a href="../injectables/TipoDocumentoService.html" target="_self">TipoDocumentoService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/modules/user-data-register/pages/general-info/general-info.component.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/modules/user-data-register/pages/general-info/general-info.component.ts:12</a></div>
                             </td>
                         </tr>
 
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>tipoDocumentoService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/TipoDocumentoService.html" target="_self" >TipoDocumentoService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
 </section>
@@ -197,8 +241,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app/modules/user-data-register/pages/general-info/general-info.component.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="17"
+                            class="link-to-prism">src/app/modules/user-data-register/pages/general-info/general-info.component.ts:17</a></div>
                 </td>
             </tr>
 
@@ -215,12 +259,51 @@
         </tbody>
     </table>
 </section>
+    <section>
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="typesDocument"></a>
+                    <span class="name">
+                        <span ><b>typesDocument</b></span>
+                        <a href="#typesDocument"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/ITipoDocumento.html" target="_self" >ITipoDocumento[] | null</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/modules/user-data-register/pages/general-info/general-info.component.ts:12</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ITipoDocumento } from &#x27;./../../../../shared/interfaces/tipo-documento.interface&#x27;;
+import { TipoDocumentoService } from &#x27;./../../../../core/services/tipo-documento/tipo-documento.service&#x27;;
+import { Component, OnInit } from &#x27;@angular/core&#x27;;
 
 @Component({
   selector: &#x27;app-general-info&#x27;,
@@ -229,9 +312,15 @@
 })
 export class GeneralInfoComponent implements OnInit {
 
-  constructor() { }
+  typesDocument:ITipoDocumento[]|null &#x3D; null
+  constructor(
+    private tipoDocumentoService:TipoDocumentoService
+  ) { }
 
   ngOnInit(): void {
+    this.tipoDocumentoService.fetchDocuments().subscribe( documents &#x3D;&gt; {
+      this.typesDocument &#x3D; documents.data
+    })
   }
 
 }
@@ -245,14 +334,13 @@ export class GeneralInfoComponent implements OnInit {
       &lt;div class&#x3D;&quot;form-item form-item-field-names&quot;&gt;
         &lt;div class&#x3D;&quot;form-label form-label-field-name&quot;&gt;
           Nombres
-          &lt;app-tooltip-red-small class&#x3D;&quot;tooltip&quot;&gt;&lt;/app-tooltip-red-small&gt;
         &lt;/div&gt;
         &lt;input class&#x3D;&quot;form-input-text form-input-field-name&quot; type&#x3D;&quot;text&quot; name&#x3D;&quot;name&quot; id&#x3D;&quot;name&quot; placeholder&#x3D;&quot;Ingresa tu Nombre&quot;&gt;
       &lt;/div&gt;
       &lt;div class&#x3D;&quot;form-item form-item-field-lastname&quot;&gt;
         &lt;div class&#x3D;&quot;form-label form-label-field-lastname&quot;&gt;
           Apellidos
-          &lt;app-tooltip-red-small class&#x3D;&quot;tooltip&quot;&gt;&lt;/app-tooltip-red-small&gt;
+
         &lt;/div&gt;
         &lt;input class&#x3D;&quot;form-input-text form-input-field-lastname&quot; type&#x3D;&quot;text&quot; name&#x3D;&quot;lastname&quot; id&#x3D;&quot;lastname&quot; placeholder&#x3D;&quot;Ingresa tu apellido&quot;&gt;
       &lt;/div&gt;
@@ -283,7 +371,10 @@ export class GeneralInfoComponent implements OnInit {
         &lt;div class&#x3D;&quot;form-label form-label-field-dni&quot;&gt;
           Número de DNI
         &lt;/div&gt;
-        &lt;input class&#x3D;&quot;form-input-text form-input-field-dni&quot; type&#x3D;&quot;text&quot; name&#x3D;&quot;dni&quot; id&#x3D;&quot;dni&quot; placeholder&#x3D;&quot;Ingresa tu Número de DNI&quot;&gt;
+        &lt;select class&#x3D;&quot;form-input-text form-input-field-document&quot; name&#x3D;&quot;typedoc&quot; id&#x3D;&quot;typedoc&quot; *ngIf &#x3D; &quot;typesDocument&quot;&gt;
+          &lt;option value&#x3D;&quot;Alumno UNSA&quot;   *ngFor &#x3D; &quot;let typeDocument of typesDocument&quot;&gt;{{typeDocument.documentName}}&lt;/option&gt;
+        &lt;/select&gt;
+
       &lt;/div&gt;
     &lt;/div&gt;
     &lt;div class&#x3D;&quot;buttons-handler&quot;&gt;
@@ -375,8 +466,8 @@ export class GeneralInfoComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="general-info-container">  <div class="form-container">    <div class="fields-form">      <div class="form-item form-item-field-names">        <div class="form-label form-label-field-name">          Nombres          <app-tooltip-red-small class="tooltip"></app-tooltip-red-small>        </div>        <input class="form-input-text form-input-field-name" type="text" name="name" id="name" placeholder="Ingresa tu Nombre">      </div>      <div class="form-item form-item-field-lastname">        <div class="form-label form-label-field-lastname">          Apellidos          <app-tooltip-red-small class="tooltip"></app-tooltip-red-small>        </div>        <input class="form-input-text form-input-field-lastname" type="text" name="lastname" id="lastname" placeholder="Ingresa tu apellido">      </div>      <div class="form-item form-item-field-address">        <div class="form-label form-label-field-address">          Dirección        </div>        <input class="form-input-text form-input-field-address" type="text" name="address" id="address" placeholder="Ingresa tu Dirección">      </div>      <div class="form-item form-item-field-typeuser">        <div class="form-label form-label-field-typeuser">          Tipo de Usuario        </div>        <select class="form-input-text form-input-field-typeuser" name="typeuser" id="typeuser">          <option value="Alumno UNSA">Alumno UNSA</option>          <option value="Alumno Externo">Alumno Externo</option>          <option value="Docente UNSA">Docente UNSA</option>          <option value="Docente Externo">Docente Externo</option>        </select>      </div>      <div class="form-item form-item-field-phonenumber">        <div class="form-label form-label-field-phonenumber">          Número de Teléfono o Celular        </div>        <input class="form-input-text form-input-field-phonenumber" type="text" name="phonenumber" id="phonenumber" placeholder="Ingresa tu Número de teléfono">      </div>      <div class="form-item form-item-field-phonenumber">        <div class="form-label form-label-field-dni">          Número de DNI        </div>        <input class="form-input-text form-input-field-dni" type="text" name="dni" id="dni" placeholder="Ingresa tu Número de DNI">      </div>    </div>    <div class="buttons-handler">      <div class="form-next-step" routerLink="../informacion-academica-usuario">        Siguiente      </div>    </div>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AcademicInfoComponent', 'selector': 'app-academic-info'},{'name': 'ApplyComponent', 'selector': 'app-apply'},{'name': 'BodyComponent', 'selector': 'app-body'},{'name': 'Button', 'selector': 'app-button'},{'name': 'ContactComponent', 'selector': 'app-contact'},{'name': 'ConvocatoriaBodyComponent', 'selector': 'app-convocatoria-body'},{'name': 'ExternalStudentComponent', 'selector': 'app-external-student'},{'name': 'FillFileComponent', 'selector': 'app-fill-file'},{'name': 'GeneralInfoComponent', 'selector': 'app-general-info'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ProcessToApplyComponent', 'selector': 'app-process-to-apply'},{'name': 'RequirementsToApplyComponent', 'selector': 'app-requirements-to-apply'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavItemComponent', 'selector': 'app-sidenav-item'},{'name': 'SidenavUserInfoComponent', 'selector': 'app-sidenav-user-info'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'SteperComponent', 'selector': 'app-steper'},{'name': 'TimelineComponent', 'selector': 'app-timeline'},{'name': 'TooltipRedComponent', 'selector': 'app-tooltip-red'},{'name': 'TooltipRedSmallComponent', 'selector': 'app-tooltip-red-small'},{'name': 'TooltipWhiteSmallComponent', 'selector': 'app-tooltip-white-small'},{'name': 'UnsaAdministrativeComponent', 'selector': 'app-unsa-administrative'},{'name': 'UnsaStudentComponent', 'selector': 'app-unsa-student'},{'name': 'UnsaTeacherComponent', 'selector': 'app-unsa-teacher'},{'name': 'UploadFilesComponent', 'selector': 'app-upload-files'},{'name': 'UserBodyComponent', 'selector': 'app-user-body'},{'name': 'UserDataPostulationBodyComponent', 'selector': 'app-user-data-postulation-body'},{'name': 'VerifyDataComponent', 'selector': 'app-verify-data'},{'name': 'WelcomeComponent', 'selector': 'app-welcome'},{'name': 'WhoCanApplyComponent', 'selector': 'app-who-can-apply'}];
+        var COMPONENT_TEMPLATE = '<div><div class="general-info-container">  <div class="form-container">    <div class="fields-form">      <div class="form-item form-item-field-names">        <div class="form-label form-label-field-name">          Nombres        </div>        <input class="form-input-text form-input-field-name" type="text" name="name" id="name" placeholder="Ingresa tu Nombre">      </div>      <div class="form-item form-item-field-lastname">        <div class="form-label form-label-field-lastname">          Apellidos        </div>        <input class="form-input-text form-input-field-lastname" type="text" name="lastname" id="lastname" placeholder="Ingresa tu apellido">      </div>      <div class="form-item form-item-field-address">        <div class="form-label form-label-field-address">          Dirección        </div>        <input class="form-input-text form-input-field-address" type="text" name="address" id="address" placeholder="Ingresa tu Dirección">      </div>      <div class="form-item form-item-field-typeuser">        <div class="form-label form-label-field-typeuser">          Tipo de Usuario        </div>        <select class="form-input-text form-input-field-typeuser" name="typeuser" id="typeuser">          <option value="Alumno UNSA">Alumno UNSA</option>          <option value="Alumno Externo">Alumno Externo</option>          <option value="Docente UNSA">Docente UNSA</option>          <option value="Docente Externo">Docente Externo</option>        </select>      </div>      <div class="form-item form-item-field-phonenumber">        <div class="form-label form-label-field-phonenumber">          Número de Teléfono o Celular        </div>        <input class="form-input-text form-input-field-phonenumber" type="text" name="phonenumber" id="phonenumber" placeholder="Ingresa tu Número de teléfono">      </div>      <div class="form-item form-item-field-phonenumber">        <div class="form-label form-label-field-dni">          Número de DNI        </div>        <select class="form-input-text form-input-field-document" name="typedoc" id="typedoc" *ngIf = "typesDocument">          <option value="Alumno UNSA"   *ngFor = "let typeDocument of typesDocument">{{typeDocument.documentName}}</option>        </select>      </div>    </div>    <div class="buttons-handler">      <div class="form-next-step" routerLink="../informacion-academica-usuario">        Siguiente      </div>    </div>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AcademicInfoComponent', 'selector': 'app-academic-info'},{'name': 'AdminBodyComponent', 'selector': 'admin-body'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminLoginComponent', 'selector': 'app-admin-login'},{'name': 'ApplyComponent', 'selector': 'app-apply'},{'name': 'BodyComponent', 'selector': 'app-body'},{'name': 'Button', 'selector': 'app-button'},{'name': 'ButtonCustomized', 'selector': 'app-button-customized'},{'name': 'ButtonCustomizedComponent', 'selector': 'app-button-customized'},{'name': 'ButtonFormComponent', 'selector': 'app-button-form'},{'name': 'ConvocatoriaBodyComponent', 'selector': 'app-convocatoria-body'},{'name': 'DialogErrorEmailComponent', 'selector': 'app-dialog-error-email'},{'name': 'DialogYesNoComponent', 'selector': 'app-dialog-yes-no'},{'name': 'ExternalStudentComponent', 'selector': 'app-external-student'},{'name': 'FillFileComponent', 'selector': 'app-fill-file'},{'name': 'GeneralInfoComponent', 'selector': 'app-general-info'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'OfHomeCarouselNews', 'selector': 'app-of-home-carousel-news'},{'name': 'OfHomeCarouselNewsComponent', 'selector': 'app-of-home-carousel-news'},{'name': 'OfHomeTable', 'selector': 'app-of-table'},{'name': 'OfHomeTableComponent', 'selector': 'app-of-home-table'},{'name': 'OfHomeTablePrograms', 'selector': 'app-of-table-programs'},{'name': 'OfHomeTableProgramsComponent', 'selector': 'app-of-home-table-programs'},{'name': 'RequestAccessComponent', 'selector': 'app-request-access'},{'name': 'SearchBar', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavItemComponent', 'selector': 'app-sidenav-item'},{'name': 'SidenavUserInfoComponent', 'selector': 'app-sidenav-user-info'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'SteperComponent', 'selector': 'app-steper'},{'name': 'TimelineComponent', 'selector': 'app-detail'},{'name': 'TooltipRedComponent', 'selector': 'app-tooltip-red'},{'name': 'TooltipRedSmallComponent', 'selector': 'app-tooltip-red-small'},{'name': 'TooltipWhiteSmallComponent', 'selector': 'app-tooltip-white-small'},{'name': 'UnsaAdministrativeComponent', 'selector': 'app-unsa-administrative'},{'name': 'UnsaStudentComponent', 'selector': 'app-unsa-student'},{'name': 'UnsaTeacherComponent', 'selector': 'app-unsa-teacher'},{'name': 'UploadFilesComponent', 'selector': 'app-upload-files'},{'name': 'uploadPhotoComponent', 'selector': 'app-upload-photo'},{'name': 'UserBodyComponent', 'selector': 'app-user-body'},{'name': 'UserDataPostulationBodyComponent', 'selector': 'app-user-data-postulation-body'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyDataComponent', 'selector': 'app-verify-data'},{'name': 'WelcomeComponent', 'selector': 'app-welcome'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'GeneralInfoComponent'};
 </script>

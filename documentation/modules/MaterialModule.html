@@ -55,7 +55,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/material.module.ts</code>
+            <code>src/app/modules/material/material.module.ts</code>
         </p>
 
 
@@ -72,9 +72,22 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">
+import { NgModule } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 import {MatButtonModule} from &#x27;@angular/material/button&#x27;;
+
+import {IvyCarouselModule} from &#x27;angular-responsive-carousel&#x27;;
+import {MatTableModule} from &#x27;@angular/material/table&#x27;;
+import {MatTabsModule} from &#x27;@angular/material/tabs&#x27;;
+import {MatSelectModule} from &#x27;@angular/material/select&#x27;;
+import {MatInputModule} from &quot;@angular/material/input&quot;;
+import {MatIconModule} from &quot;@angular/material/icon&quot;;
+import {MatButtonToggleModule} from &quot;@angular/material/button-toggle&quot;;
+import {MatDialogModule} from &#x27;@angular/material/dialog&#x27;;
+
+import { MatDatepickerModule } from &#x27;@angular/material/datepicker&#x27;;
+import { MatNativeDateModule } from &#x27;@angular/material/core&#x27;;
 
 @NgModule({
   declarations: [
@@ -84,7 +97,17 @@ import {MatButtonModule} from &#x27;@angular/material/button&#x27;;
     CommonModule
   ],
   exports:[
-    MatButtonModule
+    MatButtonModule,
+    IvyCarouselModule,
+    MatTableModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonToggleModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule { }

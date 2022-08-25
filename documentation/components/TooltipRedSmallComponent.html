@@ -285,14 +285,16 @@ export class TooltipRedSmallComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
-  &lt;div class&#x3D;&quot;body-container&quot;&gt;
-    &lt;div class&#x3D;&quot;body-text&quot;&gt;
-      &lt;div class&#x3D;&quot;text&quot;&gt;En caso de pertenecer a más de una escuela profesional, colocar la Escuela por la cual está postulando&lt;/div&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div&gt;
+  &lt;div class&#x3D;&quot;container&quot;&gt;
+    &lt;div class&#x3D;&quot;body-container&quot;&gt;
+      &lt;div class&#x3D;&quot;body-text&quot;&gt;
+        &lt;div class&#x3D;&quot;text&quot;&gt;En caso de pertenecer a más de una escuela profesional, colocar la Escuela por la cual está postulando&lt;/div&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class&#x3D;&quot;tail-container&quot;&gt;
-    &lt;div class&#x3D;&quot;tail&quot;&gt;&lt;/div&gt;
+    &lt;div class&#x3D;&quot;tail-container&quot;&gt;
+      &lt;div class&#x3D;&quot;tail&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class&#x3D;&quot;icon-container&quot;&gt;
     &lt;fa-icon class&#x3D; &quot;icon&quot; [icon]&#x3D;&quot;faInfoCircle&quot;&gt;&lt;/fa-icon&gt;
@@ -312,7 +314,7 @@ export class TooltipRedSmallComponent implements OnInit {
   position: absolute;
   display: none;
   z-index: 2;
-  top: -122px;
+  top: 0;
 }
 
 .body-container{
@@ -405,8 +407,8 @@ export class TooltipRedSmallComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="body-container">    <div class="body-text">      <div class="text">En caso de pertenecer a más de una escuela profesional, colocar la Escuela por la cual está postulando</div>    </div>  </div>  <div class="tail-container">    <div class="tail"></div>  </div>  <div class="icon-container">    <fa-icon class= "icon" [icon]="faInfoCircle"></fa-icon>  </div></div></div>'
-    var COMPONENTS = [{'name': 'AcademicInfoComponent', 'selector': 'app-academic-info'},{'name': 'ApplyComponent', 'selector': 'app-apply'},{'name': 'BodyComponent', 'selector': 'app-body'},{'name': 'Button', 'selector': 'app-button'},{'name': 'ContactComponent', 'selector': 'app-contact'},{'name': 'ConvocatoriaBodyComponent', 'selector': 'app-convocatoria-body'},{'name': 'ExternalStudentComponent', 'selector': 'app-external-student'},{'name': 'FillFileComponent', 'selector': 'app-fill-file'},{'name': 'GeneralInfoComponent', 'selector': 'app-general-info'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ProcessToApplyComponent', 'selector': 'app-process-to-apply'},{'name': 'RequirementsToApplyComponent', 'selector': 'app-requirements-to-apply'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavItemComponent', 'selector': 'app-sidenav-item'},{'name': 'SidenavUserInfoComponent', 'selector': 'app-sidenav-user-info'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'SteperComponent', 'selector': 'app-steper'},{'name': 'TimelineComponent', 'selector': 'app-timeline'},{'name': 'TooltipRedComponent', 'selector': 'app-tooltip-red'},{'name': 'TooltipRedSmallComponent', 'selector': 'app-tooltip-red-small'},{'name': 'TooltipWhiteSmallComponent', 'selector': 'app-tooltip-white-small'},{'name': 'UnsaAdministrativeComponent', 'selector': 'app-unsa-administrative'},{'name': 'UnsaStudentComponent', 'selector': 'app-unsa-student'},{'name': 'UnsaTeacherComponent', 'selector': 'app-unsa-teacher'},{'name': 'UploadFilesComponent', 'selector': 'app-upload-files'},{'name': 'UserBodyComponent', 'selector': 'app-user-body'},{'name': 'UserDataPostulationBodyComponent', 'selector': 'app-user-data-postulation-body'},{'name': 'VerifyDataComponent', 'selector': 'app-verify-data'},{'name': 'WelcomeComponent', 'selector': 'app-welcome'},{'name': 'WhoCanApplyComponent', 'selector': 'app-who-can-apply'}];
+        var COMPONENT_TEMPLATE = '<div><div>  <div class="container">    <div class="body-container">      <div class="body-text">        <div class="text">En caso de pertenecer a más de una escuela profesional, colocar la Escuela por la cual está postulando</div>      </div>    </div>    <div class="tail-container">      <div class="tail"></div>    </div>  </div>  <div class="icon-container">    <fa-icon class= "icon" [icon]="faInfoCircle"></fa-icon>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AcademicInfoComponent', 'selector': 'app-academic-info'},{'name': 'AdminBodyComponent', 'selector': 'admin-body'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminLoginComponent', 'selector': 'app-admin-login'},{'name': 'ApplyComponent', 'selector': 'app-apply'},{'name': 'BodyComponent', 'selector': 'app-body'},{'name': 'Button', 'selector': 'app-button'},{'name': 'ButtonCustomized', 'selector': 'app-button-customized'},{'name': 'ButtonCustomizedComponent', 'selector': 'app-button-customized'},{'name': 'ButtonFormComponent', 'selector': 'app-button-form'},{'name': 'ConvocatoriaBodyComponent', 'selector': 'app-convocatoria-body'},{'name': 'DialogErrorEmailComponent', 'selector': 'app-dialog-error-email'},{'name': 'DialogYesNoComponent', 'selector': 'app-dialog-yes-no'},{'name': 'ExternalStudentComponent', 'selector': 'app-external-student'},{'name': 'FillFileComponent', 'selector': 'app-fill-file'},{'name': 'GeneralInfoComponent', 'selector': 'app-general-info'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'OfHomeCarouselNews', 'selector': 'app-of-home-carousel-news'},{'name': 'OfHomeCarouselNewsComponent', 'selector': 'app-of-home-carousel-news'},{'name': 'OfHomeTable', 'selector': 'app-of-table'},{'name': 'OfHomeTableComponent', 'selector': 'app-of-home-table'},{'name': 'OfHomeTablePrograms', 'selector': 'app-of-table-programs'},{'name': 'OfHomeTableProgramsComponent', 'selector': 'app-of-home-table-programs'},{'name': 'RequestAccessComponent', 'selector': 'app-request-access'},{'name': 'SearchBar', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavItemComponent', 'selector': 'app-sidenav-item'},{'name': 'SidenavUserInfoComponent', 'selector': 'app-sidenav-user-info'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'SteperComponent', 'selector': 'app-steper'},{'name': 'TimelineComponent', 'selector': 'app-detail'},{'name': 'TooltipRedComponent', 'selector': 'app-tooltip-red'},{'name': 'TooltipRedSmallComponent', 'selector': 'app-tooltip-red-small'},{'name': 'TooltipWhiteSmallComponent', 'selector': 'app-tooltip-white-small'},{'name': 'UnsaAdministrativeComponent', 'selector': 'app-unsa-administrative'},{'name': 'UnsaStudentComponent', 'selector': 'app-unsa-student'},{'name': 'UnsaTeacherComponent', 'selector': 'app-unsa-teacher'},{'name': 'UploadFilesComponent', 'selector': 'app-upload-files'},{'name': 'uploadPhotoComponent', 'selector': 'app-upload-photo'},{'name': 'UserBodyComponent', 'selector': 'app-user-body'},{'name': 'UserDataPostulationBodyComponent', 'selector': 'app-user-data-postulation-body'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyDataComponent', 'selector': 'app-verify-data'},{'name': 'WelcomeComponent', 'selector': 'app-welcome'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TooltipRedSmallComponent'};
 </script>

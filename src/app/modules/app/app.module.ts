@@ -1,5 +1,3 @@
-import { ProfileEffect } from './../../ngrx/effects/profile/profile.effects';
-import { UserAuthEffect } from './../../ngrx/effects/auth/user-auth.effects';
 import { ROOT_REDUCERS } from './../../ngrx/app.state';
 import { environment } from 'src/environments/environment.prod';
 import { AuthInterceptorProviders } from './../../core/interceptors/auth.interceptor';
@@ -38,6 +36,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { RequestAccessComponent } from './pages/request-access/request-access.component';
+import { effectsOF } from 'src/app/ngrx/effects/index.effects';
 
 
 
@@ -69,7 +68,7 @@ import { RequestAccessComponent } from './pages/request-access/request-access.co
     BrowserAnimationsModule,
     StoreModule.forRoot(ROOT_REDUCERS),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([UserAuthEffect,ProfileEffect])
+    EffectsModule.forRoot(effectsOF)
   ],
   providers: [
     AuthInterceptorProviders

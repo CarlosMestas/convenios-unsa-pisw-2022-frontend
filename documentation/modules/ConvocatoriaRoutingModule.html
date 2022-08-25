@@ -73,23 +73,14 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AuthGuard } from &#x27;../../core/guards/auth/auth.guard&#x27;;
-import { ApplyComponent } from &#x27;./pages/apply/apply.component&#x27;;
-import { ContactComponent } from &#x27;./pages/contact/contact.component&#x27;;
-import { TimelineComponent } from &#x27;./pages/timeline/timeline.component&#x27;;
-import { ProcessToApplyComponent } from &#x27;./pages/process-to-apply/process-to-apply.component&#x27;;
-import { RequirementsToApplyComponent } from &#x27;./pages/requirements-to-apply/requirements-to-apply.component&#x27;;
-import { WhoCanApplyComponent } from &#x27;./pages/who-can-apply/who-can-apply.component&#x27;;
+import { TimelineComponent } from &#x27;./pages/detail/detail.component&#x27;;
 import { ConvocatoriaBodyComponent } from &#x27;./body/convocatoria-body.component&#x27;;
 
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 import { NgModule } from &#x27;@angular/core&#x27;;
 
 const ConvocatoriaRoutesValues &#x3D; {
-  ROUTE_CONVOCATORIA_SCHEDULE: &quot;cronograma&quot;,
-  ROUTE_CONVOCATORIA_WHO_CAN_APPLY: &quot;dirigido-a&quot;,
-  ROUTE_CONVOCATORIA_REQUIREMENTS_TO_APPLY: &quot;requisitos-para-postular&quot;,
-  ROUTE_CONVOCATORIA_PROCESS_TO_APPLY: &quot;proceso-de-aplicacion&quot;,
-  ROUTE_CONVOCATORIA_CONTACT: &quot;contacto&quot;,
+  ROUTE_CONVOCATORIA_DETAIL: &quot;detalle&quot;,
   ROUTE_CONVOCATORIA_APPLY: &quot;postular&quot;
 };
 
@@ -100,32 +91,16 @@ const ConvocatoriaRoutes: Routes &#x3D; [
     children:[
       {
         path:&#x27;&#x27;,
-        redirectTo:&quot;cronograma&quot;,
+        redirectTo:&quot;detalle&quot;,
         pathMatch:&#x27;full&#x27;
       },
       {
-        path: &quot;dirigido-a&quot;,
-        component:WhoCanApplyComponent,
-      },
-      {
-        path: &quot;requisitos-para-postular&quot;,
-        component:RequirementsToApplyComponent,
-      },
-      {
-        path: &quot;proceso-de-aplicacion&quot;,
-        component:ProcessToApplyComponent,
-      },
-      {
-        path: &quot;cronograma&quot;,
+        path: &quot;detalle&quot;,
         component:TimelineComponent,
       },
       {
-        path: &quot;contacto&quot;,
-        component:ContactComponent,
-      },
-      {
         path: &quot;postular&quot;,
-        component:ApplyComponent,
+        loadChildren:()&#x3D;&gt;&quot;import(&#x27;../postulation/user-data-postulation.module&#x27;).then(m &#x3D;&gt; m.UserDataPostulationModule)&quot;,
         canActivate:[AuthGuard]
       }
     ]
