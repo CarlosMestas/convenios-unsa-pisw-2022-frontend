@@ -16,7 +16,7 @@ export class ConvocationEffect{
 
   convocationFetchRequestEffect = createEffect(()=>this.actions$.pipe(
     ofType(convocationFetchRequestAction),
-    mergeMap((action)=>this.convocationService.fetchConvocation(action.id)
+    mergeMap((action)=>this.convocationService.getConvocation(action.id)
     .pipe(
       map((resp)=>{
         return {
@@ -29,9 +29,9 @@ export class ConvocationEffect{
     )
   ))
 
-  convocationFetchSuccessEffect = createEffect(()=>this.actions$.pipe(
+  convocationFetchSuccessToDetailEffect = createEffect(()=>this.actions$.pipe(
     ofType(convocationFetchSuccessAction),
-    mergeMap((action)=> this.convocationService.fetchConvocationDetailPIVE(action.convocation.id_detail)
+    mergeMap((action)=> this.convocationService.getConvocationDetailPIVE(action.convocation.id_detail)
     .pipe(
       map((resp)=>{
         return{
@@ -42,5 +42,33 @@ export class ConvocationEffect{
       catchError(()=>EMPTY)
     )
     )
+  ))
+
+  convocationFetchSuccessToRequirementEffect = createEffect(()=>this.actions$.pipe(
+    ofType(convocationFetchSuccessAction),
+    mergeMap((action)=>this.convocationService.getRequirements(action.convocation.id)
+    .pipe(
+      map((resp)=>{
+        return {
+          type: ConvocationActions.CONVOCATION_REQUIREMENTS_FETCH_SUCCESS_ACTION,
+          requirements:resp.data
+        }
+      }),
+      catchError(()=>EMPTY)
+    ))
+  ))
+
+  convocationFetchSuccessToDocumentEffect = createEffect(()=>this.actions$.pipe(
+    ofType(convocationFetchSuccessAction),
+    mergeMap((action)=>this.convocationService.getRequirements(action.convocation.id)
+    .pipe(
+      map((resp)=>{
+        return {
+          type: ConvocationActions.CONVOCATION_REQUIREMENTS_FETCH_SUCCESS_ACTION,
+          requirements:resp.data
+        }
+      }),
+      catchError(()=>EMPTY)
+    ))
   ))
 }

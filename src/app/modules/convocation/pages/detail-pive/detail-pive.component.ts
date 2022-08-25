@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IAppState } from 'src/app/ngrx/app.state';
-import { convocationDocumentsStateSelector } from 'src/app/ngrx/selectors/convocation/convocation.selector';
+import { convocationDocumentsStateSelector } from 'src/app/ngrx/selectors/convocation/document.selector';
 import { IDocument } from 'src/app/shared/interfaces/documents-convocation/document.interface';
 
 @Component({

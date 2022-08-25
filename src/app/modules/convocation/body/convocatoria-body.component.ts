@@ -1,4 +1,4 @@
-import { convocationFetchRequestAction } from './../../../ngrx/actions/convocation/convocation.actions';
+import { convocationFetchRequestAction } from '../../../ngrx/actions/convocation/convocation.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IConvocation } from '../../../shared/interfaces/convocation.interface';
