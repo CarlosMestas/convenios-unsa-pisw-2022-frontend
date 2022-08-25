@@ -14,8 +14,8 @@ export class NewConvocationComponent implements OnInit {
   fileName = '';
   fileNameAfiche = '';
 
-  typeConvocatory = []
-    /*
+  typeConvocatory =
+
     [
     {
       id:1,
@@ -33,7 +33,7 @@ export class NewConvocationComponent implements OnInit {
       id:4,
       name:'Extraordinario - Docente'
     }
-  ]*/
+  ]
   semester = [
     {
       id:1,
