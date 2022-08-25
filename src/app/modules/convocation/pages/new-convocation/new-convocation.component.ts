@@ -14,7 +14,9 @@ export class NewConvocationComponent implements OnInit {
   fileName = '';
   fileNameAfiche = '';
 
-  typeConvocatory = [
+  typeConvocatory = []
+    /*
+    [
     {
       id:1,
       name:'Ordinario - Estudiante'
@@ -31,7 +33,7 @@ export class NewConvocationComponent implements OnInit {
       id:4,
       name:'Extraordinario - Docente'
     }
-  ]
+  ]*/
   semester = [
     {
       id:1,
@@ -78,6 +80,7 @@ export class NewConvocationComponent implements OnInit {
     }
   }
   changeType(id: number):void {
+    if(id ==1 )
     this.typeSelectedConv$ = 'extraordinary'
   }
 }
