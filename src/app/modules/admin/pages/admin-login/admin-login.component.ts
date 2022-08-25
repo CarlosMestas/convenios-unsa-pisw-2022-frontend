@@ -37,7 +37,6 @@ export class AdminLoginComponent implements OnInit {
     let userAdmin: IAdmin|null= {}as IAdmin
     userAdmin.email = this.signInForm.value["email"],
     userAdmin.password = this.signInForm.value["password"]
-    console.log("admin",userAdmin)
     this.store.dispatch(adminSignInRequestAction(userAdmin))
 
   }

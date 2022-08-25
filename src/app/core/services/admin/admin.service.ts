@@ -11,8 +11,7 @@ import {AdminHelper} from "./admin.helper";
 import {IAdminLoginResponse} from "../../../shared/interfaces/transactions/admin-login-response.interface";
 import {IAdmin} from "../../../shared/interfaces/admin.interface";
 import {Admin} from "../../../shared/models/admin.model";
-import {IUser} from "../../../shared/interfaces/user.interface";
-import {AuthHelper} from "../auth/auth.helper";
+
 
 
 
@@ -151,7 +150,7 @@ export class AdminService extends AdminHelper{
     msg:string,
     data:IAdmin
   }>{
-    console.log("hola servicio",email,password)
+    console.log("servicioooooooooo",email,password)
     return this.http.post<IAdminLoginResponse>(
       this.url+AdminHelper.API_ADMIN_SERVICE_ROUTES.LOGIN,
       {
