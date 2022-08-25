@@ -14,6 +14,9 @@ import {
   TypeUserIdentificationService
 } from "../../../../core/services/type-user-identification/type-user-identification.service";
 import {IUserIdentificationType} from "../../../../shared/interfaces/user-identification-type.interface";
+import {IUserIdentification} from "../../../../shared/interfaces/user-identification.interface";
+import {UserIdentification} from "../../../../shared/models/user-identification";
+import {TypeIdentification} from "../../../../shared/models/type-user-identification.model";
 
 @Component({
   selector: 'app-user-profile',
@@ -23,7 +26,7 @@ import {IUserIdentificationType} from "../../../../shared/interfaces/user-identi
 export class UserProfileComponent implements OnInit {
 
   public profileForm: FormGroup
-  profile:IProfile|null
+  profile:IProfile
   email$: Observable<string|null>
   isEdit:boolean
   typesProfile:IProfileType[] = [];
@@ -39,7 +42,7 @@ export class UserProfileComponent implements OnInit {
   ){
     this.profile = {} as IProfile
     this.email$ = new Observable<string|null>()
-    this.isEdit = false
+    this.isEdit = true
     this.profileForm = new FormGroup({
       name: new FormControl( '',[Validators.required]),
       lastname: new FormControl('',[Validators.required]),
@@ -58,21 +61,19 @@ export class UserProfileComponent implements OnInit {
 
     this.store.select(profileProfileStateSelector).subscribe(profile=>{
       console.log("USUARIO", profile)
-      this.profile = profile
+      if(profile!= null) this.profile = profile
       if (profile?.profile_created == 1){
-        this.isEdit = false
-        this.profileForm.disable()
+        this.profileForm.controls['name'].reset(profile?.name);
+        this.profileForm.controls['lastname'].reset(profile?.last_name);
+        this.profileForm.controls['address'].reset(profile?.address);
+        // @ts-ignore
+        this.profileForm.controls['datepicker'].reset(this.convertDate(profile.birthdate));
+        this.profileForm.controls['typeUserIdentification'].setValue(profile?.identification.type.id);
+        this.profileForm.controls['valueIdentification'].reset(profile?.identification.value);
+        this.profileForm.controls['phone'].reset( profile?.phone);
+        this.profileForm.controls['typeUser'].setValue(profile?.type.id);
+        this.disabledForm()
       }
-      this.profileForm.controls['name'].reset(profile?.name);
-      this.profileForm.controls['lastname'].reset(profile?.last_name);
-      this.profileForm.controls['address'].reset(profile?.address);
-      // @ts-ignore
-      this.profileForm.controls['datepicker'].reset(this.convertDate(profile.birthdate));
-      this.profileForm.controls['typeUserIdentification'].setValue(profile?.identification.type.id);
-      this.profileForm.controls['valueIdentification'].reset(profile?.identification.value);
-      this.profileForm.controls['phone'].reset( profile?.phone);
-      this.profileForm.controls['typeUser'].setValue(profile?.type.id);
-
     })
 
       this.typeProfileService.fetchTypeProfile().subscribe(resp =>{
@@ -91,29 +92,27 @@ export class UserProfileComponent implements OnInit {
     return startDate
   }
     submitProfile():void{
-    let profileUpdate: IProfile|null = this.profile;
-
+    let profileUpdate: IProfile = this.profile;
+      let typeIdent: IUserIdentificationType =  new TypeIdentification(0, '')
+      let userIdent: IUserIdentification = new UserIdentification(0, '', typeIdent)
     if(profileUpdate!=null){
       profileUpdate.name = this.profileForm.value["name"]
       profileUpdate.last_name = this.profileForm.value["lastname"]
       profileUpdate.address = this.profileForm.value["address"]
       profileUpdate.phone = this.profileForm.value["phone"]
-
-      // @ts-ignore
       let date:Date = this.profileForm.value["datepicker"]
       profileUpdate.birthdate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
-
-      // @ts-ignore
       profileUpdate.profile_created= 1
       profileUpdate.type = this.profileForm.value["typeUser"]
-
-      profileUpdate.identification.type.id = this.profileForm.value["typeUserIdentification"]
-      profileUpdate.identification.value = this.profileForm.value["valueIdentification"]
-
+      typeIdent.id = this.profileForm.value["typeUserIdentification"]
+      userIdent.value = this.profileForm.value["valueIdentification"]
+      userIdent.type = typeIdent
+      profileUpdate.identification = userIdent
 
       this.profileService.updateProfile(profileUpdate).subscribe(data =>{
+        console.log("ERROR?", data)
       })
-      this.isEdit = false
+      this.disabledForm()
     }
 
   }
@@ -125,6 +124,11 @@ export class UserProfileComponent implements OnInit {
     this.isEdit = true
     this.profileForm.enable()
   }
+  disabledForm():void{
+    this.isEdit = false
+    this.profileForm.disable()
+  }
+
   public get name() : AbstractControl | null {
     return this.profileForm.get('name');
   }
