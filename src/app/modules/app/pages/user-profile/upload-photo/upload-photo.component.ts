@@ -1,4 +1,4 @@
-import { Component,Input, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { faTrash, faEdit} from '@fortawesome/free-solid-svg-icons';
 import {IProfile} from "../../../../../shared/interfaces/profile.interface";
 
@@ -10,17 +10,26 @@ import {IProfile} from "../../../../../shared/interfaces/profile.interface";
 })
 export class uploadPhotoComponent implements OnInit {
   @Input()   profile:IProfile|null
+  @Output() stringImage = new EventEmitter<string>();
+
   faTrash = faTrash
   faEdit = faEdit
   selected: boolean = false
   isUpload: boolean = false
   imgPreview  = null
+  imgSendProfile:string | undefined=''
   constructor(){
     this.profile = {} as IProfile
   }
   ngOnInit(): void {
-    if(this.profile?.image!='')
+    if(this.profile?.image!=''){
       this.selected = true
+      this.imgSendProfile = this.profile?.image
+    }
+  }
+  sendMessage() {
+    this.stringImage.emit(this.imgSendProfile)
+    console.log("EVEMNTO IAMGEN ENVIO", this.imgSendProfile)
   }
   onFileSelected (event:any) {
     this.isUpload = true
@@ -30,7 +39,6 @@ export class uploadPhotoComponent implements OnInit {
     }
     const mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
-      console.log('Only images are supported.')
       return;
     }
     let reader = new FileReader();
@@ -41,6 +49,9 @@ export class uploadPhotoComponent implements OnInit {
         // @ts-ignore
         this.imgPreview = reader.result;
         this.selected = true
+        console.log('IMG', this.imgPreview )
+
+        this.sendMessage()
       };
     }
   }

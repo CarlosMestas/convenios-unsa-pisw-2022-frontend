@@ -31,7 +31,7 @@
           <div class="item-form" >
             <p class="label-input">Fecha de nacimiento</p>
             <mat-form-field appearance="outline" >
-              <input matInput [matDatepicker]="datepicker" formControlName="birthdate">
+              <input matInput [matDatepicker]="datepicker" formControlName="datepicker" placeholder="datepicker *">
               <mat-hint>MM/DD/YYYY</mat-hint>
               <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
               <mat-datepicker #datepicker>
@@ -47,7 +47,7 @@
           <div class="bi-container">
             <div class="item-form">
               <p class="label-input">Número móvil</p>
-              <input class="form-input-text"  formControlName="phone" id="movil-form" placeholder="Ingresa tu número">
+              <input class="form-input-text"  formControlName="phone" placeholder="Ingresa tu número">
             </div>
             <div class="item-form">
               <p class="label-input">Tipo usuario</p>
@@ -70,7 +70,7 @@
         <app-button-customized *ngIf="!isEdit" colorProp="primary" size="big" textBtn="Modificar datos " (click)="editProfile()" class="top-space-btn"></app-button-customized>
     </div>
     <div class="container-img-data">
-      <app-upload-photo [profile]="profile"></app-upload-photo>
+      <app-upload-photo [profile]="profile" (stringImage)="receiveMessage($event)"></app-upload-photo>
     </div>
     </div>
   </div>
