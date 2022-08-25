@@ -2,7 +2,7 @@ import { IConvocation } from '../../../shared/interfaces/convocation.interface';
 import { environment } from 'src/environments/environment.prod';
 import{HttpClient,HttpErrorResponse} from '@angular/common/http'
 import { of } from 'rxjs';
-environment
+
 export class ConvocationHelper{
   public url = environment.url
   public isProduction = environment.production

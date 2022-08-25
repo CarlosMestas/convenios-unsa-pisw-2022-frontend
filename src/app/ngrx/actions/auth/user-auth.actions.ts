@@ -1,5 +1,5 @@
 import { IUser } from '../../../shared/interfaces/user.interface';
-import { IUserInstitionalEmailRegister } from '../../../shared/interfaces/auth/user-institutional-email-register.interface';
+import { IUserDataLogin, IUserDataRegister } from '../../../shared/interfaces/auth/user-auth-types';
 import { createAction, props } from "@ngrx/store";
 
 export const UserAuthActions = {
@@ -22,7 +22,7 @@ export const UserAuthActions = {
 
 export const userRegisterRequestAction = createAction(
   UserAuthActions.USER_REGISTER_REQUEST_ACTION,
-  props<IUserInstitionalEmailRegister>()
+  props<IUserDataRegister>()
 )
 
 export const userRegisterSuccessAction = createAction(
@@ -32,7 +32,7 @@ export const userRegisterSuccessAction = createAction(
 
 export const userSignInRequestAction = createAction(
   UserAuthActions.USER_SIGNIN_REQUEST_ACTION,
-  props<IUserInstitionalEmailRegister>()
+  props<IUserDataLogin>()
 )
 export const userSignInSuccessAction = createAction(
   UserAuthActions.USER_SIGNIN_SUCCESS_ACTION,

@@ -1,7 +1,9 @@
 import { IConvocationState } from "src/app/shared/interfaces/convocation/convocation-state.interface";
 
 export const ConvocationInitialState:IConvocationState ={
-  working:false,
-  convocation:null,
-
+  working: false,
+  convocation: null,
+  convocationDetail: null,
+  documents: [],
+  requirements: []
 }

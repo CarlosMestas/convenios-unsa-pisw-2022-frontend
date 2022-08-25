@@ -64,7 +64,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/modules/user-data-postulation/upload-files/upload-files.component.ts</code>
+    <code>src/app/modules/postulation/pages/upload-files/upload-files.component.ts</code>
 </p>
 
 
@@ -135,6 +135,9 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#clickView" >clickView</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                         </ul>
@@ -160,7 +163,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="8" class="link-to-prism">src/app/modules/user-data-postulation/upload-files/upload-files.component.ts:8</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/modules/postulation/pages/upload-files/upload-files.component.ts:9</a></div>
                             </td>
                         </tr>
 
@@ -181,6 +184,43 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="clickView"></a>
+                    <span class="name">
+                        <span ><b>clickView</b></span>
+                        <a href="#clickView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clickView()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="16"
+                            class="link-to-prism">src/app/modules/postulation/pages/upload-files/upload-files.component.ts:16</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <span ><b>ngOnInit</b></span>
@@ -197,8 +237,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="12"
-                            class="link-to-prism">src/app/modules/user-data-postulation/upload-files/upload-files.component.ts:12</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="13"
+                            class="link-to-prism">src/app/modules/postulation/pages/upload-files/upload-files.component.ts:13</a></div>
                 </td>
             </tr>
 
@@ -221,6 +261,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import {NgModel} from &quot;@angular/forms&quot;;
 
 @Component({
   selector: &#x27;app-upload-files&#x27;,
@@ -234,12 +275,96 @@ export class UploadFilesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  clickView() {
+    alert(&#x27;Cargar constancia de Ranking&#x27;)
+  }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html"></code></pre>
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;general-info-container&quot;&gt;
+  &lt;div class&#x3D;&quot;form-container&quot;&gt;
+    &lt;div class&#x3D;&quot;fields-form&quot;&gt;
+      &lt;div class&#x3D;&quot;form-item form-item-field-names&quot;&gt;
+        &lt;div class&#x3D;&quot;form-label form-label-field-name&quot;&gt;
+          Constancia de Matricula
+        &lt;div class&#x3D;&quot;buttons-handler&quot;&gt;
+      &lt;div class&#x3D;&quot;form-next-step&quot; &gt;
+        Cargar
+      &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;form-label form-label-field-name&quot;&gt;
+          Constancia de Ranking
+          &lt;div class&#x3D;&quot;buttons-handler&quot; (click)&#x3D;&quot;clickView()&quot;&gt;
+            &lt;div class&#x3D;&quot;form-next-step&quot;&gt;
+              Cargar
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+
+        &lt;div class&#x3D;&quot;form-label form-label-field-name&quot;&gt;
+          Libreta de notas
+          &lt;div class&#x3D;&quot;buttons-handler&quot;&gt;
+            &lt;div class&#x3D;&quot;form-next-step&quot; &gt;
+              Cargar
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class&#x3D;&quot;form-label form-label-field-name&quot;&gt;
+          Ficha Registro CTI Vitae
+          &lt;div class&#x3D;&quot;buttons-handler&quot;&gt;
+            &lt;div class&#x3D;&quot;form-next-step&quot;&gt;
+              Cargar
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+
+        &lt;div class&#x3D;&quot;form-label form-label-field-name&quot;&gt;
+          Presentaciones directas de la pagina
+          &lt;div class&#x3D;&quot;buttons-handler&quot;&gt;
+            &lt;div class&#x3D;&quot;form-next-step&quot; &gt;
+              Cargar
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+
+        &lt;div class&#x3D;&quot;form-label form-label-field-name&quot;&gt;
+          Antecedentes
+          &lt;div class&#x3D;&quot;buttons-handler&quot;&gt;
+            &lt;div class&#x3D;&quot;form-next-step&quot; &gt;
+              Cargar
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+
+
+
+
+
+      &lt;/div&gt;
+
+      &lt;div class&#x3D;&quot;buttons-handler2&quot;&gt;
+        &lt;div class&#x3D;&quot;form-back-step&quot; routerLink&#x3D;&quot;../llenar-ficha&quot;&gt;
+          Atrás
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;form-next-step&quot; routerLink&#x3D;&quot;/home&quot;&gt;
+          Finalizar
+        &lt;/div&gt;
+      &lt;/div&gt;
+
+
+      &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-styleData">
@@ -254,26 +379,36 @@ export class UploadFilesComponent implements OnInit {
 .form-container{
   padding: 1rem 3rem;
   .fields-form{
-    /*background-color: aqua;*/
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
 
   }
   .form-item{
-    width: 60%;
+    width: 70%;
     margin-bottom: 1rem;
     justify-self: center;
-    .form-label{
-      position: relative;
-      display: flex;
-    }
+
   }
-
-
 }
 
 .buttons-handler{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  .form-next-step{
+    width: 200px;
+    background-color: rgb(134, 134, 134);
+    color: #F2F2F2;
+    font-size: 12px;
+    height: 30px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+  }
+}
+
+
+.buttons-handler2{
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -285,8 +420,21 @@ export class UploadFilesComponent implements OnInit {
     height: 40px;
     border-radius: 3px;
     text-align: center;
-    margin-bottom: 1rem;
     line-height: 40px;
+    font-weight: 400;
+    cursor: pointer;
+  }
+  .form-back-step{
+    margin-right: 2rem;
+    width: 110px;
+    height: 40px;
+    font-size: 14px;
+    border: 1px solid #DB0240;
+    background-color: rgb(244, 244, 252);
+    border-radius: 3px;
+    line-height: 40px;
+    text-align: center;
+    color: #DB0240;
     font-weight: 400;
     cursor: pointer;
   }
@@ -320,8 +468,8 @@ export class UploadFilesComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div></div>'
-    var COMPONENTS = [{'name': 'AcademicInfoComponent', 'selector': 'app-academic-info'},{'name': 'ApplyComponent', 'selector': 'app-apply'},{'name': 'BodyComponent', 'selector': 'app-body'},{'name': 'Button', 'selector': 'app-button'},{'name': 'ContactComponent', 'selector': 'app-contact'},{'name': 'ConvocatoriaBodyComponent', 'selector': 'app-convocatoria-body'},{'name': 'ExternalStudentComponent', 'selector': 'app-external-student'},{'name': 'FillFileComponent', 'selector': 'app-fill-file'},{'name': 'GeneralInfoComponent', 'selector': 'app-general-info'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'ProcessToApplyComponent', 'selector': 'app-process-to-apply'},{'name': 'RequirementsToApplyComponent', 'selector': 'app-requirements-to-apply'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavItemComponent', 'selector': 'app-sidenav-item'},{'name': 'SidenavUserInfoComponent', 'selector': 'app-sidenav-user-info'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'SteperComponent', 'selector': 'app-steper'},{'name': 'TimelineComponent', 'selector': 'app-timeline'},{'name': 'TooltipRedComponent', 'selector': 'app-tooltip-red'},{'name': 'TooltipRedSmallComponent', 'selector': 'app-tooltip-red-small'},{'name': 'TooltipWhiteSmallComponent', 'selector': 'app-tooltip-white-small'},{'name': 'UnsaAdministrativeComponent', 'selector': 'app-unsa-administrative'},{'name': 'UnsaStudentComponent', 'selector': 'app-unsa-student'},{'name': 'UnsaTeacherComponent', 'selector': 'app-unsa-teacher'},{'name': 'UploadFilesComponent', 'selector': 'app-upload-files'},{'name': 'UserBodyComponent', 'selector': 'app-user-body'},{'name': 'UserDataPostulationBodyComponent', 'selector': 'app-user-data-postulation-body'},{'name': 'VerifyDataComponent', 'selector': 'app-verify-data'},{'name': 'WelcomeComponent', 'selector': 'app-welcome'},{'name': 'WhoCanApplyComponent', 'selector': 'app-who-can-apply'}];
+        var COMPONENT_TEMPLATE = '<div><div class="general-info-container">  <div class="form-container">    <div class="fields-form">      <div class="form-item form-item-field-names">        <div class="form-label form-label-field-name">          Constancia de Matricula        <div class="buttons-handler">      <div class="form-next-step" >        Cargar      </div>        </div>        </div>        <div class="form-label form-label-field-name">          Constancia de Ranking          <div class="buttons-handler" (click)="clickView()">            <div class="form-next-step">              Cargar            </div>          </div>        </div>        <div class="form-label form-label-field-name">          Libreta de notas          <div class="buttons-handler">            <div class="form-next-step" >              Cargar            </div>          </div>        </div>        <div class="form-label form-label-field-name">          Ficha Registro CTI Vitae          <div class="buttons-handler">            <div class="form-next-step">              Cargar            </div>          </div>        </div>        <div class="form-label form-label-field-name">          Presentaciones directas de la pagina          <div class="buttons-handler">            <div class="form-next-step" >              Cargar            </div>          </div>        </div>        <div class="form-label form-label-field-name">          Antecedentes          <div class="buttons-handler">            <div class="form-next-step" >              Cargar            </div>          </div>        </div>      </div>      <div class="buttons-handler2">        <div class="form-back-step" routerLink="../llenar-ficha">          Atrás        </div>        <div class="form-next-step" routerLink="/home">          Finalizar        </div>      </div>      </div></div></div></div>'
+    var COMPONENTS = [{'name': 'AcademicInfoComponent', 'selector': 'app-academic-info'},{'name': 'AdminBodyComponent', 'selector': 'admin-body'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminLoginComponent', 'selector': 'app-admin-login'},{'name': 'ApplyComponent', 'selector': 'app-apply'},{'name': 'BodyComponent', 'selector': 'app-body'},{'name': 'Button', 'selector': 'app-button'},{'name': 'ButtonCustomized', 'selector': 'app-button-customized'},{'name': 'ButtonCustomizedComponent', 'selector': 'app-button-customized'},{'name': 'ButtonFormComponent', 'selector': 'app-button-form'},{'name': 'ConvocatoriaBodyComponent', 'selector': 'app-convocatoria-body'},{'name': 'DialogErrorEmailComponent', 'selector': 'app-dialog-error-email'},{'name': 'DialogYesNoComponent', 'selector': 'app-dialog-yes-no'},{'name': 'ExternalStudentComponent', 'selector': 'app-external-student'},{'name': 'FillFileComponent', 'selector': 'app-fill-file'},{'name': 'GeneralInfoComponent', 'selector': 'app-general-info'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'OfHomeCarouselNews', 'selector': 'app-of-home-carousel-news'},{'name': 'OfHomeCarouselNewsComponent', 'selector': 'app-of-home-carousel-news'},{'name': 'OfHomeTable', 'selector': 'app-of-table'},{'name': 'OfHomeTableComponent', 'selector': 'app-of-home-table'},{'name': 'OfHomeTablePrograms', 'selector': 'app-of-table-programs'},{'name': 'OfHomeTableProgramsComponent', 'selector': 'app-of-home-table-programs'},{'name': 'RequestAccessComponent', 'selector': 'app-request-access'},{'name': 'SearchBar', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavItemComponent', 'selector': 'app-sidenav-item'},{'name': 'SidenavUserInfoComponent', 'selector': 'app-sidenav-user-info'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'SteperComponent', 'selector': 'app-steper'},{'name': 'TimelineComponent', 'selector': 'app-detail'},{'name': 'TooltipRedComponent', 'selector': 'app-tooltip-red'},{'name': 'TooltipRedSmallComponent', 'selector': 'app-tooltip-red-small'},{'name': 'TooltipWhiteSmallComponent', 'selector': 'app-tooltip-white-small'},{'name': 'UnsaAdministrativeComponent', 'selector': 'app-unsa-administrative'},{'name': 'UnsaStudentComponent', 'selector': 'app-unsa-student'},{'name': 'UnsaTeacherComponent', 'selector': 'app-unsa-teacher'},{'name': 'UploadFilesComponent', 'selector': 'app-upload-files'},{'name': 'uploadPhotoComponent', 'selector': 'app-upload-photo'},{'name': 'UserBodyComponent', 'selector': 'app-user-body'},{'name': 'UserDataPostulationBodyComponent', 'selector': 'app-user-data-postulation-body'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyDataComponent', 'selector': 'app-verify-data'},{'name': 'WelcomeComponent', 'selector': 'app-welcome'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'UploadFilesComponent'};
 </script>

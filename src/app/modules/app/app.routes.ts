@@ -58,11 +58,11 @@ const AppRoutes: Routes  = [
   },
   {
     path:AppRoutesValues.ROUTE_APP_CONVOCATORIA,
-    loadChildren:()=>import('../convocatoria/convocatoria.module').then(m => m.ConvocatoriaModule)
+    loadChildren:()=>import('../convocation/convocatoria.module').then(m => m.ConvocatoriaModule)
   },
   {
     path:AppRoutesValues.ROUTE_APP_CONVOCATORIA+"/:id",
-    loadChildren:()=>import('../convocatoria/convocatoria.module').then(m => m.ConvocatoriaModule)
+    loadChildren:()=>import('../convocation/convocatoria.module').then(m => m.ConvocatoriaModule)
   },
   {
     path:AppRoutesValues.ROUTE_APP_POSTULACION+"/:id",

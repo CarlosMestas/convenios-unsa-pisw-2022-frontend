@@ -267,13 +267,17 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable&lt;boolean | UrlTree&gt; | Promise&lt;boolean | UrlTree&gt; | boolean | UrlTree {
       if(this.authService.isUserSigned()){
-        return true;
+        if(this.authService.isUserProfileCreated())
+        {
+          return true;
+        }else{
+          this.router.navigate([&#x27;/registrar-datos-usuario&#x27;])
+          return false;
+        }
       }else{
         this.router.navigate([&#x27;/iniciar-sesion&#x27;])
         return false;
       }
-
-      return true;
   }
 
 }

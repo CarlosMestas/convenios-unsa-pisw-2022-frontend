@@ -41,13 +41,13 @@ export class UserProfileComponent implements OnInit {
     this.email$ = new Observable<string|null>()
     this.isEdit = false
     this.profileForm = new FormGroup({
-      name: new FormControl( {value:'', disabled:!this.isEdit},[Validators.required]),
-      lastname: new FormControl({value:'', disabled:!this.isEdit},[Validators.required]),
-      address: new FormControl({value:'', disabled:!this.isEdit},[Validators.maxLength(100)]),
+      name: new FormControl( '',[Validators.required]),
+      lastname: new FormControl('',[Validators.required]),
+      address: new FormControl('',[Validators.maxLength(100)]),
       datepicker: new FormControl('',[Validators.required]),
       typeUser: new FormControl('',[Validators.required]),
-      valueIdentification: new FormControl({value:'', disabled:!this.isEdit},[Validators.required, Validators.maxLength(8)]),
-      phone: new FormControl({value:'', disabled:!this.isEdit}),
+      valueIdentification: new FormControl('',[Validators.required, Validators.maxLength(8)]),
+      phone: new FormControl(''),
       typeUserIdentification: new FormControl('',[Validators.required]),
 
     })
@@ -57,20 +57,22 @@ export class UserProfileComponent implements OnInit {
     this.email$ = this.store.select(userEmailStateSelector)
 
     this.store.select(profileProfileStateSelector).subscribe(profile=>{
-      console.log("USUARIO", profile?.profile_created)
+      console.log("USUARIO", profile)
       this.profile = profile
-      if (profile?.profile_created === 0){
-        this.isEdit = true
+      if (profile?.profile_created == 1){
+        this.isEdit = false
+        this.profileForm.disable()
       }
-      this.profileForm.controls['name'].reset({ value: profile?.name, disabled: !this.isEdit });
-      this.profileForm.controls['lastname'].reset({ value: profile?.last_name, disabled: !this.isEdit });
-      this.profileForm.controls['address'].reset( { value: profile?.address, disabled: !this.isEdit });
+      this.profileForm.controls['name'].reset(profile?.name);
+      this.profileForm.controls['lastname'].reset(profile?.last_name);
+      this.profileForm.controls['address'].reset(profile?.address);
       // @ts-ignore
-      this.profileForm.controls['datepicker'].setValue(this.convertDate(profile?.birthdate));
+      this.profileForm.controls['datepicker'].reset(this.convertDate(profile.birthdate));
       this.profileForm.controls['typeUserIdentification'].setValue(profile?.identification.type.id);
-      this.profileForm.controls['valueIdentification'].reset({ value: profile?.identification.value, disabled: !this.isEdit });
-      this.profileForm.controls['phone'].reset({ value: profile?.phone, disabled: !this.isEdit });
+      this.profileForm.controls['valueIdentification'].reset(profile?.identification.value);
+      this.profileForm.controls['phone'].reset( profile?.phone);
       this.profileForm.controls['typeUser'].setValue(profile?.type.id);
+
     })
 
       this.typeProfileService.fetchTypeProfile().subscribe(resp =>{
@@ -110,7 +112,6 @@ export class UserProfileComponent implements OnInit {
 
 
       this.profileService.updateProfile(profileUpdate).subscribe(data =>{
-        console.log("ERROR?", data)
       })
       this.isEdit = false
     }
@@ -122,6 +123,7 @@ export class UserProfileComponent implements OnInit {
   }
   editProfile():void{
     this.isEdit = true
+    this.profileForm.enable()
   }
   public get name() : AbstractControl | null {
     return this.profileForm.get('name');

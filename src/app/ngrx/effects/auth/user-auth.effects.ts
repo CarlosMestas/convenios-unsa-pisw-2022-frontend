@@ -21,7 +21,7 @@ export class UserAuthEffect{
 
   userAuthRegisterRequestEffect$ = createEffect(()=>this.actions$.pipe(
     ofType(userRegisterRequestAction), //TODO: Action who Excecuted this change
-    mergeMap((action)=>this.authService.userSignIn(action.email)//TODO: return a user login confirmation
+    mergeMap((action)=>this.authService.userSignUp(action.email,action.image)//TODO: return a user login confirmation
     .pipe(
       map(resp => ({
         type:UserAuthActions.USER_REGISTER_SUCCESS_ACTION,
