@@ -57,9 +57,9 @@ export class UserProfileComponent implements OnInit {
     this.email$ = this.store.select(userEmailStateSelector)
 
     this.store.select(profileProfileStateSelector).subscribe(profile=>{
-      console.log("USUARIO", profile)
+      console.log("USUARIO", profile?.profile_created)
       this.profile = profile
-      if (profile?.profile_created == 0){
+      if (profile?.profile_created === 0){
         this.isEdit = true
       }
       this.profileForm.controls['name'].reset({ value: profile?.name, disabled: !this.isEdit });
@@ -110,7 +110,6 @@ export class UserProfileComponent implements OnInit {
 
 
       this.profileService.updateProfile(profileUpdate).subscribe(data =>{
-        console.log("PERFIL CREADO", profileUpdate)
         console.log("ERROR?", data)
       })
       this.isEdit = false
@@ -119,7 +118,7 @@ export class UserProfileComponent implements OnInit {
   }
   receiveMessage($event: any) {
     this.img = $event
-    console.log("EVEMNTO IAMGEN RECIBIDO", $event)
+    console.log("EVENTO IMAGEN RECIBIDO", $event)
   }
   editProfile():void{
     this.isEdit = true
