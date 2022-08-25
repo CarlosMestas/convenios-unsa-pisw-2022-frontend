@@ -9,8 +9,7 @@ import { NgModule } from '@angular/core';
 const ConvocatoriaRoutesValues = {
   ROUTE_CONVOCATORIA_DETAIL: "detalle",
   ROUTE_CONVOCATORIA_APPLY: "postular",
-  ROUTE_CONVOCATORIA_NEW_ORDINARY: "nuevo-ordinario",
-  ROUTE_CONVOCATORIA_NEW_EXTRAORDINARY: "nuevo-extraordinario"
+  ROUTE_CONVOCATORIA_NEW: "nuevo",
 
 };
 
@@ -19,17 +18,18 @@ const ConvocatoriaRoutes: Routes = [
     path: '',
     component:ConvocatoriaBodyComponent,
     children:[
+      /*
       {
         path:'',
         redirectTo:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_DETAIL,
         pathMatch:'full'
-      },
+      },*/
       {
         path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_DETAIL,
         component:TimelineComponent,
       },
       {
-        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_NEW_ORDINARY,
+        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_NEW,
         component:NewConvocationComponent,
       },
       {

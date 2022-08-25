@@ -13,6 +13,7 @@ import {ButtonModule} from 'primeng/button';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import {TabViewModule} from 'primeng/tabview';
 import { SharedModule } from '../shared/shared.module';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -21,15 +22,16 @@ import { SharedModule } from '../shared/shared.module';
     ConvocatoriaBodyComponent,
     NewConvocationComponent
   ],
-  imports: [
-    CommonModule,
-    ConvocatoriaRoutingModule,
-    TimelineModule,
-    CardModule,
-    ButtonModule,
-    SplitButtonModule,
-    TabViewModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        ConvocatoriaRoutingModule,
+        TimelineModule,
+        CardModule,
+        ButtonModule,
+        SplitButtonModule,
+        TabViewModule,
+        SharedModule,
+        ReactiveFormsModule
+    ]
 })
 export class ConvocatoriaModule { }

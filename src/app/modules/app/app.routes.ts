@@ -57,6 +57,10 @@ const AppRoutes: Routes  = [
     loadChildren:()=>import('../user-data-register/user-data-register.module').then(m => m.UserDataRegisterModule)
   },
   {
+    path:AppRoutesValues.ROUTE_APP_CONVOCATORIA,
+    loadChildren:()=>import('../convocatoria/convocatoria.module').then(m => m.ConvocatoriaModule)
+  },
+  {
     path:AppRoutesValues.ROUTE_APP_CONVOCATORIA+"/:id",
     loadChildren:()=>import('../convocatoria/convocatoria.module').then(m => m.ConvocatoriaModule)
   },

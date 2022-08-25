@@ -1,52 +1,83 @@
-import { convocationConvocationStateSelector } from './../../../../ngrx/selectors/convocation/convocation.selector';
-
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/ngrx/app.state';
-import { IConvocation } from 'src/app/shared/interfaces/convocation.interface';
-import { Observable } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
-import {PrimeIcons} from 'primeng/api';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Observable} from "rxjs";
 @Component({
   selector: 'app-new-convocation',
   templateUrl: './new-convocation.component.html',
   styleUrls: ['./new-convocation.component.scss']
 })
 export class NewConvocationComponent implements OnInit {
+  public convocationForm: FormGroup
+  typeSelectedConv$: string
+  fileName = '';
+  fileNameAfiche = '';
 
-
-  convocation$:Observable<IConvocation|null>
-
-  events1: any[] = [
-    {status: 'Inicio Convocatoria', date: '15/10/2022 10:30', icon: "pi pi-shopping-cart", color: '#9C27B0'},
-    {status: 'Entrega de Documentos', date: '15/10/2022 14:00', icon: PrimeIcons.COG, color: '#673AB7'},
-    {status: 'Fin de la convocatoria', date: '15/10/2022 16:15', icon: PrimeIcons.ENVELOPE, color: '#FF9800'},
-    {status: 'Publicación de ganadores', date: '16/10/2022 10:00', icon: PrimeIcons.CHECK, color: '#607D8B'}
-  ];
-
-  requirements: any[] = [
-    {title: 'Haber cursado por los menos 2 años de estudios universitarios', icon: PrimeIcons.CHECK_CIRCLE},
-    {title: 'Tener Excelencia Académica', icon: PrimeIcons.CHECK_CIRCLE},
-    {title: 'Pertenecer al tercio superior', icon: PrimeIcons.CHECK_CIRCLE},
-    {title: 'Dominar un segundo idioma', icon: PrimeIcons.CHECK_CIRCLE}
-  ];
-  documents: any[] = [
-    {title: 'Resolución', icon: PrimeIcons.DOWNLOAD},
-    {title: 'Bases', icon: PrimeIcons.DOWNLOAD}
-  ];
-
-
-  events2: any[]  = [
-    "2020", "2021", "2022", "2023"
-  ];
-
-
+  typeConvocatory = [
+    {
+      id:1,
+      name:'Ordinario - Estudiante'
+    },
+    {
+      id:2,
+      name:'Ordinario - Docente'
+    },
+    {
+      id:3,
+      name:'Extraordinario - Estudiante'
+    },
+    {
+      id:4,
+      name:'Extraordinario - Docente'
+    }
+  ]
+  semester = [
+    {
+      id:1,
+      name:'2022 - II'
+    },
+    {
+      id:2,
+      name:'2022 - I'
+    },
+  ]
   constructor(
     private store:Store<IAppState>
   ) {
-    this.convocation$ = new Observable<IConvocation>();
+    this.typeSelectedConv$ = 'ordinario'
+    this.convocationForm = new FormGroup({
+      name: new FormControl( '',[Validators.required]),
+      correlative: new FormControl('',[Validators.required]),
+      typeConvocat: new FormControl('',[Validators.required]),
+      semestre: new FormControl('',[Validators.required]),
+      institute: new FormControl('',[Validators.required]),
+      dateStart: new FormControl('',[Validators.required]),
+      dateEnd: new FormControl('',[Validators.required]),
+    })
    }
     ngOnInit() {
-      this.convocation$ = this.store.select(convocationConvocationStateSelector)
     }
 
+  submitProfile():void {
+  }
+
+  onFileSelected(event: any, id: number) {
+
+    const file:File = event.target.files[0];
+    if (file) {
+      if(id == 1)
+        this.fileName = file.name;
+      if(id == 2)
+        this.fileNameAfiche = file.name;
+
+      const formData = new FormData();
+      formData.append("thumbnail", file);
+      //const upload$ = this.http.post("/api/thumbnail-upload", formData);
+      //upload$.subscribe();
+    }
+  }
+  changeType(id: number):void {
+    this.typeSelectedConv$ = 'extraordinary'
+  }
 }
