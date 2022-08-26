@@ -1,6 +1,4 @@
-import { ENUMDocumentType } from './../../../shared/enum/document-type.enum';
 import { IConvocationPIVEFetchTransactionResponse } from './../../../shared/interfaces/transactions/convocation-pive-fetch-transaction-response.interface';
-import { AppRoutingModule } from '../../../modules/app/app.routes';
 
 import { ConvocationHelper } from './convocation.helper';
 
@@ -10,6 +8,10 @@ import { IConvocation } from 'src/app/shared/interfaces/convocation.interface';
 import { HttpClient } from '@angular/common/http';
 import { ENUMConvocationType } from 'src/app/shared/enum/convocation-type.enum';
 import { IRequirement } from 'src/app/shared/interfaces/requirements/requirement.interface';
+import {IConvocationNew} from "../../../shared/interfaces/convocation/convocation-new.interface";
+import {
+  ConvocationNewTransactionResponse
+} from "../../../shared/interfaces/transactions/convocation-new-transaction-response.interface";
 
 
 /**
@@ -144,6 +146,42 @@ export class ConvocationService extends ConvocationHelper{
     ]
     response.data = testData
     return of(response)
+  }
+
+  registerConvocation(newConv: IConvocationNew): Observable<
+    {
+      error:boolean,
+      msg:string,
+    }> {
+    const response = {
+      error:false,
+      msg:'',
+    };
+
+    return this.http.post<ConvocationNewTransactionResponse>(
+      this.url+ConvocationHelper.API_CONV_SERVICE_ROUTES.NEW ,
+      {
+        "title":newConv.title,
+        "correlative":newConv.correlative,
+        "type": newConv.type,
+        "decription": newConv.description,
+        "start_date": newConv.start_date,
+        "end_date": newConv.end_date,
+        "base": newConv.base,
+        "afiche": newConv.afiche
+      }
+    )
+      .pipe(
+        map( r =>{
+          console.log("test - profile", newConv)
+          if(r.code!= 200){
+            console.log(r.msg)
+          }
+          return response
+        }),
+        catchError(this.error)
+      );
+
   }
 }
 

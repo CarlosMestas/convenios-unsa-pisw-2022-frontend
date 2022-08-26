@@ -2,107 +2,140 @@
   <p class="title">Nueva Convocatoria </p>
   <p class="subtitle">Crea una nueva convocatoria </p>
 
-  <form  class="sections-data" [formGroup] = "convocationForm" (ngSubmit) = "submitProfile()">
-   <div class="right-side-form">
-     <div class="item-form">
-       <p class="label-input">Nombre</p>
-       <input class="form-input-text" type="text" formControlName="name"   placeholder="Ingresa el nombre de la convocatoria">
-     </div>
+  <form  [formGroup] = "convocationForm" (ngSubmit) = "submitProfile()">
+    <div class="sections-data">
+      <div class="right-side-form">
+        <div class="item-form">
+          <p class="label-input">Nombre</p>
+          <input class="form-input-text" type="text" formControlName="title"   placeholder="Ingresa el nombre de la convocatoria">
+        </div>
 
-     <div class="bi-container">
-         <div class="item-form">
-           <p class="label-input">Tipo de convocatoria</p>
-           <mat-form-field appearance="outline" >
-             <mat-label>Convocatoria</mat-label>
-             <mat-select formControlName = "typeConvocat">
-               <mat-option *ngFor="let type of typeConvocatory" [value]="type.id" (change)="changeType(type.id)">{{type.name}}</mat-option>
-             </mat-select>
-           </mat-form-field>
-         </div>
-         <div class="item-form">
-           <p class="label-input">Semestre</p>
-           <mat-form-field appearance="outline" >
-             <mat-label>Semestre</mat-label>
-             <mat-select formControlName = "semestre">
-               <mat-option *ngFor="let type of semester" [value]="type.id" >{{type.name}}</mat-option>
-             </mat-select>
-           </mat-form-field>
-         </div>
-     </div>
+        <div class="bi-container">
+          <div class="item-form">
+            <p class="label-input">Tipo de convocatoria</p>
+            <mat-form-field appearance="outline" >
+              <mat-label>Convocatoria</mat-label>
+              <mat-select formControlName = "type"  [(ngModel)]="typeSelectedConv">
+                <mat-option *ngFor="let type of typeConvocatory" [value]="type.id">{{type.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
 
-     <div class="item-form">
-       <p class="label-input">Institución</p>
-       <input class="form-input-text" type="text"  formControlName="institute" placeholder="Ingresa el nombre de la institución">
-     </div>
+          <div class="item-form">
+            <div *ngIf="typeSelectedConv==5 || typeSelectedConv==6 ">
+              <p class="label-input">Semestre</p>
+              <mat-form-field appearance="outline" >
+                <mat-label>Semestre</mat-label>
+                <mat-select formControlName = "semestre">
+                  <mat-option *ngFor="let type of semester" [value]="type.id" >{{type.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
 
-     <div class="bi-container">
-       <div class="item-form" >
-         <p class="label-input">Fecha de inicio</p>
-         <mat-form-field appearance="outline" >
-           <input matInput [matDatepicker]="dateStart" formControlName="dateStart" placeholder="dateStart *">
-           <mat-hint>MM/DD/YYYY</mat-hint>
-           <mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
-           <mat-datepicker #dateStart>
-             <mat-datepicker-actions>
-               <button mat-button matDatepickerCancel>Cancelar</button>
-               <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
-             </mat-datepicker-actions>
-           </mat-datepicker>
-         </mat-form-field>
-       </div>
-       <div class="item-form" >
-         <p class="label-input">Fecha de fin </p>
-         <mat-form-field appearance="outline" >
-           <input matInput [matDatepicker]="dateEnd" formControlName="dateEnd" placeholder="dateEnd *">
-           <mat-hint>MM/DD/YYYY</mat-hint>
-           <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
-           <mat-datepicker #dateEnd>
-             <mat-datepicker-actions>
-               <button mat-button matDatepickerCancel>Cancelar</button>
-               <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
-             </mat-datepicker-actions>
-           </mat-datepicker>
-         </mat-form-field>
-       </div>
+        <div class="item-form"  *ngIf="typeSelectedConv==5 || typeSelectedConv==6 ">
+          <p class="label-input">Institución</p>
+          <input class="form-input-text" type="text"  formControlName="institute" placeholder="Ingresa el nombre de la institución">
+        </div>
+
+        <div class="item-form"  *ngIf="typeSelectedConv==1 || typeSelectedConv==2 ">
+          <p class="label-input">Descripción</p>
+          <textarea matInput
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                    placeholder="Ingresa el nombre de la institución"
+                    class="form-input-text"
+                    formControlName="description" ></textarea>
+
+        </div>
+
+        <div class="bi-container">
+          <div class="item-form" >
+            <p class="label-input">Fecha de inicio</p>
+            <mat-form-field appearance="outline" >
+              <input matInput [matDatepicker]="dateStart" formControlName="dateStart" placeholder="dateStart *">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
+              <mat-datepicker #dateStart>
+                <mat-datepicker-actions>
+                  <button mat-button matDatepickerCancel>Cancelar</button>
+                  <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
+                </mat-datepicker-actions>
+              </mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="item-form" >
+            <p class="label-input">Fecha de fin </p>
+            <mat-form-field appearance="outline" >
+              <input matInput [matDatepicker]="dateEnd" formControlName="dateEnd" placeholder="dateEnd *">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
+              <mat-datepicker #dateEnd>
+                <mat-datepicker-actions>
+                  <button mat-button matDatepickerCancel>Cancelar</button>
+                  <button mat-raised-button color="primary" matDatepickerApply>Aplicar</button>
+                </mat-datepicker-actions>
+              </mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="bi-container">
+          <div class="item-form" *ngIf="typeSelectedConv==1 || typeSelectedConv==2">
+            <p class="label-input">Eventos admitidos </p>
+            <mat-selection-list dense>
+              <mat-list-option *ngFor="let event of typeEvents">
+                {{event}}
+              </mat-list-option>
+            </mat-selection-list>
+          </div>
+          <div class="item-form" *ngIf="typeSelectedConv==1 || typeSelectedConv==2">
+          </div>
+        </div>
+
       </div>
-   </div>
-   <div class="left-side-form">
-      <div class="item-form">
-        <p class="label-input">Correlativo</p>
-        <input class="form-input-text" type="text" formControlName="correlative"   placeholder="Ingresa tu nombre">
+      <div class="left-side-form">
+        <div class="item-form">
+          <p class="label-input">Correlativo</p>
+          <input class="form-input-text" type="text" formControlName="correlative"   placeholder="Ingresa tu nombre">
+        </div>
+
+        <div class="item-form">
+          <p class="label-input">Bases</p>
+          <input type="file" class="file-input-1"
+                 (change)="onFileSelected($event, 1)" #fileUpload >
+
+          <div class="file-upload">
+            {{fileName || "Ningún archivo subido."}}
+            <button mat-mini-fab color="primary" class="upload-btn"
+                    (click)="fileUpload.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+
+        </div>
+        <div class="item-form">
+          <p class="label-input">Afiche</p>
+          <input type="file" class="file-input-2"
+                 (change)="onFileSelected($event, 2)" #fileUpload2>
+
+          <div class="file-upload">
+            {{fileNameAfiche || "Ningún archivo subido."}}
+            <button mat-mini-fab color="primary" class="upload-btn"
+                    (click)="fileUpload2.click()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+        </div>
       </div>
+    </div>
 
-     <div class="item-form">
-       <p class="label-input">Bases</p>
-       <input type="file" class="file-input-1"
-              (change)="onFileSelected($event, 1)" #fileUpload>
-
-       <div class="file-upload">
-         {{fileName || "Ningún archivo subido."}}
-         <button mat-mini-fab color="primary" class="upload-btn"
-                 (click)="fileUpload.click()">
-           <mat-icon>attach_file</mat-icon>
-         </button>
-       </div>
-
-     </div>
-     <div class="item-form">
-       <p class="label-input">Afiche</p>
-       <input type="file" class="file-input-2"
-              (change)="onFileSelected($event, 2)" #fileUpload2>
-
-       <div class="file-upload">
-         {{fileNameAfiche || "Ningún archivo subido."}}
-         <button mat-mini-fab color="primary" class="upload-btn"
-                 (click)="fileUpload2.click()">
-           <mat-icon>attach_file</mat-icon>
-         </button>
-       </div>
-     </div>
-   </div>
+    <div class="cont-buttons">
+      <app-button-customized colorProp="primary" textBtn="Crear Convocatoria" size="big">  <input   type="submit"></app-button-customized>
+      <app-button-customized class="padding-btn" colorProp="white" textBtn="Cancelar" size="big"> </app-button-customized>
+    </div>
   </form>
-  <div class="cont-buttons">
-    <app-button-customized colorProp="primary" textBtn="Crear Convocatoria" size="big">  <input   type="submit"></app-button-customized>
-    <app-button-customized class="padding-btn" colorProp="white" textBtn="Cancelar" size="big"> </app-button-customized>
-  </div>
 </div>

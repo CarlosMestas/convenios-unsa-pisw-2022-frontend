@@ -6,7 +6,7 @@ export interface IConvocationNew{
   description: string,
   start_date: string,
   end_date: string,
-  base: string,
-  afiche: string,
+  base: File,
+  afiche: File,
   events: []
 }

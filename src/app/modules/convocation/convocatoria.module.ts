@@ -20,6 +20,7 @@ import { DetailEstVanComponent } from './pages/detail-est-van/detail-est-van.com
 import { DetailEstVienenComponent } from './pages/detail-est-vienen/detail-est-vienen.component';
 import { DetailDocVanComponent } from './pages/detail-doc-van/detail-doc-van.component';
 import { DetailDocVienenComponent } from './pages/detail-doc-vienen/detail-doc-vienen.component';
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { DetailDocVienenComponent } from './pages/detail-doc-vienen/detail-doc-v
         SplitButtonModule,
         TabViewModule,
         SharedModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        MatListModule
     ]
 })
 export class ConvocatoriaModule { }
