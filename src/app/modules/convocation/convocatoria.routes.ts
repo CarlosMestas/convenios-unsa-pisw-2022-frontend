@@ -1,3 +1,4 @@
+import { NewConvocationDetailComponent } from './pages/new-convocation-detail/new-convocation-detail.component';
 import { AuthGuard } from '../../core/guards/auth/auth.guard';
 import { DetailComponent } from './pages/detail/detail.component';
 import { ConvocatoriaBodyComponent } from './body/convocatoria-body.component';
@@ -22,6 +23,7 @@ const ConvocatoriaRoutesValues = {
   ROUTE_CONVOCATORIA_DOC_VAN_DETAIL: "detalle-doc-van",
   ROUTE_CONVOCATORIA_EST_VIENEN_DETAIL: "detalle-est-vienen",
   ROUTE_CONVOCATORIA_EST_VAN_DETAIL: "detalle-est-van",
+  ROUTE_CONVOCATORIA_NEW_DETAIL: "nuevo-detalle"
 };
 
 const ConvocatoriaRoutes: Routes = [
@@ -29,15 +31,11 @@ const ConvocatoriaRoutes: Routes = [
     path: '',
     component:ConvocatoriaBodyComponent,
     children:[
-      /* {
-         path:'',
-         redirectTo:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_DETAIL,
-         pathMatch:'full'
-       },*/
       {
-        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_NEW,
-        component:NewConvocationComponent,
-      },
+         path:'',
+         redirectTo:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_NEW,
+         pathMatch:'full'
+       },
       {
         path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_DETAIL,
         component:DetailComponent,
@@ -67,6 +65,14 @@ const ConvocatoriaRoutes: Routes = [
             component:DetailEstVanComponent
           }
         ]
+      },
+      {
+        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_NEW_DETAIL,
+        component:NewConvocationDetailComponent
+      },
+      {
+        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_NEW,
+        component:NewConvocationComponent,
       },
       {
         path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_APPLY,

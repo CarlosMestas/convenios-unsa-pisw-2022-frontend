@@ -1,3 +1,5 @@
+import { Router, ActivatedRoute } from '@angular/router';
+
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/ngrx/app.state';
 import { Component, Input, OnInit } from '@angular/core';
@@ -5,6 +7,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ENUMConvocationType} from '../../../../shared/enum/convocation-type.enum';
 import {IConvocationNew} from "../../../../shared/interfaces/convocation/convocation-new.interface";
 import {ConvocationService} from "../../../../core/services/convocation/convocation.service";
+import { ConvocatoriaRoutingModule } from '../../convocatoria.routes';
 
 @Component({
   selector: 'app-new-convocation',
@@ -59,7 +62,9 @@ export class NewConvocationComponent implements OnInit {
   ]
   constructor(
     private store:Store<IAppState>,
-    private convocatory: ConvocationService
+    private convocatory: ConvocationService,
+    private router:Router,
+    private activatedRoute:ActivatedRoute
   ) {
     this.typeSelectedConv = 1
     this.convocationForm = new FormGroup({
@@ -106,5 +111,9 @@ export class NewConvocationComponent implements OnInit {
 
 
     }
+  submit(){
+    //envío del formulario de convocation
+    this.router.navigate(["../"+ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_NEW_DETAIL],{relativeTo: this.activatedRoute})
+  }
 
 }
