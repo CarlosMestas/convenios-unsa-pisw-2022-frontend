@@ -96,10 +96,13 @@ export class NewConvocationComponent implements OnInit {
 
     this.convocatory.registerConvocation(formData).subscribe(data =>{
       this.store.dispatch(convocationFetchSuccessAction({convocation: data.data}))
-      console.log("ERROR?", data)
+      if(!data.error){
+        //envío del formulario de convocation
+        this.router.navigate(["../"+ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_NEW_DETAIL],{relativeTo: this.activatedRoute})
+      } else{
+        console.log("ERROR - Revise el formulario, campos vacios")
+      }
     })
-    //envío del formulario de convocation
-    this.router.navigate(["../"+ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_NEW_DETAIL],{relativeTo: this.activatedRoute})
   }
 
   onFileSelected(event: any, id: number) {
