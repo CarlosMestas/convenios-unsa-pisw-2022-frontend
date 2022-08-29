@@ -117,7 +117,7 @@ export class ConvocationService extends ConvocationHelper{
     return of(response);
   }
 
-  registerConvocation(newConv: IConvocationNew): Observable<
+  registerConvocation(newConv: FormData): Observable<
     {
       error:boolean,
       msg:string,
@@ -127,20 +127,10 @@ export class ConvocationService extends ConvocationHelper{
       msg:'',
     };
     console.log("reading file ")
-        console.log(newConv.base)
+        console.log(newConv)
 
     return this.http.post<ConvocationNewTransactionResponse>(
-      this.url+ConvocationHelper.API_CONV_SERVICE_ROUTES.NEW ,
-      {
-        "title":newConv.title,
-        "correlative":newConv.correlative,
-        "type": newConv.type,
-        "decription": newConv.description,
-        "start_date": newConv.start_date,
-        "end_date": newConv.end_date,
-        "base": newConv.base,
-        "afiche": newConv.afiche
-      }
+      this.url+ConvocationHelper.API_CONV_SERVICE_ROUTES.NEW ,newConv
     )
       .pipe(
         map( r =>{

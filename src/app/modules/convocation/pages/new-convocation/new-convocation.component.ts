@@ -96,7 +96,17 @@ export class NewConvocationComponent implements OnInit {
     newConvocation.base = this.fileBase
     newConvocation.afiche = this.fileAfiche
     console.log("ENVIO CONV", newConvocation)
-    this.convocatory.registerConvocation(newConvocation).subscribe(data =>{
+    const formData = new FormData()
+    formData.append("title",this.convocationForm.value["title"])
+    formData.append("correlative",this.convocationForm.value["correlative"])
+    formData.append("type",this.convocationForm.value["type"])
+    formData.append("description",this.convocationForm.value["description"])
+    formData.append("start_date",dateStart.getFullYear()+"-"+(dateStart.getMonth()+1)+"-"+dateStart.getDate())
+    formData.append("end_date",dateEnd.getFullYear()+"-"+(dateEnd.getMonth()+1)+"-"+dateEnd.getDate())
+    formData.append("base",this.fileBase,this.fileBase.name)
+    formData.append("afiche",this.fileAfiche,this.fileAfiche.name)
+
+    this.convocatory.registerConvocation(formData).subscribe(data =>{
       console.log("ERROR?", data)
     })
     //envío del formulario de convocation
