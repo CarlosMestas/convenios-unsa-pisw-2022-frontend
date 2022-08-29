@@ -5,5 +5,6 @@ export const ConvocationInitialState:IConvocationState ={
   convocation: null,
   convocationDetail: null,
   documents: [],
-  requirements: []
+  requirements: [],
+  eventTypes: []
 }

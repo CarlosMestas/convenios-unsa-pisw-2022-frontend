@@ -20,7 +20,6 @@ import { DetailEstVanComponent } from './pages/detail-est-van/detail-est-van.com
 import { DetailEstVienenComponent } from './pages/detail-est-vienen/detail-est-vienen.component';
 import { DetailDocVanComponent } from './pages/detail-doc-van/detail-doc-van.component';
 import { DetailDocVienenComponent } from './pages/detail-doc-vienen/detail-doc-vienen.component';
-import {MatListModule} from "@angular/material/list";
 import { NewConvocationDetailComponent } from './pages/new-convocation-detail/new-convocation-detail.component';
 
 @NgModule({
@@ -47,8 +46,7 @@ import { NewConvocationDetailComponent } from './pages/new-convocation-detail/ne
         SplitButtonModule,
         TabViewModule,
         SharedModule,
-        ReactiveFormsModule,
-        MatListModule
+        ReactiveFormsModule
     ]
 })
 export class ConvocatoriaModule { }

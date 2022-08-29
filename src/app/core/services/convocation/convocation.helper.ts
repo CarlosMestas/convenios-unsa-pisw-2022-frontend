@@ -7,6 +7,7 @@ import {IConvocationNew} from "../../../shared/interfaces/convocation/convocatio
 export class ConvocationHelper{
   protected static API_CONV_SERVICE_ROUTES = {
     NEW:"convocations",
+    NEW_PIVE:"pivConvocations"
   }
   public url = environment.url
   public isProduction = environment.production
@@ -25,6 +26,18 @@ export class ConvocationHelper{
       error:true,
       msg: errorMessage,
       data: {} as IConvocation | IConvocationNew
+    })
+  }
+  errorPost(error:HttpErrorResponse){
+    let errorMessage = ''
+    if(error.error instanceof ErrorEvent){
+      errorMessage = error.error.message
+    }else{
+      errorMessage = `Error status :${error.status} \n message: ${error.message}`
+    }
+    return of({
+      error:true,
+      msg: errorMessage
     })
   }
 }

@@ -7,10 +7,9 @@ import { AuthInterceptorProviders } from './../../core/interceptors/auth.interce
 import { NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
-import { FormsModule } from "@angular/forms";
+
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //Module Local components imported
 import { HomeComponent } from './pages/home/home.component'
@@ -60,10 +59,8 @@ import { effectsOF } from 'src/app/ngrx/effects/index.effects';
     BrowserModule,
     FontAwesomeModule,
     AppRoutingModule,
-    FormsModule,
     CommonModule,
     HttpClientModule,
-    ReactiveFormsModule,
     SharedModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(ROOT_REDUCERS),

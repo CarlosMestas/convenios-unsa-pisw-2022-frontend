@@ -1,7 +1,9 @@
-import { convocationFetchRequestAction, convocationFetchSuccessAction, convocationFetchErrorAction, convocationPIVEFetchRequestAction, convocationPIVEFetchSuccessAction, convocationRequirementFetchRequestAction, convocationRequirementFetchSuccessAction, convocationRequirementFetchErrorAction } from './../../actions/convocation/convocation.actions';
+import { convocationFetchRequestAction, convocationFetchSuccessAction, convocationFetchErrorAction, convocationPIVEFetchRequestAction, convocationPIVEFetchSuccessAction} from './../../actions/convocation/convocation.actions';
 import { createReducer, on } from '@ngrx/store';
 import { ConvocationInitialState } from '../../initial-states/convocation/convocation.initial-state';
 import { documentsGetErrorAction, documentsGetRequestAction, documentsGetSuccessAction } from '../../actions/convocation/document.actions';
+import { requirementFetchErrorAction, requirementFetchRequestAction, requirementFetchSuccessAction, requirementsGetAllErrorAction, requirementsGetAllRequestAction, requirementsGetAllSuccessAction } from '../../actions/convocation/requirement.actions';
+import { eventTypesGetAllErrorAction, eventTypesGetAllRequestAction, eventTypesGetAllSuccessAction, eventTypesGetErrorAction, eventTypesGetRequestAction, eventTypesGetSuccessAction } from '../../actions/convocation/event-type.actions';
 
 
 export const convocationReducer = createReducer(
@@ -24,13 +26,13 @@ export const convocationReducer = createReducer(
       convocationDetail:params.convocationPIVE.detail
     }
   }),
-  on(convocationRequirementFetchRequestAction,(state)=>{
+  on(requirementFetchRequestAction,(state)=>{
     return {...state,working:true}
   }),
-  on(convocationRequirementFetchSuccessAction,(state,params)=>{
+  on(requirementFetchSuccessAction,(state,params)=>{
     return {...state,working:false, requirements:params.requirements}
   }),
-  on(convocationRequirementFetchErrorAction,(state)=>{
+  on(requirementFetchErrorAction,(state)=>{
     return{...state,working:false}
   }),
   on(documentsGetRequestAction,(state)=>{
@@ -41,5 +43,32 @@ export const convocationReducer = createReducer(
   }),
   on(documentsGetErrorAction,(state)=>{
     return{...state,working:false}
+  }),
+  on(requirementsGetAllRequestAction,(state)=>{
+    return {...state,working:true}
+  }),
+  on(requirementsGetAllSuccessAction,(state,params)=>{
+    return {...state, requirements:params.requirements}
+  }),
+  on(requirementsGetAllErrorAction,(state)=>{
+    return {...state,working:false}
+  }),
+  on(eventTypesGetAllRequestAction,(state)=>{
+    return {...state,working:true}
+  }),
+  on(eventTypesGetAllSuccessAction,(state,params)=>{
+    return {...state,eventTypes:params.eventTypes,working:false}
+  }),
+  on(eventTypesGetAllErrorAction,(state)=>{
+    return {...state,working:false}
+  }),
+  on(eventTypesGetRequestAction,(state)=>{
+    return {...state,working:true}
+  }),
+  on(eventTypesGetSuccessAction,(state,params)=>{
+    return {...state,eventTypes:params.eventTypes,working:false}
+  }),
+  on(eventTypesGetErrorAction,(state)=>{
+    return {...state,working:false}
   }),
 )

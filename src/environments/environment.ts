@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  url:'https://api-oficina-convenios.herokuapp.com/api/'
-  //url: 'https://convenios-unsa-pisw-2022-0.herokuapp.com/api/'
+  //url:'https://api-oficina-convenios.herokuapp.com/api/'
+  url: 'https://convenios-unsa-pisw-2022-0.herokuapp.com/api/'
 };
 
 /*

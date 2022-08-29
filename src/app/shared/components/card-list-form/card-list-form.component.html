@@ -1,0 +1,26 @@
+<div class="list-form events-container">
+  <div class="header">
+    <div class="title">{{title}}</div>
+    <div class="actions">
+      <span class="icon-container">
+        <i class="icon pi pi-plus-circle" (click)="inputRequirement=!inputRequirement"></i>
+      </span>
+    </div>
+  </div>
+  <form class="input-container" *ngIf="inputRequirement" [formGroup] = "newItemForm" (ngSubmit) = "onNewItemSubmit()">
+    <div class="form-item">
+      <label for="value" class="form-label">Value</label>
+      <input type="text" class="form-input-text" formControlName="value" id="value">
+      <span class="invalid-field" *ngIf="value && value.invalid && value.touched">Debe ingresar un valor correcto</span>
+    </div>
+    <app-button-form text = "Guardar" cdkFocusInitial></app-button-form>
+  </form>
+  <div class="list events">
+      <mat-selection-list #itemsChecked (selectionChange)="onGroupsChange(itemsChecked.selectedOptions.selected)">
+        <mat-list-option class="list-option" *ngFor="let item of items" [value]="item.id">
+          {{item.description}}
+        </mat-list-option>
+      </mat-selection-list>
+
+  </div>
+</div>

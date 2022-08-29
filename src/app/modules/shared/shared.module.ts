@@ -14,8 +14,8 @@ import { Button } from 'src/app/shared/components/button/button';
 import { MaterialModule } from '../material/material.module';
 import { ButtonCustomizedComponent } from 'src/app/shared/components/button-customized/button-customized.component';
 import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
-
-
+import { CardListFormComponent } from 'src/app/shared/components/card-list-form/card-list-form.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 
 
@@ -31,13 +31,16 @@ import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-
     SearchBarComponent,
     DialogYesNoComponent,
     ButtonFormComponent,
-    DialogErrorEmailComponent
+    DialogErrorEmailComponent,
+    CardListFormComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FontAwesomeModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports:[
     SteperComponent,
@@ -51,7 +54,10 @@ import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-
     SearchBarComponent,
     DialogYesNoComponent,
     ButtonFormComponent,
-    DialogErrorEmailComponent
+    DialogErrorEmailComponent,
+    CardListFormComponent,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 
 })

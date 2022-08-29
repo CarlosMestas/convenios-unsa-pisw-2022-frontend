@@ -1,6 +1,6 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { catchError, map, Observable, of } from "rxjs";
 import { IRequirement } from "src/app/shared/interfaces/requirements/requirement.interface";
 import { RequirementHelper } from "./requirement.helper";
 
@@ -15,6 +15,32 @@ export class RequirementService extends RequirementHelper{
     super(http)
   }
 
+  getAllRequirements():Observable<
+  {
+    error:boolean,
+    msg:string,
+    data:IRequirement[]
+  }>{
+    const response = {
+      error:false,
+      msg:'',
+      data:{} as IRequirement[]
+    };
+
+    return this.http.get<{
+      code:number,
+      msg:string,
+      data:IRequirement[]
+    }>(this.url+ RequirementHelper.API_REQUIREMENT_SERVICE_ROUTES.GET_ALL_REQUIREMENTS)
+    .pipe(
+      map( resp =>{
+        response.data=resp.data
+        return response
+      }),
+      catchError(this.errorGetRequirements)
+    )
+  }
+
   getRequirements(id:number):Observable<
   {
     error:boolean,
@@ -26,27 +52,49 @@ export class RequirementService extends RequirementHelper{
       msg:'',
       data:{} as IRequirement[]
     };
-    const testData:IRequirement[] = [
-      {
-        id:1,
-        description:"Haber cursado por los menos 2 años de estudios universitarios"
-      },
-      {
-        id:2,
-        description:"Tener Excelencia Académica"
-      },
-      {
-        id:3,
-        description:"Pertenecer al tercio superior"
-      },
-      {
-        id:4,
-        description:"Dominar un segundo idioma"
-      }
-    ]
-    response.data = testData
-    return of(response)
-    //aquí la implementación
+
+    const params:HttpParams = new HttpParams()
+    params.set("id",id)
+    return this.http.get<{
+      code:number,
+      msg:string,
+      data:IRequirement[]
+    }>(this.url+ RequirementHelper.API_REQUIREMENT_SERVICE_ROUTES.GET_REQUIREMENTS,{params})
+    .pipe(
+      map( resp =>{
+        response.data=resp.data
+        return response
+      }),
+      catchError(this.errorGetRequirements)
+    )
+
+  }
+  postRequirement(requirement:IRequirement):Observable<
+  {
+    error:boolean,
+    msg:string,
+    data:IRequirement
+  }>{
+    const response = {
+      error:false,
+      msg:'',
+      data:{} as IRequirement
+    };
+
+    return this.http.post<{
+      code:number,
+      msg:string,
+      data:IRequirement
+    }>(this.url + RequirementHelper.API_REQUIREMENT_SERVICE_ROUTES.POST_REQUIREMENT,requirement)
+    .pipe(
+      map( resp=>{
+          console.log(resp)
+          response.data=resp.data
+          return response
+        }
+      ),
+      catchError(this.error)
+    )
   }
 }
 

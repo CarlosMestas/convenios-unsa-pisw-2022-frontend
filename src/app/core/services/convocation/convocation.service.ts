@@ -12,6 +12,7 @@ import {IConvocationNew} from "../../../shared/interfaces/convocation/convocatio
 import {
   ConvocationNewTransactionResponse
 } from "../../../shared/interfaces/transactions/convocation-new-transaction-response.interface";
+import { IRequestSaveConvocationDetailPIVE } from 'src/app/shared/interfaces/convocation/request-transactions.interface';
 
 
 /**
@@ -115,38 +116,6 @@ export class ConvocationService extends ConvocationHelper{
     console.log("convocation---data--test: ", response.data)
     return of(response);
   }
-  getRequirements(id:number):Observable<
-  {
-    error:boolean,
-    msg:string,
-    data:IRequirement[]
-  }>{
-    const response = {
-      error:false,
-      msg:'',
-      data:{} as IRequirement[]
-    };
-    const testData:IRequirement[] = [
-      {
-        id:1,
-        description:"Haber cursado por los menos 2 años de estudios universitarios"
-      },
-      {
-        id:2,
-        description:"Tener Excelencia Académica"
-      },
-      {
-        id:3,
-        description:"Pertenecer al tercio superior"
-      },
-      {
-        id:4,
-        description:"Dominar un segundo idioma"
-      }
-    ]
-    response.data = testData
-    return of(response)
-  }
 
   registerConvocation(newConv: IConvocationNew): Observable<
     {
@@ -182,6 +151,26 @@ export class ConvocationService extends ConvocationHelper{
         catchError(this.error)
       );
 
+  }
+
+  postConvocationDetailPIVE(data:IRequestSaveConvocationDetailPIVE):Observable<{
+    error:boolean,
+    msg:string
+  }>{
+    const response = {
+      error:false,
+      msg:''
+    }
+
+    return this.http.post<any>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.NEW_PIVE,data)
+    .pipe(
+      map(resp=>{
+        console.log(resp)
+        return response
+      }
+      ),
+      catchError(this.errorPost)
+    )
   }
 }
 
