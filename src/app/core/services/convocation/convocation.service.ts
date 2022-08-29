@@ -7,10 +7,10 @@ import { catchError, map, Observable, of } from 'rxjs';
 import { IConvocation } from 'src/app/shared/interfaces/convocation.interface';
 import { HttpClient } from '@angular/common/http';
 import { ENUMConvocationType } from 'src/app/shared/enum/convocation-type.enum';
-import {
-  ConvocationNewTransactionResponse
-} from "../../../shared/interfaces/transactions/convocation-new-transaction-response.interface";
 import { IRequestSaveConvocationDetailPIVE } from 'src/app/shared/interfaces/convocation/request-transactions.interface';
+import {
+  ConvocationFetchTransactionResponse
+} from "../../../shared/interfaces/transactions/convocation-fetch-transaction-response.interface";
 
 
 /**
@@ -127,7 +127,7 @@ export class ConvocationService extends ConvocationHelper{
       data: {} as IConvocation
     };
 
-    return this.http.post<ConvocationNewTransactionResponse>(
+    return this.http.post<ConvocationFetchTransactionResponse>(
       this.url+ConvocationHelper.API_CONV_SERVICE_ROUTES.NEW ,newConv
     )
       .pipe(
