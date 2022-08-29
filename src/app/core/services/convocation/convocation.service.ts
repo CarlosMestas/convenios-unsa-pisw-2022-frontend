@@ -7,8 +7,6 @@ import { catchError, map, Observable, of } from 'rxjs';
 import { IConvocation } from 'src/app/shared/interfaces/convocation.interface';
 import { HttpClient } from '@angular/common/http';
 import { ENUMConvocationType } from 'src/app/shared/enum/convocation-type.enum';
-import { IRequirement } from 'src/app/shared/interfaces/requirements/requirement.interface';
-import {IConvocationNew} from "../../../shared/interfaces/convocation/convocation-new.interface";
 import {
   ConvocationNewTransactionResponse
 } from "../../../shared/interfaces/transactions/convocation-new-transaction-response.interface";
@@ -121,13 +119,13 @@ export class ConvocationService extends ConvocationHelper{
     {
       error:boolean,
       msg:string,
+      data: IConvocation
     }> {
     const response = {
       error:false,
       msg:'',
+      data: {} as IConvocation
     };
-    console.log("reading file ")
-        console.log(newConv)
 
     return this.http.post<ConvocationNewTransactionResponse>(
       this.url+ConvocationHelper.API_CONV_SERVICE_ROUTES.NEW ,newConv
@@ -138,6 +136,7 @@ export class ConvocationService extends ConvocationHelper{
           if(r.code!= 200){
             console.log(r.msg)
           }
+          console.log(response.data)
           return response
         }),
         catchError(this.error)

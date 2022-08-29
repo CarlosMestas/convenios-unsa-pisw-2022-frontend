@@ -5,9 +5,9 @@ import { IAppState } from 'src/app/ngrx/app.state';
 import { Component, Input, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ENUMConvocationType} from '../../../../shared/enum/convocation-type.enum';
-import {IConvocationNew} from "../../../../shared/interfaces/convocation/convocation-new.interface";
 import {ConvocationService} from "../../../../core/services/convocation/convocation.service";
 import { ConvocatoriaRoutingModule } from '../../convocatoria.routes';
+import {convocationFetchSuccessAction} from "../../../../ngrx/actions/convocation/convocation.actions";
 
 @Component({
   selector: 'app-new-convocation',
@@ -96,6 +96,7 @@ export class NewConvocationComponent implements OnInit {
     formData.append("afiche",this.fileAfiche,this.fileAfiche.name)
 
     this.convocatory.registerConvocation(formData).subscribe(data =>{
+      //this.store.dispatch(convocationFetchSuccessAction(data.data))
       console.log("ERROR?", data)
     })
     //envío del formulario de convocation
