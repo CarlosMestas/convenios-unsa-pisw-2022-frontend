@@ -21,6 +21,7 @@ import { DetailEstVienenComponent } from './pages/detail-est-vienen/detail-est-v
 import { DetailDocVanComponent } from './pages/detail-doc-van/detail-doc-van.component';
 import { DetailDocVienenComponent } from './pages/detail-doc-vienen/detail-doc-vienen.component';
 import {MatListModule} from "@angular/material/list";
+import { NewConvocationDetailComponent } from './pages/new-convocation-detail/new-convocation-detail.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatListModule} from "@angular/material/list";
     DetailEstVanComponent,
     DetailEstVienenComponent,
     DetailDocVanComponent,
-    DetailDocVienenComponent
+    DetailDocVienenComponent,
+    NewConvocationDetailComponent
   ],
     imports: [
         CommonModule,
