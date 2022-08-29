@@ -97,7 +97,7 @@
 
           <div class="file-upload">
             {{fileName || "Ningún archivo subido."}}
-            <button mat-mini-fab color="primary" class="upload-btn"
+            <button type="button" mat-mini-fab color="primary" class="upload-btn"
                     (click)="fileUpload.click()">
               <mat-icon>attach_file</mat-icon>
             </button>
@@ -111,7 +111,7 @@
 
           <div class="file-upload">
             {{fileNameAfiche || "Ningún archivo subido."}}
-            <button mat-mini-fab color="primary" class="upload-btn"
+            <button type="button" mat-mini-fab color="primary" class="upload-btn"
                     (click)="fileUpload2.click()">
               <mat-icon>attach_file</mat-icon>
             </button>
@@ -121,7 +121,7 @@
     </div>
 
     <div class="cont-buttons">
-      <app-button-customized colorProp="primary" textBtn="Siguiente" size="big" (click)="submit()">  <input   type="submit"></app-button-customized>
+      <app-button-customized colorProp="primary" textBtn="Siguiente" size="big"> </app-button-customized>
     </div>
   </form>
 </div>

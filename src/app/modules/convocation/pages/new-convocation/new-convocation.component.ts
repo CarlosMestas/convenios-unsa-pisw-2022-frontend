@@ -82,6 +82,7 @@ export class NewConvocationComponent implements OnInit {
     }
 
   submitProfile():void {
+    console.log("submit pushed")
     let newConvocation: IConvocationNew = {} as IConvocationNew
     newConvocation.title =  this.convocationForm.value["title"]
     newConvocation.correlative =  this.convocationForm.value["correlative"]
@@ -98,22 +99,20 @@ export class NewConvocationComponent implements OnInit {
     this.convocatory.registerConvocation(newConvocation).subscribe(data =>{
       console.log("ERROR?", data)
     })
+    //envío del formulario de convocation
+    this.router.navigate(["../"+ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_NEW_DETAIL],{relativeTo: this.activatedRoute})
   }
 
   onFileSelected(event: any, id: number) {
       if(id == 1){
         this.fileBase =  event.target.files[0]
         this.fileName = this.fileBase.name;
+
       }
       if(id == 2) {
         this.fileAfiche =  event.target.files[0]
         this.fileNameAfiche = this.fileAfiche.name;      }
 
-
-    }
-  submit(){
-    //envío del formulario de convocation
-    this.router.navigate(["../"+ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_NEW_DETAIL],{relativeTo: this.activatedRoute})
-  }
+      }
 
 }

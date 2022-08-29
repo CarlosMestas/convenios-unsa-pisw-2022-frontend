@@ -32,7 +32,7 @@ export class ConvocationEffect{
 
   convocationFetchSuccessToDetailEffect = createEffect(()=>this.actions$.pipe(
     ofType(convocationFetchSuccessAction),
-    mergeMap((action)=> this.convocationService.getConvocationDetailPIVE(action.convocation.id_detail)
+    mergeMap((action)=> this.convocationService.getConvocationDetailPIVE(action.convocation.id)
     .pipe(
       map((resp)=>{
         return{

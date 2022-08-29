@@ -54,8 +54,7 @@ export class ConvocationService extends ConvocationHelper{
       },
       description: "ALUMNO AGUSTINO, ANUNCIAMOS LA SEGUNDA CONVOCATORIA DEL PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022 Selecciona tu evento internacional o nacional, que se realice hasta diciembre de este año, y postula!!",
       start_date:'15/10/2022 10:30',
-      end_date:'15/10/2022 10:30',
-      id_detail:1
+      end_date:'15/10/2022 10:30'
     }
     response.data = testData;
     console.log("convocation---data--test: ", response.data)
@@ -95,6 +94,7 @@ export class ConvocationService extends ConvocationHelper{
     const testData:IConvocationPIVEFetchTransactionResponse = {
       detail:{
         id:1,
+        id_convocation:1,
         events:[
           {
             id:1,
@@ -126,6 +126,8 @@ export class ConvocationService extends ConvocationHelper{
       error:false,
       msg:'',
     };
+    console.log("reading file ")
+        console.log(newConv.base)
 
     return this.http.post<ConvocationNewTransactionResponse>(
       this.url+ConvocationHelper.API_CONV_SERVICE_ROUTES.NEW ,

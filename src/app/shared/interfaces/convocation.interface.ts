@@ -6,6 +6,5 @@ export interface IConvocation{
   type:IConvocationType,
   description:string,
   start_date:string,
-  end_date:string,
-  id_detail:number
+  end_date:string
 }
