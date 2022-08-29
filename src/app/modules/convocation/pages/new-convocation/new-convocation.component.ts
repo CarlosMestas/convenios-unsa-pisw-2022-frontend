@@ -82,20 +82,9 @@ export class NewConvocationComponent implements OnInit {
     }
 
   submitProfile():void {
-    console.log("submit pushed")
-    let newConvocation: IConvocationNew = {} as IConvocationNew
-    newConvocation.title =  this.convocationForm.value["title"]
-    newConvocation.correlative =  this.convocationForm.value["correlative"]
-    newConvocation.type =  this.convocationForm.value["type"]
-    newConvocation.description =  this.convocationForm.value["description"]
     let dateStart:Date = this.convocationForm.value["dateStart"]
     let dateEnd:Date = this.convocationForm.value["dateEnd"]
-    newConvocation.start_date =  dateStart.getFullYear()+"-"+(dateStart.getMonth()+1)+"-"+dateStart.getDate()
-    newConvocation.end_date =  dateEnd.getFullYear()+"-"+(dateEnd.getMonth()+1)+"-"+dateEnd.getDate()
 
-    newConvocation.base = this.fileBase
-    newConvocation.afiche = this.fileAfiche
-    console.log("ENVIO CONV", newConvocation)
     const formData = new FormData()
     formData.append("title",this.convocationForm.value["title"])
     formData.append("correlative",this.convocationForm.value["correlative"])
