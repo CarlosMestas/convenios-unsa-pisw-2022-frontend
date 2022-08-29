@@ -2,7 +2,7 @@ import { convocationFetchRequestAction, convocationFetchSuccessAction, convocati
 import { createReducer, on } from '@ngrx/store';
 import { ConvocationInitialState } from '../../initial-states/convocation/convocation.initial-state';
 import { documentsGetErrorAction, documentsGetRequestAction, documentsGetSuccessAction } from '../../actions/convocation/document.actions';
-import { requirementFetchErrorAction, requirementFetchRequestAction, requirementFetchSuccessAction, requirementsGetAllErrorAction, requirementsGetAllRequestAction, requirementsGetAllSuccessAction } from '../../actions/convocation/requirement.actions';
+import { requirementFetchErrorAction, requirementFetchRequestAction, requirementFetchSuccessAction, requirementPostErrorAction, requirementPostRequestAction, requirementPostSuccessAction, requirementsGetAllErrorAction, requirementsGetAllRequestAction, requirementsGetAllSuccessAction } from '../../actions/convocation/requirement.actions';
 import { eventTypesGetAllErrorAction, eventTypesGetAllRequestAction, eventTypesGetAllSuccessAction, eventTypesGetErrorAction, eventTypesGetRequestAction, eventTypesGetSuccessAction } from '../../actions/convocation/event-type.actions';
 
 
@@ -53,6 +53,15 @@ export const convocationReducer = createReducer(
   on(requirementsGetAllErrorAction,(state)=>{
     return {...state,working:false}
   }),
+  on(requirementPostRequestAction,(state)=>{
+    return {...state, working:true}
+  }),
+  on(requirementPostSuccessAction,(state)=>{
+    return {...state, working:false}
+  }),
+  on(requirementPostErrorAction,(state)=>{
+    return {...state, working:false}
+  }),
   on(eventTypesGetAllRequestAction,(state)=>{
     return {...state,working:true}
   }),
@@ -70,5 +79,5 @@ export const convocationReducer = createReducer(
   }),
   on(eventTypesGetErrorAction,(state)=>{
     return {...state,working:false}
-  }),
+  })
 )
