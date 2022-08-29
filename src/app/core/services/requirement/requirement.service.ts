@@ -69,7 +69,7 @@ export class RequirementService extends RequirementHelper{
     )
 
   }
-  postRequirement(requirement:IRequirement):Observable<
+  postRequirement(requirement:string):Observable<
   {
     error:boolean,
     msg:string,
@@ -85,7 +85,7 @@ export class RequirementService extends RequirementHelper{
       code:number,
       msg:string,
       data:IRequirement
-    }>(this.url + RequirementHelper.API_REQUIREMENT_SERVICE_ROUTES.POST_REQUIREMENT,requirement)
+    }>(this.url + RequirementHelper.API_REQUIREMENT_SERVICE_ROUTES.POST_REQUIREMENT,{"description":requirement})
     .pipe(
       map( resp=>{
           console.log(resp)

@@ -5,8 +5,9 @@ import { IDocument } from 'src/app/shared/interfaces/documents-convocation/docum
 
 export class DocumentHelper{
 
-  protected static API_AUTH_SERVICE_ROUTES = {
-    GET_DOCUMENT:"documents"
+  protected static API_DOCUMENT_SERVICE_ROUTES = {
+    GET_DOCUMENTS:"documents",
+    GET_ALL_DOCUMENTS:"documents",
   }
 
   public url = environment.url

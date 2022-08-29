@@ -1,4 +1,4 @@
-import { convocationFetchRequestAction, convocationFetchSuccessAction, convocationFetchErrorAction, convocationPIVEFetchRequestAction, convocationPIVEFetchSuccessAction} from './../../actions/convocation/convocation.actions';
+import { convocationFetchRequestAction, convocationFetchSuccessAction, convocationFetchErrorAction, convocationPIVEFetchRequestAction, convocationPIVEFetchSuccessAction, convocationPIVEPostRequestAction, convocationPIVEPostSuccessAction, convocationPIVEPostERrrorAction} from './../../actions/convocation/convocation.actions';
 import { createReducer, on } from '@ngrx/store';
 import { ConvocationInitialState } from '../../initial-states/convocation/convocation.initial-state';
 import { documentsGetErrorAction, documentsGetRequestAction, documentsGetSuccessAction } from '../../actions/convocation/document.actions';
@@ -78,6 +78,15 @@ export const convocationReducer = createReducer(
     return {...state,eventTypes:params.eventTypes,working:false}
   }),
   on(eventTypesGetErrorAction,(state)=>{
+    return {...state,working:false}
+  }),
+  on(convocationPIVEPostRequestAction,(state)=>{
+    return {...state,working:true}
+  }),
+  on(convocationPIVEPostSuccessAction,(state)=>{
+    return {...state,working:false}
+  }),
+  on(convocationPIVEPostERrrorAction,(state)=>{
     return {...state,working:false}
   })
 )

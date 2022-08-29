@@ -17,6 +17,7 @@ export class CardListFormComponent implements OnInit {
   @Input() items:IListable[]
   @Input() action:any
   @Output() newItemEvent = new EventEmitter<number[]>();
+  @Output() submitNewItem = new EventEmitter<string>()
   public newItemForm: FormGroup
   inputRequirement:boolean;
   constructor(
@@ -42,8 +43,7 @@ export class CardListFormComponent implements OnInit {
     this.newItemEvent.emit(result)
   }
   onNewItemSubmit(){
-    console.log(this.newItemForm.value["value"])
-    //calls dispatch with action to save value
+    this.submitNewItem.emit(this.newItemForm.value["value"])
   }
   public get value():AbstractControl|null{
     return this.newItemForm.get("value");

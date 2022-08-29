@@ -23,7 +23,7 @@ export class DetailComponent implements OnInit {
 
   convocation$:Observable<IConvocation|null>
   requirements$:Observable<IRequirement[]>
-  banner$:Observable<IDocument>
+  banner$:Observable<string>
   events$:Observable<IEventType[]>
 
   events1: any[] = [
@@ -58,7 +58,7 @@ export class DetailComponent implements OnInit {
     this.convocation$ = new Observable<IConvocation>();
     this.requirements$ = new Observable<IRequirement[]>();
     this.events$ = new Observable<IEventType[]>();
-    this.banner$ = new Observable<IDocument>();
+    this.banner$ = new Observable<string>();
    }
     ngOnInit() {
       this.convocation$ = this.store.select(convocationConvocationStateSelector)

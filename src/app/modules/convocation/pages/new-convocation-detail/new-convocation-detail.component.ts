@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatListOption } from '@angular/material/list';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { convocationPIVEPostRequestAction } from 'src/app/ngrx/actions/convocation/convocation.actions';
 import { eventTypesGetAllRequestAction } from 'src/app/ngrx/actions/convocation/event-type.actions';
-import { requirementsGetAllRequestAction } from 'src/app/ngrx/actions/convocation/requirement.actions';
+import { requirementPostRequestAction, requirementsGetAllRequestAction } from 'src/app/ngrx/actions/convocation/requirement.actions';
 import { IAppState } from 'src/app/ngrx/app.state';
+import { convocationConvocationStateSelector } from 'src/app/ngrx/selectors/convocation/convocation.selector';
 import { eventTypesListableStateSelector } from 'src/app/ngrx/selectors/convocation/event-type.selector';
 import { requirementsListableStateSelector } from 'src/app/ngrx/selectors/convocation/requirement.selector';
 import { IRequestSaveConvocationDetailPIVE } from 'src/app/shared/interfaces/convocation/request-transactions.interface';
@@ -70,11 +73,13 @@ export class NewConvocationDetailComponent implements OnInit {
   eventTypesList$:Observable<IListable[]>
   requirementsList$:Observable<IListable[]>
   constructor(
+    private route:ActivatedRoute,
     private _formBuilder: FormBuilder,
     private store:Store<IAppState>
     ) {
+      console.log(route.snapshot.params['id'])
     this.reqNewConvocation={
-      idConvocation:1,
+      idConvocation:-1,
       requirements:[],
       eventTypes:[]
     }
@@ -87,6 +92,9 @@ export class NewConvocationDetailComponent implements OnInit {
     this.store.dispatch(eventTypesGetAllRequestAction())
     this.requirementsList$ = this.store.select(requirementsListableStateSelector)
     this.eventTypesList$ = this.store.select(eventTypesListableStateSelector)
+    this.store.select(convocationConvocationStateSelector).subscribe(convocation=>{
+      this.reqNewConvocation.idConvocation = convocation?convocation.id:-1
+    })
   }
   setUpRequirements(requirements:number[]){
     this.reqNewConvocation.requirements=requirements
@@ -95,6 +103,13 @@ export class NewConvocationDetailComponent implements OnInit {
     this.reqNewConvocation.eventTypes=eventTypes
   }
   submitConvocationDetail(){
-    console.log(this.reqNewConvocation)
+    console.log("idconvocation",this.reqNewConvocation)
+    //this.store.dispatch(convocationPIVEPostRequestAction(this.reqNewConvocation))
   }
+  submitNewRequirement(newRequirement:string){
+    this.store.dispatch(requirementPostRequestAction({value:newRequirement}))
+  }
+  /*submitNewEventType(newRequirement:string){
+    this.store.dispatch(requirementPostRequestAction({value:newRequirement}))
+  }*/
 }
