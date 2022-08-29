@@ -1,7 +1,7 @@
 import { ENUMDocumentType } from './../../../shared/enum/document-type.enum';
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable, of } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { DocumentHelper } from './document.helper';
 import { IDocument } from 'src/app/shared/interfaces/documents-convocation/document.interface';
 
@@ -35,11 +35,14 @@ export class DocumentService extends DocumentHelper{
       msg:'',
       data:{} as IDocument[]
     };
+
+    let params = new HttpParams()
+    params=params.append("id_convocation",id)
     return this.http.get<{
       code:number,
       msg:string,
       data:IDocument[]
-    }>(this.url + DocumentHelper.API_DOCUMENT_SERVICE_ROUTES.GET_DOCUMENTS)
+    }>(this.url + DocumentHelper.API_DOCUMENT_SERVICE_ROUTES.GET_DOCUMENTS,{params:params})
     .pipe(
       map( r =>{
         console.log("documents: ")

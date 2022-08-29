@@ -79,9 +79,9 @@ export class NewConvocationDetailComponent implements OnInit {
     ) {
       console.log(route.snapshot.params['id'])
     this.reqNewConvocation={
-      idConvocation:-1,
+      id_convocation:-1,
       requirements:[],
-      eventTypes:[]
+      event_types:[]
     }
     this.requirementsList$=new Observable<IListable[]>()
     this.eventTypesList$=new Observable<IListable[]>()
@@ -93,18 +93,18 @@ export class NewConvocationDetailComponent implements OnInit {
     this.requirementsList$ = this.store.select(requirementsListableStateSelector)
     this.eventTypesList$ = this.store.select(eventTypesListableStateSelector)
     this.store.select(convocationConvocationStateSelector).subscribe(convocation=>{
-      this.reqNewConvocation.idConvocation = convocation?convocation.id:-1
+      this.reqNewConvocation.id_convocation = convocation?convocation.id:-1
     })
   }
   setUpRequirements(requirements:number[]){
     this.reqNewConvocation.requirements=requirements
   }
   setUpEventTypes(eventTypes:number[]){
-    this.reqNewConvocation.eventTypes=eventTypes
+    this.reqNewConvocation.event_types=eventTypes
   }
   submitConvocationDetail(){
     console.log("idconvocation",this.reqNewConvocation)
-    //this.store.dispatch(convocationPIVEPostRequestAction(this.reqNewConvocation))
+    this.store.dispatch(convocationPIVEPostRequestAction(this.reqNewConvocation))
   }
   submitNewRequirement(newRequirement:string){
     this.store.dispatch(requirementPostRequestAction({value:newRequirement}))

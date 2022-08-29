@@ -5,7 +5,7 @@ import { ConvocationHelper } from './convocation.helper';
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable, of } from 'rxjs';
 import { IConvocation } from 'src/app/shared/interfaces/convocation.interface';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ENUMConvocationType } from 'src/app/shared/enum/convocation-type.enum';
 import { IRequestSaveConvocationDetailPIVE } from 'src/app/shared/interfaces/convocation/request-transactions.interface';
 import {
@@ -70,41 +70,24 @@ export class ConvocationService extends ConvocationHelper{
       msg:'',
       data:{} as IConvocation
     };
-    const testData:IConvocation = {
-      id:1,
-      title:"ALUMNO AGUSTINO, PARTICIPA EN EL PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022 – 2DA. CONVOCATORIA",
-      correlative:"PIVE-2022",
-      type:{
-        id:0,
-        name:ENUMConvocationType.PIVE
-      },
-      description: "ALUMNO AGUSTINO, ANUNCIAMOS LA SEGUNDA CONVOCATORIA DEL PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022 Selecciona tu evento internacional o nacional, que se realice hasta diciembre de este año, y postula!!",
-      start_date:'15/10/2022 10:30',
-      end_date:'15/10/2022 10:30'
-    }
-    response.data = testData;
-    console.log("convocation---data--test: ", response.data)
-    return of(response);
-    /*console.log(this.url + AppRoutingModule.ROUTES_VALUES.ROUTE_APP_CONVOCATORIA + '?convocatoriaId=' + id)
-    return this.http.get<IConvocation>(this.url + AppRoutingModule.ROUTES_VALUES.ROUTE_APP_CONVOCATORIA + '?convocatoriaId=' + id)
-    .pipe(
-      map( r =>{
 
-        const testData:IConvocation = {
-          id:1,
-          title:"ALUMNO AGUSTINO, PARTICIPA EN EL PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022 – 2DA. CONVOCATORIA",
-          correlative:"PIVE-2022",
-          type:1,
-          description: "Esta convocatoria está ",
-          start_date:'15/10/2022 10:30',
-          end_date:'15/10/2022 10:30',
-          id_detail:1
-        }
-        response.data = testData;
+    let params = new HttpParams()
+    params=params.append("id",id)
+    return this.http.get<{
+      code:number,
+      msg:string,
+      data:IConvocation
+    }
+    >(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.GET_CONVOCATION,{params:params})
+    .pipe(
+      map( resp =>{
+
+        console.log("convocation:",resp)
+        response.data = resp.data;
         return response;
       }),
       catchError(this.error)
-    );*/
+    );
   }
   getConvocationDetailPIVE(id:number):Observable<
   {
@@ -164,7 +147,7 @@ export class ConvocationService extends ConvocationHelper{
           if(r.code!= 200){
             console.log(r.msg)
           }
-          console.log(response.data)
+          response.data=r.data
           return response
         }),
         catchError(this.error)

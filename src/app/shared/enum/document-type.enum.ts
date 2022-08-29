@@ -1,4 +1,4 @@
 export enum ENUMDocumentType{
-  ConvocationDocument = 1,
-  ConvocationBanner = 2,
+  ConvocationDocument = "CONVOCATION DOCUMENT",
+  ConvocationBanner = "CONVOCATION IMAGE",
 }

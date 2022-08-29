@@ -9,13 +9,13 @@ export const documentsStateSelector = (state:IAppState) =>  state.convocation.do
 export const convocationDocumentsStateSelector = createSelector(
   documentsStateSelector,
   (documentsState:IDocument[])=> documentsState.filter((document)=>{
-      return document.type === ENUMDocumentType.ConvocationDocument
+      return document.type.description === ENUMDocumentType.ConvocationDocument
     })
 
 )
 export const convocationDocumentBannerStateSelector = createSelector(
   documentsStateSelector,
   (documentsState:IDocument[])=>"https://convenios-unsa-pisw-2022-0.herokuapp.com/storage/"+documentsState.filter((document)=>{
-      return document.type === ENUMDocumentType.ConvocationBanner
+      return document.type.description === ENUMDocumentType.ConvocationBanner
     })[0].path
 )

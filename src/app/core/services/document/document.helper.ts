@@ -6,7 +6,7 @@ import { IDocument } from 'src/app/shared/interfaces/documents-convocation/docum
 export class DocumentHelper{
 
   protected static API_DOCUMENT_SERVICE_ROUTES = {
-    GET_DOCUMENTS:"documents",
+    GET_DOCUMENTS:"convocation-documents",
     GET_ALL_DOCUMENTS:"documents",
   }
 
