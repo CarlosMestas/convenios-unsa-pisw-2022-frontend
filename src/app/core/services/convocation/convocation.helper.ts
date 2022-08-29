@@ -7,7 +7,8 @@ export class ConvocationHelper{
   protected static API_CONV_SERVICE_ROUTES = {
     ALL_CONVOCATIONS: "convocations/all",
     NEW:"convocations",
-    NEW_PIVE:"pivConvocations"
+    NEW_PIVE:"pivConvocations",
+    GET_CONVOCATION:"convocations"
   }
   public url = environment.url
   public isProduction = environment.production

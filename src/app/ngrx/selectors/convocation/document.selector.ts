@@ -15,7 +15,7 @@ export const convocationDocumentsStateSelector = createSelector(
 )
 export const convocationDocumentBannerStateSelector = createSelector(
   documentsStateSelector,
-  (documentsState:IDocument[])=>documentsState.filter((document)=>{
+  (documentsState:IDocument[])=>"https://convenios-unsa-pisw-2022-0.herokuapp.com/storage/"+documentsState.filter((document)=>{
       return document.type.description === ENUMDocumentType.ConvocationBanner
-    })[0]
+    })[0].path
 )

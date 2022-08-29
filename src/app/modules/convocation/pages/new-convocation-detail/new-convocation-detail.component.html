@@ -5,7 +5,7 @@
     </div>
     <div class="content">
       <card-list-form *ngIf="eventTypesList$|async as eventTypesList" (newItemEvent)="setUpEventTypes($event)" [items]="eventTypesList" title="Eventos Admitidos"></card-list-form>
-      <card-list-form *ngIf="requirementsList$|async as requirementsList" (newItemEvent)="setUpRequirements($event)"  [items]="requirementsList" title="Requerimientos para la convocatoria"></card-list-form>
+      <card-list-form *ngIf="requirementsList$|async as requirementsList" (newItemEvent)="setUpRequirements($event)" (submitNewItem)="submitNewRequirement($event)" [items]="requirementsList" title="Requerimientos para la convocatoria"></card-list-form>
     </div>
     <div class="control">
       <app-button-form text = "Cancelar" color = "#000000" background = "#e6edff" bordercolor="#acb5d3"></app-button-form>

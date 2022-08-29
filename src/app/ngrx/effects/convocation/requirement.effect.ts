@@ -41,17 +41,19 @@ export class RequirementEffect{
       catchError(()=>EMPTY)
     ))
   ))
-/*
+
   requirementPostRequestEffect = createEffect(()=>this.actions$.pipe(
     ofType(requirementPostRequestAction),
-    mergeMap((action)=> this.requirementService.getAllRequirements()
+    mergeMap((action)=> this.requirementService.postRequirement(action.value)
     .pipe(
       map(resp =>{
-
+        return {
+          type:RequirementActions.REQUIREMENTS_GET_ALL_REQUEST_ACTION
+        }
       }
       )
     )
     )
-  ))*/
+  ))
 
 }

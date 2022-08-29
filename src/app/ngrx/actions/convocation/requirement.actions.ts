@@ -39,7 +39,7 @@ export const requirementsGetAllErrorAction = createAction(
 
 export const requirementPostRequestAction = createAction(
   RequirementActions.REQUIREMENT_POST_REQUEST_ACTION,
-  props<IRequirement>()
+  props<{value:string}>()
 )
 
 export const requirementPostSuccessAction = createAction(

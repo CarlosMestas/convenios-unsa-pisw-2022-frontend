@@ -3,8 +3,5 @@ export interface ConvocationFetchTransactionResponse{
 
   code:number,
   msg:string,
-  data:{
-    profile:IConvocation
-  }
-
+  data:IConvocation
 }

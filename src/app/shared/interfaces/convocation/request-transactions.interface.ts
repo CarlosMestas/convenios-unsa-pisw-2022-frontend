@@ -1,5 +1,5 @@
 export interface IRequestSaveConvocationDetailPIVE{
-  idConvocation:number,
-  eventTypes:number[],
+  id_convocation:number,
+  event_types:number[],
   requirements:number[]
 }

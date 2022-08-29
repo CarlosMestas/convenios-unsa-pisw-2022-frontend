@@ -31,6 +31,7 @@
     /*background-color: #D9D9D9;*/
     margin: .2rem 0;
     align-items: center;
+    cursor: pointer;
     .item-circle-number{
         display: flex;
         width: 2rem;
@@ -42,7 +43,7 @@
 
         border: solid 5px #FFFFFF;
         padding: 16px;
-        background-color:#48a773;
+        background-color:#daad19;
         box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
       .icon{
 
@@ -51,11 +52,18 @@
         text-align: center;
         line-height: 32px;
       }
+
     }
+
     .item-description{
       width: calc(100% - 3rem);
       margin-left: 1rem;
 
+    }
+  }
+  .item-container:hover{
+    .item-circle-number{
+      opacity: 0.9;
     }
   }
 }
