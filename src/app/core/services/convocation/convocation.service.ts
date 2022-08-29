@@ -12,7 +12,6 @@ import {
   ConvocationFetchTransactionResponse
 } from "../../../shared/interfaces/transactions/convocation-fetch-transaction-response.interface";
 
-
 /**
  * Esta clase cubre la necesidad de obtener toda la información correspondiente a la entidad Convocation del modelo de base de datos
  */
@@ -25,6 +24,35 @@ export class ConvocationService extends ConvocationHelper{
 
   constructor(protected override http:HttpClient){
     super(http)
+  }
+
+  /**
+   * get all convocations created from API
+   */
+  getAllConvocations():Observable<
+    {
+      error:boolean,
+      msg:string,
+      data:IConvocation[]
+    }>{
+
+    const response = {
+      error:false,
+      msg:'',
+      data:{} as IConvocation[]
+    };
+    return this.http.get<{
+      code:number,
+      msg:string,
+      data:IConvocation[]
+    }>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.ALL_CONVOCATIONS )
+    .pipe(
+      map( resp =>{
+        response.data=resp.data
+        return response
+      }),
+      catchError(this.errorGetConvocations)
+    );
   }
   /**
    * get one convocatoria by id from API

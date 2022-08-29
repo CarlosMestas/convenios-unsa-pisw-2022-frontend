@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import {ConvocatoriaRoutingModule} from "../../../convocation/convocatoria.routes";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AppRoutingModule} from "../../app.routes";
 
 export interface ConvElement  {
+  id: number;
   name: string;
   correlative: string;
   position: number;
@@ -11,9 +15,9 @@ export interface ConvElement  {
 
 }
 const CONV_DATA: ConvElement [] = [
-  {position: 1, correlative: 'PIVE 2022-1', name: 'PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022', bases: "BASES", preliminary: 'PRELIMINAR', news: "COMUNICADO 10-03-2022", final: "RESULTADO"},
-  {position: 2, correlative: 'PIVE 2022-1', name: 'PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022', bases: "BASES", preliminary: 'PRELIMINAR', news: "COMUNICADO 10-03-2022", final: "RESULTADO"},
-  {position: 3, correlative: 'PIVE 2022-1', name: 'PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022', bases: "BASES", preliminary: 'PRELIMINAR', news: "COMUNICADO 10-03-2022", final: "RESULTADO"},
+  {position: 1, id:1, correlative: 'PIVE 2022-1', name: 'PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022', bases: "BASES", preliminary: 'PRELIMINAR', news: "COMUNICADO 10-03-2022", final: "RESULTADO"},
+  {position: 2, id:2, correlative: 'PIVE 2022-1', name: 'PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022', bases: "BASES", preliminary: 'PRELIMINAR', news: "COMUNICADO 10-03-2022", final: "RESULTADO"},
+  {position: 3, id:3, correlative: 'PIVE 2022-1', name: 'PROGRAMA DE INTERNACIONALIZACIÓN VIRTUAL PIVE 2022', bases: "BASES", preliminary: 'PRELIMINAR', news: "COMUNICADO 10-03-2022", final: "RESULTADO"},
 ];
 
 @Component({
@@ -35,7 +39,10 @@ export class OfHomeTableComponent implements OnInit {
   displayedColumns: string[] = ['demo-position', 'demo-correlative', 'demo-name'];
   dataSource = CONV_DATA;
 
-  constructor() {
+  constructor(
+    private router:Router,
+    private activatedRoute:ActivatedRoute
+  ) {
     this.prefix = 'of-home-table'
   }
   ngOnInit(): void {
@@ -44,7 +51,7 @@ export class OfHomeTableComponent implements OnInit {
   checkDisplayColumns():void {
     switch (this._typeConv) {
       case 'prox': {
-        this.displayedColumns = ['demo-position', 'demo-correlative', 'demo-name', 'demo-date', 'demo-bases']
+        this.displayedColumns = ['demo-position', 'demo-correlative', 'demo-name', 'demo-date', 'demo-bases', 'demo-details']
         break;
       }
       case 'current': {
@@ -62,4 +69,8 @@ export class OfHomeTableComponent implements OnInit {
     }
   }
 
+  see_details(id: any):void{
+    console.log("ENVIANDO ID", id)
+    this.router.navigate(["../"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_CONVOCATORIA+"/"+id],{relativeTo: this.activatedRoute})
+  }
 }

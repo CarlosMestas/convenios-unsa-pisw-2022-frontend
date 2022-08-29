@@ -33,7 +33,7 @@ const ConvocatoriaRoutes: Routes = [
     children:[
       {
          path:'',
-         redirectTo:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_NEW,
+         redirectTo:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_DETAIL,
          pathMatch:'full'
        },
       {

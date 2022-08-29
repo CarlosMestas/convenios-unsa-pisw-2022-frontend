@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 
 export class ConvocationHelper{
   protected static API_CONV_SERVICE_ROUTES = {
+    ALL_CONVOCATIONS: "convocations/all",
     NEW:"convocations",
     NEW_PIVE:"pivConvocations"
   }
@@ -38,6 +39,19 @@ export class ConvocationHelper{
     return of({
       error:true,
       msg: errorMessage
+    })
+  }
+  errorGetConvocations(error:HttpErrorResponse){
+    let errorMessage = ''
+    if(error.error instanceof ErrorEvent){
+      errorMessage = error.error.message
+    }else{
+      errorMessage = `Error status :${error.status} \n message: ${error.message}`
+    }
+    return of({
+      error:true,
+      msg: errorMessage,
+      data: {} as IConvocation[]
     })
   }
 }

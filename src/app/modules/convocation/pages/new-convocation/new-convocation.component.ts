@@ -17,7 +17,6 @@ import {convocationFetchSuccessAction} from "../../../../ngrx/actions/convocatio
 export class NewConvocationComponent implements OnInit {
   public convocationForm: FormGroup
   typeSelectedConv: number
-  typeEvents: string[] = ['Simposio', 'Foro', 'Conferencia'];
   fileName = '';
   fileNameAfiche = '';
   fileBase:File = new File([''],"",)
@@ -96,7 +95,7 @@ export class NewConvocationComponent implements OnInit {
     formData.append("afiche",this.fileAfiche,this.fileAfiche.name)
 
     this.convocatory.registerConvocation(formData).subscribe(data =>{
-      //this.store.dispatch(convocationFetchSuccessAction(data.data))
+      this.store.dispatch(convocationFetchSuccessAction({convocation: data.data}))
       console.log("ERROR?", data)
     })
     //envío del formulario de convocation
