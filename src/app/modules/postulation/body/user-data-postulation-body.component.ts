@@ -1,3 +1,6 @@
+import { Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {UserDataPostulationRoutingModule} from "../user-data-postulation.routes";
 import {ActivatedRoute} from "@angular/router";
@@ -11,40 +14,56 @@ import {Step} from "../../../shared/interfaces/step.interface";
   styleUrls: ['./user-data-postulation-body.component.scss']
 })
 export class UserDataPostulationBodyComponent implements OnInit {
-      postulacion:IPostulacion;
-      id:number;
-      rutaApply = UserDataPostulationRoutingModule.ROUTES_VALUES.ROUTE_POSTULACION_VERIFY_DATA
-      steps:Step[] = []
 
-      constructor(
-          private route:ActivatedRoute,
-          private postulacionService:PostulacionService
-      ) {
-        this.steps = [
-          {
-            stepName:"Verificar Información",
-            stepLink:"verificacion"
-          },
-          {
-            stepName:"Llenar Ficha",
-            stepLink:"llenar-ficha"
-          },
-          {
-            stepName:"Cargar Archivos",
-            stepLink:"cargar-archivos"
-          }
-        ]
+    id:number;
+    selected:boolean[]=[true,false,true]
 
-        this.id = route.snapshot.params['id'],
-        this.postulacion={} as IPostulacion;
-        }
+    //POSTULATION
+
+    formPostulation:FormGroup
+    savePostulation(){
+
+    }
+
+
+
+
+
+    constructor(
+        private route:ActivatedRoute,
+        private postulacionService:PostulacionService
+    ) {
+
+      this.id = route.snapshot.params['id']
+      this.formPostulation = new FormGroup({
+        lastname: new FormControl('',Validators.required),
+        name: new FormControl('',Validators.required),
+        birthdate: new FormControl('',Validators.required),
+        dni: new FormControl('',Validators.required),
+        cityregion: new FormControl('',Validators.required),
+        cui: new FormControl('',Validators.required),
+        address: new FormControl('',Validators.required),
+        mobilephone: new FormControl('',Validators.required),
+        institutionalemail: new FormControl('',Validators.required),
+        contactnumber: new FormControl('',Validators.required),
+        university: new FormControl('',Validators.required),
+        u_webpage: new FormControl('',Validators.required),
+        u_cityregion: new FormControl('',Validators.required),
+        u_faculty: new FormControl('',Validators.required),
+        u_professional_program: new FormControl('',Validators.required),
+        u_current_cicle: new FormControl('',Validators.required),
+        u_academic_year: new FormControl('',Validators.required),
+        u_grades_mean: new FormControl('',Validators.required),
+        u_total_credits: new FormControl('',Validators.required),
+        u_program_coordinator: new FormControl('',Validators.required),
+        u_charge: new FormControl('',Validators.required),
+        u_email: new FormControl('',Validators.required),
+        u_presentation_date : new FormControl('',Validators.required)
+      })
+    }
 
 
   ngOnInit(): void {
-    this.postulacionService.getPostulacion(this.id).subscribe(resp =>{
-      this.postulacion = resp.data[0]
-      console.log("------postulacion detalle----------")
-      //console.log(this.postulacion.postulacionTelefono)
-    })
+
   }
-      }
+}

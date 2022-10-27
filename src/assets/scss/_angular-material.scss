@@ -1,0 +1,46 @@
+$font : "Inter var", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple ColorDef Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto ColorDef Emoji";
+.mat-form-field-flex{
+  padding: .75em .75em 0 .75em;
+  border-radius: 2px;
+  .mat-form-field-infix{
+    padding: 0.25em 0 0.75em 0;
+  }
+}
+input.mat-input-element{
+  font-size: .85rem !important;
+}
+.mat-form-field-label{
+  font-weight:lighter;
+}
+
+.mat-form-field{
+  letter-spacing: -0.006em;
+  font: 400 14px / 1.25 Inter;
+  margin-bottom: 4px;
+  min-width: 373.7px;
+}
+
+.mat-icon{
+  margin-right: 1rem;
+}
+
+.mat-form-field-flex{
+  border: solid 1.5px transparent;
+}
+.mat-focused{
+  .mat-form-field-flex{
+    border: solid 1.5px rgb(99, 102, 241);
+  }
+  .mat-icon{
+    color:rgb(99, 102, 241);
+  }
+}
+
+.mat-form-field-invalid{
+  .mat-form-field-flex{
+    border: solid 1.5px #f44336;
+  }
+  .mat-icon{
+    color:#f44336;
+  }
+}

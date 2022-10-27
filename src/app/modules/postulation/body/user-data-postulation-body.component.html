@@ -1,56 +1,266 @@
-<div class="register-container">
+<div class="container-postulation">
+  <p-accordion [multiple]="true">
+    <p-accordionTab [(selected)]="selected[0]">
 
-   <div class="sub-side-bar-container">
-    <a routerLink ='dirigido-a' class="sidebar-item-link"
-       routerLinkActive = "active"
-       [ngClass]="{'sidebar-item-link-selected': true}"
-       [routerLinkActiveOptions] = "{exact: true}"
-    >
-      <span class="sidebar-item-text"> Dirigido a</span>
-    </a>
-    <a routerLink ='requisitos-para-postular' class="sidebar-item-link"
-       routerLinkActive = "active"
+      <ng-template pTemplate="header">
+        <div class="header-content">
+          <div class="title">
+            Postulación
+          </div>
+          <div class="date-ini-fin">
+            10/26/2022 00:00 - 19/12/2022 23:59
+          </div>
+        </div>
+      </ng-template>
+      <div class="sub-header-container">
+        <div class="sub-header-title">
+          Notas importantes
+        </div>
+        <div class="sub-header-body">
+          <div class="item-sub-header">
+            De cambiar las condiciones de la movilidad o intercambio académico, considerar el oficio 914-2022-SG, que al pie de la letra señala:
+“… En sesión de Consejo Universitario del 18 de abril del 2022, considerando el aún contexto actual por la emergencia sanitaria por el COVID 19, acordó que las movilidades académicas e intercambios organizados por su dependencia, para el semestre académico 2022-B, se realicen bajo la modalidad virtual; sin perjuicio de ello, también se acordó que las referidas actividades podrían realizarse de forma presencial, previa evaluación de las condiciones sanitarias y de bioseguridad; así como la autorización específica para el evento; y en caso se ponga en riesgo la protección a la vida y a la salud de los estudiantes agustinos y foráneos, se restrinja dicha presencialidad…”
 
-       [routerLinkActiveOptions] = "{exact: true}"
-    >
-      <span class="sidebar-item-text"> Requisitos para Postular</span>
-    </a>
-    <a routerLink ='proceso-de-aplicacion' class="sidebar-item-link"
-       routerLinkActive = "active"
-
-       [routerLinkActiveOptions] = "{exact: true}"
-    >
-      <span class="sidebar-item-text"> Proceso de Aplicación</span>
-    </a>
-    <a routerLink ='cronograma' class="sidebar-item-link"
-       routerLinkActive = "active"
-       [routerLinkActiveOptions] = "{exact: true}"
-    >
-      <span class="sidebar-item-text"> Cronograma</span>
-    </a>
-    <a routerLink ='contacto' class="sidebar-item-link"
-       routerLinkActive = "active"
-       [routerLinkActiveOptions] = "{exact: true}"
-    >
-      <span class="sidebar-item-text"> Contacto</span>
-    </a>
-    <a [routerLink] ='rutaApply' class="sidebar-item-link"
-       routerLinkActive = "active"
-       [routerLinkActiveOptions] = "{exact: true}"
-    >
-      <span class="sidebar-item-text"> Postular</span>
-    </a>
-  </div>
-  <div class="container-content">
-    <div class="header-container">
-      <div class="title">Datos del Postulante</div>
-      <div class="description">Proceso de postulación para poder participar de la movilidad estudiandil</div>
-    </div>
-    <div class="steper-container">
-      <app-steper [steps]="steps"></app-steper>
-      <div class="steper-forms-container">
-        <router-outlet></router-outlet>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+
+      <form class="form-container" [formGroup]="formPostulation" (ngSubmit)="savePostulation()">
+
+        <!--               DATOS PERSONALES           -->
+        <div class="sub-header-container">
+          <div class="sub-header-title">
+            Datos Personales
+          </div>
+          <div class="sub-header-body">
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Apellidos</mat-label>
+                <input formControlName="lastname" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:manage_accounts"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Nombre</mat-label>
+                <input formControlName="name" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Fecha de Nacimiento</mat-label>
+                <input formControlName="birthdate" matInput [matDatepicker]="picker1">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <!-- <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon> -->
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>DNI</mat-label>
+                <input formControlName="dni" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:credit_card"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Ciudad/Region</mat-label>
+                <input formControlName="cityregion" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:location_city"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>CUI</mat-label>
+                <input formControlName="cui" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:card_membership"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Dirección actual</mat-label>
+                <input formControlName="address" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:share_location"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Celular</mat-label>
+                <input formControlName="mobilephone" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:phone_iphone"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Correo Institucional</mat-label>
+                <input formControlName="institutionalemail" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:alternate_email"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Número de contacto en caso de emergencia</mat-label>
+                <input formControlName="contactnumber" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:contact_phone"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+          </div>
+
+        </div>
+
+
+
+
+
+        <!--               Información académica o de la universidad de origen          -->
+        <div class="sub-header-container">
+          <div class="sub-header-title">
+            Información académica o de la universidad de origen
+          </div>
+          <div class="sub-header-body">
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Universidad de Origen</mat-label>
+                <input formControlName="university" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:school"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Página web</mat-label>
+                <input formControlName="u_webpage" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:web"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Ciudad/Region</mat-label>
+                <input formControlName="u_cityregion" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:location_city"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Facultad</mat-label>
+                <input formControlName="dni" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:architecture"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Programa Profesional</mat-label>
+                <input formControlName="cityregion" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:cast_for_education"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Ciclo Actual</mat-label>
+                <input formControlName="u_current_cicle" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:insights"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Año Académico</mat-label>
+                <input formControlName="u_academic_year" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:moving"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Promedio de Notas</mat-label>
+                <input formControlName="u_grades_mean" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:grading"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Total de Créditos Acumulados</mat-label>
+                <input formControlName="u_total_credits" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:grade"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Coordinador del programa</mat-label>
+                <input formControlName="u_program_coordinator" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:co_present"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Cargo</mat-label>
+                <input formControlName="u_charge" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:data_thresholding"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Correo</mat-label>
+                <input formControlName="u_email" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:alternate_email"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+              <mat-form-field class="flex-auto" appearance="fill">
+                <mat-label>Fecha de Presentación del Formulario</mat-label>
+                <input formControlName="u_presentation_date" matInput type="text" class="example-right-align" placeholder="0">
+                <mat-icon class="mr-3" matPrefix svgIcon="mat:calendar_month"></mat-icon>
+                <mat-hint>(obligatorio)</mat-hint>
+              </mat-form-field>
+
+          </div>
+
+        </div>
+
+
+      </form>
+
+    </p-accordionTab>
+    <p-accordionTab header="Seguimiento">
+        Content 2
+    </p-accordionTab>
+    <p-accordionTab header="Finalización">
+        Content 3
+    </p-accordionTab>
+</p-accordion>
 </div>

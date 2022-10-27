@@ -10,13 +10,13 @@ export class ButtonFormComponent implements OnInit {
   @Input() color:string;
   @Input() background:string;
   @Input() bordercolor:string;
+  @Input() link!:string;
   style={}
   constructor() {
     this.text = ''
     this.color = '#FFFFFF'
     this.background = '#440114de'
     this.bordercolor = '#440114de'
-
     this.style = {
       'color':this.color,
       'background-color':this.background,

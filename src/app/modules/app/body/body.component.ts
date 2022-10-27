@@ -5,9 +5,10 @@ import { Store } from '@ngrx/store';
 import { AuthService } from './../../../core/services/auth/auth.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SideNavToggle } from './../../../shared/interfaces/sidenav.interface';
-import { Title } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl, Title } from '@angular/platform-browser';
 import { dialogProfileNotConfiguredSelector } from 'src/app/ngrx/selectors/profile/profile.selector';
 import { dialogUserRegisterWrongEmailSelector } from 'src/app/ngrx/selectors/auth/user-auth.selector';
+import { MatIconRegistry, SafeResourceUrlWithIconOptions } from '@angular/material/icon';
 
 @Component({
   selector: 'app-body',
@@ -33,10 +34,39 @@ dialogUserRegisterWrongEmail$: Observable<boolean>
     private titleService:Title,
     private authService:AuthService,
     private store:Store<IAppState>,
-
+    private readonly matIconRegistry: MatIconRegistry,
+    private readonly domSanitizer: DomSanitizer
     ) {
       this.dialogProfileNotConfigured$ = new Observable<boolean>()
       this.dialogUserRegisterWrongEmail$ = new Observable<boolean>()
+
+      this.matIconRegistry.addSvgIconResolver(
+        (
+          name: string,
+          namespace: string
+        ): SafeResourceUrl | SafeResourceUrlWithIconOptions | null => {
+          switch (namespace) {
+            case 'mat':
+              return this.domSanitizer.bypassSecurityTrustResourceUrl(
+                `assets/img/icons/material-design-icons/two-tone/${name}.svg`
+              );
+
+            case 'logo':
+              return this.domSanitizer.bypassSecurityTrustResourceUrl(
+                `assets/img/icons/logos/${name}.svg`
+              );
+
+            case 'flag':
+              return this.domSanitizer.bypassSecurityTrustResourceUrl(
+                `assets/img/icons/flags/${name}.svg`
+              );
+            default:{
+              return null
+            }
+          }
+        }
+      );
+
     }
 
   onToggleSideNav(sideNavData:SideNavToggle,):void{
@@ -55,24 +85,6 @@ dialogUserRegisterWrongEmail$: Observable<boolean>
     this.store.dispatch(userLoadRequestAction())
     this.dialogProfileNotConfigured$ = this.store.select(dialogProfileNotConfiguredSelector)
     this.dialogUserRegisterWrongEmail$ =this.store.select(dialogUserRegisterWrongEmailSelector)
-    // .subscribe(dialogProfileNotConfigured =>{
-    //   if(dialogProfileNotConfigured){
-    //     const config = new MatDialogConfig()
-    //         config.disableClose = true
-    //         config.width = '40%'
-    //         const dialogRef=this.matDialog.open(DialogYesNoComponent,config)
-    //         dialogRef.afterClosed().subscribe(result => {
 
-    //           if(result == true){
-    //             this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_USER_PROFILE])
-    //           }else if(result == false){
-    //             this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
-    //           }else{
-    //             this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
-    //           }
-    //           this.store.dispatch(dialogProfileNotConfiguredDismissAction())
-    //         });
-    //   }
-    // })
   }
 }
