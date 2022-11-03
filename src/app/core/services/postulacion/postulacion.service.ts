@@ -5,7 +5,7 @@ import { PostulacionHelper } from './postulacion.helper';
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {IPostulacion} from "../../../shared/interfaces/postulacion.interface";
+import {IPostulation} from "../../../shared/interfaces/postulacion.interface";
 
 
 @Injectable({
@@ -22,16 +22,16 @@ export class PostulacionService extends PostulacionHelper{
   {
     error:boolean,
     msg:string,
-    data:IPostulacion[]
+    data:IPostulation[]
   }>{
 
     const response = {
       error:false,
       msg:'',
-      data:[] as IPostulacion[]
+      data:[] as IPostulation[]
     };
     console.log(this.url + AppRoutingModule.ROUTES_VALUES.ROUTE_APP_POSTULACION + '?postulacionId=' + id)
-    return this.http.get<IPostulacion[]>(this.url + AppRoutingModule.ROUTES_VALUES.ROUTE_APP_POSTULACION + '?postulacionId=' + id)
+    return this.http.get<IPostulation[]>(this.url + AppRoutingModule.ROUTES_VALUES.ROUTE_APP_POSTULACION + '?postulacionId=' + id)
     .pipe(
       map( r =>{
         console.log("printing inside de pipe---------------")

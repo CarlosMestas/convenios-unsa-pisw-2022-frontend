@@ -1,0 +1,24 @@
+.p-fileupload{
+  padding: 0px;
+  .p-fileupload-buttonbar{
+    padding:.25rem ;
+  }
+  .p-fileupload-content{
+    padding:.25rem ;
+  }
+  .p-fileupload-row>div{
+    padding: .25rem;
+    font-size: 13px;
+  }
+  .p-fileupload-row>div>button{
+    height: 30px;
+  }
+
+}
+.p-fileupload .p-fileupload-buttonbar .p-button{
+  margin: 0px;
+}
+
+.p-fileupload .p-fileupload-content{
+  padding: .5rem .25rem;
+}

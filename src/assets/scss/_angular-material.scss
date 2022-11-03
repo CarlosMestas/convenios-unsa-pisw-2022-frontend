@@ -13,13 +13,41 @@ input.mat-input-element{
   font-weight:lighter;
 }
 
+@media screen and (min-device-width: 1200px)
+and (max-device-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 1) {
+
+  .mat-form-field{
+    min-width: 300px;
+  }
+
+}
+
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+  .mat-form-field{
+    min-width: 250px;
+  }
+}
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+    .mat-form-field{
+      min-width: 100%;
+      max-width: auto;
+    }
+}
+
 .mat-form-field{
   letter-spacing: -0.006em;
   font: 400 14px / 1.25 Inter;
   margin-bottom: 4px;
-  min-width: 373.7px;
 }
-
 .mat-icon{
   margin-right: 1rem;
 }
@@ -43,4 +71,10 @@ input.mat-input-element{
   .mat-icon{
     color:#f44336;
   }
+}
+
+
+//ACCORDION
+.p-accordion-content{
+  padding: 1.25rem 2rem !important;
 }

@@ -3,14 +3,15 @@ import { of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { IProfessionalProgramsResponse } from 'src/app/shared/interfaces/programa-profesiona.interface';
+import { ICycleResponse } from 'src/app/shared/interfaces/cycle.interface';
 
-export class ProfessionalProgramHelper{
+export class CycleHelper{
 
   public url = environment.url
   public isProduction = environment.production
 
   public static API_ROUTES ={
-    GET_ALL_PROGRAMS:"get-all-programs",
+    GET_ALL_CYCLES:"get-all-cycles",
   }
   constructor(
     protected http:HttpClient
@@ -29,7 +30,7 @@ export class ProfessionalProgramHelper{
     return of({
       error:true,
       msg: errorMessage,
-      data: [] as IProfessionalProgramsResponse[]
+      data: [] as ICycleResponse[]
     })
   }
 

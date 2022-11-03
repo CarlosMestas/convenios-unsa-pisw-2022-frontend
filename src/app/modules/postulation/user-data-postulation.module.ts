@@ -11,7 +11,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { PrimeNgModule } from '../shared/primeng.module';
-
+import { FormsModule } from '@angular/forms';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 // @ts-ignore
 // @ts-ignore
@@ -26,7 +27,9 @@ import { PrimeNgModule } from '../shared/primeng.module';
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
-    PrimeNgModule
+    PrimeNgModule,
+    FormsModule,
+    NgxDocViewerModule
   ],
   exports: [
 
