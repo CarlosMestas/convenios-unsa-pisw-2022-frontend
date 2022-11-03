@@ -1,4 +1,4 @@
-export class IPostulacion {
+export class IPostulation {
 
 
 

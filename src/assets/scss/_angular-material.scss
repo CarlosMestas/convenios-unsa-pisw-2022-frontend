@@ -1,0 +1,80 @@
+$font : "Inter var", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple ColorDef Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto ColorDef Emoji";
+.mat-form-field-flex{
+  padding: .75em .75em 0 .75em;
+  border-radius: 2px;
+  .mat-form-field-infix{
+    padding: 0.25em 0 0.75em 0;
+  }
+}
+input.mat-input-element{
+  font-size: .85rem !important;
+}
+.mat-form-field-label{
+  font-weight:lighter;
+}
+
+@media screen and (min-device-width: 1200px)
+and (max-device-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 1) {
+
+  .mat-form-field{
+    min-width: 300px;
+  }
+
+}
+
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) {
+  .mat-form-field{
+    min-width: 250px;
+  }
+}
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+    .mat-form-field{
+      min-width: 100%;
+      max-width: auto;
+    }
+}
+
+.mat-form-field{
+  letter-spacing: -0.006em;
+  font: 400 14px / 1.25 Inter;
+  margin-bottom: 4px;
+}
+.mat-icon{
+  margin-right: 1rem;
+}
+
+.mat-form-field-flex{
+  border: solid 1.5px transparent;
+}
+.mat-focused{
+  .mat-form-field-flex{
+    border: solid 1.5px rgb(99, 102, 241);
+  }
+  .mat-icon{
+    color:rgb(99, 102, 241);
+  }
+}
+
+.mat-form-field-invalid{
+  .mat-form-field-flex{
+    border: solid 1.5px #f44336;
+  }
+  .mat-icon{
+    color:#f44336;
+  }
+}
+
+
+//ACCORDION
+.p-accordion-content{
+  padding: 1.25rem 2rem !important;
+}

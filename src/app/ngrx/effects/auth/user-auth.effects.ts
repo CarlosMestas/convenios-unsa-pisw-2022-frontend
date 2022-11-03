@@ -10,9 +10,6 @@ import { mergeMap } from 'rxjs';
 
 @Injectable()
 export class UserAuthEffect{
-
-
-
   constructor(
     private actions$:Actions,
     private authService:AuthService//:TODO: we'll continue using our auth service

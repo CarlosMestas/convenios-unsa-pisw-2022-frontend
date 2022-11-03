@@ -3,14 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, catchError, map, Observable, Subject } from "rxjs";
-import { ProfessionalProgramHelper } from './programa-profesional.helper';
 import { IHttpResponse, IHttpServiceResponse } from 'src/app/shared/interfaces/transactions/transaction-response.interface';
+import { CycleHelper } from './cycle.helper';
+import { ICycleResponse } from 'src/app/shared/interfaces/cycle.interface';
 
 @Injectable({
   providedIn:'root'
 })
 
-export class ProgramaProfesionalService extends ProfessionalProgramHelper{
+export class CycleService extends CycleHelper{
 
   constructor(
     private router:Router,
@@ -19,14 +20,14 @@ export class ProgramaProfesionalService extends ProfessionalProgramHelper{
     super(http)
   }
 
-  getAllPrograms():Observable<IHttpServiceResponse<IProfessionalProgramsResponse[]>>{
+  getAllCycles():Observable<IHttpServiceResponse<ICycleResponse[]>>{
     const response = {
       error:false,
       msg:'',
-      data:{} as IProfessionalProgramsResponse[]
+      data:{} as ICycleResponse[]
     };
 
-    return this.http.get<IHttpResponse<IProfessionalProgramsResponse[]>>(this.url+ ProfessionalProgramHelper.API_ROUTES.GET_ALL_PROGRAMS)
+    return this.http.get<IHttpResponse<ICycleResponse[]>>(this.url+ CycleHelper.API_ROUTES.GET_ALL_CYCLES)
     .pipe(
       map( resp =>{
         response.data=resp.data
