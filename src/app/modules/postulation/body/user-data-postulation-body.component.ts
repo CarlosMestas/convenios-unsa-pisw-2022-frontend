@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {UserDataPostulationRoutingModule} from "../user-data-postulation.routes";
 import {ActivatedRoute} from "@angular/router";
-import {IPostulation}from './../../../shared/interfaces/postulacion.interface';
+import {IPostulation, IPostulationCoevanCourse}from './../../../shared/interfaces/postulacion.interface';
 import { PostulacionService } from './../../../core/services/postulacion/postulacion.service';
 import {Step} from "../../../shared/interfaces/step.interface";
 import { IFacultyResponse } from 'src/app/shared/interfaces/convocation/faculties.interface';
@@ -32,9 +32,35 @@ export class UserDataPostulationBodyComponent implements OnInit {
     programs$:Observable<IProfessionalProgramsResponse[]>
     cycles$:Observable<ICycleResponse[]>
     academicYears$:Observable<IAcademicYearResponse[]>
-    //POSTULATION
+
+//POSTULATION
 
     formPostulation:FormGroup
+
+// Courses postulation Table
+
+    postulationCourses:IPostulationCoevanCourse[]
+    numerationCourses:number = 1
+
+    addEmptyCourse(){
+      this.numerationCourses++
+      let emptyCourse:IPostulationCoevanCourse = {
+        order: this.numerationCourses,
+        number_credits: 0,
+        course_code: '',
+        unsa_course_name: '',
+        year: '',
+        semester: '',
+        destination_university_course_name: ''
+      }
+      this.postulationCourses.push(emptyCourse)
+    }
+
+    deleteCourse(row:number){
+      this.postulationCourses.splice(row,1)
+      this.numerationCourses--
+    }
+
     savePostulation(){
 
     }
@@ -48,19 +74,34 @@ export class UserDataPostulationBodyComponent implements OnInit {
         private genDocumentCoevanService: GenDocumentCoevanService
     ) {
 
+
       this.faculties$ = new Observable<IFacultyResponse[]>()
       this.programs$ = new Observable<IProfessionalProgramsResponse[]>()
       this.cycles$ = new Observable<ICycleResponse[]>()
       this.academicYears$ = new Observable<IAcademicYearResponse[]>()
 
 
+
+      this.postulationCourses = [
+        {
+          order:1,
+          number_credits:4,
+          course_code:"445132",
+          unsa_course_name:"Introducción al desarrollo de juegos",
+          year:"2022",
+          semester:"B",
+          destination_university_course_name:"Desarrollo de juegos"
+        }
+      ]
+
       const datetime = new Date()
 
       this.id = route.snapshot.params['id']
+
       this.formPostulation = new FormGroup({
         lastname: new FormControl('',Validators.required),
         name: new FormControl('',Validators.required),
-        birthdate: new FormControl('',Validators.required),
+        birthdate: new FormControl({},Validators.required),
         dni: new FormControl('',Validators.required),
         cityregion: new FormControl('',Validators.required),
         cui: new FormControl('',Validators.required),
@@ -80,10 +121,10 @@ export class UserDataPostulationBodyComponent implements OnInit {
           value:'Arequipa/Arequipa',
           disabled:true
         }),
-        u_faculty: new FormControl('',Validators.required),
-        u_professional_program: new FormControl('',Validators.required),
-        u_current_cicle: new FormControl('',Validators.required),
-        u_academic_year: new FormControl('',Validators.required),
+        u_faculty: new FormControl({},Validators.required),
+        u_professional_program: new FormControl({},Validators.required),
+        u_current_cicle: new FormControl({},Validators.required),
+        u_academic_year: new FormControl({},Validators.required),
         u_grades_mean: new FormControl('',Validators.required),
         u_total_credits: new FormControl('',Validators.required),
         u_program_coordinator: new FormControl({
@@ -98,7 +139,15 @@ export class UserDataPostulationBodyComponent implements OnInit {
           value:'convenios@unsa.edu.pe',
           disabled:true
         }),
-        u_presentation_date : new FormControl(datetime.toLocaleString(),Validators.required)
+        u_presentation_date : new FormControl(datetime.toLocaleString(),Validators.required),
+        postulation_courses: new FormGroup({
+          number_credits: new FormControl(''),
+          course_code: new FormControl(''),
+          unsa_course_name: new FormControl(''),
+          year: new FormControl(''),
+          semester: new FormControl(''),
+          destination_university_course_name: new FormControl('')
+        })
       })
     }
 
@@ -127,6 +176,9 @@ export class UserDataPostulationBodyComponent implements OnInit {
   src = 'https://www.mtsac.edu/webdesign/accessible-docs/word/example03.docx';
 
   generateDoc(){
-    this.genDocumentCoevanService.generateDocumentPostulation(1)
+    this.genDocumentCoevanService.generateDocumentPostulation(this.postulationCourses)
   }
+
+
+
 }

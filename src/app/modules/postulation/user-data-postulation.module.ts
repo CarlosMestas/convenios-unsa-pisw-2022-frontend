@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { UserDataPostulationRoutingModule } from './user-data-postulation.routes';
 import { NgModule } from '@angular/core';
@@ -11,8 +12,8 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import { PrimeNgModule } from '../shared/primeng.module';
-import { FormsModule } from '@angular/forms';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
+import { MaterialModule } from '../shared/material.module';
 
 // @ts-ignore
 // @ts-ignore
@@ -28,8 +29,9 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
     MatFormFieldModule,
     MatInputModule,
     PrimeNgModule,
-    FormsModule,
-    NgxDocViewerModule
+    NgxDocViewerModule,
+    MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
 
