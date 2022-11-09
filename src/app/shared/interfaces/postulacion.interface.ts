@@ -1,5 +1,6 @@
 export interface IPostulation {
 
+
 }
 
 export interface IPostulationCoevanCourse{

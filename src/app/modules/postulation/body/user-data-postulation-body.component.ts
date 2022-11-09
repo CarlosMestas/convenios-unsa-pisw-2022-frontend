@@ -18,6 +18,7 @@ import { CycleService } from 'src/app/core/services/cycle/cycle.service';
 import { IAcademicYearResponse } from 'src/app/shared/interfaces/academic-year.interface';
 import { AcademicYearService } from 'src/app/core/services/academic-year/academic-year.service';
 import { GenDocumentCoevanService } from 'src/app/core/services/postulacion/gen-doc-coevan.service';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'app-user-data-postulation-body',
@@ -36,6 +37,15 @@ export class UserDataPostulationBodyComponent implements OnInit {
 //POSTULATION
 
     formPostulation:FormGroup
+    statuses:SelectItem[]= [
+      {label: '1ro', value: '1ro'},
+      {label: '2ro', value: '2ro'},
+      {label: '3ro', value: '3ro'},
+      {label: '4to', value: '4to'},
+      {label: '5to', value: '5to'},
+      {label: '6to', value: '6to'}
+    ]
+    years:string[] = ["1ro","2do","3ro","4to","5to","6to"]
 
 // Courses postulation Table
 
@@ -88,7 +98,7 @@ export class UserDataPostulationBodyComponent implements OnInit {
           number_credits:4,
           course_code:"445132",
           unsa_course_name:"Introducción al desarrollo de juegos",
-          year:"2022",
+          year:"3ro",
           semester:"B",
           destination_university_course_name:"Desarrollo de juegos"
         }

@@ -5,6 +5,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
+import {DropdownModule} from 'primeng/dropdown';
 @NgModule({
   declarations: [
   ],
@@ -14,13 +15,15 @@ import {InputTextModule} from 'primeng/inputtext';
     ButtonModule,
     TableModule,
     InputTextModule,
+    DropdownModule
   ],
   exports:[
     AccordionModule,
     FileUploadModule,
     ButtonModule,
     TableModule,
-    InputTextModule
+    InputTextModule,
+    DropdownModule
   ]
 
 })

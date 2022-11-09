@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <div class="form-container" >
+      <form class="form-container" [formGroup]="formPostulation" >
 
 
         <!--               FOTO           -->
@@ -292,7 +292,9 @@
 
         </div>
 
-        <!--  EDITABLE TABLE -->
+
+      </form>
+<!--  EDITABLE TABLE -->
         <div class="sub-header-container">
           <div class="sub-header-title">
             Registro de Cursos para Reconocimiento Académico
@@ -314,7 +316,7 @@
                           <th>Código de curso</th>
                           <th>UNSA Nombre de curso</th>
                           <th>Año</th>
-                          <th>Semestre</th>
+                          <!-- <th>Semestre</th> -->
                           <th>UNMSM Nombre Curso</th>
                           <th>Acciones</th>
                         </tr>
@@ -357,14 +359,16 @@
                           <td pEditableColumn>
                             <p-cellEditor>
                                 <ng-template pTemplate="input">
-                                    <input pInputText type="text" [(ngModel)]="courseconvalidate.year">
+                                    <!-- <input pInputText type="text" [(ngModel)]="courseconvalidate.year"> -->
+                                    <p-dropdown [options]="statuses" [(ngModel)]="courseconvalidate.year" optionLabel="name"></p-dropdown>
                                 </ng-template>
+
                                 <ng-template pTemplate="output">
                                     {{courseconvalidate.year}}
                                 </ng-template>
                             </p-cellEditor>
                         </td>
-                        <td pEditableColumn>
+                        <!-- <td pEditableColumn>
                           <p-cellEditor>
                               <ng-template pTemplate="input">
                                   <input pInputText type="text" [(ngModel)]="courseconvalidate.semester">
@@ -373,7 +377,7 @@
                                   {{courseconvalidate.semester}}
                               </ng-template>
                           </p-cellEditor>
-                        </td>
+                        </td> -->
                         <td pEditableColumn>
                           <p-cellEditor>
                               <ng-template pTemplate="input">
@@ -397,8 +401,6 @@
             </div>
           </div>
         </div>
-      </div>
-
 
 
 
