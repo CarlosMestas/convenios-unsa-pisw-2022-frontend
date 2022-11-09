@@ -1,0 +1,35 @@
+
+  .table-courses-coevan .course-action,.course-action{
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: fit-content;
+    padding: .2rem;
+    .mat-icon{
+      margin: 0;
+    }
+  }
+  .course-action.delete{
+    color:red;
+  }
+  .course-action.delete:hover{
+    color:red;
+    background-color: rgba(255, 0, 0, 0.404);
+  }
+
+  .course-action.create{
+    color:rgb(51, 61, 207);
+  }
+  .course-action.create:hover{
+    color:rgb(51, 61, 207);
+    background-color: rgba(51, 61, 207, 0.404);
+  }
+  .table-courses-coevan .course-action:hover, .course-action:hover{
+    cursor:pointer;
+  }
+
+
+
+

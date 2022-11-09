@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <form class="form-container" [formGroup]="formPostulation" (ngSubmit)="savePostulation()">
+      <form class="form-container" [formGroup]="formPostulation" >
 
 
         <!--               FOTO           -->
@@ -44,13 +44,10 @@
                           <img  [src]="file.objectURL"/>
                         </div>
                     </ng-template>
-                    <!-- <ng-template pTemplate="content" let-files>
-                        <div>Additional content.</div>
-                    </ng-template> -->
+                    <ng-template pTemplate="content" let-files>
+                        <div></div>
+                    </ng-template>
             </p-fileUpload>
-
-
-
           </div>
 
         </div>
@@ -73,7 +70,7 @@
 
 
 
-              <mat-form-field class="flex-auto" appearance="fill">
+               <mat-form-field class="flex-auto" appearance="fill">
                 <mat-label>Nombre</mat-label>
                 <input formControlName="name" matInput type="text" class="example-right-align" placeholder="0">
                 <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
@@ -86,7 +83,6 @@
                 <input formControlName="birthdate" matInput [matDatepicker]="picker1">
                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                 <mat-datepicker #picker1></mat-datepicker>
-                <!-- <mat-icon class="mr-3" matPrefix svgIcon="mat:hearing"></mat-icon> -->
                 <mat-hint>(obligatorio)</mat-hint>
               </mat-form-field>
 
@@ -163,7 +159,7 @@
 
 
         <!--               Información académica o de la universidad de origen          -->
-        <div class="sub-header-container">
+         <div class="sub-header-container">
           <div class="sub-header-title">
             Información académica o de la universidad de origen
           </div>
@@ -204,7 +200,6 @@
                 <mat-icon class="mr-3" matPrefix svgIcon="mat:architecture"></mat-icon>
                 <mat-hint>(obligatorio)</mat-hint>
               </mat-form-field>
-
 
 
 
@@ -299,19 +294,115 @@
 
 
       </form>
-      <!--               Aval Institucional           -->
-      <div class="sub-header-container">
-        <div class="sub-header-title">
-          Aval Institucional
+<!--  EDITABLE TABLE -->
+        <div class="sub-header-container">
+          <div class="sub-header-title">
+            Registro de Cursos para Reconocimiento Académico
+          </div>
+          <div class="sub-header-body">
+            <div class="action-create">
+              <div (click)="addEmptyCourse()"
+                class="course-action create"
+                mat-icon-button>
+                <mat-icon class="action-icon icon-sm" svgIcon="mat:add_circle"></mat-icon>
+              </div>
+            </div>
+            <div class="card">
+              <p-table [value]="postulationCourses" class="table-courses-coevan" dataKey="order" responsiveLayout="scroll">
+                  <ng-template pTemplate="header">
+                      <tr>
+                          <th>Nro</th>
+                          <th>Número de créditos</th>
+                          <th>Código de curso</th>
+                          <th>UNSA Nombre de curso</th>
+                          <th>Año</th>
+                          <!-- <th>Semestre</th> -->
+                          <th>UNMSM Nombre Curso</th>
+                          <th>Acciones</th>
+                        </tr>
+                  </ng-template>
+                  <ng-template pTemplate="body" let-courseconvalidate let-ri="rowIndex">
+                      <tr>
+                          <td pEditableColumn>
+                            {{ri+1}}
+                          </td>
+                          <td pEditableColumn>
+                              <p-cellEditor>
+                                  <ng-template pTemplate="input">
+                                      <input pInputText type="text" [(ngModel)]="courseconvalidate.number_credits" required>
+                                  </ng-template>
+                                  <ng-template pTemplate="output">
+                                      {{courseconvalidate.number_credits}}
+                                  </ng-template>
+                              </p-cellEditor>
+                          </td>
+                          <td pEditableColumn>
+                              <p-cellEditor>
+                                  <ng-template pTemplate="input">
+                                      <input pInputText type="text" [(ngModel)]="courseconvalidate.course_code" required>
+                                  </ng-template>
+                                  <ng-template pTemplate="output">
+                                      {{courseconvalidate.course_code}}
+                                  </ng-template>
+                              </p-cellEditor>
+                          </td>
+                          <td pEditableColumn>
+                              <p-cellEditor>
+                                  <ng-template pTemplate="input">
+                                      <input pInputText type="text" type="text" [(ngModel)]="courseconvalidate.unsa_course_name">
+                                  </ng-template>
+                                  <ng-template pTemplate="output">
+                                      {{courseconvalidate.unsa_course_name}}
+                                  </ng-template>
+                              </p-cellEditor>
+                          </td>
+                          <td pEditableColumn>
+                            <p-cellEditor>
+                                <ng-template pTemplate="input">
+                                    <!-- <input pInputText type="text" [(ngModel)]="courseconvalidate.year"> -->
+                                    <p-dropdown [options]="years" [(ngModel)]="courseconvalidate.year"></p-dropdown>
+                                </ng-template>
+
+                                <ng-template pTemplate="output">
+                                    {{courseconvalidate.year}}
+                                </ng-template>
+                            </p-cellEditor>
+                        </td>
+                        <!-- <td pEditableColumn>
+                          <p-cellEditor>
+                              <ng-template pTemplate="input">
+                                  <input pInputText type="text" [(ngModel)]="courseconvalidate.semester">
+                              </ng-template>
+                              <ng-template pTemplate="output">
+                                  {{courseconvalidate.semester}}
+                              </ng-template>
+                          </p-cellEditor>
+                        </td> -->
+                        <td pEditableColumn>
+                          <p-cellEditor>
+                              <ng-template pTemplate="input">
+                                  <input pInputText type="text" [(ngModel)]="courseconvalidate.destination_university_course_name">
+                              </ng-template>
+                              <ng-template pTemplate="output">
+                                  {{courseconvalidate.destination_university_course_name}}
+                              </ng-template>
+                          </p-cellEditor>
+                        </td>
+                        <td pEditableColumn>
+                            <div (click)="deleteCourse(ri)"
+                              class="course-action delete"
+                              mat-icon-button>
+                              <mat-icon class="action-icon icon-sm" svgIcon="mat:restore_from_trash"></mat-icon>
+                            </div>
+                        </td>
+                      </tr>
+                  </ng-template>
+              </p-table>
+            </div>
+          </div>
         </div>
-        <div class="sub-header-body">
-          <ngx-doc-viewer
-            [url]="src"
-            viewer="google"
-            style="width:100%;height:50vh;"
-          ></ngx-doc-viewer>
-        </div>
-      </div>
+
+
 
       <p-button (onClick)="generateDoc()">Descargar Postulación</p-button>
 
