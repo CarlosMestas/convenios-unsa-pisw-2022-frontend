@@ -3,62 +3,65 @@
 -->
 
 <div class="container-signup">
-  <div class="container-form-signup">
-    <div class="body-form-signup">
-        <div class="icon-form-signup">
-        </div>
-        <div class="header-form-signup">
-          Registrarse
-        </div>
-        <!-- <form class="fields-form-signup" [formGroup]="signUpForm" (ngSubmit)="submitSignUp()">
-          <div class="form-item form-item-field-email">
-            <div class="form-label form-signup-label-field-email">
-              Correo
-            </div>
-            <input class="form-input-text form-signup-input-field-email" type="email" formControlName="email" id="email" placeholder="Ingresa tu correo">
-            <span class="invalid-field" *ngIf = "email && email.invalid && email.touched">El correo ingresado es incorrecto</span>
+  <div class="sub-container">
+
+    <div class="container-form-signup">
+      <div class="body-form-signup">
+          <div class="icon-form-signup">
           </div>
-          <div class="form-item form-item-field-password">
-            <div class="form-label form-signup-label-field-password">
-              Contraseña
-            </div>
-            <input class="form-input-text form-signup-input-field-password" type="password" formControlName="password" id="password" placeholder="Ingresa tu contraseña">
-            <span class="invalid-field" *ngIf = "password && password.invalid && password.touched">El contenido ingresado es incorrecto</span>
+          <div class="header-form-signup">
+            Registrarse
           </div>
-          <div class="form-item form-item-field-repeat-password">
-            <div class="form-label form-signup-label-field-repeat-password">
-              Repetir Contraseña
+          <!-- <form class="fields-form-signup" [formGroup]="signUpForm" (ngSubmit)="submitSignUp()">
+            <div class="form-item form-item-field-email">
+              <div class="form-label form-signup-label-field-email">
+                Correo
+              </div>
+              <input class="form-input-text form-signup-input-field-email" type="email" formControlName="email" id="email" placeholder="Ingresa tu correo">
+              <span class="invalid-field" *ngIf = "email && email.invalid && email.touched">El correo ingresado es incorrecto</span>
             </div>
-            <input class="form-input-text form-signup-input-field-password" type="password" formControlName="repeatPassword" id="repeat-password" placeholder="Ingresa tu contraseña">
-            <span class="invalid-field" *ngIf = "repeatPassword && repeatPassword.invalid && repeatPassword.touched">El contenido ingresado es incorrecto</span>
+            <div class="form-item form-item-field-password">
+              <div class="form-label form-signup-label-field-password">
+                Contraseña
+              </div>
+              <input class="form-input-text form-signup-input-field-password" type="password" formControlName="password" id="password" placeholder="Ingresa tu contraseña">
+              <span class="invalid-field" *ngIf = "password && password.invalid && password.touched">El contenido ingresado es incorrecto</span>
+            </div>
+            <div class="form-item form-item-field-repeat-password">
+              <div class="form-label form-signup-label-field-repeat-password">
+                Repetir Contraseña
+              </div>
+              <input class="form-input-text form-signup-input-field-password" type="password" formControlName="repeatPassword" id="repeat-password" placeholder="Ingresa tu contraseña">
+              <span class="invalid-field" *ngIf = "repeatPassword && repeatPassword.invalid && repeatPassword.touched">El contenido ingresado es incorrecto</span>
+            </div>
+            <input class="submit-form" type="submit" [disabled] = "signUpForm.invalid" value="Registrarse">
+          </form> -->
+
+
+          <div id="signUpDiv">
+
           </div>
-          <input class="submit-form" type="submit" [disabled] = "signUpForm.invalid" value="Registrarse">
-        </form> -->
+          <div class="form-label no-account">
+            No tienes una cuenta institucional?
+          </div>
+          <div class="google-form-signin" [routerLink] = "requestAccessRoute">
+            Solicitar Acceso
+          </div>
+          <div class="form-label no-account" >
+            ¿Ya tienes una cuenta?
+          </div>
+          <div class="google-form-signin" routerLink = '/iniciar-sesion'>
+            Iniciar Sesión
+          </div>
 
-
-        <div id="signUpDiv">
-
-        </div>
-        <div class="form-label no-account">
-          No tienes una cuenta institucional?
-        </div>
-        <div class="google-form-signin" [routerLink] = "requestAccessRoute">
-          Solicitar Acceso
-        </div>
-        <div class="form-label no-account" >
-          ¿Ya tienes una cuenta?
-        </div>
-        <div class="google-form-signin" routerLink = '/iniciar-sesion'>
-          Iniciar Sesión
-        </div>
-
+      </div>
     </div>
-  </div>
-  <div class="container-banner-signup-over">
-    <div class="container-banner-signup-under">
-      <div class="banner-signup-under-text-container">
-        <div class="banner-big-text">Oficina de Movilidad Becas y Pasantías </div>
-        <div class="banner-small-text">Accede a la plataforma de la Oficina de Movilidad Becas y pasantías y postula a la convocatoria que se adecue a tu perfil</div>
+    <div class="container-banner-signup-over">
+      <div class="container-banner-signup-under">
+        <div class="banner-signup-under-text-container">
+          <div class="banner-big-text">Oficina de Movilidad Becas y Pasantías </div>
+          <div class="banner-small-text">Accede a la plataforma de la Oficina de Movilidad Becas y pasantías y postula a la convocatoria que se adecue a tu perfil</div>
+        </div>
       </div>
     </div>
   </div>

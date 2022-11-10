@@ -1,8 +1,13 @@
 .container-signin{
-  width: calc(100% - 12rem);
-  height: calc(100vh - 6rem);
+  width: calc(100%);
+  height: calc(100vh);
+  padding: 3rem 6rem;
+  // padding: 3rem 0;
+}
+.sub-container{
+  height: 100%;
+  width: 100%;
   border-radius: 1rem;
-  margin: 0 6rem;
   display: flex;
   align-items: stretch;
   min-width: 728px;
