@@ -1,18 +1,15 @@
-import { ISemestre } from './../../../shared/interfaces/semestre.interface';
-import { IProfile } from '../../../shared/interfaces/profile.interface';
-import { of } from 'rxjs';
+import { IConvocation } from '../../../shared/interfaces/convocation.interface';
 import { environment } from 'src/environments/environment.prod';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
-export class SemestreHelper{
-
+import{HttpClient,HttpErrorResponse} from '@angular/common/http'
+import { of } from 'rxjs';
+environment
+export class ResourcesHelper {
   public url = environment.url
   public isProduction = environment.production
   constructor(
     protected http:HttpClient
-  ){
+  ){}
 
-  }
   error(error:HttpErrorResponse){
     let errorMessage = ''
     if(error.error instanceof ErrorEvent){
@@ -23,8 +20,7 @@ export class SemestreHelper{
     return of({
       error:true,
       msg: errorMessage,
-      data: [] as ISemestre[]
+      data: [] as IConvocation[]
     })
   }
-
 }

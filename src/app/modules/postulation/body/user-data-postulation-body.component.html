@@ -33,23 +33,41 @@
           <div class="sub-header-title">
             Foto
           </div>
-          <div class="sub-header-body">
+          <div class="sub-header-body" *ngIf="picture$ | async as pictures">
+              <p-fileUpload *ngIf="pictures; else wopicture" name="myfile" url="./upload.php" [multiple]="false"
+                      accept="image/*" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
+                      [files] = "pictures"
+                      >
+                      <ng-template pTemplate="toolbar">
+                      </ng-template>
+                      <ng-template let-file pTemplate="file">
+                          <div class="image-container">
+                            <img  [src]="file.objectURL"/>
+                          </div>
+                      </ng-template>
+                      <ng-template pTemplate="content" let-files>
+                          <div></div>
+                      </ng-template>
+              </p-fileUpload>
 
-            <p-fileUpload name="myfile" url="./upload.php" [multiple]="false"
-                    accept="image/*" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false">
-                    <ng-template pTemplate="toolbar">
-                    </ng-template>
-                    <ng-template let-file pTemplate="file">
-                        <div class="image-container">
-                          <img  [src]="file.objectURL"/>
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="content" let-files>
-                        <div></div>
-                    </ng-template>
-            </p-fileUpload>
-          </div>
+              <ng-template #wopicture>
+                <p-fileUpload name="myfile" url="./upload.php" [multiple]="false"
+                        accept="image/*" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
+                        >
+                        <ng-template pTemplate="toolbar">
+                        </ng-template>
+                        <ng-template let-file pTemplate="file">
+                            <div class="image-container">
+                              <img  [src]="file.objectURL"/>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="content" let-files>
+                            <div></div>
+                        </ng-template>
+                </p-fileUpload>
+              </ng-template>
 
+            </div>
         </div>
 
 
@@ -281,13 +299,6 @@
                 <mat-hint>(obligatorio)</mat-hint>
               </mat-form-field>
 
-              <mat-form-field class="flex-auto" appearance="fill">
-                <mat-label>Fecha de Presentación del Formulario</mat-label>
-                <input formControlName="u_presentation_date" matInput type="text" class="example-right-align" placeholder="0">
-                <mat-icon class="mr-3" matPrefix svgIcon="mat:calendar_month"></mat-icon>
-                <mat-hint>(obligatorio)</mat-hint>
-              </mat-form-field>
-
           </div>
 
         </div>
@@ -312,11 +323,11 @@
                   <ng-template pTemplate="header">
                       <tr>
                           <th>Nro</th>
-                          <th>Número de créditos</th>
-                          <th>Código de curso</th>
+                          <th> Créditos Curso UNSA</th>
+                          <th>Código curso Unsa</th>
                           <th>UNSA Nombre de curso</th>
                           <th>Año</th>
-                          <!-- <th>Semestre</th> -->
+                          <th>Semestre</th>
                           <th>UNMSM Nombre Curso</th>
                           <th>Acciones</th>
                         </tr>
@@ -368,16 +379,17 @@
                                 </ng-template>
                             </p-cellEditor>
                         </td>
-                        <!-- <td pEditableColumn>
+                        <td pEditableColumn>
                           <p-cellEditor>
-                              <ng-template pTemplate="input">
-                                  <input pInputText type="text" [(ngModel)]="courseconvalidate.semester">
-                              </ng-template>
+                            <ng-template pTemplate="input">
+                              <!-- <input pInputText type="text" [(ngModel)]="courseconvalidate.year"> -->
+                              <p-dropdown [options]="semesters" [(ngModel)]="courseconvalidate.semester"></p-dropdown>
+                          </ng-template>
                               <ng-template pTemplate="output">
                                   {{courseconvalidate.semester}}
                               </ng-template>
                           </p-cellEditor>
-                        </td> -->
+                        </td>
                         <td pEditableColumn>
                           <p-cellEditor>
                               <ng-template pTemplate="input">

@@ -1,3 +1,11 @@
+import { IAcademicNetworkResponse } from './academic-network.interface';
+import { IAcademicYearResponse } from './academic-year.interface';
+import { ICycleResponse } from './cycle.interface';
+import { IProfessionalProgramsResponse } from 'src/app/shared/interfaces/programa-profesiona.interface';
+import { IModalityConvocationResponse } from "./convocation.interface";
+import { IFacultyResponse } from "./convocation/faculties.interface";
+import { IUniversityResponse } from './university.interface';
+import { ISemesterResponse } from './semester.interface';
 
 export interface IPostulationCoevan {
   lastname:string,
@@ -13,15 +21,20 @@ export interface IPostulationCoevan {
   university_origin:string,
   web_page:string,
   city_region_university:string,
-  faculty:number,
-  professional_program:number,
-  current_cicle:number,
-  academic_year:number,
+  faculty:IFacultyResponse,
+  professional_program:IProfessionalProgramsResponse,
+  current_cicle:ICycleResponse,
+  academic_year:IAcademicYearResponse,
   mean_grades:number,
   total_credits:number,
   coordinator:string,
-  cargue:string,
+  coordinator_cargue:string,
   coordinator_email:string,
+  //CONVOCATION DATA
+  modality:IModalityConvocationResponse,
+  semester:ISemesterResponse,
+  university_target:IUniversityResponse,
+  academic_network:IAcademicNetworkResponse
 
 
 }

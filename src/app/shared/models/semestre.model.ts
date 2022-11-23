@@ -1,4 +1,4 @@
-import { ISemestre } from './../interfaces/semestre.interface';
+import { ISemestre } from '../interfaces/semester.interface';
 export class Semestre implements ISemestre{
   semestreId: number;
   semestreName: string;

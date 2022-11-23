@@ -1,5 +1,5 @@
-import { ISemestre } from './../../../shared/interfaces/semestre.interface';
-import { SemestreHelper } from './semestre.helper';
+import { ISemester } from '../../../shared/interfaces/semester.interface';
+import { SemesterHelper } from './semester.helper';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Injectable } from "@angular/core";
@@ -9,13 +9,12 @@ import { BehaviorSubject, catchError, map, Observable, Subject } from "rxjs";
   providedIn:'root'
 })
 
-export class SemestreService extends SemestreHelper{
-  private semestre$:BehaviorSubject<ISemestre | null>;
+export class SemesterService extends SemesterHelper{
+
   constructor(
     private router:Router,
     protected override http:HttpClient
   ){
     super(http)
-    this.semestre$ = new BehaviorSubject<ISemestre | null>(null);
   }
 }
