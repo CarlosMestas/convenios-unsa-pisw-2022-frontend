@@ -11,8 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestAccessComponent implements OnInit {
   public signInForm: FormGroup
-  constructor(
 
+  constructor(
   ) {
     this.signInForm = new FormGroup({
       name: new FormControl('',[Validators.required]),

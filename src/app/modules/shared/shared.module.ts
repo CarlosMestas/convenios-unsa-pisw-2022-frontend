@@ -16,6 +16,7 @@ import { ButtonCustomizedComponent } from 'src/app/shared/components/button-cust
 import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
 import { CardListFormComponent } from 'src/app/shared/components/card-list-form/card-list-form.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {PrimeNgModule} from "./primeng.module";
 
 
 
@@ -32,7 +33,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     DialogYesNoComponent,
     ButtonFormComponent,
     DialogErrorEmailComponent,
-    CardListFormComponent
+    CardListFormComponent,
   ],
   imports: [
     CommonModule,
@@ -41,6 +42,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    PrimeNgModule
   ],
   exports:[
     SteperComponent,
@@ -58,6 +60,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     CardListFormComponent,
     FormsModule,
     ReactiveFormsModule,
+    PrimeNgModule
   ]
 
 })
