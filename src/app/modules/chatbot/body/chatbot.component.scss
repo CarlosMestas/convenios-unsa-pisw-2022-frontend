@@ -1,0 +1,39 @@
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  background: #b2d9d3;
+  min-height: 500px;
+  min-width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.chat-list {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  .chat-item {
+    max-width: 80%;
+    background-color: red;
+    margin:8px 0px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    p{
+      margin: 0;
+    }
+  }
+  .left {
+    margin-right: auto;
+    margin-left: 8px;
+  }
+
+  .right {
+    margin-right: 8px;
+    margin-left: auto;
+  }
+}
