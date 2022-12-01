@@ -1,3 +1,4 @@
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { ROOT_REDUCERS } from './../../ngrx/app.state';
 import { environment } from 'src/environments/environment.prod';
 import { AuthInterceptorProviders } from './../../core/interceptors/auth.interceptor';
@@ -44,6 +45,7 @@ import { effectsOF } from 'src/app/ngrx/effects/index.effects';
 @NgModule({
   declarations: [
     SidenavComponent,
+    ChatbotComponent,
     HomeComponent,
     BodyComponent,
     SigninComponent,

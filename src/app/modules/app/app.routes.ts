@@ -5,7 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
 import {UserProfileComponent} from './pages/user-profile/user-profile.component'
 import { NgModule } from "@angular/core";
-import {ChatbotComponent} from "../chatbot/body/chatbot.component";
+import {ChatbotComponent} from "./components/chatbot/chatbot.component";
 
 const AppRoutesValues = {
   ROUTE_ADMIN_HOME:"admin",
@@ -84,7 +84,7 @@ const AppRoutes: Routes  = [
   },
   {
     path: AppRoutesValues.ROUTE_APP_CHATBOT,
-    component: ChatbotComponent
+    component:ChatbotComponent
   },
 ]
 

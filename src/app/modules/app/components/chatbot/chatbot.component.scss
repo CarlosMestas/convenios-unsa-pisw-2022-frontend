@@ -1,15 +1,23 @@
+
+$height-container:20rem;
+
 .container{
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  z-index: 5;
+  min-width: calc($height-container/16*9);
+  min-height: $height-container;
+  background: #b2d9d3;
+
+  padding: .5rem;
 }
 
 .card {
-  background: #b2d9d3;
-  min-height: 500px;
-  min-width: 500px;
-  margin: auto;
+  height: calc($height-container - 1rem);
+  width: 100%;
+  background: #0eca7c;
   display: flex;
   flex-direction: column;
 }
