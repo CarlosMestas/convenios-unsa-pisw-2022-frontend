@@ -63,4 +63,8 @@ export class ChatbotComponent implements OnInit {
         created_at:Date.now()
       });
   }
+  scrollToBotton(){
+    let chatListContainer = document.getElementById('chat-list');
+    //chatListContainer.scrollTop=chatListContainer.scrollHeight
+  }
 }
