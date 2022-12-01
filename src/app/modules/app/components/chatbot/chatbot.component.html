@@ -1,15 +1,19 @@
 <div class="container">
   <div class="card">
-    <div class="chat-lis">
-      <div *ngFor="let item of chatMessages">
-        <div class="chat-item">
-          <p>pruebaaaa</p>
-        </div>
-
+    <div class="chat-list" id="chat-list">
+      <ng-container *ngFor="let item of chatMessages">
+        <div class="chat-item" [ngClass]="{'right':item?.user?.id==currentUser.id,'left':item?.user?.id!=currentUser.id}">
+          <img id="avatar" [src]="item?.user?.profileImageUrl"/>
+          <p id="message-body">{{item.message}}</p>
+          <span id="date-details"> {{item?.created_at | date:'shortTime'}}</span>
       </div>
-
-    </div>
-
+    </ng-container>
   </div>
-
+    <div class="chat-footer">
+      <textarea id="chat-text" [(ngModel)]="chatInputMessage"></textarea>
+      <button id="send-button" (click)="send()">
+      Enviar
+      </button>
+    </div>
+  </div>
 </div>
