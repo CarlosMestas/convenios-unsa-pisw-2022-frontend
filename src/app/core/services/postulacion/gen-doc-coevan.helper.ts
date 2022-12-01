@@ -1,4 +1,4 @@
-import { IPostulationCoevan } from './../../../shared/interfaces/postulation-coevan.interface';
+import { IPostulationCoevanDocFormat } from './../../../shared/interfaces/postulation-coevan.interface';
 import { environment } from 'src/environments/environment';
 import{HttpClient,HttpErrorResponse} from '@angular/common/http'
 import { of } from 'rxjs';
@@ -20,7 +20,7 @@ export class GenDocumentCoevanHelper {
 
   }
 
-  public static replaceTagsAval(text:string,data:IPostulationCoevan){
+  public static replaceTagsAval(text:string,data:IPostulationCoevanDocFormat){
     let resp = text
     resp = resp.replace(new RegExp(GenDocumentCoevanHelper.TAGS_AVAL.STUDENT_NAME,'gi'),data.name)
     resp = resp.replace(new RegExp(GenDocumentCoevanHelper.TAGS_AVAL.STUDENT_LASTNAME,'gi'),data.lastname)
@@ -34,7 +34,7 @@ export class GenDocumentCoevanHelper {
     return resp
   }
 
-  public static replaceTagsCourseResponsible(text:string,data:IPostulationCoevan){
+  public static replaceTagsCourseResponsible(text:string,data:IPostulationCoevanDocFormat){
     let resp = text
 
     resp = resp.replace(new RegExp(GenDocumentCoevanHelper.TAGS_AVAL.MODALITY,'gi'),data.modality.name)
@@ -46,7 +46,7 @@ export class GenDocumentCoevanHelper {
     resp = resp.replace(new RegExp(GenDocumentCoevanHelper.TAGS_AVAL.UNIVERSITY_TARGET,'gi'),data.university_target.name)
     return resp
   }
-  public static replaceTagsDecComp(text:string,data:IPostulationCoevan){
+  public static replaceTagsDecComp(text:string,data:IPostulationCoevanDocFormat){
     let resp = text
 
     resp = resp.replace(new RegExp(GenDocumentCoevanHelper.TAGS_AVAL.MODALITY,'gi'),data.modality.name)

@@ -6,7 +6,7 @@ import { GenDocumentCoevanHelper } from './gen-doc-coevan.helper';
 
 import jsPDF from 'jspdf'
 import autoTable, { RowInput } from 'jspdf-autotable'
-import { IPostulationCoevan } from 'src/app/shared/interfaces/postulation-coevan.interface';
+import { IPostulationCoevanDocFormat } from 'src/app/shared/interfaces/postulation-coevan.interface';
 
 interface IFormRowItem{
   label:string,
@@ -41,7 +41,7 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     //------TEST DATA
 
-    let testData:IPostulationCoevan = {
+    let testData:IPostulationCoevanDocFormat = {
       lastname: 'Valdivia Pérez',
       name: 'Jaimito',
       birth_date: '',
@@ -673,7 +673,6 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     let fingerprintW = cellWidth/7
     let fingerprintY = 0
     // -------------------- Body Text Declaración de compromiso Value -------------------------
-
 
 
     let tempDecComp = "Acepto las condiciones del <ACADEMIC_NETWORK_NAME> <ACADEMIC_NETWORK_ACRONYM> <SEMESTER>, y me comprometo a cumplir las siguientes cláusulas, en caso de ser seleccionado: \n"+
