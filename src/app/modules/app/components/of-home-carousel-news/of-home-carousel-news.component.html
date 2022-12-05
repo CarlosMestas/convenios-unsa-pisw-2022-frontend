@@ -1,15 +1,25 @@
 <template [ngClass]="prefix">
-  <carousel
-    [height]=heightCarousel
-    [width]=widthCarousel
-    cellWidth=100%
-    [cellsToShow]=1
-  >
-    <div class="carousel-cell">
-      <img src="../../../../assets/images/poster1.jpg" alt="poster1" routerLink="/convocatorias/1">
-    </div>
-    <div class="carousel-cell">
-      <img src="../../../../assets/images/poster2.jpg" alt="poster2" routerLink="/convocatorias/2">
-    </div>
-  </carousel>
+  <div #divToMeasure class="carrousel-container">
+    <carousel
+      [height]="heightCarousel"
+      [width]="widthCarousel"
+      cellWidth="100%"
+      [cellsToShow]="1"
+    >
+      <div class="carousel-cell">
+        <img
+          src="../../../../assets/images/poster1.jpg"
+          alt="poster1"
+          routerLink="/convocatorias/1"
+        />
+      </div>
+      <div class="carousel-cell">
+        <img
+          src="../../../../assets/images/poster2.jpg"
+          alt="poster2"
+          routerLink="/convocatorias/2"
+        />
+      </div>
+    </carousel>
+  </div>
 </template>

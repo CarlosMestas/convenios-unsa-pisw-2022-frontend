@@ -29,7 +29,6 @@ export class SidenavComponent implements OnInit {
 
   collapsed:boolean = true
   screenWidth:number = 0
-  @Output() OnToggleSideNav: EventEmitter<SideNavToggle> = new EventEmitter();
 
   constructor(
     private sidenavService:SidenavService,
@@ -41,9 +40,10 @@ export class SidenavComponent implements OnInit {
   @HostListener('window:resize',['$event'])
   onResize(event:any){
     this.screenWidth = window.innerWidth
+
     if(this.screenWidth <= 768){
       this.collapsed = true;
-      this.OnToggleSideNav.emit({
+      this.sidenavService.onMenuCollapsed({
         collapsed:this.collapsed,
         screenWidth:this.screenWidth
       })
@@ -52,7 +52,7 @@ export class SidenavComponent implements OnInit {
 
   toggleSideNav():void{
     this.collapsed =!this.collapsed
-    this.OnToggleSideNav.emit({
+    this.sidenavService.onMenuCollapsed({
       collapsed:this.collapsed,
       screenWidth:this.screenWidth
     })

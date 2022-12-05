@@ -1,70 +1,144 @@
 <ng-container [ngClass]="prefix">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 apply-table">
-    <!-- Number Column -->
-    <ng-container matColumnDef="demo-position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
-
-    <!-- Correlative Column -->
-    <ng-container matColumnDef="demo-correlative">
-      <th mat-header-cell *matHeaderCellDef> CORRELATIVO</th>
-      <td mat-cell *matCellDef="let element"> {{element.correlative}} </td>
-    </ng-container>
-    <!-- Name Column -->
-    <ng-container matColumnDef="demo-name">
-      <th mat-header-cell *matHeaderCellDef> NOMBRE DE CONVOCATORIA </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <!-- Date Process Column -->
-    <ng-container matColumnDef="demo-date">
-      <th mat-header-cell *matHeaderCellDef> INICIO/FIN POSTULACIÓN </th>
-      <td mat-cell *matCellDef="let element"> 10/08/2022 - 14/09/2022 </td>
-    </ng-container>
-
-    <!-- Bases Column -->
-    <ng-container matColumnDef="demo-bases">
-      <th mat-header-cell *matHeaderCellDef> BASES </th>
-      <td mat-cell *matCellDef="let element">
-        <app-button-customized colorProp="white" textBtn="BASES"></app-button-customized>
-      </td>
-    </ng-container>
-
-    <!-- Preliminary Column -->
-    <ng-container matColumnDef="demo-preliminary">
-      <th mat-header-cell *matHeaderCellDef> REVISIÓN PRELIMINAR </th>
-      <td mat-cell *matCellDef="let element">
-        <app-button-customized colorProp="blue" textBtn="PRELIMINAR"></app-button-customized>
-      </td>
-    </ng-container>
-
-    <!-- News Column -->
-    <ng-container matColumnDef="demo-news">
-      <th mat-header-cell *matHeaderCellDef> COMUNICADOS </th>
-      <td mat-cell *matCellDef="let element">
-        <app-button-customized colorProp="brown" textBtn="{{element.news}}"></app-button-customized>
-      </td>
-    </ng-container>
-
-    <!-- Final Column -->
-    <ng-container matColumnDef="demo-final">
-      <th mat-header-cell *matHeaderCellDef> RESULTADO FINAL </th>
-      <td mat-cell *matCellDef="let element">
-        <app-button-customized colorProp="green" textBtn="RESULTADO"></app-button-customized>
-      </td>
-    </ng-container>
-
-    <!-- More Details Column -->
-    <ng-container matColumnDef="demo-details">
-      <th mat-header-cell *matHeaderCellDef> VER MÁS</th>
-      <td mat-cell *matCellDef="let element">
-        <app-button-customized colorProp="green" textBtn="VER MÁS" (click)="see_details(element.id)"></app-button-customized>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-
+  <div class="card container-view-table">
+    <h3>Convocatorias</h3>
+    <p>Tabla de convocatorias</p>
+    <p-table
+      *ngIf="convocations$ | async as convocations"
+      #dt2
+      [value]="convocations"
+      dataKey="id"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+      [rowsPerPageOptions]="[10, 25, 50]"
+      [loading]="loading"
+      [paginator]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [globalFilterFields]="[
+        'title',
+        'correlative',
+        'type',
+        'modality',
+        'start_date',
+        'end_date'
+      ]"
+    >
+      <ng-template pTemplate="caption">
+        <div class="flex-table-options">
+          <span class="p-input-icon-left ml-auto">
+            <i class="pi pi-search"></i>
+            <input
+              pInputText
+              type="text"
+              (input)="dt2.filterGlobal(returnValue($event.target), 'contains')"
+              placeholder="Buscar Convocatoria"
+              class="p-inputtext p-component p-element"
+            />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th *ngFor="let col of displayedColumns">
+            {{ col.label }}
+          </th>
+        </tr>
+        <tr>
+          <th *ngFor="let col of displayedColumns">
+            <p-columnFilter
+              *ngIf="col.key == 'type'"
+              field="type"
+              matchMode="equals"
+              [showMenu]="false"
+            >
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <p-dropdown
+                  *ngIf="typesConvocation$ | async as typesConvocation"
+                  [ngModel]="value"
+                  [options]="typesConvocation"
+                  placeholder="tipo"
+                  (onChange)="filter($event.value.id)"
+                  optionLabel="acronym"
+                >
+                  <ng-template let-option pTemplate="item">
+                    <div class="p-multiselect-representative-option">
+                      <span class="ml-1">{{ option.acronym }}</span>
+                    </div>
+                  </ng-template>
+                </p-dropdown>
+              </ng-template>
+            </p-columnFilter>
+            <p-columnFilter
+              *ngIf="col.key == 'modality'"
+              field="modality"
+              matchMode="equals"
+              [showMenu]="false"
+            >
+              <ng-template
+                pTemplate="filter"
+                let-value
+                let-filter="filterCallback"
+              >
+                <p-dropdown
+                  *ngIf="modalities$ | async as modalities"
+                  [ngModel]="value"
+                  [options]="modalities"
+                  (onChange)="filter($event.value.id)"
+                  placeholder="modalidad"
+                  optionLabel="name"
+                >
+                  <ng-template let-convocation pTemplate="item">
+                    <span [class]="'customer-badge status-' + convocation.id">{{
+                      convocation.name
+                    }}</span>
+                  </ng-template>
+                </p-dropdown>
+              </ng-template>
+            </p-columnFilter>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-convocation>
+        <tr>
+          <td *ngFor="let col of displayedColumns">
+            {{ convocation[col.key] }}
+          </td>
+          <td>
+            <div class="table-actions flex-table-options flex-center">
+              <div
+                class="table-action manage mr-3"
+                (click)="viewConvocation(convocation.id)"
+                mat-icon-button
+              >
+                <mat-icon
+                  class="action-icon icon-sm"
+                  svgIcon="mat:folder_shared"
+                ></mat-icon>
+              </div>
+              <div class="table-action update mr-3" mat-icon-button>
+                <mat-icon
+                  class="action-icon icon-sm"
+                  svgIcon="mat:edit"
+                ></mat-icon>
+              </div>
+              <div class="table-action delete" mat-icon-button>
+                <mat-icon
+                  class="action-icon icon-sm"
+                  svgIcon="mat:restore_from_trash"
+                ></mat-icon>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6">No data found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </ng-container>

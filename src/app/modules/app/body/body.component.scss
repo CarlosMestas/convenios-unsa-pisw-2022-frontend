@@ -6,7 +6,9 @@
   position: relative;
   top: 0;
   transition: all .3s ease;
-  background-color: #eaf1fd;
+  // background-color: #eaf1fd;
+  background-color: rgba(50, 48, 50, .4);
+  overflow-y: auto;
 }
 .body-trimmed{
   width: calc(100% - 16rem);

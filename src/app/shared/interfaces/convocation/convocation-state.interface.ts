@@ -1,3 +1,4 @@
+import { IConvocationResponse } from './../convocation.interface';
 import { IRequirement } from './../requirements/requirement.interface';
 import { IDocument } from './../documents-convocation/document.interface';
 import { IConvocationPIV } from './convocation-piv.interface';
@@ -6,7 +7,7 @@ import { IEventType } from './event-type.interface';
 
 export interface IConvocationState{
   working:boolean,
-  convocation:IConvocation|null,
+  convocation:IConvocationResponse|null,
   convocationDetail: IConvocationPIV|any|null,
   documents:IDocument[],
   requirements:IRequirement[],

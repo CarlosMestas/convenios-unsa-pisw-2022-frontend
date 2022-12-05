@@ -23,7 +23,7 @@
    <div class="header-menu">
     <mat-button-toggle-group #group="matButtonToggleGroup">
       <mat-button-toggle checked value="prox">Próximas Convocatorias</mat-button-toggle>
-      <mat-button-toggle value="current">En proceso</mat-button-toggle>
+      <mat-button-toggle [ngStyle]="{'font-size.px':16}" value="current">En proceso</mat-button-toggle>
       <mat-button-toggle value="finish">Convocatorias Concluidas</mat-button-toggle>
       <mat-button-toggle value="cancel">Convocatorias Canceladas</mat-button-toggle>
     </mat-button-toggle-group>

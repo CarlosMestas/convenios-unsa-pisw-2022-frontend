@@ -1,4 +1,5 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import { SidenavService } from './../../../../core/services/sidenav/sidenav.service';
+import {AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-of-home-carousel-news',
@@ -7,30 +8,32 @@ import {Component, HostListener, OnInit} from '@angular/core';
 })
 export class OfHomeCarouselNewsComponent implements OnInit {
   prefix:string;
-  heightCarousel:number=430;
-  widthCarousel:number=760;
+  heightCarousel:number;
+  widthCarousel:number;
   screenWidth:number = 0
+  collapsed:boolean = true
 
-  constructor() {
+  constructor(
+    private sidenavService:SidenavService
+  ) {
     this.prefix = 'of-home-carousel-news'
+    this.screenWidth = (window.innerWidth - 40 - 20 - (this.collapsed?80:256))*(2/3)
+    this.widthCarousel = this.screenWidth
+    this.heightCarousel = this.screenWidth*(9/16)
   }
+
   ngOnInit(): void {
-    this.screenWidth = window.innerWidth;
+    this.sidenavService.collapsed$.subscribe(data=>{
+      this.collapsed = data.collapsed
+    })
   }
 
   @HostListener('window:resize',['$event'])
   onResize(event:any){
-    this.screenWidth = window.innerWidth
+    this.screenWidth = (window.innerWidth - 40 - 20 - (this.collapsed?80:256))*(2/3)
+    console.log(this.screenWidth)
+    this.widthCarousel = this.screenWidth
+    this.heightCarousel = this.screenWidth*(9/16)
 
-    if(this.screenWidth > 1366){
-      this.widthCarousel = 760
-      this.heightCarousel = 430
-    } else if(this.screenWidth <= 1366 && this.screenWidth > 1024){
-      this.widthCarousel = 500
-      this.heightCarousel = 300
-    } else if(this.screenWidth <= 1024){
-      this.widthCarousel = 400
-      this.heightCarousel = 220
-    }
   }
 }

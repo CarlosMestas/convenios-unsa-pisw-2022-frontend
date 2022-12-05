@@ -6,6 +6,7 @@ import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
 import {DropdownModule} from 'primeng/dropdown';
+import { SplitButtonModule } from 'primeng/splitbutton';
 @NgModule({
   declarations: [
   ],
@@ -15,7 +16,8 @@ import {DropdownModule} from 'primeng/dropdown';
     ButtonModule,
     TableModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    SplitButtonModule
   ],
   exports:[
     AccordionModule,
@@ -23,7 +25,8 @@ import {DropdownModule} from 'primeng/dropdown';
     ButtonModule,
     TableModule,
     InputTextModule,
-    DropdownModule
+    DropdownModule,
+    SplitButtonModule
   ]
 
 })

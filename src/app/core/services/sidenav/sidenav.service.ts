@@ -1,6 +1,6 @@
 import { sidenavItems } from 'src/app/core/mocks/items-sidenav.mock';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { SidenavItem } from './../../../shared/interfaces/sidenav-item.interface';
+import { ISidenavToggle, SidenavItem } from './../../../shared/interfaces/sidenav-item.interface';
 import { AppRoutingModule } from './../../../modules/app/app.routes';
 
 import { Injectable } from "@angular/core";
@@ -15,7 +15,8 @@ import { faHouseUser,faQuestion, faPhone,faUser} from '@fortawesome/free-solid-s
 export class SidenavService extends SidenavHelper{
   sidenavItems:{[name:string]:SidenavItem};
   sidenavItems$:BehaviorSubject<{[name:string]:SidenavItem}>;
-
+  private collapsed = new Subject<ISidenavToggle>();
+  collapsed$ = this.collapsed.asObservable();
   constructor(){
     super()
     this.sidenavItems =
@@ -77,6 +78,10 @@ export class SidenavService extends SidenavHelper{
     this.sidenavItems["cerrar-sesion"].visible=false
     this.sidenavItems["iniciar-sesion"].visible=true
     this.sidenavItems$.next(this.sidenavItems)
+  }
+
+  onMenuCollapsed(event:ISidenavToggle) {
+    this.collapsed.next(event);
   }
 
 }

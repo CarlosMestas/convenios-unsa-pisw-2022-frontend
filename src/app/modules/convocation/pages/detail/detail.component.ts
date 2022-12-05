@@ -64,19 +64,19 @@ export class DetailComponent implements OnInit {
       this.convocation$ = this.store.select(convocationConvocationStateSelector)
       this.requirements$ = this.store.select(convocationRequirementsStateSelector)
       this.banner$ = this.store.select(convocationDocumentBannerStateSelector)
-      this.store.select(convocationTypeStateSelector).subscribe(type=>{
-        switch(type?.name){
-          case ENUMConvocationType.PIVE:
-            this.router.navigate(["./"+ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_PIVE_DETAIL],{relativeTo: this.activatedRoute})
-            break;
-          case ENUMConvocationType.PIVDO:
-            this.router.navigate(["./"+ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_PIVDO_DETAIL],{relativeTo: this.activatedRoute})
-            break;
-          case ENUMConvocationType.ORD_DOC_VAN:
-            this.router.navigate(["./"+ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_DOC_VAN_DETAIL],{relativeTo: this.activatedRoute})
-            break;
-        }
-      })
+      // this.store.select(convocationTypeStateSelector).subscribe(type=>{
+      //   switch(type){
+      //     case ENUMConvocationType.PIVE:
+      //       this.router.navigate(["./"+ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_PIVE_DETAIL],{relativeTo: this.activatedRoute})
+      //       break;
+      //     case ENUMConvocationType.PIVDO:
+      //       this.router.navigate(["./"+ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_PIVDO_DETAIL],{relativeTo: this.activatedRoute})
+      //       break;
+      //     case ENUMConvocationType.ORD_DOC_VAN:
+      //       this.router.navigate(["./"+ConvocatoriaRoutingModule.ROUTES_VALUES.ROUTE_CONVOCATORIA_DOC_VAN_DETAIL],{relativeTo: this.activatedRoute})
+      //       break;
+      //   }
+      // })
     }
 
 }

@@ -1,5 +1,5 @@
 import { IConvocationPIVEFetchTransactionResponse } from './../../../shared/interfaces/transactions/convocation-pive-fetch-transaction-response.interface';
-import { IConvocation } from './../../../shared/interfaces/convocation.interface';
+import { IConvocation, IConvocationResponse } from './../../../shared/interfaces/convocation.interface';
 import { createAction, props } from '@ngrx/store';
 import { IRequirement } from 'src/app/shared/interfaces/requirements/requirement.interface';
 import { IRequestSaveConvocationDetailPIVE } from 'src/app/shared/interfaces/convocation/request-transactions.interface';
@@ -21,7 +21,7 @@ export const convocationFetchRequestAction = createAction(
 )
 export const convocationFetchSuccessAction = createAction(
   ConvocationActions.CONVOCATION_FETCH_SUCCESS_ACTION,
-  props<{convocation:IConvocation}>()
+  props<{convocation:IConvocationResponse}>()
 )
 export const convocationFetchErrorAction = createAction(
   ConvocationActions.CONVOCATION_FETCH_ERROR_ACTION

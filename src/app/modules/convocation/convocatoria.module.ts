@@ -3,9 +3,6 @@ import { ConvocatoriaRoutingModule } from './convocatoria.routes';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetailComponent } from './pages/detail/detail.component';
-import { ApplyComponent } from './pages/apply/apply.component';
-import {NewConvocationComponent} from "./pages/new-convocation/new-convocation.component";
-
 
 import {TimelineModule} from 'primeng/timeline';
 import {CardModule} from 'primeng/card';
@@ -20,22 +17,19 @@ import { DetailEstVanComponent } from './pages/detail-est-van/detail-est-van.com
 import { DetailEstVienenComponent } from './pages/detail-est-vienen/detail-est-vienen.component';
 import { DetailDocVanComponent } from './pages/detail-doc-van/detail-doc-van.component';
 import { DetailDocVienenComponent } from './pages/detail-doc-vienen/detail-doc-vienen.component';
-import { NewConvocationDetailComponent } from './pages/new-convocation-detail/new-convocation-detail.component';
+
 
 @NgModule({
   declarations: [
     DetailComponent,
-    ApplyComponent,
     ConvocatoriaBodyComponent,
-    NewConvocationComponent,
     ConvocatoriaBodyComponent,
     DetailPiveComponent,
     DetailPivdoComponent,
     DetailEstVanComponent,
     DetailEstVienenComponent,
     DetailDocVanComponent,
-    DetailDocVienenComponent,
-    NewConvocationDetailComponent
+    DetailDocVienenComponent
   ],
     imports: [
         CommonModule,

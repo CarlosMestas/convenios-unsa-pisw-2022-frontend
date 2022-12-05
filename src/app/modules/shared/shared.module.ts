@@ -1,3 +1,4 @@
+import { PrimeNgModule } from './primeng.module';
 import { DialogErrorEmailComponent } from './../../shared/components/dialog-error-email/dialog-error-email.component';
 import { ButtonFormComponent } from './../../shared/components/button-form/button-form.component';
 import { DialogYesNoComponent } from './../../shared/components/dialog-yes-no/dialog-yes-no.component';
@@ -41,6 +42,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    PrimeNgModule
   ],
   exports:[
     SteperComponent,
@@ -58,6 +60,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     CardListFormComponent,
     FormsModule,
     ReactiveFormsModule,
+    PrimeNgModule
   ]
 
 })

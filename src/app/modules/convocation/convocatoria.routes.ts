@@ -1,4 +1,3 @@
-import { NewConvocationDetailComponent } from './pages/new-convocation-detail/new-convocation-detail.component';
 import { AuthGuard } from '../../core/guards/auth/auth.guard';
 import { DetailComponent } from './pages/detail/detail.component';
 import { ConvocatoriaBodyComponent } from './body/convocatoria-body.component';
@@ -11,19 +10,16 @@ import { DetailDocVienenComponent } from './pages/detail-doc-vienen/detail-doc-v
 import { DetailDocVanComponent } from './pages/detail-doc-van/detail-doc-van.component';
 import { DetailEstVienenComponent } from './pages/detail-est-vienen/detail-est-vienen.component';
 import { DetailEstVanComponent } from './pages/detail-est-van/detail-est-van.component';
-import {NewConvocationComponent} from "./pages/new-convocation/new-convocation.component";
 
 const ConvocatoriaRoutesValues = {
   ROUTE_CONVOCATORIA_DETAIL: "detalle",
   ROUTE_CONVOCATORIA_APPLY: "postular",
-  ROUTE_CONVOCATORIA_NEW: "nuevo",
   ROUTE_CONVOCATORIA_PIVE_DETAIL: "detalle-pive",
   ROUTE_CONVOCATORIA_PIVDO_DETAIL: "detalle-pivdo",
   ROUTE_CONVOCATORIA_DOC_VIENEN_DETAIL: "detalle-doc-vienen",
   ROUTE_CONVOCATORIA_DOC_VAN_DETAIL: "detalle-doc-van",
   ROUTE_CONVOCATORIA_EST_VIENEN_DETAIL: "detalle-est-vienen",
-  ROUTE_CONVOCATORIA_EST_VAN_DETAIL: "detalle-est-van",
-  ROUTE_CONVOCATORIA_NEW_DETAIL: "nuevo-detalle"
+  ROUTE_CONVOCATORIA_EST_VAN_DETAIL: "detalle-est-van"
 };
 
 const ConvocatoriaRoutes: Routes = [
@@ -65,14 +61,6 @@ const ConvocatoriaRoutes: Routes = [
             component:DetailEstVanComponent
           }
         ]
-      },
-      {
-        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_NEW_DETAIL,
-        component:NewConvocationDetailComponent
-      },
-      {
-        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_NEW,
-        component:NewConvocationComponent,
       },
       {
         path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_APPLY,

@@ -1,3 +1,5 @@
+import { IConvocationResponse } from './../../../shared/interfaces/convocation.interface';
+import { IHttpServiceResponse, IHttpResponse } from 'src/app/shared/interfaces/transactions/transaction-response.interface';
 import { IConvocationPIVEFetchTransactionResponse } from './../../../shared/interfaces/transactions/convocation-pive-fetch-transaction-response.interface';
 
 import { ConvocationHelper } from './convocation.helper';
@@ -27,25 +29,40 @@ export class ConvocationService extends ConvocationHelper{
   }
 
   /**
-   * get all convocations created from API
+   *
+   * @returns Return all convocation by date in order to get all convocations which have current date greater than start convocation date and less that end convocation date and are also available
    */
-  getAllConvocations():Observable<
-    {
-      error:boolean,
-      msg:string,
-      data:IConvocation[]
-    }>{
+  getAllConvocationsByDate(date:number):Observable<IHttpServiceResponse<IConvocationResponse[]>>{
 
-    const response = {
+    const response:IHttpServiceResponse<IConvocationResponse[]> = {
       error:false,
       msg:'',
-      data:{} as IConvocation[]
+      data:{} as IConvocationResponse[]
     };
-    return this.http.get<{
-      code:number,
-      msg:string,
-      data:IConvocation[]
-    }>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.ALL_CONVOCATIONS )
+
+    let params = new HttpParams();
+    params = params.append("date",date)
+    return this.http.get<IHttpResponse<IConvocationResponse[]>>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.ALL_CONVOCATIONS,{params})
+    .pipe(
+      map( resp =>{
+        response.data=resp.data
+        return response
+      }),
+      catchError(this.errorGetConvocations)
+    );
+  }
+
+  /**
+   * get all convocations created from API
+   */
+  getAllConvocations():Observable<IHttpServiceResponse<IConvocationResponse[]>>{
+
+    const response:IHttpServiceResponse<IConvocationResponse[]> = {
+      error:false,
+      msg:'',
+      data:{} as IConvocationResponse[]
+    };
+    return this.http.get<IHttpResponse<IConvocationResponse[]>>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.ALL_CONVOCATIONS )
     .pipe(
       map( resp =>{
         response.data=resp.data
@@ -62,13 +79,13 @@ export class ConvocationService extends ConvocationHelper{
   {
     error:boolean,
     msg:string,
-    data:IConvocation
+    data:IConvocationResponse
   }>{
 
     const response = {
       error:false,
       msg:'',
-      data:{} as IConvocation
+      data:{} as IConvocationResponse
     };
 
     let params = new HttpParams()
@@ -76,7 +93,7 @@ export class ConvocationService extends ConvocationHelper{
     return this.http.get<{
       code:number,
       msg:string,
-      data:IConvocation
+      data:IConvocationResponse
     }
     >(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.GET_CONVOCATION,{params:params})
     .pipe(
@@ -89,6 +106,7 @@ export class ConvocationService extends ConvocationHelper{
       catchError(this.error)
     );
   }
+
   getConvocationDetailPIVE(id:number):Observable<
   {
     error:boolean,

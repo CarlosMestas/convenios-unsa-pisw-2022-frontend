@@ -5,3 +5,7 @@ export interface SidenavItem{
   label:string,
   visible:boolean
 }
+export interface ISidenavToggle{
+  screenWidth:number;
+  collapsed:boolean;
+}

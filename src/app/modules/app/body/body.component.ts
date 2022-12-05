@@ -1,3 +1,4 @@
+import { SidenavService } from './../../../core/services/sidenav/sidenav.service';
 import { Observable} from 'rxjs';
 import { userLoadRequestAction } from './../../../ngrx/actions/auth/user-auth.actions';
 import { IAppState } from './../../../ngrx/app.state';
@@ -35,7 +36,8 @@ dialogUserRegisterWrongEmail$: Observable<boolean>
     private authService:AuthService,
     private store:Store<IAppState>,
     private readonly matIconRegistry: MatIconRegistry,
-    private readonly domSanitizer: DomSanitizer
+    private readonly domSanitizer: DomSanitizer,
+    private sidenavService:SidenavService
     ) {
       this.dialogProfileNotConfigured$ = new Observable<boolean>()
       this.dialogUserRegisterWrongEmail$ = new Observable<boolean>()
@@ -76,11 +78,14 @@ dialogUserRegisterWrongEmail$: Observable<boolean>
   ngOnInit(): void {
     console.log("NG ON INIT calling")
     // @ts-ignore
-
     window.onGoogleLibraryLoad  = () => {
       this.authService.initializeGoogleAuthService()
       this.authService.promptGoogleOneTap()
     }
+
+    this.sidenavService.collapsed$.subscribe(data=>{
+      this.onToggleSideNav(data)
+    })
 
     this.store.dispatch(userLoadRequestAction())
     this.dialogProfileNotConfigured$ = this.store.select(dialogProfileNotConfiguredSelector)

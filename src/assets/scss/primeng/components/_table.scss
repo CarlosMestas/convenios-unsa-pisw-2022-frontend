@@ -1,0 +1,112 @@
+$table-header-height: 2.5rem;
+$table-header-padding-y: 0.5rem;
+$table-border-height: 1px;
+
+$table-paginator-height: 2.5rem;
+$table-paginator-padding-y: 0.25rem;
+$table-paginator-border-height: 1px;
+
+.flex-table-options{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+
+.p-datatable{
+  height: 100%;
+  display: grid;
+  grid-template-rows: calc($table-header-height + (2 * $table-border-height) + (2 * $table-header-padding-y)) auto calc($table-paginator-height + (1 * $table-paginator-border-height) + (2 * $table-paginator-padding-y));
+}
+
+.container-view-table{
+  height: 100%;
+  display: grid;
+  grid-template-rows: 40px 40px auto;
+}
+
+
+.p-datatable .p-datatable-thead>tr>th{
+  font-size: 13px;
+  padding: .5rem;
+}
+
+.p-datatable .p-datatable-tbody>tr>td{
+  font-size: 12px;
+  padding: .75rem .5rem;
+}
+
+.p-datatable-responsive-scroll>.p-datatable-wrapper{
+  overflow-x:initial !important;
+}
+
+.p-paginator-bottom.p-paginator{
+  padding: .25rem 1rem;
+}
+
+.p-paginator .p-paginator-current,
+.p-paginator .p-paginator-first,
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next,
+.p-paginator .p-paginator-last,
+.p-paginator .p-dropdown,
+.p-paginator .p-paginator-pages .p-paginator-page {
+  height: 2.5rem;
+  font-size: .75rem;
+  margin: 0;
+}
+
+.p-paginator .p-paginator-current{
+
+}
+
+.p-fluid .p-inputtext,
+.p-input-icon-left>.p-inputtext{
+  height: 40px;
+}
+
+.p-datatable .p-datatable-header{
+  padding: .5rem;
+}
+
+
+// table actions
+.table-actions .table-action,.table-action{
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: fit-content;
+  padding: .2rem;
+  .mat-icon{
+    margin: 0;
+  }
+}
+.table-action.delete{
+  color:red;
+}
+.table-action.delete:hover{
+  color:red;
+  background-color: rgba(255, 0, 0, 0.404);
+}
+
+.table-action.update{
+  color:rgb(0, 153, 255);
+}
+.table-action.update:hover{
+  color:rgb(0, 153, 255);
+  background-color: rgba(0, 153, 255, 0.404);
+}
+.table-action.manage{
+  color:rgb(255, 196, 0);
+}
+.table-action.manage:hover{
+  color:rgb(255, 196, 0);
+  background-color: rgba(255, 196, 0, 0.404);
+}
+
+.table-actions .table-action:hover, .table-action:hover{
+  cursor:pointer;
+}
