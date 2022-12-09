@@ -7,6 +7,12 @@ import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
 import {DropdownModule} from 'primeng/dropdown';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import {StepsModule} from 'primeng/steps';
+import { ToastModule } from 'primeng/toast';
+import {TooltipModule} from 'primeng/tooltip';
+import { MatRippleModule } from '@angular/material/core';
+
+
 @NgModule({
   declarations: [
   ],
@@ -17,7 +23,11 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     TableModule,
     InputTextModule,
     DropdownModule,
-    SplitButtonModule
+    SplitButtonModule,
+    StepsModule,
+    ToastModule,
+    TooltipModule,
+    MatRippleModule
   ],
   exports:[
     AccordionModule,
@@ -26,7 +36,11 @@ import { SplitButtonModule } from 'primeng/splitbutton';
     TableModule,
     InputTextModule,
     DropdownModule,
-    SplitButtonModule
+    SplitButtonModule,
+    StepsModule,
+    ToastModule,
+    TooltipModule,
+    MatRippleModule
   ]
 
 })

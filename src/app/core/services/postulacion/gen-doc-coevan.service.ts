@@ -37,68 +37,68 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     super(http)
   }
 
-  generateDocumentPostulation(postulationCourses: IPostulationCoevanCourse[]){
+  generateDocumentPostulation(testData:IPostulationCoevanDocFormat){
 
     //------TEST DATA
 
-    let testData:IPostulationCoevanDocFormat = {
-      lastname: 'Valdivia Pérez',
-      name: 'Jaimito',
-      birth_date: '',
-      dni: '',
-      city_region_postulant: '',
-      cui: '',
-      address: '',
-      phone: '',
-      email: '',
-      emergency_contact: '',
-      university_origin: '',
-      web_page: '',
-      city_region_university: '',
-      faculty:{
-        id:0,
-        name:"Producción y servicios",
-        acronym:""
-      } ,
-      professional_program:{
-        id:0,
-        name:'Escuela Profesional de Ingeniería de Sistemas',
-        acronym:'',
-        faculty: 1
-      } ,
-      current_cicle: {
-        id:0,
-        description:''
-      },
-      academic_year: {
-        id:0,
-        description:''
-      },
-      mean_grades: 0,
-      total_credits: 0,
-      coordinator: '',
-      coordinator_cargue: '',
-      coordinator_email: '',
-      modality: {
-        id:0,
-        name:'Presencial'
-      },
-      semester: {
-        id:0,
-        name:'2022-B'
-      },
-      university_target: {
-        id:0,
-        name:'Universidad Nacional Mayor de San Marcos',
-        acronym:'UNMSM'
-      },
-      academic_network: {
-        id: 0,
-        name:'Red Peruana de Universidades Nacionales para la Internacionalización',
-        acronym:'RUNAI',
-        description:''
-      }
-    }
+    // let testData:IPostulationCoevanDocFormat = {
+    //   lastname: 'Valdivia Pérez',
+    //   name: 'Jaimito',
+    //   birth_date: '',
+    //   dni: '',
+    //   city_region_postulant: '',
+    //   cui: '',
+    //   address: '',
+    //   phone: '',
+    //   email: '',
+    //   emergency_contact: '',
+    //   university_origin: '',
+    //   web_page: '',
+    //   city_region_university: '',
+    //   faculty:{
+    //     id:0,
+    //     name:"Producción y servicios",
+    //     acronym:""
+    //   } ,
+    //   professional_program:{
+    //     id:0,
+    //     name:'Escuela Profesional de Ingeniería de Sistemas',
+    //     acronym:'',
+    //     faculty: 1
+    //   } ,
+    //   current_cicle: {
+    //     id:0,
+    //     description:''
+    //   },
+    //   academic_year: {
+    //     id:0,
+    //     description:''
+    //   },
+    //   mean_grades: 0,
+    //   total_credits: 0,
+    //   coordinator: '',
+    //   coordinator_cargue: '',
+    //   coordinator_email: '',
+    //   modality: {
+    //     id:0,
+    //     name:'Presencial'
+    //   },
+    //   semester: {
+    //     id:0,
+    //     name:'2022-B'
+    //   },
+    //   university_target: {
+    //     id:0,
+    //     name:'Universidad Nacional Mayor de San Marcos',
+    //     acronym:'UNMSM'
+    //   },
+    //   academic_network: {
+    //     id: 0,
+    //     name:'Red Peruana de Universidades Nacionales para la Internacionalización',
+    //     acronym:'RUNAI',
+    //     description:''
+    //   }
+    // }
 
 
     // Tamaño Hoja A4 => Alto => 297 Ancho => 210 mm
@@ -112,7 +112,6 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     /*-------------------------TITLE----------------------------- */
     let program_name = "Red peruana de universidades nacionales para la internacionalización"
     let network_acronym = "RUNAI"
-    let type = "Formulario de postulación"
 
     let correlative = "2022-2(VAN)"
 
@@ -170,7 +169,11 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     let imageHeight = imageCellHeight - verticalPaddingImage*2
     let imageWidth = ratioImageWidthHeight*imageHeight
     currentX = currentX + ((imageCellWidth - imageWidth)/2)
-    doc.addImage('../../../../assets/images/pdf/foto-student.jpg', "JPEG", currentX, currentY + verticalPaddingImage, imageWidth, imageHeight)
+    // doc.addImage('../../../../assets/images/pdf/foto-student.jpg', "JPEG", currentX, currentY + verticalPaddingImage, imageWidth, imageHeight)
+
+    console.log("image data:","HOLA".toString())
+
+    doc.addImage(testData.photo, "JPEG", currentX, currentY + verticalPaddingImage, imageWidth, imageHeight)
 
     currentY = currentY + cellHeight
     currentX = this.sangria_left
@@ -214,9 +217,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     // -------------------- DNI Value -------------------------
 
-    let dni = "76229465"
+
     this.setFontPrimaryValue(doc)
-    this.genCellText(dni, currentX, currentY, cellWidth - currentCellWidthOccupied - imageCellWidth, cellHeight,doc)
+    this.genCellText(testData.dni, currentX, currentY, cellWidth - currentCellWidthOccupied - imageCellWidth, cellHeight,doc)
 
     currentY = currentY + cellHeight
     currentX = this.sangria_left
@@ -245,9 +248,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     // -------------------- CUI Value -------------------------
 
-    let cui = "20170654"
+
     this.setFontPrimaryValue(doc)
-    this.genCellText(cui, currentX, currentY, cellWidth - currentCellWidthOccupied - imageCellWidth, cellHeight,doc)
+    this.genCellText(testData.cui, currentX, currentY, cellWidth - currentCellWidthOccupied - imageCellWidth, cellHeight,doc)
 
     currentY = currentY + cellHeight
     currentX = this.sangria_left
@@ -261,9 +264,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     currentX = currentX + currentCellWidthOccupied
 
     // -------------------- Current address Value -------------------------
-    let currentAddress = "Villa la mar 546212"
+
     this.setFontPrimaryValue(doc)
-    this.genCellText(currentAddress, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
+    this.genCellText(testData.address, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
 
     currentY = currentY + cellHeight
     currentX = this.sangria_left
@@ -277,9 +280,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     currentX = currentX + currentCellWidthOccupied
 
     // -------------------- telephone Value -------------------------
-    let phoneNumber = "958642121"
+
     this.setFontPrimaryValue(doc)
-    tempCellWidth = this.genCellTextWidthAuto(phoneNumber, currentX, currentY, cellHeight,doc)
+    tempCellWidth = this.genCellTextWidthAuto(testData.phone, currentX, currentY, cellHeight,doc)
     currentCellWidthOccupied += tempCellWidth
     currentX = currentX + tempCellWidth
 
@@ -292,9 +295,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     // -------------------- Institutional email Value -------------------------
 
-    let institutionalEmail = "juanp@unsa.edu.pe"
+
     this.setFontPrimaryValue(doc)
-    this.genCellText(institutionalEmail, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
+    this.genCellText(testData.email, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
 
     currentY = currentY + cellHeight
     currentX = this.sangria_left
@@ -307,9 +310,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     currentX = currentX + currentCellWidthOccupied
 
     // -------------------- emergency contact Value -------------------------
-    let emergencyContact = "Juana Pérez"
+
     this.setFontPrimaryValue(doc)
-    this.genCellText(emergencyContact, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
+    this.genCellText(testData.emergency_contact, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
 
     currentY = currentY + cellHeight + this.space_between_components
     currentX = this.sangria_left
@@ -332,9 +335,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     currentX = currentX + currentCellWidthOccupied
 
     // -------------------- Universidad de Origen Value -------------------------
-    let university = "Universidad Nacional de San Agustín"
+
     this.setFontPrimaryValue(doc)
-    this.genCellText(university, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
+    this.genCellText(testData.university_origin.name, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
 
     currentY = currentY + cellHeight
     currentX = this.sangria_left
@@ -348,9 +351,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     currentX = currentX + currentCellWidthOccupied
 
     // -------------------- webpage Value -------------------------
-    let webpage = "unsa.edu.pe"
+
     this.setFontPrimaryValue(doc)
-    tempCellWidth = this.genCellTextWidthAuto(webpage, currentX, currentY, cellHeight,doc)
+    tempCellWidth = this.genCellTextWidthAuto(testData.web_page, currentX, currentY, cellHeight,doc)
     currentCellWidthOccupied += tempCellWidth
     currentX = currentX + tempCellWidth
 
@@ -363,9 +366,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     // -------------------- city/region Value -------------------------
 
-    let cityReg = "Arequipa/Arequipa"
+
     this.setFontPrimaryValue(doc)
-    this.genCellText(cityReg, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
+    this.genCellText(testData.city_region_university, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
 
     currentY = currentY + cellHeight
     currentX = this.sangria_left
@@ -407,9 +410,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     currentX = currentX + currentCellWidthOccupied
 
     // -------------------- cycle Value -------------------------
-    let cycle = "10mo"
+
     this.setFontPrimaryValue(doc)
-    tempCellWidth = this.genCellTextWidthAuto(cycle, currentX, currentY, cellHeight,doc)
+    tempCellWidth = this.genCellTextWidthAuto(testData.current_cicle.description, currentX, currentY, cellHeight,doc)
     currentCellWidthOccupied += tempCellWidth
     currentX = currentX + tempCellWidth
 
@@ -422,9 +425,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     // -------------------- academic year Value -------------------------
 
-    let academicYear = "5to"
+
     this.setFontPrimaryValue(doc)
-    this.genCellText(academicYear, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
+    this.genCellText(testData.academic_year.description, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
 
     currentY = currentY + cellHeight
     currentX = this.sangria_left
@@ -438,9 +441,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     currentX = currentX + currentCellWidthOccupied
 
     // -------------------- mean grades Value -------------------------
-    let meanGrades = "14.5"
+
     this.setFontPrimaryValue(doc)
-    tempCellWidth = this.genCellTextWidthAuto(meanGrades, currentX, currentY, cellHeight,doc)
+    tempCellWidth = this.genCellTextWidthAuto(testData.mean_grades+"", currentX, currentY, cellHeight,doc)
     currentCellWidthOccupied += tempCellWidth
     currentX = currentX + tempCellWidth
 
@@ -453,9 +456,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     // -------------------- credits Value -------------------------
 
-    let credits = "204"
+
     this.setFontPrimaryValue(doc)
-    this.genCellText(credits, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
+    this.genCellText(testData.total_credits+"", currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
 
     currentY = currentY + cellHeight
     currentX = this.sangria_left
@@ -469,9 +472,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     currentX = currentX + currentCellWidthOccupied
 
     // -------------------- coordinador institucional Value -------------------------
-    let programCoordinator = "Dra. María del Pilar Guillén Núñez"
+
     this.setFontPrimaryValue(doc)
-    this.genCellText(programCoordinator, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
+    this.genCellText(testData.coordinator, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
 
     currentY = currentY + cellHeight
     currentX = this.sangria_left
@@ -479,8 +482,8 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     // --------------------  charge  label -------------------------
 
-    let charge = "Jefa de la Oficina Universitaria de Cooperación, Convenios, Relaciones Internacionales, Becas y Pasantías de la UNSA"
-    let chargeSplitToSize = doc.splitTextToSize(charge, cellWidth - currentCellWidthOccupied - this.leftCellPadding*2)
+
+    let chargeSplitToSize = doc.splitTextToSize(testData.coordinator_charge, cellWidth - currentCellWidthOccupied - this.leftCellPadding*2)
 
     let tempheight= chargeSplitToSize.length*(doc.getLineHeight()*this.pixelToMilimetresRatio) + 4
 
@@ -511,9 +514,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     currentX = currentX + currentCellWidthOccupied
 
     // -------------------- coordinator Email Value -------------------------
-    let coordinatorEmail = "convenios@unsa.edu.pe"
+
     this.setFontPrimaryValue(doc)
-    this.genCellText(coordinatorEmail, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
+    this.genCellText(testData.coordinator_email, currentX, currentY, cellWidth - currentCellWidthOccupied, cellHeight,doc)
 
     currentY = currentY + cellHeight + this.space_between_components
     currentX = this.sangria_left
@@ -591,7 +594,7 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     this.genCellText("4. REGISTRO DE CURSOS PARA RECONOCIMIENTO ACADÉMICO", currentX,currentY, cellWidth, cellHeight,doc)
     currentY = currentY + cellHeight
 
-    currentY = this.genTableCourses(doc,currentX,currentY,cellWidth,postulationCourses)
+    currentY = this.genTableCourses(doc,currentX,currentY,cellWidth,testData.courses)
 
     doc.setLineHeightFactor(2)
 
@@ -742,9 +745,9 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     this.setHeaderAndFooter(
       doc,
-      "https://upload.wikimedia.org/wikipedia/commons/3/3a/LOGO_UNSA.png",
-      "https://2.bp.blogspot.com/_BSRFkkxuSEI/SxQfTMOP2nI/AAAAAAAAFfk/V1atsKgvGsM/s1600/logoRPU.jpg",
-      "https://lh3.googleusercontent.com/a/ALm5wu06ROwLDajVyVzZ8fSgv3DIHtYX5GCaXBwSiyo2Ug=s288-p-rw-no"
+      testData.university_origin.logo,
+      testData.academic_network.logo,
+      testData.university_target.logo
       )
 
 
@@ -842,8 +845,7 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     let verticalPaddingImage = 2
     let imageHeight = this.headerSize - verticalPaddingImage*2
 
-    let localimage = "../../../../assets/images/pdf/LOGO_UNSA.png"
-    let endLoop:boolean = false
+
     for(let i = 1 ;i<=doc.getNumberOfPages(); i++){
 
       //------initial loop config

@@ -18,7 +18,6 @@ const AppRoutesValues = {
   ROUTE_APP_REGISTER_USER_DATA: "registrar-datos-usuario",
   ROUTE_APP_CONVOCATORIA: "convocatorias",
   ROUTE_APP_APPLY: "postulacion",
-  ROUTE_APP_POSTULACION: "usuario-postulacion",
   ROUTE_APP_USER_PROFILE: "profile",
   ROUTE_APP_CHATBOT:"chat"
 };
@@ -67,12 +66,8 @@ const AppRoutes: Routes  = [
     loadChildren:()=>import('../convocation/convocatoria.module').then(m => m.ConvocatoriaModule)
   },
   {
-    path:AppRoutesValues.ROUTE_APP_POSTULACION+"/:id",
-    loadChildren:()=>import('../postulation/user-data-postulation.module').then(m=> m.UserDataPostulationModule)
-  },
-  {
-    path: AppRoutesValues.ROUTE_APP_APPLY,
-    loadChildren:()=>import('../postulation/user-data-postulation.module').then(m => m.UserDataPostulationModule)
+    path:AppRoutesValues.ROUTE_APP_APPLY+"/:id",
+    loadChildren:()=>import('../postulation/postulation.module').then(m=> m.PostulationModule)
   },
   {
     path:AppRoutesValues.ROUTE_ADMIN_HOME,

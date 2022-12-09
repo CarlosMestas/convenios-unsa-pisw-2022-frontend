@@ -1,29 +1,29 @@
+import { MaterialModule } from './../../../shared/material.module';
+import { PrimeNgModule } from './../../../shared/primeng.module';
+import { SharedModule } from './../../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
-import { UserDataPostulationRoutingModule } from './user-data-postulation.routes';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { UserDataPostulationBodyComponent } from './body/user-data-postulation-body.component';
-
 
 // shared Components imported
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import { PrimeNgModule } from '../shared/primeng.module';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
-import { MaterialModule } from '../shared/material.module';
+import { BodyComponent } from './body/body.component';
+import { PostulationCoevanRoutingModule } from './postulation-coevan.routes';
+import { PostulationComponent } from './pages/postulation/postulation.component';
 
 // @ts-ignore
 // @ts-ignore
 @NgModule({
   declarations: [
-    UserDataPostulationBodyComponent
+    BodyComponent,
+    PostulationComponent
   ],
   imports: [
     CommonModule,
-    UserDataPostulationRoutingModule,
+    PostulationCoevanRoutingModule,
     SharedModule,
     MatDatepickerModule,
     MatFormFieldModule,
@@ -31,10 +31,10 @@ import { MaterialModule } from '../shared/material.module';
     PrimeNgModule,
     NgxDocViewerModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
 
   ]
 })
-export class UserDataPostulationModule { }
+export class PostulationCoevanModule { }

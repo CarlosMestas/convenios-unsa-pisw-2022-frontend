@@ -1,4 +1,3 @@
-import { ConvocatoriaBodyComponent } from './body/convocatoria-body.component';
 import { ConvocatoriaRoutingModule } from './convocatoria.routes';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,13 +16,13 @@ import { DetailEstVanComponent } from './pages/detail-est-van/detail-est-van.com
 import { DetailEstVienenComponent } from './pages/detail-est-vienen/detail-est-vienen.component';
 import { DetailDocVanComponent } from './pages/detail-doc-van/detail-doc-van.component';
 import { DetailDocVienenComponent } from './pages/detail-doc-vienen/detail-doc-vienen.component';
+import { BodyComponent } from './body/body.component';
 
 
 @NgModule({
   declarations: [
     DetailComponent,
-    ConvocatoriaBodyComponent,
-    ConvocatoriaBodyComponent,
+    BodyComponent,
     DetailPiveComponent,
     DetailPivdoComponent,
     DetailEstVanComponent,

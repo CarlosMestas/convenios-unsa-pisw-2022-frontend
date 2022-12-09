@@ -1,3 +1,4 @@
+import { IPostulationCoevanCourse } from './postulacion.interface';
 import { IAcademicNetworkResponse } from './academic-network.interface';
 import { IAcademicYearResponse } from './academic-year.interface';
 import { ICycleResponse } from './cycle.interface';
@@ -8,6 +9,7 @@ import { IUniversityResponse } from './university.interface';
 import { ISemesterResponse } from './semester.interface';
 
 export interface IPostulationCoevanDocFormat {
+  photo:string,
   lastname:string,
   name:string,
   birth_date:string,
@@ -18,7 +20,7 @@ export interface IPostulationCoevanDocFormat {
   phone:string,
   email:string,
   emergency_contact:string
-  university_origin:string,
+  university_origin:IUniversityResponse,
   web_page:string,
   city_region_university:string,
   faculty:IFacultyResponse,
@@ -28,13 +30,14 @@ export interface IPostulationCoevanDocFormat {
   mean_grades:number,
   total_credits:number,
   coordinator:string,
-  coordinator_cargue:string,
+  coordinator_charge:string,
   coordinator_email:string,
   //CONVOCATION DATA
   modality:IModalityConvocationResponse,
   semester:ISemesterResponse,
   university_target:IUniversityResponse,
-  academic_network:IAcademicNetworkResponse
+  academic_network:IAcademicNetworkResponse,
+  courses:IPostulationCoevanCourse[]
 }
 
 export interface IPostulationCoevanResponse{

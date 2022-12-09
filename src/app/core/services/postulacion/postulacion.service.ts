@@ -30,8 +30,8 @@ export class PostulacionService extends PostulacionHelper{
       msg:'',
       data:[] as IPostulation[]
     };
-    console.log(this.url + AppRoutingModule.ROUTES_VALUES.ROUTE_APP_POSTULACION + '?postulacionId=' + id)
-    return this.http.get<IPostulation[]>(this.url + AppRoutingModule.ROUTES_VALUES.ROUTE_APP_POSTULACION + '?postulacionId=' + id)
+    console.log(this.url + AppRoutingModule.ROUTES_VALUES.ROUTE_APP_APPLY + '?postulacionId=' + id)
+    return this.http.get<IPostulation[]>(this.url +'?postulacionId=' + id)
     .pipe(
       map( r =>{
         console.log("printing inside de pipe---------------")

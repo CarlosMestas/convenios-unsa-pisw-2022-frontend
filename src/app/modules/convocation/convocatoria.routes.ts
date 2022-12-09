@@ -1,6 +1,5 @@
-import { AuthGuard } from '../../core/guards/auth/auth.guard';
 import { DetailComponent } from './pages/detail/detail.component';
-import { ConvocatoriaBodyComponent } from './body/convocatoria-body.component';
+import { BodyComponent } from './body/body.component';
 
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -13,7 +12,6 @@ import { DetailEstVanComponent } from './pages/detail-est-van/detail-est-van.com
 
 const ConvocatoriaRoutesValues = {
   ROUTE_CONVOCATORIA_DETAIL: "detalle",
-  ROUTE_CONVOCATORIA_APPLY: "postular",
   ROUTE_CONVOCATORIA_PIVE_DETAIL: "detalle-pive",
   ROUTE_CONVOCATORIA_PIVDO_DETAIL: "detalle-pivdo",
   ROUTE_CONVOCATORIA_DOC_VIENEN_DETAIL: "detalle-doc-vienen",
@@ -25,7 +23,7 @@ const ConvocatoriaRoutesValues = {
 const ConvocatoriaRoutes: Routes = [
   {
     path: '',
-    component:ConvocatoriaBodyComponent,
+    component:BodyComponent,
     children:[
       {
          path:'',
@@ -61,11 +59,6 @@ const ConvocatoriaRoutes: Routes = [
             component:DetailEstVanComponent
           }
         ]
-      },
-      {
-        path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_APPLY,
-        loadChildren:()=>import('../postulation/user-data-postulation.module').then(m => m.UserDataPostulationModule),
-        canActivate:[AuthGuard]
       }
     ]
   }

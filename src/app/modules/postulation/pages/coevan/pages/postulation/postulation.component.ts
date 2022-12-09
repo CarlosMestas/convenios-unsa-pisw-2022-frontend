@@ -1,7 +1,11 @@
+import { IUniversityResponse } from './../../../../../../shared/interfaces/university.interface';
+import { IPostulationCoevanDocFormat } from './../../../../../../shared/interfaces/postulation-coevan.interface';
+import { PostulacionService } from '../../../../../../core/services/postulacion/postulacion.service';
+import { IPostulationCoevanCourse } from '../../../../../../shared/interfaces/postulacion.interface';
+import { ProgramaProfesionalService } from '../../../../../../core/services/programa-profesional/programa-profesional.service';
+import { IAppState } from 'src/app/ngrx/app.state';
+import { profileImageStateSelector } from '../../../../../../ngrx/selectors/profile/profile.selector';
 import { mergeMap } from 'rxjs';
-import { profileImageStateSelector } from './../../../ngrx/selectors/profile/profile.selector';
-import { IAppState } from './../../../ngrx/app.state';
-import { ProgramaProfesionalService } from './../../../core/services/programa-profesional/programa-profesional.service';
 import { FacultiesService } from 'src/app/core/services/faculties/faculties.service';
 import { map } from 'rxjs';
 import { Observable } from 'rxjs';
@@ -9,11 +13,7 @@ import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import {UserDataPostulationRoutingModule} from "../user-data-postulation.routes";
 import {ActivatedRoute} from "@angular/router";
-import {IPostulation, IPostulationCoevanCourse}from './../../../shared/interfaces/postulacion.interface';
-import { PostulacionService } from './../../../core/services/postulacion/postulacion.service';
-import {Step} from "../../../shared/interfaces/step.interface";
 import { IFacultyResponse } from 'src/app/shared/interfaces/convocation/faculties.interface';
 import { IProfessionalProgramsResponse } from 'src/app/shared/interfaces/programa-profesiona.interface';
 import { ICycleResponse } from 'src/app/shared/interfaces/cycle.interface';
@@ -26,13 +26,13 @@ import { ResourcesService } from 'src/app/core/services/postulacion/resources.se
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'app-user-data-postulation-body',
-  templateUrl: './user-data-postulation-body.component.html',
-  styleUrls: ['./user-data-postulation-body.component.scss']
+  selector: 'app-postulation',
+  templateUrl: './postulation.component.html',
+  styleUrls: ['./postulation.component.scss']
 })
-export class UserDataPostulationBodyComponent implements OnInit {
+export class PostulationComponent implements OnInit {
 
-    id:number;
+  id:number;
     selected:boolean[]=[true,false,true]
     faculties$:Observable<IFacultyResponse[]>
     programs$:Observable<IProfessionalProgramsResponse[]>
@@ -40,8 +40,8 @@ export class UserDataPostulationBodyComponent implements OnInit {
     academicYears$:Observable<IAcademicYearResponse[]>
 
     picture$:Observable<File[]>
-
     userImage$:Observable<string|undefined>;
+    picture:File
 //POSTULATION
 
     formPostulation:FormGroup
@@ -103,7 +103,7 @@ export class UserDataPostulationBodyComponent implements OnInit {
       this.academicYears$ = new Observable<IAcademicYearResponse[]>()
 
       this.picture$ = new Observable<File[]>()
-
+      this.picture = new File([],"")
       this.postulationCourses = [
         {
           order:1,
@@ -173,6 +173,9 @@ export class UserDataPostulationBodyComponent implements OnInit {
       })
     }
 
+  initForm(){
+
+  }
 
   ngOnInit(): void {
 
@@ -195,24 +198,106 @@ export class UserDataPostulationBodyComponent implements OnInit {
 
     this.picture$ = this.store.select(profileImageStateSelector).pipe(mergeMap(resp=>{
       console.log("image test: ", resp)
-      return this.resoucesService.getImageToFile("https://lh3.googleusercontent.com/a/ALm5wu06ROwLDajVyVzZ8fSgv3DIHtYX5GCaXBwSiyo2Ug=s288-p-rw-no?r="+Math.floor(Math.random()*100000)).pipe(map(data=>{
+      return this.resoucesService.getImageToFile(resp+"?r="+Math.floor(Math.random()*100000)).pipe(map(data=>{
         console.log("image test: ", data)
+        this.picture = data.data
         return [data.data]
       }))
     }))
 
   }
 
+
+
   testfile(image:any){
     console.log(image)
   }
 
-  src = 'https://www.mtsac.edu/webdesign/accessible-docs/word/example03.docx';
 
-  generateDoc(){
-    this.genDocumentCoevanService.generateDocumentPostulation(this.postulationCourses)
+  async getImage(){
+    let tempImage:any = ""
+    await new Promise((resolve,reject)=>{
+      let reader=new FileReader()
+      reader.onloadend = ()=>  {
+        tempImage = reader.result
+        console.log("what is in image: ",tempImage)
+          resolve(tempImage)
+      }
+      reader.onerror = reject
+      reader.readAsDataURL(this.picture)
+    })
+
+    return tempImage;
   }
 
+  async generateDoc(){
+    console.log("intentando imprimir")
+    let imageInfo:any = ''
+
+    imageInfo = await this.getImage()
+
+    console.log("what is in image: ", imageInfo)
+
+    let testData:IPostulationCoevanDocFormat={
+      photo: imageInfo,
+      lastname: this.formPostulation.value["lastname"],
+      name: this.formPostulation.value["name"],
+      birth_date: this.formPostulation.value["birthdate"],
+      dni: this.formPostulation.value["dni"].toString(),
+      city_region_postulant: this.formPostulation.value["cityregion"],
+      cui: this.formPostulation.value["cui"].toString(),
+      address: this.formPostulation.value["address"],
+      phone: this.formPostulation.value["mobilephone"].toString(),
+      email: this.formPostulation.value["institutionalemail"],
+      emergency_contact: this.formPostulation.value["contactnumber"].toString(),
+      university_origin: {
+        id:1,
+        name:"Universidad Nacional de San Agustín",
+        acronym:"UNSA",
+        logo:"https://upload.wikimedia.org/wikipedia/commons/3/3a/LOGO_UNSA.png"
+      },
+      web_page: this.formPostulation.controls["u_webpage"].value,
+      city_region_university: this.formPostulation.controls["u_cityregion"].value,
+      faculty: (this.formPostulation.value["u_faculty"] as IFacultyResponse),
+      professional_program: (this.formPostulation.value["u_professional_program"] as IProfessionalProgramsResponse),
+      current_cicle: (this.formPostulation.value["u_current_cicle"] as ICycleResponse),
+      academic_year: (this.formPostulation.value["u_academic_year"] as IAcademicYearResponse),
+      mean_grades: this.formPostulation.value["u_grades_mean"],
+      total_credits: this.formPostulation.value["u_total_credits"],
+      coordinator: this.formPostulation.controls["u_program_coordinator"].value,
+      coordinator_charge: this.formPostulation.controls["u_charge"].value,
+      coordinator_email: this.formPostulation.controls["u_email"].value,
+      modality: {
+        id:1,
+        name:'Virtual'
+      },
+      semester: {
+        id:1,
+        name:'2022-B'
+      },
+      university_target: {
+        id:1,
+        name:"Universidad Nacional de Ingeniería",
+        acronym:"UNI",
+        logo:"https://upload.wikimedia.org/wikipedia/commons/3/3a/LOGO_UNSA.png"
+      },
+      academic_network: {
+        id:1,
+        name:"Red Peruana de Universidades",
+        acronym:"RPU",
+        description:"Es una red peruana de universidades",
+        logo:"https://2.bp.blogspot.com/_BSRFkkxuSEI/SxQfTMOP2nI/AAAAAAAAFfk/V1atsKgvGsM/s1600/logoRPU.jpg"
+      },
+      courses: this.postulationCourses
+    }
+    console.log("form data:",testData)
+    this.genDocumentCoevanService.generateDocumentPostulation(testData)
+  }
+
+  photoLoaded(event:any){
+    console.log("image loaded:",event.files)
+    this.picture = event.files[0]
+  }
 
 
 }
