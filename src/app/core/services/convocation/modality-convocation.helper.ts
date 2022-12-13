@@ -1,4 +1,4 @@
-import { IModalityConvocationResponse, ITypeConvocationResponse } from '../../../shared/interfaces/convocation.interface';
+
 import { HttpClient, HttpErrorResponse } from "@angular/common/http"
 import { environment } from "src/environments/environment"
 import { of } from 'rxjs';

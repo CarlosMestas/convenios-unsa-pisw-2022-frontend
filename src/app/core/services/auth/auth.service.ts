@@ -218,7 +218,6 @@ export class AuthService extends AuthHelper{
     )
     .pipe(
       map( r =>{
-        console.log(r)
         response.data = new User(r.data.user.id,r.data.user.email);
         this.sidenavService.sidenavUserLogged()
         this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)

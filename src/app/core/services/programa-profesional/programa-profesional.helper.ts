@@ -2,7 +2,7 @@ import { IProfile } from '../../../shared/interfaces/profile.interface';
 import { of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IProfessionalProgramsResponse } from 'src/app/shared/interfaces/programa-profesiona.interface';
+import { IProfessionalProgramResponse } from 'src/app/shared/interfaces/professional-program.interface';
 
 export class ProfessionalProgramHelper{
 
@@ -29,7 +29,7 @@ export class ProfessionalProgramHelper{
     return of({
       error:true,
       msg: errorMessage,
-      data: [] as IProfessionalProgramsResponse[]
+      data: [] as IProfessionalProgramResponse[]
     })
   }
 

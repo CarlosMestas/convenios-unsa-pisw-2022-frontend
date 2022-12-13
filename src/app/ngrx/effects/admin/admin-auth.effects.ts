@@ -50,7 +50,6 @@ export class AdminAuthEffect{
     mergeMap(()=>this.adminService.loadAdmin()//TODO: return a user from load and fetch confirmation
       .pipe(
         map(resp => {
-          console.log("loading error state",resp.error)
           if(!resp.error)
             return {
               type:AdminAuthActions.ADMIN_LOAD_SUCCESS_ACTION,

@@ -13,11 +13,6 @@ const routes: Routes = [
     component:BodyComponent,
     children:[
       {
-        path:'',
-        redirectTo:routesValues.ROUTE_POSTULACION_COEVAN,
-        pathMatch:'full'
-      },
-      {
         path: routesValues.ROUTE_POSTULACION_COEVAN,
         loadChildren:()=>import('./pages/coevan/postulation-coevan.module').then(m => m.PostulationCoevanModule)
       }

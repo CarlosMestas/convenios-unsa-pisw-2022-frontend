@@ -1,18 +1,29 @@
+import { AuthHelper } from './../../../../../core/services/auth/auth.helper';
+import { PostulationCoevanRoutingModule } from './../postulation-coevan.routes';
+import { Subscription } from 'rxjs';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { PostulationService } from 'src/app/core/services/postulacion/postulation.service';
+import { ENUMConvocationCoevanStatus } from 'src/app/shared/enum/convocation.enum';
 
 @Component({
   selector: 'body',
   templateUrl: './body.component.html',
   styleUrls: ['./body.component.scss']
 })
-export class BodyComponent implements OnInit {
-
+export class BodyComponent implements OnInit, OnDestroy {
+  id:number
   items: MenuItem[] = [];
-  constructor() {}
+  private unsubscribe: Subscription[] = [];
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private postulationService:PostulationService
+  ) {
+    this.id = activatedRoute.parent?.parent?.snapshot.params['id'];
 
-  ngOnInit(): void {
     this.items = [
       {
         label: 'Postulación',
@@ -32,4 +43,51 @@ export class BodyComponent implements OnInit {
       },
     ];
   }
+
+  ngOnInit(): void {
+
+    const userId:number = Number(localStorage.getItem(AuthHelper.USER_ID_ENCODED))
+    console.log("userid", userId, "convocation id:",this.id)
+    if(userId!=null && userId!=undefined && this.id!=null && this.id!=undefined){
+      const convocationSub = this.postulationService.getPostulationByConvocationUser(this.id,userId).subscribe(data=>{
+        console.log("is there any error?", data.error)
+        if(data.error){
+          switch(data.data.post_state.id){
+            case ENUMConvocationCoevanStatus.SIN_ENVIAR:{
+              this.router.navigate(["./"+PostulationCoevanRoutingModule.ROUTES_VALUES.ROUTE_POSTULACION_COEVAN + "/" + data.data.id],{relativeTo:this.activatedRoute})
+              break
+            }
+            case ENUMConvocationCoevanStatus.ACEPTADO:{
+              this.router.navigate(["./"+PostulationCoevanRoutingModule.ROUTES_VALUES.ROUTE_POSTULACION_COEVAN + "/" + data.data.id],{relativeTo:this.activatedRoute})
+              break
+            }
+            case ENUMConvocationCoevanStatus.OBSERVADO:{
+              this.router.navigate(["./"+PostulationCoevanRoutingModule.ROUTES_VALUES.ROUTE_POSTULACION_COEVAN + "/" + data.data.id],{relativeTo:this.activatedRoute})
+              break
+            }
+            default :{
+              break
+            }
+          }
+        }else{
+          this.router.navigate(["./"+PostulationCoevanRoutingModule.ROUTES_VALUES.ROUTE_POSTULACION_COEVAN],{relativeTo:this.activatedRoute})
+        }
+        convocationSub.unsubscribe()
+      })
+      this.unsubscribe.push(convocationSub);
+    }else{
+      this.router.navigate([""])
+      return
+    }
+
+
+
+  }
+/**
+	 * On Destroy
+	 */
+	ngOnDestroy() {
+		this.unsubscribe.forEach(sb => sb.unsubscribe());
+	}
+
 }

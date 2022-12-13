@@ -76,7 +76,6 @@ dialogUserRegisterWrongEmail$: Observable<boolean>
     this.screenWidth = sideNavData.screenWidth
   }
   ngOnInit(): void {
-    console.log("NG ON INIT calling")
     // @ts-ignore
     window.onGoogleLibraryLoad  = () => {
       this.authService.initializeGoogleAuthService()

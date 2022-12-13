@@ -2,7 +2,7 @@ import { IProfile } from '../../../shared/interfaces/profile.interface';
 import { of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IProfessionalProgramsResponse } from 'src/app/shared/interfaces/programa-profesiona.interface';
+import { IProfessionalProgramResponse } from 'src/app/shared/interfaces/professional-program.interface';
 import { ICycleResponse } from 'src/app/shared/interfaces/cycle.interface';
 import { IAcademicYearResponse } from 'src/app/shared/interfaces/academic-year.interface';
 

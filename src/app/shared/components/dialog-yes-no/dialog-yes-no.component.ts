@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AppRoutingModule } from './../../../modules/app/app.routes';
 import { dialogProfileNotConfiguredDismissAction } from './../../../ngrx/actions/profile/profile.actions';
 import { Store } from '@ngrx/store';
@@ -15,8 +15,11 @@ export class DialogYesNoComponent implements OnInit {
 
   constructor(
     private store:Store<IAppState>,
-    private router:Router
-    ) { }
+    private router:Router,
+    private activatedRoute:ActivatedRoute
+    ) {
+
+    }
 
   ngOnInit(): void {
   }
@@ -27,6 +30,9 @@ export class DialogYesNoComponent implements OnInit {
   }
   no():void{
     this.store.dispatch(dialogProfileNotConfiguredDismissAction())
-    this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
+
+    if(this.router.url == "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SINGIN || this.router.url == "/"+ AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SIGNUP){
+      this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
+    }
   }
 }

@@ -119,7 +119,6 @@ export class OfHomeTableComponent implements OnInit {
           {key:'end_date', label:'Fecha Fin'}
         ];
         this.convocations$ = this.convocationService.getAllConvocationsByDate(Date.now()).pipe(map(data=>{
-          console.log("testingdata:",data.data)
           this.loading = false;
           return data.data
         }))
@@ -137,7 +136,6 @@ export class OfHomeTableComponent implements OnInit {
   }
 
   viewConvocation(id: any): void {
-    console.log('ENVIANDO ID', id);
     this.router.navigate(
       [
         '../' +

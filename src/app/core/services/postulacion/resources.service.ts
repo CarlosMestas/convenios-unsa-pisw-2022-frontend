@@ -6,7 +6,6 @@ import { ResourcesHelper } from './resources.helper';
 import { Injectable } from "@angular/core";
 import { catchError, map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import {IPostulation} from "../../../shared/interfaces/postulacion.interface";
 import { from } from 'rxjs';
 
 @Injectable({
@@ -25,7 +24,6 @@ export class ResourcesService extends ResourcesHelper{
     msg:string,
     data:File
   }>{
-    console.log("printing : ")
     const response = {
       error:false,
       msg:'',
@@ -35,9 +33,9 @@ export class ResourcesService extends ResourcesHelper{
     .then(resp=>resp.blob())
     .then(blob=>{
 
-      const file = new File([blob],'image',{type:blob.type})
+      const file = new File([blob],'pdf',{type:blob.type})
+      console.log("file test:", file)
       response.data= file
-      console.log("printing : ",blob)
       return response
     }))
 

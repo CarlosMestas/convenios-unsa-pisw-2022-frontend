@@ -1,4 +1,5 @@
-import { IConvocationType } from './convocation/convocation-type.interface';
+import { ENUMConvocationTypeAcronym } from "../enum/convocation.enum"
+
 export interface IConvocation{
   title:string,
   type:number,
@@ -21,6 +22,17 @@ export interface IConvocationResponse{
   end_date:string,
   important_notes:string
 }
+export interface IConvocationResponseDetail{
+  id:number,
+  title:string,
+  type:ITypeConvocationResponse,
+  correlative:string,
+  modality:IModalityConvocationResponse,
+  description:string,
+  start_date:string,
+  end_date:string,
+  important_notes:string
+}
 
 export interface IConvocationField{
   key:string,
@@ -30,7 +42,7 @@ export interface IConvocationField{
 export interface ITypeConvocationResponse{
   id:number,
   name:string,
-  acronym:string
+  acronym:ENUMConvocationTypeAcronym
 }
 export interface IModalityConvocationResponse{
   id:number,

@@ -15,7 +15,6 @@ import { IConvocation } from 'src/app/shared/interfaces/convocation.interface';
 import { Observable } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
-import { ENUMConvocationType } from 'src/app/shared/enum/convocation-type.enum';
 import { ConvocatoriaRoutingModule } from '../../convocatoria.routes';
 import { convocationDocumentBannerStateSelector } from 'src/app/ngrx/selectors/convocation/document.selector';
 @Component({

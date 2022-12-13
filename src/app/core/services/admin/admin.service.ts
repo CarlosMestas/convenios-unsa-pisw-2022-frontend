@@ -150,7 +150,6 @@ export class AdminService extends AdminHelper{
     msg:string,
     data:IAdmin
   }>{
-    console.log("servicioooooooooo",email,password)
     return this.http.post<IAdminLoginResponse>(
       this.url+AdminHelper.API_ADMIN_SERVICE_ROUTES.LOGIN,
       {

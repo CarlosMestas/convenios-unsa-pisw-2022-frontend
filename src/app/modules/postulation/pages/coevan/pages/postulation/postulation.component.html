@@ -20,7 +20,7 @@
         Foto
       </div>
       <div class="sub-header-body"  *ngIf="picture$ | async as pictures">
-          <p-fileUpload (onSelect)="photoLoaded($event)" *ngIf="pictures; else wopicture" name="myfile" url="./upload.php" [multiple]="false"
+          <p-fileUpload (onSelect)="photoLoaded($event)" *ngIf="pictures; else wopicture" name="myfile" [multiple]="false"
                   accept="image/*" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
                   [files] = "pictures"
                   >
@@ -37,7 +37,7 @@
           </p-fileUpload>
 
           <ng-template #wopicture>
-            <p-fileUpload name="myfile" url="./upload.php" [multiple]="false"
+            <p-fileUpload name="myfile" [multiple]="false"
                     accept="image/*" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
                     >
                     <ng-template pTemplate="toolbar">
@@ -169,9 +169,9 @@
       </div>
       <div class="sub-header-body">
 
-          <mat-form-field class="flex-auto" appearance="fill">
+          <mat-form-field formGroupName="university" class="flex-auto" appearance="fill">
             <mat-label>Universidad de Origen</mat-label>
-            <input formControlName="university"  matInput type="text"  class="example-right-align" placeholder="0">
+            <input formControlName="name"  matInput type="text"  class="example-right-align" placeholder="0">
             <mat-icon class="mr-3" matPrefix svgIcon="mat:school"></mat-icon>
             <mat-hint>(obligatorio)</mat-hint>
           </mat-form-field>
@@ -196,8 +196,8 @@
 
           <mat-form-field class="flex-auto" appearance="fill">
             <mat-label>Facultad</mat-label>
-            <mat-select *ngIf="faculties$|async as faculties" formControlName="u_faculty">
-              <mat-option *ngFor="let faculty of faculties" [value]="faculty">
+            <mat-select formControlName="u_faculty">
+              <mat-option *ngFor="let faculty of faculties" [value]="faculty.id">
                 {{faculty.name}}
               </mat-option>
             </mat-select>
@@ -209,8 +209,8 @@
 
           <mat-form-field class="flex-auto" appearance="fill">
             <mat-label>Programa Profesional</mat-label>
-            <mat-select *ngIf="programs$|async as programs" formControlName="u_professional_program">
-              <mat-option *ngFor="let program of programs" [value]="program">
+            <mat-select formControlName="u_professional_program">
+              <mat-option *ngFor="let program of programs" [value]="program.id">
                 {{program.name}}
               </mat-option>
             </mat-select>
@@ -222,8 +222,8 @@
 
           <mat-form-field class="flex-auto" appearance="fill">
             <mat-label>Ciclo Actual</mat-label>
-            <mat-select *ngIf="cycles$|async as cycles" formControlName="u_current_cicle">
-              <mat-option *ngFor="let cycle of cycles" [value]="cycle">
+            <mat-select formControlName="u_current_cicle">
+              <mat-option *ngFor="let cycle of cycles" [value]="cycle.id">
                 {{cycle.description}}
               </mat-option>
             </mat-select>
@@ -235,8 +235,8 @@
 
           <mat-form-field class="flex-auto" appearance="fill">
             <mat-label>Año Académico</mat-label>
-            <mat-select *ngIf="academicYears$|async as academicYears" formControlName="u_academic_year">
-              <mat-option *ngFor="let academicYear of academicYears" [value]="academicYear">
+            <mat-select formControlName="u_academic_year">
+              <mat-option *ngFor="let academicYear of academicYears" [value]="academicYear.id">
                 {{academicYear.description}}
               </mat-option>
             </mat-select>
@@ -379,10 +379,10 @@
                     <td pEditableColumn>
                       <p-cellEditor>
                           <ng-template pTemplate="input">
-                              <input pInputText type="text" [(ngModel)]="courseconvalidate.destination_university_course_name">
+                              <input pInputText type="text" [(ngModel)]="courseconvalidate.target_university_course_name">
                           </ng-template>
                           <ng-template pTemplate="output">
-                              {{courseconvalidate.destination_university_course_name}}
+                              {{courseconvalidate.target_university_course_name}}
                           </ng-template>
                       </p-cellEditor>
                     </td>
@@ -399,6 +399,48 @@
         </div>
       </div>
     </div>
+
+    <div class="sub-header-container">
+      <div class="sub-header-title">
+        Documento de Postulación
+      </div>
+      <div class="sub-header-body"  *ngIf="postulationDocument$ | async as postulationDocuments">
+          <p-fileUpload (onSelect)="documentLoaded($event)" *ngIf="postulationDocuments; else wopicture" name="myfile" [multiple]="false"
+          accept="*.pdf, application/pdf" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
+                  [files] = "postulationDocuments"
+                  >
+                  <ng-template pTemplate="toolbar">
+                  </ng-template>
+                  <ng-template let-file pTemplate="file">
+                      <div class="image-container">
+                        <a [href]="file.objectURL">{{file.name}}</a>
+                      </div>
+                  </ng-template>
+                  <ng-template pTemplate="content" let-files>
+                      <div></div>
+                  </ng-template>
+          </p-fileUpload>
+
+          <ng-template #wopicture>
+            <p-fileUpload (onSelect)="documentLoaded($event)" name="myfile" [multiple]="false"
+            accept="*.pdf, application/pdf" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
+                    >
+                    <ng-template pTemplate="toolbar">
+                    </ng-template>
+                    <ng-template let-file pTemplate="file">
+                      <div class="image-container">
+                        <a [href]="file.objectURL">{{file.name}}</a>
+                      </div>
+                    </ng-template>
+                    <ng-template pTemplate="content" let-files>
+                        <div></div>
+                    </ng-template>
+            </p-fileUpload>
+          </ng-template>
+
+        </div>
+    </div>
+
     <div class="actions">
       <button (click)="generateDoc()" pButton pRipple type="button"  icon="pi pi-sign-out" class="p-button-rounded p-button-secondary" pTooltip="Regresar"></button>
       <button (click)="generateDoc()" pButton pRipple type="button"  icon="pi pi-cloud-download" class="p-button-rounded p-button-warning" pTooltip="Descargar"></button>

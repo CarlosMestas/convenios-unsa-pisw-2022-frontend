@@ -66,7 +66,6 @@ export class SidenavComponent implements OnInit {
 
     this.sidenavService.getSidenavItems().subscribe(items=>{
       this.sidenavData = items
-      console.log(items["home"])
     })
 
 

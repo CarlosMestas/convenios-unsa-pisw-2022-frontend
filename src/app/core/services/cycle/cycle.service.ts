@@ -1,4 +1,4 @@
-import { IProfessionalProgramsResponse, IProgramaProfesional } from './../../../shared/interfaces/programa-profesiona.interface';
+import { IProfessionalProgramResponse, IProgramaProfesional } from '../../../shared/interfaces/professional-program.interface';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Injectable } from "@angular/core";

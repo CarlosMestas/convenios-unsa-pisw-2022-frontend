@@ -13,14 +13,13 @@ const routes: Routes = [
     component:BodyComponent,
     children:[
       {
-        path:'',
-        redirectTo:routesValues.ROUTE_POSTULACION_COEVAN,
-        pathMatch:'full'
-      },
-      {
         path: routesValues.ROUTE_POSTULACION_COEVAN,
         component:PostulationComponent,
-      }
+      },
+      {
+        path: routesValues.ROUTE_POSTULACION_COEVAN+"/:id",
+        component:PostulationComponent,
+      },
     ]
   }
 

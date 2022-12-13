@@ -1,4 +1,4 @@
-import { convocationFetchRequestAction, ConvocationActions, convocationFetchSuccessAction, convocationPIVEPostRequestAction } from './../../actions/convocation/convocation.actions';
+import { convocationFetchRequestAction, ConvocationActions, convocationFetchSuccessAction } from './../../actions/convocation/convocation.actions';
 import { mergeMap, map, catchError, EMPTY } from 'rxjs';
 import { ConvocationService } from './../../../core/services/convocation/convocation.service';
 import { Injectable } from "@angular/core";
@@ -30,31 +30,18 @@ export class ConvocationEffect{
     )
   ))
 
-  convocationFetchSuccessToDetailEffect = createEffect(()=>this.actions$.pipe(
-    ofType(convocationFetchSuccessAction),
-    mergeMap((action)=> this.convocationService.getConvocationDetailPIVE(action.convocation.id)
-    .pipe(
-      map((resp)=>{
-        return{
-          type:ConvocationActions.CONVOCATION_PIVE_FETCH_SUCCESS_ACTION,
-          convocationPIVE:resp.data
-        }
-      }),
-      catchError(()=>EMPTY)
-    )
-    )
-  ))
-
-  convocationPIVEPostRequestEffect = createEffect(()=>this.actions$.pipe(
-    ofType(convocationPIVEPostRequestAction),
-    mergeMap((action)=>this.convocationService.postConvocationDetailPIVE(action)
-    .pipe(
-      map(resp=>{
-        return {
-          type:ConvocationActions.CONVOCATION_PIVE_POST_SUCCESS_ACTION
-        }
-      }),
-      catchError(()=>EMPTY)
-    ))
-  ))
+  // convocationFetchSuccessToDetailEffect = createEffect(()=>this.actions$.pipe(
+  //   ofType(convocationFetchSuccessAction),
+  //   mergeMap((action)=> this.convocationService.getConvocationDetailPIVE(action.convocation.id)
+  //   .pipe(
+  //     map((resp)=>{
+  //       return{
+  //         type:ConvocationActions.CONVOCATION_PIVE_FETCH_SUCCESS_ACTION,
+  //         convocationPIVE:resp.data
+  //       }
+  //     }),
+  //     catchError(()=>EMPTY)
+  //   )
+  //   )
+  // ))
 }

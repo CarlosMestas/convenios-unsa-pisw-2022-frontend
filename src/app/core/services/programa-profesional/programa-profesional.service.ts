@@ -1,4 +1,4 @@
-import { IProfessionalProgramsResponse, IProgramaProfesional } from './../../../shared/interfaces/programa-profesiona.interface';
+import { IProfessionalProgramResponse, IProgramaProfesional } from '../../../shared/interfaces/professional-program.interface';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Injectable } from "@angular/core";
@@ -19,14 +19,14 @@ export class ProgramaProfesionalService extends ProfessionalProgramHelper{
     super(http)
   }
 
-  getAllPrograms():Observable<IHttpServiceResponse<IProfessionalProgramsResponse[]>>{
+  getAllPrograms():Observable<IHttpServiceResponse<IProfessionalProgramResponse[]>>{
     const response = {
       error:false,
       msg:'',
-      data:{} as IProfessionalProgramsResponse[]
+      data:{} as IProfessionalProgramResponse[]
     };
 
-    return this.http.get<IHttpResponse<IProfessionalProgramsResponse[]>>(this.url+ ProfessionalProgramHelper.API_ROUTES.GET_ALL_PROGRAMS)
+    return this.http.get<IHttpResponse<IProfessionalProgramResponse[]>>(this.url+ ProfessionalProgramHelper.API_ROUTES.GET_ALL_PROGRAMS)
     .pipe(
       map( resp =>{
         response.data=resp.data

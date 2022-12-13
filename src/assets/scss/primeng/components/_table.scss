@@ -14,16 +14,18 @@ $table-paginator-border-height: 1px;
 }
 
 
-.p-datatable{
-  height: 100%;
-  display: grid;
-  grid-template-rows: calc($table-header-height + (2 * $table-border-height) + (2 * $table-header-padding-y)) auto calc($table-paginator-height + (1 * $table-paginator-border-height) + (2 * $table-paginator-padding-y));
-}
+
 
 .container-view-table{
   height: 100%;
   display: grid;
   grid-template-rows: 40px 40px auto;
+
+  .p-datatable{
+    height: 100%;
+    display: grid;
+    grid-template-rows: calc($table-header-height + (2 * $table-border-height) + (2 * $table-header-padding-y)) auto calc($table-paginator-height + (1 * $table-paginator-border-height) + (2 * $table-paginator-padding-y));
+  }
 }
 
 

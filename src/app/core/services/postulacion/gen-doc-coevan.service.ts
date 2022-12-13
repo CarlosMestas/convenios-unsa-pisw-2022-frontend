@@ -1,4 +1,4 @@
-import { IPostulationCoevanCourse } from './../../../shared/interfaces/postulacion.interface';
+import { IPostulationCoevanCourse } from '../../../shared/interfaces/postulation.interface';
 
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
@@ -171,7 +171,7 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     currentX = currentX + ((imageCellWidth - imageWidth)/2)
     // doc.addImage('../../../../assets/images/pdf/foto-student.jpg', "JPEG", currentX, currentY + verticalPaddingImage, imageWidth, imageHeight)
 
-    console.log("image data:","HOLA".toString())
+
 
     doc.addImage(testData.photo, "JPEG", currentX, currentY + verticalPaddingImage, imageWidth, imageHeight)
 
@@ -492,7 +492,6 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     currentCellWidthOccupied = tempCellWidth
     currentX = currentX + currentCellWidthOccupied
 
-    console.log(chargeSplitToSize.length, " | ", tempheight)
 
     // -------------------- charge  Value -------------------------
 
@@ -616,8 +615,7 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
       ,doc)
 
     tempCellHeight+= tempheight + 5*cellHeight + 4*tempMargingText
-    console.log("temp tempheight:",tempheight)
-    console.log("temp tempCellHeight:",tempCellHeight)
+
     this.setFontPrimaryValue(doc)
     doc.rect(currentX,currentY,cellWidth,tempCellHeight,'S')
 
@@ -700,7 +698,6 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     this.setFontPrimaryValue(doc)
 
     chargeSplitToSize = doc.splitTextToSize(decCompFormated, cellWidth - this.leftCellPadding*2)
-    console.log("number lines: ", chargeSplitToSize)
     tempheight= chargeSplitToSize.length*(doc.getLineHeight()*this.pixelToMilimetresRatio) + 16
     this.genTextMultipleLines(
       chargeSplitToSize, currentX, currentY, cellWidth, tempheight,
@@ -709,8 +706,6 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     tempCellHeight+= tempheight + 6*cellHeight + 3*tempMargingText
     fingerprintY = currentY + tempCellHeight
-    console.log("temp tempheight:",tempheight)
-    console.log("temp tempCellHeight:",tempCellHeight)
 
     doc.rect(currentX,currentY,cellWidth,tempCellHeight,'S')
 
@@ -783,21 +778,13 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
   private genCellText(text:string, x:number,y:number,width:number,height:number, doc:jsPDF){
     const textHeight = doc.getLineHeight()*this.pixelToMilimetresRatio
     const spaceBetweenLines = textHeight - doc.getFontSize()*this.pixelToMilimetresRatio
-    console.log("ceil height:", height)
-    console.log("text height:", textHeight)
-    console.log("final position", height/2 - textHeight/2)
     doc.rect(x, y, width, height,'FD')
-    // doc.text(text, x + this.leftCellPadding, y + height/2 - textHeight/2 + spaceBetweenLines/2,{align:"left"})
     doc.text(text, x + this.leftCellPadding, y + height/2 + textHeight/2 - spaceBetweenLines/2,{align:"left"})
   }
 
   private genText(text:string, x:number,y:number,width:number,height:number, doc:jsPDF){
     const textHeight = doc.getLineHeight()*this.pixelToMilimetresRatio
     const spaceBetweenLines = textHeight - doc.getFontSize()*this.pixelToMilimetresRatio
-    console.log("ceil height:", height)
-    console.log("text height:", textHeight)
-    console.log("final position", height/2 - textHeight/2)
-    // doc.text(text, x + this.leftCellPadding, y + height/2 - textHeight/2 + spaceBetweenLines/2,{align:"left"})
     doc.text(text, x + this.leftCellPadding, y + height/2 + textHeight/2 - spaceBetweenLines/2,{align:"left"})
   }
   private genCellTextWidthAuto(text:string, x:number,y:number,height:number, doc:jsPDF):number{
@@ -902,7 +889,7 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
       dataRow.push(row.unsa_course_name)
       dataRow.push(row.year)
       dataRow.push(row.semester)
-      dataRow.push(row.destination_university_course_name)
+      dataRow.push(row.target_university_course_name)
       dataTable.push(dataRow)
     }
 

@@ -1,4 +1,4 @@
-import { IConvocationResponse } from './../../../shared/interfaces/convocation.interface';
+import { IConvocationResponse, IConvocationResponseDetail } from './../../../shared/interfaces/convocation.interface';
 import { IHttpServiceResponse, IHttpResponse } from 'src/app/shared/interfaces/transactions/transaction-response.interface';
 import { IConvocationPIVEFetchTransactionResponse } from './../../../shared/interfaces/transactions/convocation-pive-fetch-transaction-response.interface';
 
@@ -8,7 +8,6 @@ import { Injectable } from "@angular/core";
 import { catchError, map, Observable, of } from 'rxjs';
 import { IConvocation } from 'src/app/shared/interfaces/convocation.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ENUMConvocationType } from 'src/app/shared/enum/convocation-type.enum';
 import { IRequestSaveConvocationDetailPIVE } from 'src/app/shared/interfaces/convocation/request-transactions.interface';
 import {
   ConvocationFetchTransactionResponse
@@ -75,31 +74,19 @@ export class ConvocationService extends ConvocationHelper{
    * get one convocatoria by id from API
    * @param id convocatoria id number
   */
-  getConvocation(id: number):Observable<
-  {
-    error:boolean,
-    msg:string,
-    data:IConvocationResponse
-  }>{
+  getConvocation(id: number):Observable<IHttpServiceResponse<IConvocationResponseDetail>>{
 
     const response = {
       error:false,
       msg:'',
-      data:{} as IConvocationResponse
+      data:{} as IConvocationResponseDetail
     };
 
     let params = new HttpParams()
     params=params.append("id",id)
-    return this.http.get<{
-      code:number,
-      msg:string,
-      data:IConvocationResponse
-    }
-    >(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.GET_CONVOCATION,{params:params})
+    return this.http.get<IHttpResponse<IConvocationResponseDetail>>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.GET_CONVOCATION,{params})
     .pipe(
       map( resp =>{
-
-        console.log("convocation:",resp)
         response.data = resp.data;
         return response;
       }),
@@ -140,57 +127,9 @@ export class ConvocationService extends ConvocationHelper{
     }
 
     response.data = testData;
-    console.log("convocation---data--test: ", response.data)
     return of(response);
   }
 
-  registerConvocation(newConv: FormData): Observable<
-    {
-      error:boolean,
-      msg:string,
-      data: IConvocation
-    }> {
-    const response = {
-      error:false,
-      msg:'',
-      data: {} as IConvocation
-    };
 
-    return this.http.post<ConvocationFetchTransactionResponse>(
-      this.url+ConvocationHelper.API_CONV_SERVICE_ROUTES.NEW ,newConv
-    )
-      .pipe(
-        map( r =>{
-          console.log("test - profile", newConv)
-          if(r.code!= 200){
-            console.log(r.msg)
-          }
-          response.data=r.data
-          return response
-        }),
-        catchError(this.error)
-      );
-
-  }
-
-  postConvocationDetailPIVE(data:IRequestSaveConvocationDetailPIVE):Observable<{
-    error:boolean,
-    msg:string
-  }>{
-    const response = {
-      error:false,
-      msg:''
-    }
-
-    return this.http.post<any>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.NEW_PIVE,data)
-    .pipe(
-      map(resp=>{
-        console.log(resp)
-        return response
-      }
-      ),
-      catchError(this.errorPost)
-    )
-  }
 }
 

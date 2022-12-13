@@ -31,7 +31,6 @@ export class OfHomeCarouselNewsComponent implements OnInit {
   @HostListener('window:resize',['$event'])
   onResize(event:any){
     this.screenWidth = (window.innerWidth - 40 - 20 - (this.collapsed?80:256))*(2/3)
-    console.log(this.screenWidth)
     this.widthCarousel = this.screenWidth
     this.heightCarousel = this.screenWidth*(9/16)
 

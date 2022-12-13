@@ -29,7 +29,6 @@ export class ProfileService extends ProfileHelper{
     this.profile$ = new BehaviorSubject<IProfile | null>(null);
     this.authService.getUser().subscribe(user=>{
       if(user && user.id!=undefined){
-        console.log("testing user",user)
         this.fetchProfile(user.id).subscribe()
       }
     })
@@ -63,7 +62,6 @@ export class ProfileService extends ProfileHelper{
       )
     .pipe(
       map( r =>{
-        console.log("callingfetchprofile" , r)
         response.data =r.data.profile
         this.profile$.next(response.data)
         return response
@@ -103,9 +101,7 @@ export class ProfileService extends ProfileHelper{
       )
     .pipe(
       map( r =>{
-        console.log("test - profile", profile)
         if(r.code!= 200){
-          console.log(r.msg)
         }
         return response
       }),

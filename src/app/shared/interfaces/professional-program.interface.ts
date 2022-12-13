@@ -4,7 +4,7 @@ export interface IProgramaProfesional{
   programaProfesionalStatus: number
 }
 
-export interface IProfessionalProgramsResponse{
+export interface IProfessionalProgramResponse{
   id:number,
   name:string,
   acronym:string,

@@ -1,4 +1,4 @@
-import { IProgramaProfesional } from './../interfaces/programa-profesiona.interface';
+import { IProgramaProfesional } from '../interfaces/professional-program.interface';
 export class ProgramaProfesional implements IProgramaProfesional{
   programaProfesionalId: number;
   programaProfesionalName: string;

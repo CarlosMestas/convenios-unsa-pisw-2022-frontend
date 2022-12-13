@@ -1,4 +1,4 @@
-import { IConvocationResponse } from './../../../shared/interfaces/convocation.interface';
+import { IConvocationResponse, IConvocationResponseDetail } from './../../../shared/interfaces/convocation.interface';
 import { IConvocation } from '../../../shared/interfaces/convocation.interface';
 import { environment } from 'src/environments/environment.prod';
 import{HttpClient,HttpErrorResponse} from '@angular/common/http'
@@ -7,8 +7,6 @@ import { of } from 'rxjs';
 export class ConvocationHelper{
   protected static API_CONV_SERVICE_ROUTES = {
     ALL_CONVOCATIONS: "convocations/all",
-    NEW:"convocations",
-    NEW_PIVE:"pivConvocations",
     GET_CONVOCATION:"convocations"
   }
   public url = environment.url
@@ -27,7 +25,7 @@ export class ConvocationHelper{
     return of({
       error:true,
       msg: errorMessage,
-      data: {} as IConvocationResponse
+      data: {} as IConvocationResponseDetail
     })
   }
 
