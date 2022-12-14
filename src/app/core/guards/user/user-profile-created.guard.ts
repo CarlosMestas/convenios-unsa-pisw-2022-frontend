@@ -17,7 +17,6 @@ export class UserProfileCreatedGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.authService.isUserSigned()){
         if(this.authService.isUserProfileCreated())
         {
           return true;
@@ -25,10 +24,6 @@ export class UserProfileCreatedGuard implements CanActivate {
           this.router.navigate(['/registrar-datos-usuario'])
           return false;
         }
-      }else{
-        this.router.navigate(['/iniciar-sesion'])
-        return false;
-      }
   }
 
 }

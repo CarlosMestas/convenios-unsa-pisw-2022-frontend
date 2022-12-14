@@ -1,3 +1,5 @@
+import { UserProfileCreatedGuard } from './../../core/guards/user/user-profile-created.guard';
+import { UserSignedGuard } from './../../core/guards/user/user-signed.guard';
 import { RequestAccessComponent } from './pages/request-access/request-access.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { SigninComponent } from './pages/signin/signin.component';
@@ -67,7 +69,8 @@ const AppRoutes: Routes  = [
   },
   {
     path:AppRoutesValues.ROUTE_APP_APPLY+"/:id",
-    loadChildren:()=>import('../postulation/postulation.module').then(m=> m.PostulationModule)
+    loadChildren:()=>import('../postulation/postulation.module').then(m=> m.PostulationModule),
+    canActivate:[UserSignedGuard, UserProfileCreatedGuard]
   },
   {
     path:AppRoutesValues.ROUTE_ADMIN_HOME,

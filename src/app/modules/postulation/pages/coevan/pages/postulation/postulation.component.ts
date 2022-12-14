@@ -1,3 +1,5 @@
+import { IDocumentResponseDetail } from './../../../../../../shared/interfaces/convocation-document.interface';
+import { ConvocationService } from './../../../../../../core/services/convocation/convocation.service';
 import { ENUMConvocationCoevanStatus } from 'src/app/shared/enum/convocation.enum';
 import { AuthHelper } from './../../../../../../core/services/auth/auth.helper';
 import { IUniversityResponse } from './../../../../../../shared/interfaces/university.interface';
@@ -26,6 +28,7 @@ import { GenDocumentCoevanService } from 'src/app/core/services/postulacion/gen-
 import { SelectItem } from 'primeng/api';
 import { ResourcesService } from 'src/app/core/services/postulacion/resources.service';
 import { Store } from '@ngrx/store';
+import { IConvocationCoevanResponseDetail } from 'src/app/shared/interfaces/convocation-coevan.interface';
 
 @Component({
   selector: 'app-postulation',
@@ -40,6 +43,8 @@ export class PostulationComponent implements OnInit, OnDestroy {
     programs:IProfessionalProgramResponse[]
     cycles:ICycleResponse[]
     academicYears:IAcademicYearResponse[]
+
+    convocationData:IConvocationCoevanResponseDetail
 
     picture$:Observable<File[]>
     picture:File
@@ -86,9 +91,10 @@ export class PostulationComponent implements OnInit, OnDestroy {
     }
 
     savePostulation(){
+
       let tempData:IPostulationCoevan ={
         photo: this.picture,
-        id_convocation: this.convocationId,
+        id_convocation: Number(this.convocationId),
         lastname: this.formPostulation.value["lastname"],
         name: this.formPostulation.value["name"],
         birth_date: this.formPostulation.value["birthdate"],
@@ -99,7 +105,7 @@ export class PostulationComponent implements OnInit, OnDestroy {
         phone: this.formPostulation.value["mobilephone"].toString(),
         email: this.formPostulation.value["institutionalemail"],
         contact_emergency_number: this.formPostulation.value["contactnumber"].toString(),
-        origin_university: this.formPostulation.value["university.id"],
+        origin_university: this.formPostulation.value["university"].id,
         web_page: this.formPostulation.controls["u_webpage"].value,
         city_region_university: this.formPostulation.controls["u_cityregion"].value,
         id_faculty: this.formPostulation.value["u_faculty"],
@@ -111,14 +117,68 @@ export class PostulationComponent implements OnInit, OnDestroy {
         coordinator: this.formPostulation.controls["u_program_coordinator"].value,
         coordinator_cargue: this.formPostulation.controls["u_charge"].value,
         coordinator_email: this.formPostulation.controls["u_email"].value,
-        postulation_document: undefined,
+        postulation_document: this.postulationDocument,
         last_update: (new Date()).toLocaleDateString(),
         courses: this.postulationCourses,
         post_state: ENUMConvocationCoevanStatus.SIN_ENVIAR
       }
+      console.log("save format:",tempData)
+
+      let formData = new FormData()
+
+      formData.append("photo",tempData.photo,tempData.photo.name)
+      formData.append("id_convocation",tempData.id_convocation.toString())
+      formData.append("lastname",tempData.lastname)
+      formData.append("name",tempData.name)
+      formData.append("birth_date",tempData.birth_date)
+      formData.append("dni",tempData.dni)
+      formData.append("city_region_postulant",tempData.city_region_postulant)
+      formData.append("cui",tempData.cui)
+      formData.append("current_address",tempData.current_address)
+      formData.append("phone",tempData.phone)
+      formData.append("email",tempData.email)
+      formData.append("contact_emergency_number",tempData.contact_emergency_number)
+      formData.append("origin_university",tempData.origin_university.toString())
+      formData.append("web_page",tempData.web_page)
+      formData.append("city_region_university",tempData.city_region_university)
+      formData.append("id_faculty",tempData.id_faculty.toString())
+      formData.append("id_professional_program",tempData.id_professional_program.toString())
+      formData.append("id_current_cicle",tempData.id_current_cicle.toString())
+      formData.append("id_academic_year",tempData.id_academic_year.toString())
+      formData.append("mean_grades",tempData.mean_grades.toString())
+      formData.append("total_credits",tempData.total_credits.toString())
+      formData.append("coordinator",tempData.coordinator)
+      formData.append("coordinator_cargue",tempData.coordinator_cargue)
+      formData.append("coordinator_email",tempData.coordinator_email)
+      if(tempData.postulation_document!=null&& tempData.postulation_document!=undefined)
+        formData.append("postulation_document",tempData.postulation_document,tempData.postulation_document.name)
+      formData.append("last_update",tempData.last_update)
+
+      tempData.courses.forEach((value,index)=>{
+        formData.append("courses[]", JSON.stringify({
+          number_credits:value.number_credits,
+          course_code:value.course_code,
+          unsa_course_name:value.unsa_course_name,
+          year:value.year,
+          semester:value.semester,
+          target_university_course_name:value.target_university_course_name
+        }))
+
+      })
+
+      formData.append("post_state",tempData.post_state.toString())
+
+      console.log("test form data",formData.getAll("courses[]"))
+
+      this.postulationService.postPostulationCoevan(formData).subscribe(data=>{
+        // console.log("services response postulation save:",data.msg)
+      })
+
     }
     sendPostulation(){
+      if(this.id !=null && this.id != undefined){
 
+      }
     }
     deletePostulation(){
 
@@ -132,9 +192,11 @@ export class PostulationComponent implements OnInit, OnDestroy {
         private academicYearService:AcademicYearService,
         private genDocumentCoevanService: GenDocumentCoevanService,
         private resoucesService:ResourcesService,
+        private convocationService:ConvocationService,
         private store:Store<IAppState>
     ) {
 
+      this.convocationData = {} as IConvocationCoevanResponseDetail
       this.userImage$ = new Observable<string|undefined>();
       this.faculties = []
       this.programs = []
@@ -226,6 +288,8 @@ export class PostulationComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
 
+
+
     const sub1 =this.facultiesService.getAllFaculties().subscribe(data=>{
       this.faculties = data.data
       sub1.unsubscribe()
@@ -242,6 +306,11 @@ export class PostulationComponent implements OnInit, OnDestroy {
     const sub4 = this.academicYearService.getAllAcademicYear().subscribe(data=>{
       this.academicYears = data.data
       sub4.unsubscribe()
+    })
+
+    const sub5 = this.convocationService.getConvocationCoevanDetail(this.convocationId).subscribe(data=>{
+      this.convocationData = data.data
+      sub5.unsubscribe()
     })
 
 
@@ -298,7 +367,7 @@ export class PostulationComponent implements OnInit, OnDestroy {
           return [data.data]
         }))
 
-        this.postulationDocument$ = this.resoucesService.getImageToFile(data.data.postulation_document+"?r="+Math.floor(Math.random()*100000)).pipe(map(data=>{
+        this.postulationDocument$ = this.resoucesService.getPDFToFile(data.data.postulation_document).pipe(map(data=>{
           this.postulationDocument = data.data
           return [data.data]
         }))
@@ -318,6 +387,11 @@ export class PostulationComponent implements OnInit, OnDestroy {
     this.unsubscribe.push(sub2);
     this.unsubscribe.push(sub3);
     this.unsubscribe.push(sub4);
+    this.unsubscribe.push(sub5);
+  }
+
+  temptestFile(file:any){
+    console.log("fileeee test:",file)
   }
 
   /**
@@ -344,6 +418,7 @@ export class PostulationComponent implements OnInit, OnDestroy {
 
     imageInfo = await this.getImage()
 
+
     let tempData:IPostulationCoevanDocFormat={
       photo: imageInfo,
       lastname: this.formPostulation.value["lastname"],
@@ -357,10 +432,10 @@ export class PostulationComponent implements OnInit, OnDestroy {
       email: this.formPostulation.value["institutionalemail"],
       emergency_contact: this.formPostulation.value["contactnumber"].toString(),
       university_origin: {
-        id:1,
-        name:"Universidad Nacional de San Agustín",
-        acronym:"UNSA",
-        logo:"https://upload.wikimedia.org/wikipedia/commons/3/3a/LOGO_UNSA.png"
+        id: Number(this.formPostulation.get("university.id")?.value),
+        name: this.formPostulation.get("university.name")?.value,
+        acronym: this.formPostulation.get("university.acronym")?.value,
+        logo: this.formPostulation.get("university.logo")?.value
       },
       web_page: this.formPostulation.controls["u_webpage"].value,
       city_region_university: this.formPostulation.controls["u_cityregion"].value,
@@ -402,6 +477,15 @@ export class PostulationComponent implements OnInit, OnDestroy {
 
   photoLoaded(event:any){
     this.picture = event.files[0]
+  }
+
+  downloadDocument(doc:IDocumentResponseDetail){
+    this.resoucesService.downloadDocument(doc.url).subscribe(data=>{
+      let a  = document.createElement('a')
+      a.download = doc.type.name
+      a.href = window.URL.createObjectURL(data.data)
+      a.click()
+    })
   }
 
   documentLoaded(event:any){

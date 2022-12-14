@@ -49,6 +49,27 @@ export class PostulationService extends PostulationHelper{
     );
   }
 
+  postPostulationCoevan(formData:FormData):Observable<
+  IHttpServiceResponse<IPostulationCoevanResponseDetail[]>>{
+
+    const response = {
+      error:false,
+      msg:'',
+      data:[]
+    };
+
+    return this.http.post<IHttpResponse<[]>>(this.url + PostulationHelper.API_ROUTES.POST_POSTULATION,formData)
+    .pipe(
+      map( r =>{
+        response.data = r.data
+        return response;
+      }),
+      catchError(this.errorPost)
+    );
+  }
+
+
+
   /**
    *
    * @param id Id de la postulación

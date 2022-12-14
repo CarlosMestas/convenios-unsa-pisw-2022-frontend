@@ -22,13 +22,16 @@ export class AuthInterceptor implements HttpInterceptor {
     let authReq = request
     const token = this.authService.getUserLoginToken()
     if( token !=null){
-      authReq = request.clone({setHeaders:{
-        Authorization:"Bearer " + token
-      }})
+      let temp = request.url
+      if(!(temp.includes("amazonaws")||temp.includes("s3"))){
+        authReq = request.clone({setHeaders:{
+          Authorization:"Bearer " + token
+        }})
+      }
     }else{
       console.log("token is null")
     }
-    console.log("test-------------",authReq)
+    console.log("interceptor-------------",authReq)
     return next.handle(authReq);
   }
 }

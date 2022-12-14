@@ -1,11 +1,10 @@
-<div class="sub-header-container">
+<div class="sub-header-container" *ngIf="convocationData?.convocation?.important_notes">
     <div class="sub-header-title">
       Notas importantes
     </div>
     <div class="sub-header-body">
       <div class="item-sub-header">
-        De cambiar las condiciones de la movilidad o intercambio académico, considerar el oficio 914-2022-SG, que al pie de la letra señala:
-“… En sesión de Consejo Universitario del 18 de abril del 2022, considerando el aún contexto actual por la emergencia sanitaria por el COVID 19, acordó que las movilidades académicas e intercambios organizados por su dependencia, para el semestre académico 2022-B, se realicen bajo la modalidad virtual; sin perjuicio de ello, también se acordó que las referidas actividades podrían realizarse de forma presencial, previa evaluación de las condiciones sanitarias y de bioseguridad; así como la autorización específica para el evento; y en caso se ponga en riesgo la protección a la vida y a la salud de los estudiantes agustinos y foráneos, se restrinja dicha presencialidad…”
+        {{convocationData.convocation.important_notes}}
 
       </div>
     </div>
@@ -20,7 +19,7 @@
         Foto
       </div>
       <div class="sub-header-body"  *ngIf="picture$ | async as pictures">
-          <p-fileUpload (onSelect)="photoLoaded($event)" *ngIf="pictures; else wopicture" name="myfile" [multiple]="false"
+          <p-fileUpload class="user-photo" (onSelect)="photoLoaded($event)" *ngIf="pictures; else wopicture" name="myfile" [multiple]="false"
                   accept="image/*" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
                   [files] = "pictures"
                   >
@@ -37,7 +36,7 @@
           </p-fileUpload>
 
           <ng-template #wopicture>
-            <p-fileUpload name="myfile" [multiple]="false"
+            <p-fileUpload class="user-photo" name="myfile" [multiple]="false"
                     accept="image/*" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
                     >
                     <ng-template pTemplate="toolbar">
@@ -400,41 +399,75 @@
       </div>
     </div>
 
+    <div class="sub-header-container" *ngIf="convocationData?.documents">
+      <div class="sub-header-title">
+        Documentos a Considerar
+      </div>
+      <div class="sub-header-body">
+        <div class="item-sub-header">
+
+          <div class="card-container" *ngFor="let document of convocationData?.documents">
+            <div class="title">{{document.type.name}}</div>
+            <div class="card-content">
+              <div class="item-container" >
+                <div class="item-circle-number">
+                  <span class="icon-container" (click)="downloadDocument(document)">
+                    <i class="icon pi pi-cloud-download">
+                    </i>
+                  </span>
+                </div>
+                <div class="item-description">
+                  <blockquote>
+                    <i>
+                      {{document.description}}
+                    </i>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
     <div class="sub-header-container">
       <div class="sub-header-title">
         Documento de Postulación
       </div>
       <div class="sub-header-body"  *ngIf="postulationDocument$ | async as postulationDocuments">
-          <p-fileUpload (onSelect)="documentLoaded($event)" *ngIf="postulationDocuments; else wopicture" name="myfile" [multiple]="false"
+          <p-fileUpload class="postulation-document" (onSelect)="documentLoaded($event)" *ngIf="postulationDocuments; else wopicture" name="myfile" [multiple]="false"
           accept="*.pdf, application/pdf" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
                   [files] = "postulationDocuments"
                   >
-                  <ng-template pTemplate="toolbar">
+                  <!-- <ng-template pTemplate="toolbar">
                   </ng-template>
                   <ng-template let-file pTemplate="file">
                       <div class="image-container">
-                        <a [href]="file.objectURL">{{file.name}}</a>
+                        <p-button (click)="temptestFile(file)">{{file.name}}</p-button>
                       </div>
                   </ng-template>
                   <ng-template pTemplate="content" let-files>
                       <div></div>
-                  </ng-template>
+                  </ng-template> -->
           </p-fileUpload>
 
           <ng-template #wopicture>
-            <p-fileUpload (onSelect)="documentLoaded($event)" name="myfile" [multiple]="false"
+            <p-fileUpload class="postulation-document" (onSelect)="documentLoaded($event)" name="myfile" [multiple]="false"
             accept="*.pdf, application/pdf" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
                     >
-                    <ng-template pTemplate="toolbar">
+                    <!-- <ng-template pTemplate="toolbar">
                     </ng-template>
                     <ng-template let-file pTemplate="file">
                       <div class="image-container">
-                        <a [href]="file.objectURL">{{file.name}}</a>
+                        <p-button (click)="temptestFile(file)">{{file.name}}</p-button>
                       </div>
                     </ng-template>
                     <ng-template pTemplate="content" let-files>
                         <div></div>
-                    </ng-template>
+                    </ng-template> -->
             </p-fileUpload>
           </ng-template>
 
@@ -444,7 +477,7 @@
     <div class="actions">
       <button (click)="generateDoc()" pButton pRipple type="button"  icon="pi pi-sign-out" class="p-button-rounded p-button-secondary" pTooltip="Regresar"></button>
       <button (click)="generateDoc()" pButton pRipple type="button"  icon="pi pi-cloud-download" class="p-button-rounded p-button-warning" pTooltip="Descargar"></button>
-      <button (click)="generateDoc()" pButton pRipple type="button"  icon="pi pi-save" class="p-button-rounded p-button-primary" pTooltip="Guardar"></button>
+      <button (click)="savePostulation()" pButton pRipple type="button"  icon="pi pi-save" class="p-button-rounded p-button-primary" pTooltip="Guardar"></button>
       <button (click)="generateDoc()" pButton pRipple type="button"  icon="pi pi-send" class="p-button-rounded p-button-success" pTooltip="Enviar"></button>
       <button (click)="generateDoc()" pButton pRipple type="button"  icon="pi pi-trash" class="p-button-rounded p-button-danger" pTooltip="Anular"></button>
     </div>

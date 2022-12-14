@@ -1,3 +1,4 @@
+import { IConvocationCoevanResponseDetail } from './../../../shared/interfaces/convocation-coevan.interface';
 import { IConvocationResponse, IConvocationResponseDetail } from './../../../shared/interfaces/convocation.interface';
 import { IHttpServiceResponse, IHttpResponse } from 'src/app/shared/interfaces/transactions/transaction-response.interface';
 import { IConvocationPIVEFetchTransactionResponse } from './../../../shared/interfaces/transactions/convocation-pive-fetch-transaction-response.interface';
@@ -91,6 +92,24 @@ export class ConvocationService extends ConvocationHelper{
         return response;
       }),
       catchError(this.error)
+    );
+  }
+
+  getConvocationCoevanDetail(id:number):Observable<IHttpServiceResponse<IConvocationCoevanResponseDetail>>{
+    const response = {
+      error:false,
+      msg:'',
+      data:{} as IConvocationCoevanResponseDetail
+    };
+    let params = new HttpParams()
+    params=params.append("id",id)
+    return this.http.get<IHttpResponse<IConvocationCoevanResponseDetail>>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.GET_CONVOCATION_COEVAN,{params})
+    .pipe(
+      map( resp =>{
+        response.data = resp.data;
+        return response;
+      }),
+      catchError(this.errorCoevan)
     );
   }
 

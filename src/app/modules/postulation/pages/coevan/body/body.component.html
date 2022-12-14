@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" *ngIf="convocation">
 
   <div class="header">
     <div class="title">
-      Convocatoria Ordinaria Estudiantes RPU San Marcos 2023-1
+      {{convocation.title}}
     </div>
 
     <app-stepper class="stepper" [items]="items"></app-stepper>

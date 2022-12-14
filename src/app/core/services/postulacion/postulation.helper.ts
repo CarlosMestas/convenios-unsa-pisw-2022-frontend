@@ -10,7 +10,8 @@ export class PostulationHelper {
   public isProduction = environment.production
 
   protected static API_ROUTES = {
-    GET_POSTULATION:"postulations"
+    GET_POSTULATION:"postulations",
+    POST_POSTULATION:"create-postulation-coevan"
   }
 
   constructor(
@@ -64,7 +65,7 @@ export class PostulationHelper {
       coordinator: 'Dra. María del Pilar Guillén Núñez',
       coordinator_cargue: 'Jefa de la Oficina Universitaria de Cooperación, Convenios, Relaciones Internacionales, Becas y Pasantías de la UNSA',
       coordinator_email: 'convenios@unsa.edu.pe',
-      postulation_document: "https://www.africau.edu/images/default/sample.pdf",
+      postulation_document: "https://images-profiles-pis.s3.amazonaws.com/filesCoevan/00vOtp8HFBH5u6gxWrQzDfRQEkM4YZISPGchZNww.pdf",
       last_update: '12/12/2022, 1:50:48 PM',
       courses: [
         {
@@ -94,6 +95,20 @@ export class PostulationHelper {
       error:true,
       msg: errorMessage,
       data: dataTest
+    })
+  }
+
+  errorPost(error:HttpErrorResponse){
+    let errorMessage = ''
+    if(error.error instanceof ErrorEvent){
+      errorMessage = error.error.message
+    }else{
+      errorMessage = `Error status :${error.status} \n message: ${error.message}`
+    }
+    return of({
+      error:true,
+      msg: errorMessage,
+      data: []
     })
   }
 }
