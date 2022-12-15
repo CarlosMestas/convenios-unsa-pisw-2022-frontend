@@ -52,7 +52,8 @@ export class ResourcesService extends ResourcesHelper{
         console.log("file test:", file)
         response.data= file
         return response
-      })
+      }),
+      catchError(this.errorPDF)
     )
   }
   downloadDocument(url: string):Observable<

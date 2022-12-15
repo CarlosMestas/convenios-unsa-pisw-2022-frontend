@@ -23,4 +23,18 @@ export class ResourcesHelper {
       data: [] as IConvocation[]
     })
   }
+
+  errorPDF(error:HttpErrorResponse){
+    let errorMessage = ''
+    if(error.error instanceof ErrorEvent){
+      errorMessage = error.error.message
+    }else{
+      errorMessage = `Error status :${error.status} \n message: ${error.message}`
+    }
+    return of({
+      error:true,
+      msg: errorMessage,
+      data: {} as File
+    })
+  }
 }

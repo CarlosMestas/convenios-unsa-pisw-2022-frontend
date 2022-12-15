@@ -379,8 +379,14 @@ export class PostulationComponent implements OnInit, OnDestroy {
         }))
 
         this.postulationDocument$ = this.resoucesService.getPDFToFile(data.data.postulation_document).pipe(map(data=>{
-          this.postulationDocument = data.data
-          return [data.data]
+
+          if(!data.error){
+            this.postulationDocument = data.data
+            return [data.data]
+          }else{
+            return []
+          }
+
         }))
 
       })
