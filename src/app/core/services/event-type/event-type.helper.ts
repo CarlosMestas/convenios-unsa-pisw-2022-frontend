@@ -1,7 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http"
 import { of } from "rxjs"
 import { IEventType } from "src/app/shared/interfaces/convocation/event-type.interface"
-import { IRequirement } from "src/app/shared/interfaces/requirements/requirement.interface"
 import { environment } from "src/environments/environment.prod"
 
 export class EventTypeHelper{

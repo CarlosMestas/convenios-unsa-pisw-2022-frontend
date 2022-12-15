@@ -18,7 +18,9 @@ import { ButtonCustomizedComponent } from 'src/app/shared/components/button-cust
 import { SearchBarComponent } from 'src/app/shared/components/search-bar/search-bar.component';
 import { CardListFormComponent } from 'src/app/shared/components/card-list-form/card-list-form.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+
 import { StepperComponent } from 'src/app/shared/components/stepper/stepper.component';
+
 
 
 
@@ -66,7 +68,8 @@ import { StepperComponent } from 'src/app/shared/components/stepper/stepper.comp
     ReactiveFormsModule,
     PrimeNgModule,
     StepperComponent,
-    DialogNotificationComponent
+    DialogNotificationComponent,
+    PrimeNgModule
   ]
 
 })

@@ -11,39 +11,31 @@
             <div class="form-label form-signin-label-field-email">
               Nombre
             </div>
-            <input class="form-input-text form-signin-input-field-email" type="text" formControlName="name" id="name" placeholder="Ej. Kelvin">
+            <input pInputText type="text" formControlName="name" id="name" placeholder="Ej. Kelvin">
             <span class="invalid-field" *ngIf = "name && name.invalid && name.touched">Debe ingresar un valor correcto</span>
           </div>
           <div class="form-item form-item-field-lastname">
             <div class="form-label form-signin-label-field-lastname">
               Apellidos
             </div>
-            <input class="form-input-text form-signin-input-field-lastname" type="lastname" formControlName="lastname" id="lastname" placeholder="Ej. Pérez García">
+            <input pInputText type="lastname" formControlName="lastname" id="lastname" placeholder="Ej. Pérez García">
             <span class="invalid-field" *ngIf = "lastname && lastname.invalid && lastname.touched">Debe ingresar un valor correcto</span>
           </div>
           <div class="form-item form-item-field-email">
             <div class="form-label form-signin-label-field-email">
               Correo
             </div>
-            <input class="form-input-text form-signin-input-field-email" type="email" formControlName="email" id="email" placeholder="Ej example@gmail.com">
+            <input pInputText type="email" formControlName="email" id="email" placeholder="Ej example@gmail.com">
             <span class="invalid-field" *ngIf = "email && email.invalid && email.touched">El correo ingresado es incorrecto</span>
           </div>
           <div class="form-item form-item-field-email">
             <div class="form-label form-signin-label-field-email">
               Justificación
             </div>
-            <input class="form-input-text form-signin-input-field-email" type="file" id="avatar" name="avatar" accept="application/pdf">
+            <p-fileUpload mode="basic" (onUpload)="onBasicUpload($event)"  chooseLabel="Buscar"></p-fileUpload>
 
           </div>
-
-          <!-- <div class="form-item form-item-field-password">
-            <div class="form-label form-signin-label-field-password">
-              Contraseña
-            </div>
-            <input class="form-input-text form-signin-input-field-password" type="password" formControlName="password" id="password" placeholder="Ingresa tu contraseña">
-            <span class="invalid-field" *ngIf = "password && password.invalid && password.touched">El contenido ingresado es incorrecto</span>
-          </div> -->
-          <input class="submit-form" type="submit" [disabled] = "signInForm.invalid" value="Enviar Solicitud">
+          <input class="submit-form" type="submit" [disabled] = "signInForm.invalid" value="Enviar Solicitud" >
         </form>
 
         <div class="google-form-signup" routerLink = '/registrar-cuenta'>

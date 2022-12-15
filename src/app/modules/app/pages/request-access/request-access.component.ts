@@ -3,6 +3,8 @@ import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import {ExternalStudentsService} from "../../../../core/services/external-students/external-students.service";
+import {IExternalStudent} from "../../../../shared/interfaces/external-student.interface";
 
 @Component({
   selector: 'app-request-access',
@@ -11,8 +13,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestAccessComponent implements OnInit {
   public signInForm: FormGroup
-  constructor(
+  uploadedFile: any = File;
 
+  constructor(
+    private externalStudent: ExternalStudentsService,
   ) {
     this.signInForm = new FormGroup({
       name: new FormControl('',[Validators.required]),
@@ -24,6 +28,10 @@ export class RequestAccessComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onBasicUpload(event: any) {
+    this.uploadedFile = event.getFile()
+
+  }
   public get name() : AbstractControl | null {
     return this.signInForm.get('name');
   }
@@ -38,8 +46,15 @@ export class RequestAccessComponent implements OnInit {
     return this.signInForm.get('password');
   }
 
-
-  submitSignIn():void{
-
+  submitSignIn() {
+    let requestAux = {} as IExternalStudent
+    requestAux.name = this.signInForm.value["name"]
+    requestAux.lastname =  this.signInForm.value["lastname"]
+    requestAux.email = this.signInForm.value["email"]
+    requestAux.justification = this.uploadedFile
+    console.log("SOLI", requestAux)
+    this.externalStudent.sendRequest(requestAux).subscribe(r=>{
+      console.log("ver sms", r)
+    })
   }
 }
