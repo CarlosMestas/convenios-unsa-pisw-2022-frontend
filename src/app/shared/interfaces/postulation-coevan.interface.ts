@@ -7,7 +7,7 @@ import { IFacultyResponse } from "./convocation/faculties.interface";
 import { IUniversityResponse } from './university.interface';
 import { ISemesterResponse } from './semester.interface';
 
-export interface IPostulationCoevan {
+export interface IPostulationCoevanDocFormat {
   lastname:string,
   name:string,
   birth_date:string,
@@ -35,6 +35,30 @@ export interface IPostulationCoevan {
   semester:ISemesterResponse,
   university_target:IUniversityResponse,
   academic_network:IAcademicNetworkResponse
+}
 
-
+export interface IPostulationCoevanResponse{
+  id:number,
+  lastname:string,
+  name:string,
+  birth_date:string,
+  dni:string,
+  city_region_postulant:string,
+  cui:string,
+  address:string,
+  phone:string,
+  email:string,
+  emergency_contact:string
+  university_origin:string,
+  web_page:string,
+  city_region_university:string,
+  faculty:IFacultyResponse,
+  professional_program:IProfessionalProgramsResponse,
+  current_cicle:ICycleResponse,
+  academic_year:IAcademicYearResponse,
+  mean_grades:number,
+  total_credits:number,
+  coordinator:string,
+  coordinator_cargue:string,
+  coordinator_email:string,
 }
