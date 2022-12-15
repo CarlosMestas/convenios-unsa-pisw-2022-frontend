@@ -39,8 +39,8 @@ export class ExternalStudentsService extends ExternalStudentsHelper{
         name : infoRequest.name,
         lastname: infoRequest.lastname,
         email: infoRequest.email,
-        //justification: infoRequest.justification,
-        justification: ''
+        justification: infoRequest.justification,
+        //justification: ''
       }
     ).pipe(
         map(resp =>{

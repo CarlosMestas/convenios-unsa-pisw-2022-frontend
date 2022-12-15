@@ -2,7 +2,7 @@ export interface IExternalStudent{
   name:string,
   lastname:string,
   email:string,
-  justification:string,
+  justification:File,
 }
 
 export interface IExternalStudentError{
