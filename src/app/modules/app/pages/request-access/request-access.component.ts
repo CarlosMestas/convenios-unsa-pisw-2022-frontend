@@ -13,7 +13,7 @@ import {IExternalStudent} from "../../../../shared/interfaces/external-student.i
 })
 export class RequestAccessComponent implements OnInit {
   public signInForm: FormGroup
-  //uploadedFiles: any[] = [];
+  uploadedFile: any = File;
 
   constructor(
     private externalStudent: ExternalStudentsService,
@@ -21,20 +21,17 @@ export class RequestAccessComponent implements OnInit {
     this.signInForm = new FormGroup({
       name: new FormControl('',[Validators.required]),
       lastname: new FormControl('',[Validators.required]),
-      email: new FormControl('',[Validators.required,Validators.email]),
-      document: new FormControl('',[Validators.required])
+      email: new FormControl('',[Validators.required,Validators.email])
     })
   }
 
   ngOnInit(): void {
   }
-/*
-  onBasicUpload(event: any) {
-    for(let file of event.files) {
-      this.uploadedFiles.push(file);
-    }
 
-  }*/
+  onBasicUpload(event: any) {
+    this.uploadedFile = event.getFile()
+
+  }
   public get name() : AbstractControl | null {
     return this.signInForm.get('name');
   }
@@ -48,17 +45,14 @@ export class RequestAccessComponent implements OnInit {
   public get password() : AbstractControl | null {
     return this.signInForm.get('password');
   }
-  public get document() : AbstractControl | null {
-    return this.signInForm.get('document');
-  }
-
 
   submitSignIn() {
     let requestAux = {} as IExternalStudent
     requestAux.name = this.signInForm.value["name"]
     requestAux.lastname =  this.signInForm.value["lastname"]
     requestAux.email = this.signInForm.value["email"]
-    requestAux.justification = this.signInForm.value["document"]
+    requestAux.justification = this.uploadedFile
+    console.log("SOLI", requestAux)
     this.externalStudent.sendRequest(requestAux).subscribe(r=>{
       console.log("ver sms", r)
     })

@@ -7,6 +7,7 @@ import {TableModule} from 'primeng/table';
 import {InputTextModule} from 'primeng/inputtext';
 import {DropdownModule} from 'primeng/dropdown';
 import {ToastModule} from 'primeng/toast';
+import {ChipsModule} from 'primeng/chips';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {ToastModule} from 'primeng/toast';
     TableModule,
     InputTextModule,
     DropdownModule,
-    ToastModule
+    ToastModule,
+    ChipsModule,
   ],
   exports:[
     AccordionModule,
@@ -27,7 +29,9 @@ import {ToastModule} from 'primeng/toast';
     TableModule,
     InputTextModule,
     DropdownModule,
-    ToastModule
+    ToastModule,
+    ChipsModule,
+
   ]
 
 })
