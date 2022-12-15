@@ -7,7 +7,9 @@ export enum ENUMConvocationTypeAcronym{
   CODVIENEN = "CODVIENEN"
 }
 
-export enum ENUMConvocationCoevanStatus{
+
+
+export enum ENUMPostulationCoevanStatus{
   SIN_ENVIAR = 1,
   ENVIADO = 2,
   EN_REVISION = 3,
@@ -22,4 +24,16 @@ export enum ENUMConvocationCoevanStatus{
   ANULADO_POSTULANTE = 12,//el postulante decide anular su postulación
   ANULADO_ADMIN = 13,
   NO_GANADOR = 14
+}
+
+
+export enum ENUMConvocationStatus{
+  PROXIMA = "1",
+  EN_PROCESO = "2",
+  EN_EVALUACION = "3",
+  CANCELADA = "4",
+  RE_ABIERTA = "5",
+  EN_SEGUIMIENTO = "6",
+  EN_FINALIZACION = "7",
+  CONCLUIDA = "8"
 }

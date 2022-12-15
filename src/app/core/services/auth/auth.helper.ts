@@ -26,7 +26,7 @@ export class AuthHelper{
   }
 
   //INSTEAD
-  saveLocalStorageSesionToken(token:string, userId:number){
+  saveLocalStorageSesionToken(token:string, userId:number,email:string){
     localStorage.setItem(AuthHelper.USER_LOGIN_TOKEN,token)
     localStorage.setItem(AuthHelper.USER_ID_ENCODED,userId.toString())
   }

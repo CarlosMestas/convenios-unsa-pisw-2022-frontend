@@ -1,4 +1,4 @@
-import { UserProfileCreatedGuard } from './../../core/guards/user/user-profile-created.guard';
+import { UserProfileConfiguredGuard } from './../../core/guards/user/user-profile-created.guard';
 import { UserSignedGuard } from './../../core/guards/user/user-signed.guard';
 import { RequestAccessComponent } from './pages/request-access/request-access.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -10,7 +10,6 @@ import { NgModule } from "@angular/core";
 import {ChatbotComponent} from "./components/chatbot/chatbot.component";
 
 const AppRoutesValues = {
-  ROUTE_ADMIN_HOME:"admin",
   ROUTE_APP_HOME: "home",
   ROUTE_APP_WHO_WE_ARE: "quienes-somos",
   ROUTE_APP_CONTACT: "contacto",
@@ -70,11 +69,7 @@ const AppRoutes: Routes  = [
   {
     path:AppRoutesValues.ROUTE_APP_APPLY+"/:id",
     loadChildren:()=>import('../postulation/postulation.module').then(m=> m.PostulationModule),
-    canActivate:[UserSignedGuard, UserProfileCreatedGuard]
-  },
-  {
-    path:AppRoutesValues.ROUTE_ADMIN_HOME,
-    loadChildren:()=>import('../admin/admin.module').then(m=>m.AdminModule)
+    canActivate:[UserSignedGuard, UserProfileConfiguredGuard]
   },
   {
     path: AppRoutesValues.ROUTE_APP_USER_PROFILE,

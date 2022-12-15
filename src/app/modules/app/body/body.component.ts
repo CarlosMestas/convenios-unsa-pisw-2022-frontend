@@ -10,6 +10,7 @@ import { DomSanitizer, SafeResourceUrl, Title } from '@angular/platform-browser'
 import { dialogProfileNotConfiguredSelector } from 'src/app/ngrx/selectors/profile/profile.selector';
 import { dialogUserRegisterWrongEmailSelector } from 'src/app/ngrx/selectors/auth/user-auth.selector';
 import { MatIconRegistry, SafeResourceUrlWithIconOptions } from '@angular/material/icon';
+import { isDialogNotificationShowedStateSelector } from 'src/app/ngrx/selectors/notification/dialog-notification.selector';
 
 @Component({
   selector: 'app-body',
@@ -22,6 +23,7 @@ isSideNavCollapsed:boolean = false;
 screenWidth = 0;
 dialogProfileNotConfigured$: Observable<boolean>
 dialogUserRegisterWrongEmail$: Observable<boolean>
+dialogNotification$: Observable<boolean>
   getClass():string{
     let styleClass = ''
     if(!this.isSideNavCollapsed && this.screenWidth > 768){
@@ -41,7 +43,7 @@ dialogUserRegisterWrongEmail$: Observable<boolean>
     ) {
       this.dialogProfileNotConfigured$ = new Observable<boolean>()
       this.dialogUserRegisterWrongEmail$ = new Observable<boolean>()
-
+      this.dialogNotification$ = new Observable<boolean>()
       this.matIconRegistry.addSvgIconResolver(
         (
           name: string,
@@ -79,7 +81,7 @@ dialogUserRegisterWrongEmail$: Observable<boolean>
     // @ts-ignore
     window.onGoogleLibraryLoad  = () => {
       this.authService.initializeGoogleAuthService()
-      this.authService.promptGoogleOneTap()
+      // this.authService.promptGoogleOneTap()
     }
 
     this.sidenavService.collapsed$.subscribe(data=>{
@@ -89,6 +91,7 @@ dialogUserRegisterWrongEmail$: Observable<boolean>
     this.store.dispatch(userLoadRequestAction())
     this.dialogProfileNotConfigured$ = this.store.select(dialogProfileNotConfiguredSelector)
     this.dialogUserRegisterWrongEmail$ =this.store.select(dialogUserRegisterWrongEmailSelector)
+    this.dialogNotification$  = this.store.select(isDialogNotificationShowedStateSelector)
 
   }
 }

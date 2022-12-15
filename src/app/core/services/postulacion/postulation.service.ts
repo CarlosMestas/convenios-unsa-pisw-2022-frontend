@@ -39,7 +39,7 @@ export class PostulationService extends PostulationHelper{
     const params:HttpParams = new HttpParams()
     params.set("id_convocation",idConvocation)
     params.set("id_user",idUser)
-    return this.http.get<IHttpResponse<IPostulationCoevanResponseDetail>>(this.url + PostulationHelper.API_ROUTES.GET_POSTULATION, {params})
+    return this.http.get<IHttpResponse<IPostulationCoevanResponseDetail>>(this.url + PostulationHelper.API_ROUTES.GET_POSTULATION_CONVOCATION_USER, {params})
     .pipe(
       map( r =>{
         response.data = r.data;

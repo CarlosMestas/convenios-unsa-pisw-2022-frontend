@@ -7,11 +7,14 @@ import {IAdminAuthState} from "../shared/interfaces/admin/admin-auth-state.inter
 import {adminAuthReducer} from "./reducers/admin/admin-auth.reducers";
 import { IConvocationState } from '../shared/interfaces/convocation/convocation-state.interface';
 import { convocationReducer } from './reducers/convocation/convocation.reducer';
+import { IDialogNotificationState } from '../shared/interfaces/notification.interface';
+import { dialogNofiticationReducer } from './reducers/notifications/dialog-notification.reducer';
 export interface IAppState{
   userAuth:IUserAuthState,
   adminAuth:IAdminAuthState,
   convocation:IConvocationState,
-  profile:IProfileState
+  profile:IProfileState,
+  dialogNotification:IDialogNotificationState
 }
 
 
@@ -19,5 +22,6 @@ export const ROOT_REDUCERS: ActionReducerMap<IAppState> = { //TODO: FIXME:
   userAuth:userAuthReducer,
   adminAuth:adminAuthReducer,
   profile:profileReducer,
-  convocation:convocationReducer
+  convocation:convocationReducer,
+  dialogNotification:dialogNofiticationReducer
 }

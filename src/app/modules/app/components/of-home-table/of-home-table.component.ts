@@ -116,7 +116,7 @@ export class OfHomeTableComponent implements OnInit {
           {key:'correlative', label:'Correlativo'},
           {key:'modality', label:'Modalidad'},
           {key:'start_date', label:'Fecha Inicio'},
-          {key:'end_date', label:'Fecha Fin'}
+          {key:'end_date', label:'Fecha Finalización'}
         ];
         this.convocations$ = this.convocationService.getAllConvocationsByDate(Date.now()).pipe(map(data=>{
           this.loading = false;

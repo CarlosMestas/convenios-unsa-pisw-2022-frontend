@@ -40,7 +40,7 @@ export class AuthService extends AuthHelper{
     private store:Store<IAppState>
   ){
     super(http)
-    this.user$ = new BehaviorSubject<User|null>({} as User);
+    this.user$ = new BehaviorSubject<User|null>(null);
     this.googleAuthServiceInitialized$= new BehaviorSubject<boolean>(false)
     this.login$ = new BehaviorSubject<boolean>(false)
     this.signup$ = new BehaviorSubject<boolean>(false)
@@ -88,6 +88,7 @@ export class AuthService extends AuthHelper{
       map( r =>{
         response.msg = r.msg;
         this.removeLocalStorageSesion()
+        this.user$.next(null)
         this.sidenavService.sidenavUserNotLogged()
         this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
         return response
@@ -132,9 +133,12 @@ export class AuthService extends AuthHelper{
             this.store.dispatch(dialogUserRegisterWrongEmailAction())
           }
       }else if(this.router.url == "/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_SINGIN){
-
           let jwtDecodedToken = this.decodeJWTCredential(response?.credential)
-          this.store.dispatch(userSignInRequestAction({email:jwtDecodedToken.email.toString()}))
+          if(jwtDecodedToken.email.toString().split('@')[1]=="unsa.edu.pe"){
+            this.store.dispatch(userSignInRequestAction({email:jwtDecodedToken.email.toString()}))
+          }else{
+            this.store.dispatch(dialogUserRegisterWrongEmailAction())
+          }
       }
     } catch (e) {
       console.error('Error while trying to decode token', e);
@@ -168,11 +172,14 @@ export class AuthService extends AuthHelper{
       )
       .pipe(
         map( r =>{
-          if(r.code!=404){
+          if(r.code!=200){
+            console.log("user dont exist")
+            this.removeLocalStorageSesion()
+            response.error = true;
+          }else{
+            this.user$.next(r.data.user)
             response.data = r.data.user;
             this.sidenavService.sidenavUserLogged()
-          }else{
-            response.error = true;
           }
           return response
         }),
@@ -220,7 +227,8 @@ export class AuthService extends AuthHelper{
       map( r =>{
         response.data = new User(r.data.user.id,r.data.user.email);
         this.sidenavService.sidenavUserLogged()
-        this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)
+        this.user$.next(r.data.user)
+        this.saveLocalStorageSesionToken(r.data.token,r.data.user.id,r.data.user.email)
         //this.saveLocalStorageUserNormalToken(this.getNormalTokenFromUser(response.data))
         return response
       }),
@@ -259,9 +267,11 @@ export class AuthService extends AuthHelper{
           r.data.user.id,
           r.data.user.email
         )
+        console.log("signin return: ", r)
+        this.user$.next(r.data.user)
         response.data = tempuser;
         this.sidenavService.sidenavUserLogged()
-        this.saveLocalStorageSesionToken(r.data.token,r.data.user.id)
+        this.saveLocalStorageSesionToken(r.data.token,r.data.user.id,r.data.user.email)
         return response
       }),
       catchError(this.errorSignIn)

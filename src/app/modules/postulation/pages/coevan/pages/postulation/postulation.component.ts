@@ -1,6 +1,6 @@
 import { IDocumentResponseDetail } from './../../../../../../shared/interfaces/convocation-document.interface';
 import { ConvocationService } from './../../../../../../core/services/convocation/convocation.service';
-import { ENUMConvocationCoevanStatus } from 'src/app/shared/enum/convocation.enum';
+import { ENUMPostulationCoevanStatus } from 'src/app/shared/enum/convocation.enum';
 import { AuthHelper } from './../../../../../../core/services/auth/auth.helper';
 import { IUniversityResponse } from './../../../../../../shared/interfaces/university.interface';
 import { IPostulationCoevan, IPostulationCoevanDocFormat } from './../../../../../../shared/interfaces/postulation-coevan.interface';
@@ -120,7 +120,7 @@ export class PostulationComponent implements OnInit, OnDestroy {
         postulation_document: this.postulationDocument,
         last_update: (new Date()).toLocaleDateString(),
         courses: this.postulationCourses,
-        post_state: ENUMConvocationCoevanStatus.SIN_ENVIAR
+        post_state: ENUMPostulationCoevanStatus.SIN_ENVIAR
       }
       console.log("save format:",tempData)
 

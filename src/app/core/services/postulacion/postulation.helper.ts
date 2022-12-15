@@ -1,4 +1,4 @@
-import { ENUMConvocationCoevanStatus } from 'src/app/shared/enum/convocation.enum';
+import { ENUMPostulationCoevanStatus } from 'src/app/shared/enum/convocation.enum';
 import { IPostulationCoevanResponseDetail } from '../../../shared/interfaces/postulation-coevan.interface';
 import { IConvocation } from '../../../shared/interfaces/convocation.interface';
 import { environment } from 'src/environments/environment.prod';
@@ -11,7 +11,8 @@ export class PostulationHelper {
 
   protected static API_ROUTES = {
     GET_POSTULATION:"postulations",
-    POST_POSTULATION:"create-postulation-coevan"
+    POST_POSTULATION:"create-postulation-coevan",
+    GET_POSTULATION_CONVOCATION_USER: "postulation-convocation-user"
   }
 
   constructor(
@@ -79,7 +80,7 @@ export class PostulationHelper {
         }
       ],
       post_state: {
-        id:ENUMConvocationCoevanStatus.SIN_ENVIAR,
+        id:ENUMPostulationCoevanStatus.SIN_ENVIAR,
         name:"Sin enviar",
         description:"El usuario postulante guardó la información en su formulario, pero no envió aún su postulación"
       }

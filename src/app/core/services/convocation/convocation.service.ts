@@ -42,9 +42,10 @@ export class ConvocationService extends ConvocationHelper{
 
     let params = new HttpParams();
     params = params.append("date",date)
-    return this.http.get<IHttpResponse<IConvocationResponse[]>>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.ALL_CONVOCATIONS,{params})
+    return this.http.get<IHttpResponse<IConvocationResponse[]>>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.ALL_CONVOCATIONS)
     .pipe(
       map( resp =>{
+        console.log("all convocation general:", resp.data)
         response.data=resp.data
         return response
       }),
@@ -88,6 +89,7 @@ export class ConvocationService extends ConvocationHelper{
     return this.http.get<IHttpResponse<IConvocationResponseDetail>>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.GET_CONVOCATION,{params})
     .pipe(
       map( resp =>{
+        console.log("get convocation:", resp.data)
         response.data = resp.data;
         return response;
       }),

@@ -8,7 +8,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { PostulationService } from 'src/app/core/services/postulacion/postulation.service';
-import { ENUMConvocationCoevanStatus } from 'src/app/shared/enum/convocation.enum';
+import { ENUMPostulationCoevanStatus } from 'src/app/shared/enum/convocation.enum';
 
 @Component({
   selector: 'body',
@@ -63,15 +63,15 @@ export class BodyComponent implements OnInit, OnDestroy {
         console.log("is there any error?", data.error)
         if(!data.error){
           switch(data.data.post_state.id){
-            case ENUMConvocationCoevanStatus.SIN_ENVIAR:{
+            case ENUMPostulationCoevanStatus.SIN_ENVIAR:{
               this.router.navigate(["./"+PostulationCoevanRoutingModule.ROUTES_VALUES.ROUTE_POSTULACION_COEVAN + "/" + data.data.id],{relativeTo:this.activatedRoute})
               break
             }
-            case ENUMConvocationCoevanStatus.ACEPTADO:{
+            case ENUMPostulationCoevanStatus.ACEPTADO:{
               this.router.navigate(["./"+PostulationCoevanRoutingModule.ROUTES_VALUES.ROUTE_POSTULACION_COEVAN + "/" + data.data.id],{relativeTo:this.activatedRoute})
               break
             }
-            case ENUMConvocationCoevanStatus.OBSERVADO:{
+            case ENUMPostulationCoevanStatus.OBSERVADO:{
               this.router.navigate(["./"+PostulationCoevanRoutingModule.ROUTES_VALUES.ROUTE_POSTULACION_COEVAN + "/" + data.data.id],{relativeTo:this.activatedRoute})
               break
             }
@@ -80,12 +80,14 @@ export class BodyComponent implements OnInit, OnDestroy {
             }
           }
         }else{
+          console.log("Error no postulation")
           this.router.navigate(["./"+PostulationCoevanRoutingModule.ROUTES_VALUES.ROUTE_POSTULACION_COEVAN],{relativeTo:this.activatedRoute})
         }
         convocationSub.unsubscribe()
       })
       this.unsubscribe.push(convocationSub);
     }else{
+
       this.router.navigate([""])
       return
     }

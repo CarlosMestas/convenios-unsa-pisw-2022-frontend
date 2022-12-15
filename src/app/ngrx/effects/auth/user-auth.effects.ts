@@ -1,4 +1,5 @@
-import { userLoadRequestAction, userLogoutRequestAction, userSignInRequestAction, userRegisterSuccessAction, userSignInSuccessAction, userLoadSuccessAction } from './../../actions/auth/user-auth.actions';
+import { DialogNotificationActions } from './../../actions/notifications/dialog-notifications.actions';
+import { userLoadRequestAction, userLogoutRequestAction, userSignInRequestAction, userRegisterSuccessAction, userSignInSuccessAction, userLoadSuccessAction, userSignInErrorAction } from './../../actions/auth/user-auth.actions';
 import { UserAuthActions } from '../../actions/auth/user-auth.actions';
 import { catchError, EMPTY, Observable, of } from 'rxjs';
 import { userRegisterRequestAction } from 'src/app/ngrx/actions/auth/user-auth.actions';
@@ -7,6 +8,7 @@ import { AuthService } from './../../../core/services/auth/auth.service';
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { mergeMap } from 'rxjs';
+import { DATADialogNotifications } from 'src/app/shared/enum/dialog-notifications.enum';
 
 @Injectable()
 export class UserAuthEffect{
@@ -33,11 +35,18 @@ export class UserAuthEffect{
     ofType(userSignInRequestAction), //TODO: Action who Excecuted this change
     mergeMap((action)=>this.authService.userSignIn(action.email)//TODO: return a user login confirmation
     .pipe(
-      map(resp => ({
-        type:UserAuthActions.USER_SIGNIN_SUCCESS_ACTION,
-        user:resp.data
-      }
-      )),
+      map(resp => {
+        if(resp.error){
+          return {
+            type:UserAuthActions.USER_SIGNIN_ERROR_ACTION
+          }
+        }else{
+          return {
+            type:UserAuthActions.USER_SIGNIN_SUCCESS_ACTION,
+            user:resp.data
+          }
+        }
+      }),
       catchError(()=>EMPTY)
     ))
   ))
@@ -62,6 +71,16 @@ export class UserAuthEffect{
       }),
       catchError(()=>EMPTY)
     ))
+  ))
+
+  userSigninErrorEffect$ = createEffect(()=>this.actions$.pipe(
+    ofType(userSignInErrorAction),
+    mergeMap(()=>of({
+        type:DialogNotificationActions.SHOW_NOTIFICATION_ACTION,
+        message:DATADialogNotifications.USER_NOT_REGISTERED.message,
+        detail:DATADialogNotifications.USER_NOT_REGISTERED.detail
+      })
+    )
   ))
 
   userAuthLogoutRequestEffect$ = createEffect(()=>this.actions$.pipe(

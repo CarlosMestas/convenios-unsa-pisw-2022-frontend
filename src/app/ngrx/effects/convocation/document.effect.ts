@@ -1,4 +1,4 @@
-import { convocationFetchRequestAction, ConvocationActions, convocationFetchSuccessAction } from './../../actions/convocation/convocation.actions';
+import { ConvocationActions, convocationFetchSuccessAction } from './../../actions/convocation/convocation.actions';
 import { mergeMap, map, catchError, EMPTY } from 'rxjs';
 import { ConvocationService } from './../../../core/services/convocation/convocation.service';
 import { Injectable } from "@angular/core";

@@ -31,9 +31,15 @@ export interface IConvocationResponseDetail{
   description:string,
   start_date:string,
   end_date:string,
-  important_notes:string
+  important_notes:string,
+  conv_state:IConvocationStateResponse
 }
 
+export interface IConvocationStateResponse{
+  id:number,
+  name:string,
+  description:string
+}
 export interface IConvocationField{
   key:string,
   label:string

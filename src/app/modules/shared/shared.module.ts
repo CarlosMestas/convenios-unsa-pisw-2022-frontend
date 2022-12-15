@@ -1,3 +1,4 @@
+import { DialogNotificationComponent } from './../../shared/components/dialog-notification/dialog-notification.component';
 import { PrimeNgModule } from './primeng.module';
 import { DialogErrorEmailComponent } from './../../shared/components/dialog-error-email/dialog-error-email.component';
 import { ButtonFormComponent } from './../../shared/components/button-form/button-form.component';
@@ -35,7 +36,8 @@ import { StepperComponent } from 'src/app/shared/components/stepper/stepper.comp
     ButtonFormComponent,
     DialogErrorEmailComponent,
     CardListFormComponent,
-    StepperComponent
+    StepperComponent,
+    DialogNotificationComponent
   ],
   imports: [
     CommonModule,
@@ -63,7 +65,8 @@ import { StepperComponent } from 'src/app/shared/components/stepper/stepper.comp
     FormsModule,
     ReactiveFormsModule,
     PrimeNgModule,
-    StepperComponent
+    StepperComponent,
+    DialogNotificationComponent
   ]
 
 })

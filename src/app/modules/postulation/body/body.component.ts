@@ -27,6 +27,7 @@ export class BodyComponent implements OnInit, OnDestroy {
 
         case ENUMConvocationTypeAcronym.COEVAN:{
           this.router.navigate(["./"+PostulationRoutingModule.ROUTES_VALUES.ROUTE_POSTULACION_COEVAN],{relativeTo:this.activatedRoute})
+          console.log("route COEVAN")
           break
         }
         case ENUMConvocationTypeAcronym.COEVIENEN:{

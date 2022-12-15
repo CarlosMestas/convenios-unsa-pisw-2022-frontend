@@ -7,7 +7,7 @@ import { IModalityConvocationResponse } from "./convocation.interface";
 import { IFacultyResponse } from "./convocation/faculties.interface";
 import { IUniversityResponse } from './university.interface';
 import { ISemesterResponse } from './semester.interface';
-import { ENUMConvocationCoevanStatus } from '../enum/convocation.enum';
+import { ENUMPostulationCoevanStatus } from '../enum/convocation.enum';
 
 export interface IPostulationCoevanDocFormat {
   photo:string,
@@ -70,12 +70,12 @@ export interface IPostulationCoevanResponseDetail{
   postulation_document:string,
   last_update:string,
   courses:IPostulationCoevanCourseResponseDetail[],
-  post_state:IConvocationCoevanStatusResponse
+  post_state:IPostulationCoevanStatusResponse
 }
 
 
-export interface IConvocationCoevanStatusResponse{
-  id:ENUMConvocationCoevanStatus,
+export interface IPostulationCoevanStatusResponse{
+  id:ENUMPostulationCoevanStatus,
   name:string,
   description:string
 }

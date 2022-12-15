@@ -1,5 +1,6 @@
 <app-dialog-yes-no *ngIf="dialogProfileNotConfigured$ | async"></app-dialog-yes-no>
 <app-dialog-error-email *ngIf="dialogUserRegisterWrongEmail$ | async"></app-dialog-error-email>
+<app-dialog-notification *ngIf="dialogNotification$ | async"></app-dialog-notification>
 <app-sidenav ></app-sidenav>
 <div class="body" [ngClass]="getClass()">
   <router-outlet></router-outlet>
