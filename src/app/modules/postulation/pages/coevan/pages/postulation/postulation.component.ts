@@ -1,3 +1,4 @@
+import { IConvocationResponseDetail } from './../../../../../../shared/interfaces/convocation.interface';
 import { IDocumentResponseDetail } from './../../../../../../shared/interfaces/convocation-document.interface';
 import { ConvocationService } from './../../../../../../core/services/convocation/convocation.service';
 import { ENUMPostulationCoevanStatus } from 'src/app/shared/enum/convocation.enum';
@@ -44,7 +45,8 @@ export class PostulationComponent implements OnInit, OnDestroy {
     cycles:ICycleResponse[]
     academicYears:IAcademicYearResponse[]
 
-    convocationData:IConvocationCoevanResponseDetail
+    convocationCoevan:IConvocationCoevanResponseDetail
+    convocationGeneral:IConvocationResponseDetail
 
     picture$:Observable<File[]>
     picture:File
@@ -198,7 +200,9 @@ export class PostulationComponent implements OnInit, OnDestroy {
         private store:Store<IAppState>
     ) {
 
-      this.convocationData = {} as IConvocationCoevanResponseDetail
+      this.convocationCoevan = {} as IConvocationCoevanResponseDetail
+      this.convocationGeneral = {} as IConvocationResponseDetail
+
       this.userImage$ = new Observable<string|undefined>();
       this.faculties = []
       this.programs = []
@@ -311,10 +315,15 @@ export class PostulationComponent implements OnInit, OnDestroy {
     })
 
     const sub5 = this.convocationService.getConvocationCoevanDetail(this.convocationId).subscribe(data=>{
-      this.convocationData = data.data
+      this.convocationCoevan = data.data
       sub5.unsubscribe()
     })
 
+    const sub6 = this.convocationService.getConvocation(this.convocationId).subscribe
+    (data=>{
+      this.convocationGeneral = data.data
+      sub6.unsubscribe()
+    })
 
     if(this.id !=undefined && this.id != null){
       this.postulationService.getPostulationById(this.id).subscribe(data=>{
@@ -390,6 +399,7 @@ export class PostulationComponent implements OnInit, OnDestroy {
     this.unsubscribe.push(sub3);
     this.unsubscribe.push(sub4);
     this.unsubscribe.push(sub5);
+    this.unsubscribe.push(sub6);
   }
 
   temptestFile(file:any){

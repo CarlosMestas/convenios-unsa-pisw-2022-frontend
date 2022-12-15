@@ -113,6 +113,32 @@ export class ConvocationHelper{
     })
   }
   errorGetConvocations(error:HttpErrorResponse){
+
+    let testData:IConvocationResponse[] = [{
+          id: 1,
+          title: 'Convocatoria Ordinaria Estudiantes VAN',
+          correlative: 'COEVAN-2022-B',
+          type: 1,
+          modality: 2,
+          description: 'activo',
+          start_date: '11/12/2022',
+          end_date: '11/12/2022',
+          important_notes: 'adawdw',
+          conv_state:1
+      },
+      {
+        id: 2,
+          title: 'Convocatoria Ordinaria Estudiantes VAN',
+          correlative: 'COEVAN-2022-A',
+          type: 1,
+          modality: 2,
+          description: 'activo',
+          start_date: '06/11/2022',
+          end_date: '06/12/2022',
+          important_notes: 'adawdw',
+          conv_state:1
+      }
+    ]
     let errorMessage = ''
     if(error.error instanceof ErrorEvent){
       errorMessage = error.error.message
@@ -133,6 +159,7 @@ export class ConvocationHelper{
           start_date: '11/12/2022',
           end_date: '11/12/2022',
           important_notes: 'adawdw',
+          conv_state:1
         },
         {
           id: 2,
@@ -144,6 +171,7 @@ export class ConvocationHelper{
           start_date: '06/11/2022',
           end_date: '06/12/2022',
           important_notes: 'adawdw',
+          conv_state:1
         },
       ]
     })

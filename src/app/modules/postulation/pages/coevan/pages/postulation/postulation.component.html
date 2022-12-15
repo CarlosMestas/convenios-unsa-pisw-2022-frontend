@@ -1,10 +1,10 @@
-<div class="sub-header-container" *ngIf="convocationData?.convocation?.important_notes">
+<div class="sub-header-container" *ngIf="convocationGeneral?.important_notes">
     <div class="sub-header-title">
       Notas importantes
     </div>
     <div class="sub-header-body">
       <div class="item-sub-header">
-        {{convocationData.convocation.important_notes}}
+        {{convocationGeneral.important_notes}}
 
       </div>
     </div>
@@ -399,14 +399,14 @@
       </div>
     </div>
 
-    <div class="sub-header-container" *ngIf="convocationData?.documents">
+    <div class="sub-header-container" *ngIf="convocationCoevan?.documents">
       <div class="sub-header-title">
         Documentos a Considerar
       </div>
       <div class="sub-header-body">
         <div class="item-sub-header">
 
-          <div class="card-container" *ngFor="let document of convocationData?.documents">
+          <div class="card-container" *ngFor="let document of convocationCoevan?.documents">
             <div class="title">{{document.type.name}}</div>
             <div class="card-content">
               <div class="item-container" >

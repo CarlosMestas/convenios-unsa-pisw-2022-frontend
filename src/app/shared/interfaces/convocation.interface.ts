@@ -20,7 +20,8 @@ export interface IConvocationResponse{
   description:string,
   start_date:string,
   end_date:string,
-  important_notes:string
+  important_notes:string,
+  conv_state:number
 }
 export interface IConvocationResponseDetail{
   id:number,
