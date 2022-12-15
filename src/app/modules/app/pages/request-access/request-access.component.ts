@@ -5,33 +5,33 @@ import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import {ExternalStudentsService} from "../../../../core/services/external-students/external-students.service";
 import {IExternalStudent} from "../../../../shared/interfaces/external-student.interface";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-request-access',
   templateUrl: './request-access.component.html',
-  styleUrls: ['./request-access.component.scss']
+  styleUrls: ['./request-access.component.scss'],
+  providers: [MessageService]
+
 })
 export class RequestAccessComponent implements OnInit {
   public signInForm: FormGroup
-  uploadedFile: any = File;
 
   constructor(
     private externalStudent: ExternalStudentsService,
+    private messageService: MessageService
   ) {
     this.signInForm = new FormGroup({
       name: new FormControl('',[Validators.required]),
       lastname: new FormControl('',[Validators.required]),
-      email: new FormControl('',[Validators.required,Validators.email])
+      email: new FormControl('',[Validators.required,Validators.email]),
+      document: new FormControl('',[Validators.required])
     })
   }
 
   ngOnInit(): void {
   }
 
-  onBasicUpload(event: any) {
-    this.uploadedFile = event.getFile()
-
-  }
   public get name() : AbstractControl | null {
     return this.signInForm.get('name');
   }
@@ -51,10 +51,12 @@ export class RequestAccessComponent implements OnInit {
     requestAux.name = this.signInForm.value["name"]
     requestAux.lastname =  this.signInForm.value["lastname"]
     requestAux.email = this.signInForm.value["email"]
-    requestAux.justification = this.uploadedFile
+    requestAux.justification = this.signInForm.value["document"]
     console.log("SOLI", requestAux)
     this.externalStudent.sendRequest(requestAux).subscribe(r=>{
       console.log("ver sms", r)
+      this.messageService.add({key: 'tl', severity: 'info', summary: 'File Uploaded', detail: ''});
     })
   }
+
 }

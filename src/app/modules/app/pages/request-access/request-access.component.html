@@ -30,11 +30,14 @@
           </div>
           <div class="form-item form-item-field-email">
             <div class="form-label form-signin-label-field-email">
-              Justificación
+              Justificación (pdf)
             </div>
-            <p-fileUpload mode="basic" (onUpload)="onBasicUpload($event)"  chooseLabel="Buscar"></p-fileUpload>
-
+            <div>
+              <input class="inputfile" type="file" id="file" name="file" accept="application/pdf" formControlName="document">
+              <label for="file">Selecciona un archivo</label>
+            </div>
           </div>
+
           <input class="submit-form" type="submit" [disabled] = "signInForm.invalid" value="Enviar Solicitud" >
         </form>
 
@@ -51,4 +54,6 @@
       </div>
     </div>
   </div>
+  <p-toast position="top-left" key="tl"></p-toast>
+
 </div>
