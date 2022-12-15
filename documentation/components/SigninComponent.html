@@ -139,7 +139,7 @@
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#signInForm" >signInForm</a>
+                                <a href="#signInForm" >requestForm</a>
                             </li>
                         </ul>
                     </td>
@@ -221,51 +221,51 @@
                                         <tbody>
                                                 <tr>
                                                         <td>router</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>authService</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../injectables/AuthService.html" target="_self" >AuthService</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>matDialog</td>
-                                                  
+
                                                         <td>
                                                                     <code>MatDialog</code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                                 <tr>
                                                         <td>profileService</td>
-                                                  
+
                                                         <td>
                                                                         <code><a href="../injectables/ProfileService.html" target="_self" >ProfileService</a></code>
                                                         </td>
-                                                  
+
                                                     <td>
                                                             No
                                                     </td>
-                                                    
+
                                                 </tr>
                                         </tbody>
                                     </table>
@@ -281,7 +281,7 @@
 
 
     <section>
-    
+
     <h3 id="methods">
         Methods
     </h3>
@@ -400,7 +400,7 @@
     </table>
 </section>
     <section>
-    
+
     <h3 id="inputs">
         Properties
     </h3>
@@ -438,7 +438,7 @@
                     <a name="signInForm"></a>
                     <span class="name">
                             <span class="modifier">Public</span>
-                        <span ><b>signInForm</b></span>
+                        <span ><b>requestForm</b></span>
                         <a href="#signInForm"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -533,7 +533,7 @@ import { CredentialResponse, PromptMomentNotification } from &#x27;google-one-ta
 })
 export class SigninComponent implements OnInit {
 
-  public signInForm: FormGroup
+  public requestForm: FormGroup
   private googleAuthServiceInitialized:boolean
 
   constructor(
@@ -544,7 +544,7 @@ export class SigninComponent implements OnInit {
   )
   {
     this.googleAuthServiceInitialized &#x3D; false;
-    this.signInForm &#x3D; new FormGroup({
+    this.requestForm &#x3D; new FormGroup({
       email: new FormControl(&#x27;&#x27;,[Validators.required,Validators.email]),
       password: new FormControl(&#x27;&#x27;,[Validators.required])
     })
@@ -577,15 +577,15 @@ export class SigninComponent implements OnInit {
     }
   }
   public get email() : AbstractControl | null {
-    return this.signInForm.get(&#x27;email&#x27;);
+    return this.requestForm.get(&#x27;email&#x27;);
   }
   public get password() : AbstractControl | null {
-    return this.signInForm.get(&#x27;password&#x27;);
+    return this.requestForm.get(&#x27;password&#x27;);
   }
 
 
   submitSignIn():void{
-    this.authService.userSignIn(this.signInForm.value[&quot;email&quot;]).subscribe(data &#x3D;&gt;{
+    this.authService.userSignIn(this.requestForm.value[&quot;email&quot;]).subscribe(data &#x3D;&gt;{
     })
   }
 }
@@ -604,7 +604,7 @@ export class SigninComponent implements OnInit {
         &lt;div class&#x3D;&quot;header-form-signin&quot;&gt;
           Iniciar Sesión
         &lt;/div&gt;
-        &lt;form class&#x3D;&quot;fields-form-signin&quot; [formGroup] &#x3D; &quot;signInForm&quot; (ngSubmit) &#x3D; &quot;submitSignIn()&quot;&gt;
+        &lt;form class&#x3D;&quot;fields-form-signin&quot; [formGroup] &#x3D; &quot;requestForm&quot; (ngSubmit) &#x3D; &quot;submitSignIn()&quot;&gt;
           &lt;div class&#x3D;&quot;form-item form-item-field-email&quot;&gt;
             &lt;div class&#x3D;&quot;form-label form-signin-label-field-email&quot;&gt;
               Correo
@@ -619,7 +619,7 @@ export class SigninComponent implements OnInit {
             &lt;input class&#x3D;&quot;form-input-text form-signin-input-field-password&quot; type&#x3D;&quot;password&quot; formControlName&#x3D;&quot;password&quot; id&#x3D;&quot;password&quot; placeholder&#x3D;&quot;Ingresa tu contraseña&quot;&gt;
             &lt;span class&#x3D;&quot;invalid-field&quot; *ngIf &#x3D; &quot;password &amp;&amp; password.invalid &amp;&amp; password.touched&quot;&gt;El contenido ingresado es incorrecto&lt;/span&gt;
           &lt;/div&gt;
-          &lt;input class&#x3D;&quot;submit-form&quot; type&#x3D;&quot;submit&quot; [disabled] &#x3D; &quot;signInForm.invalid&quot; value&#x3D;&quot;Iniciar Sesión&quot;&gt;
+          &lt;input class&#x3D;&quot;submit-form&quot; type&#x3D;&quot;submit&quot; [disabled] &#x3D; &quot;requestForm.invalid&quot; value&#x3D;&quot;Iniciar Sesión&quot;&gt;
         &lt;/form&gt;
 
         &lt;div id&#x3D;&quot;signInDiv&quot;&gt;
@@ -771,14 +771,14 @@ export class SigninComponent implements OnInit {
         </div>
     </div>
 
-    
+
 </div>
 
 <script src="../js/libs/vis.min.js"></script>
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!--<app-tooltip-white-small></app-tooltip-white-small><app-tooltip-red-small></app-tooltip-red-small>--><div class="container-signin">  <div class="container-form-signin">    <div class="body-form-signin">        <div class="icon-form-signin">        </div>        <div class="header-form-signin">          Iniciar Sesión        </div>        <form class="fields-form-signin" [formGroup] = "signInForm" (ngSubmit) = "submitSignIn()">          <div class="form-item form-item-field-email">            <div class="form-label form-signin-label-field-email">              Correo            </div>            <input class="form-input-text form-signin-input-field-email" type="email" formControlName="email" id="email" placeholder="Ingresa tu correo">            <span class="invalid-field" *ngIf = "email && email.invalid && email.touched">El correo ingresado es incorrecto</span>          </div>          <div class="form-item form-item-field-password">            <div class="form-label form-signin-label-field-password">              Contraseña            </div>            <input class="form-input-text form-signin-input-field-password" type="password" formControlName="password" id="password" placeholder="Ingresa tu contraseña">            <span class="invalid-field" *ngIf = "password && password.invalid && password.touched">El contenido ingresado es incorrecto</span>          </div>          <input class="submit-form" type="submit" [disabled] = "signInForm.invalid" value="Iniciar Sesión">        </form>        <div id="signInDiv">        </div>        <div class="form-label no-account">          ¿Aún no estás registrado?        </div>        <div class="google-form-signup" routerLink = \'/registrar-cuenta\'>          Registrarse        </div>    </div>  </div>  <div class="container-banner-signin-over">    <div class="container-banner-signin-under">      <div class="banner-signin-under-text-container">        <div class="banner-big-text">Oficina de Movilidad Becas y Pasantías </div>        <div class="banner-small-text">Accede a la plataforma de la Oficina de Movilidad Becas y pasantías y postula a la convocatoria que se adecue a tu perfil</div>      </div>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!--<app-tooltip-white-small></app-tooltip-white-small><app-tooltip-red-small></app-tooltip-red-small>--><div class="container-signin">  <div class="container-form-signin">    <div class="body-form-signin">        <div class="icon-form-signin">        </div>        <div class="header-form-signin">          Iniciar Sesión        </div>        <form class="fields-form-signin" [formGroup] = "requestForm" (ngSubmit) = "submitSignIn()">          <div class="form-item form-item-field-email">            <div class="form-label form-signin-label-field-email">              Correo            </div>            <input class="form-input-text form-signin-input-field-email" type="email" formControlName="email" id="email" placeholder="Ingresa tu correo">            <span class="invalid-field" *ngIf = "email && email.invalid && email.touched">El correo ingresado es incorrecto</span>          </div>          <div class="form-item form-item-field-password">            <div class="form-label form-signin-label-field-password">              Contraseña            </div>            <input class="form-input-text form-signin-input-field-password" type="password" formControlName="password" id="password" placeholder="Ingresa tu contraseña">            <span class="invalid-field" *ngIf = "password && password.invalid && password.touched">El contenido ingresado es incorrecto</span>          </div>          <input class="submit-form" type="submit" [disabled] = "requestForm.invalid" value="Iniciar Sesión">        </form>        <div id="signInDiv">        </div>        <div class="form-label no-account">          ¿Aún no estás registrado?        </div>        <div class="google-form-signup" routerLink = \'/registrar-cuenta\'>          Registrarse        </div>    </div>  </div>  <div class="container-banner-signin-over">    <div class="container-banner-signin-under">      <div class="banner-signin-under-text-container">        <div class="banner-big-text">Oficina de Movilidad Becas y Pasantías </div>        <div class="banner-small-text">Accede a la plataforma de la Oficina de Movilidad Becas y pasantías y postula a la convocatoria que se adecue a tu perfil</div>      </div>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AcademicInfoComponent', 'selector': 'app-academic-info'},{'name': 'AdminBodyComponent', 'selector': 'admin-body'},{'name': 'AdminHomeComponent', 'selector': 'app-admin-home'},{'name': 'AdminLoginComponent', 'selector': 'app-admin-login'},{'name': 'ApplyComponent', 'selector': 'app-apply'},{'name': 'BodyComponent', 'selector': 'app-body'},{'name': 'Button', 'selector': 'app-button'},{'name': 'ButtonCustomized', 'selector': 'app-button-customized'},{'name': 'ButtonCustomizedComponent', 'selector': 'app-button-customized'},{'name': 'ButtonFormComponent', 'selector': 'app-button-form'},{'name': 'ConvocatoriaBodyComponent', 'selector': 'app-convocatoria-body'},{'name': 'DialogErrorEmailComponent', 'selector': 'app-dialog-error-email'},{'name': 'DialogYesNoComponent', 'selector': 'app-dialog-yes-no'},{'name': 'ExternalStudentComponent', 'selector': 'app-external-student'},{'name': 'FillFileComponent', 'selector': 'app-fill-file'},{'name': 'GeneralInfoComponent', 'selector': 'app-general-info'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'OfHomeCarouselNews', 'selector': 'app-of-home-carousel-news'},{'name': 'OfHomeCarouselNewsComponent', 'selector': 'app-of-home-carousel-news'},{'name': 'OfHomeTable', 'selector': 'app-of-table'},{'name': 'OfHomeTableComponent', 'selector': 'app-of-home-table'},{'name': 'OfHomeTablePrograms', 'selector': 'app-of-table-programs'},{'name': 'OfHomeTableProgramsComponent', 'selector': 'app-of-home-table-programs'},{'name': 'RequestAccessComponent', 'selector': 'app-request-access'},{'name': 'SearchBar', 'selector': 'app-search-bar'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'SidenavItemComponent', 'selector': 'app-sidenav-item'},{'name': 'SidenavUserInfoComponent', 'selector': 'app-sidenav-user-info'},{'name': 'SigninComponent', 'selector': 'app-signin'},{'name': 'SignupComponent', 'selector': 'app-signup'},{'name': 'SteperComponent', 'selector': 'app-steper'},{'name': 'TimelineComponent', 'selector': 'app-detail'},{'name': 'TooltipRedComponent', 'selector': 'app-tooltip-red'},{'name': 'TooltipRedSmallComponent', 'selector': 'app-tooltip-red-small'},{'name': 'TooltipWhiteSmallComponent', 'selector': 'app-tooltip-white-small'},{'name': 'UnsaAdministrativeComponent', 'selector': 'app-unsa-administrative'},{'name': 'UnsaStudentComponent', 'selector': 'app-unsa-student'},{'name': 'UnsaTeacherComponent', 'selector': 'app-unsa-teacher'},{'name': 'UploadFilesComponent', 'selector': 'app-upload-files'},{'name': 'uploadPhotoComponent', 'selector': 'app-upload-photo'},{'name': 'UserBodyComponent', 'selector': 'app-user-body'},{'name': 'UserDataPostulationBodyComponent', 'selector': 'app-user-data-postulation-body'},{'name': 'UserProfileComponent', 'selector': 'app-user-profile'},{'name': 'VerifyDataComponent', 'selector': 'app-verify-data'},{'name': 'WelcomeComponent', 'selector': 'app-welcome'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'SigninComponent'};

@@ -1,44 +1,46 @@
-<div class="container-signin">
-  <div class="container-form-signin">
+<div class="container">
+  <div class="container-form">
     <div class="body-form-signin">
-        <div class="icon-form-signin">
-        </div>
         <div class="header-form-signin">
           Solicitar Acceso
         </div>
-        <form class="fields-form-signin" [formGroup] = "signInForm" (ngSubmit) = "submitSignIn()">
-          <div class="form-item form-item-field-email">
+        <form class="fields-form" [formGroup] = "requestForm" (ngSubmit) = "submitSignIn()">
+          <div class="form-item ">
             <div class="form-label form-signin-label-field-email">
               Nombre
             </div>
             <input pInputText type="text" formControlName="name" id="name" placeholder="Ej. Kelvin">
             <span class="invalid-field" *ngIf = "name && name.invalid && name.touched">Debe ingresar un valor correcto</span>
           </div>
-          <div class="form-item form-item-field-lastname">
+          <div class="form-item ">
             <div class="form-label form-signin-label-field-lastname">
               Apellidos
             </div>
             <input pInputText type="lastname" formControlName="lastname" id="lastname" placeholder="Ej. Pérez García">
             <span class="invalid-field" *ngIf = "lastname && lastname.invalid && lastname.touched">Debe ingresar un valor correcto</span>
           </div>
-          <div class="form-item form-item-field-email">
+          <div class="form-item ">
             <div class="form-label form-signin-label-field-email">
               Correo
             </div>
             <input pInputText type="email" formControlName="email" id="email" placeholder="Ej example@gmail.com">
             <span class="invalid-field" *ngIf = "email && email.invalid && email.touched">El correo ingresado es incorrecto</span>
           </div>
-          <div class="form-item form-item-field-email">
+          <div class="form-item document">
             <div class="form-label form-signin-label-field-email">
               Justificación (pdf)
             </div>
-            <div>
-              <input class="inputfile" type="file" id="file" name="file" accept="application/pdf" formControlName="document">
-              <label for="file">Selecciona un archivo</label>
-            </div>
+            <div class="input-file-container">
+                <input class="input-file" type="file" id="file" name="file"
+                       accept="application/pdf"
+                       (input)="change($event)"
+                       formControlName="document">
+                <label tabindex="0" for="file" class="input-file-trigger">Selecciona un archivo</label>
+              </div>
+            <div class="file-return">{{text}}</div>
           </div>
 
-          <input class="submit-form" type="submit" [disabled] = "signInForm.invalid" value="Enviar Solicitud" >
+          <input class="submit-form" type="submit" [disabled] = "requestForm.invalid" value="Enviar Solicitud" >
         </form>
 
         <div class="google-form-signup" routerLink = '/registrar-cuenta'>
@@ -54,6 +56,6 @@
       </div>
     </div>
   </div>
-  <p-toast position="top-left" key="tl"></p-toast>
+  <p-toast key="tl"></p-toast>
 
 </div>
