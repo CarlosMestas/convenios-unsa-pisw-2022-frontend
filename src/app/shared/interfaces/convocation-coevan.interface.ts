@@ -7,7 +7,6 @@ import { IRequirementResponse } from './requirement.interface';
 
 export interface IConvocationCoevanResponseDetail{
     id:number,
-    convocation:IConvocationResponseDetail,
     academicNetwork:IAcademicNetworkResponse,
     university:IUniversityResponse,
     documents:IDocumentResponseDetail[],

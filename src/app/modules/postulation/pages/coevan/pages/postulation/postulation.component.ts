@@ -91,9 +91,10 @@ export class PostulationComponent implements OnInit, OnDestroy {
     }
 
     savePostulation(){
-
+      let userId = Number(localStorage.getItem(AuthHelper.USER_ID_ENCODED))
       let tempData:IPostulationCoevan ={
         photo: this.picture,
+        id_user:Number(userId),
         id_convocation: Number(this.convocationId),
         lastname: this.formPostulation.value["lastname"],
         name: this.formPostulation.value["name"],
@@ -128,6 +129,7 @@ export class PostulationComponent implements OnInit, OnDestroy {
 
       formData.append("photo",tempData.photo,tempData.photo.name)
       formData.append("id_convocation",tempData.id_convocation.toString())
+      formData.append("id_user",tempData.id_user.toString())
       formData.append("lastname",tempData.lastname)
       formData.append("name",tempData.name)
       formData.append("birth_date",tempData.birth_date)

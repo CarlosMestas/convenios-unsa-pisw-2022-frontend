@@ -83,6 +83,7 @@ export interface IPostulationCoevanStatusResponse{
 export interface IPostulationCoevan{
   photo:File,
   id_convocation:number,
+  id_user:number,
   lastname:string,
   name:string,
   birth_date:string,

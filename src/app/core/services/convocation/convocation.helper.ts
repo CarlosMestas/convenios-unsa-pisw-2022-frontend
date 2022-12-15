@@ -35,29 +35,6 @@ export class ConvocationHelper{
   errorCoevan(error:HttpErrorResponse){
     let dataTest:IConvocationCoevanResponseDetail={
       id: 1,
-      convocation: {
-        id:1,
-        title:"Convocatoria Ordinaria Estudiantes RPU San Marcos 2023-1",
-        type:{
-          id:1,
-          name:"Convocatoria Ordinaria Estudiantes Van",
-          acronym:ENUMConvocationTypeAcronym.COEVAN
-        },
-        correlative:"09192022-COEVAN",
-        modality:{
-          id:1,
-          name:"Virtual"
-        },
-        description:"Descripción de la convocatoria",
-        start_date:"09/19/2022",
-        end_date:"09/19/2022",
-        important_notes:"De cambiar las condiciones de la movilidad o intercambio académico, considerar el oficio 914-2022-SG, que al pie de la letra señala: “… En sesión de Consejo Universitario del 18 de abril del 2022, considerando el aún contexto actual por la emergencia sanitaria por el COVID 19, acordó que las movilidades académicas e intercambios organizados por su dependencia, para el semestre académico 2022-B, se realicen bajo la modalidad virtual; sin perjuicio de ello, también se acordó que las referidas actividades podrían realizarse de forma presencial, previa evaluación de las condiciones sanitarias y de bioseguridad; así como la autorización específica para el evento; y en caso se ponga en riesgo la protección a la vida y a la salud de los estudiantes agustinos y foráneos, se restrinja dicha presencialidad…”",
-        conv_state:{
-          id:1,
-          name:"En proceso",
-          description:"Esta convocatoria está en proceso"
-        }
-      },
       academicNetwork: {
         id: 1,
         name:"Red peruana de Universidades",
