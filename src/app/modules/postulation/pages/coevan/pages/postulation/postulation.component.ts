@@ -374,6 +374,7 @@ export class PostulationComponent implements OnInit, OnDestroy {
           }
         )
         console.log("control:", this.formPostulation.controls)
+        this.postulationCourses=[]
         data.data.courses.forEach((value,index)=>{
           this.postulationCourses.push({
             order:index,

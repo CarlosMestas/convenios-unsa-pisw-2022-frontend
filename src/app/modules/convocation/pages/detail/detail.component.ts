@@ -1,3 +1,4 @@
+import { IConvocationResponseDetail } from './../../../../shared/interfaces/convocation.interface';
 import { AppRoutingModule } from './../../../app/app.routes';
 import { IDocument } from '../../../../shared/interfaces/documents-convocation/document.interface';
 import { IEventType } from '../../../../shared/interfaces/convocation/event-type.interface';
@@ -12,7 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/ngrx/app.state';
 import { IConvocation } from 'src/app/shared/interfaces/convocation.interface';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Component, Input, OnInit } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 import { ConvocatoriaRoutingModule } from '../../convocatoria.routes';
@@ -24,7 +25,7 @@ import { convocationDocumentBannerStateSelector } from 'src/app/ngrx/selectors/c
 })
 export class DetailComponent implements OnInit {
   id: number;
-  convocation$: Observable<IConvocation | null>;
+  convocation$: Observable<IConvocationResponseDetail | null>;
   requirements$: Observable<IRequirement[]>;
   banner$: Observable<string>;
   events$: Observable<IEventType[]>;
@@ -63,7 +64,7 @@ export class DetailComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
-    this.convocation$ = new Observable<IConvocation>();
+    this.convocation$ = new Observable<IConvocationResponseDetail>();
     this.requirements$ = new Observable<IRequirement[]>();
     this.events$ = new Observable<IEventType[]>();
     this.banner$ = new Observable<string>();
@@ -71,7 +72,10 @@ export class DetailComponent implements OnInit {
     this.id = activatedRoute.parent?.snapshot.params['id'];
   }
   ngOnInit() {
-    this.convocation$ = this.store.select(convocationConvocationStateSelector);
+    this.convocation$ = this.store.select(convocationConvocationStateSelector).pipe(map(data=>{
+
+      return data
+    }));
     this.requirements$ = this.store.select(
       convocationRequirementsStateSelector
     );

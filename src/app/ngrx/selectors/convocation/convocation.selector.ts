@@ -1,8 +1,6 @@
 import { IConvocationState } from './../../../shared/interfaces/convocation/convocation-state.interface';
 import { IAppState } from 'src/app/ngrx/app.state';
 import { createSelector } from '@ngrx/store';
-import { IDocument } from 'src/app/shared/interfaces/documents-convocation/document.interface';
-import { ENUMDocumentType } from 'src/app/shared/enum/document-type.enum';
 
 
 export const convocationStateSelector = (state:IAppState) =>  state.convocation

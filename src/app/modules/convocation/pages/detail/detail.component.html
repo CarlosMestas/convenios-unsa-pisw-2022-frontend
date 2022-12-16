@@ -8,8 +8,8 @@
       <app-button-form bordercolor = "#FFFFFF" text = "Postular" cdkFocusInitial (click)="apply()"></app-button-form>
     </div>
     <div class="convocatoria-image-container">
-      <div class="convocatoria-image-container" *ngIf="banner$ | async as banner">
-        <img [src]="banner" class="image" alt="convocation image">
+      <div class="convocatoria-image-container">
+        <img [src]="convocation.banner" class="image" alt="convocation image">
         <!-- <img src="https://www.unsa.edu.pe/wp-content/uploads/2022/06/DIFUSION-CONVOCATORIA-USTAMED-2022-2-e1654808685465-878x426.jpg" class="image" alt="convocation image"> -->
 
         <div class="gray-layer">
