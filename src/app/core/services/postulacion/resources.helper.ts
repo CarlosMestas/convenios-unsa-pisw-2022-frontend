@@ -24,7 +24,7 @@ export class ResourcesHelper {
     })
   }
 
-  errorPDF(error:HttpErrorResponse){
+  errorFile(error:HttpErrorResponse){
     let errorMessage = ''
     if(error.error instanceof ErrorEvent){
       errorMessage = error.error.message

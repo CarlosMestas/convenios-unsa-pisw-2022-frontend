@@ -545,9 +545,7 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
 
 
-    let text = "La autoridad abajo firmante avala la postulación del estudiante Agustino: <STUDENT_LASTNAME>, <STUDENT_NAME>, para que efectúe el semestre académico <SEMESTER>, a través del programa de intercambio estudiantil <ACADEMIC_NETWORK_ACRONYM> en la <UNIVERSITY_TARGET>, a desarrollarse durante el semestre académico <SEMESTER>, tras considerar que la Movilidad Académica a efectuar será "+
-    " de gran utilidad para su desarrollo profesional, y un significativo aporte para su perfil de egresado."
-    let formatedText = GenDocumentCoevanHelper.replaceTagsAval(text, testData)
+    let formatedText = GenDocumentCoevanHelper.replaceTagsAval(testData.text_aval, testData)
 
 
     this.setFontPrimaryValue(doc)
@@ -599,10 +597,8 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     tempCellHeight = 0
 
-    let textRegCoursesResp = "Como responsable académico de la facultad <FACULTY>/<PROFESSIONAL_PROGRAM> de la UNSA, doy mi conformidad de los cursos a llevarse de manera <MODALITY> para efectos de reconocimiento o capacitación, siempre y cuando el estudiante los apruebe en la <UNIVERSITY_TARGET>, donde efectuará movilidad académica <MODALITY> en el Marco de la <ACADEMIC_NETWORK_NAME> – <ACADEMIC_NETWORK_ACRONYM>"
 
-
-    let coursesRespFormated:string = GenDocumentCoevanHelper.replaceTagsCourseResponsible(textRegCoursesResp,testData)
+    let coursesRespFormated:string = GenDocumentCoevanHelper.replaceTagsCourseResponsible(testData.text_courses,testData)
 
     doc.setLineHeightFactor(2)
     this.setFontPrimaryValue(doc)
@@ -676,23 +672,8 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     // -------------------- Body Text Declaración de compromiso Value -------------------------
 
 
-    let tempDecComp = "Acepto las condiciones del <ACADEMIC_NETWORK_NAME> <ACADEMIC_NETWORK_ACRONYM> <SEMESTER>, y me comprometo a cumplir las siguientes cláusulas, en caso de ser seleccionado: \n"+
 
-    "Comunicar en forma expresa (email), la aceptación de la beca a la <UNIVERSITY_TARGET>-<ACADEMIC_NETWORK_ACRONYM> dentro del plazo que se indique en cada convocatoria. \n"+
-
-    "Realizar las actividades académicas que, en el marco del plan de estudios, recomiende el Coordinador de la carrera correspondiente, y aceptar todas las actuaciones de seguimiento, control, y evaluación establecidas por la <UNIVERSITY_TARGET>-<ACADEMIC_NETWORK_ACRONYM>. \n"+
-
-    "Presentarme con el Coordinador del Programa de Intercambio <MODALITY> de la universidad de destino-<ACADEMIC_NETWORK_ACRONYM> y presentar toda la documentación requerida para mi inscripción como alumno de la universidad de destino-<ACADEMIC_NETWORK_ACRONYM>.\n"+
-
-    "En caso de un cambio en el contrato académico original, enviar por correo electrónico al coordinador UNSA, los datos de las nuevas materias a cursar en la universidad de destino (actualizado y avalado), para que se considere su reconocimiento o convalidación. Se establece para este trámite un plazo no mayor de 30 días transcurridos después del inicio de clases en la universidad de destino. Luego de ello, cualquier trámite de retiro de curso, cambio de curso u otra modificación para la regularización académica, será considerado por la OUCCRIBP el trámite como extemporáneo, debiendo asumir el estudiante las consecuencias académicas del caso.\n" +
-
-    "Completado el Intercambio Académico <MODALITY>, el estudiante deberá presentar un informe escrito a la UNSA, dentro de los 30 días de culminado el programa, con copia a la Escuela Profesional. \n"+
-
-    "Aceptar y respetar las normas establecidas en la Universidad de destino <ACADEMIC_NETWORK_ACRONYM>.\n"+
-
-    "Autorizo el tratamiento de mis datos personales con el objeto de alcanzar la finalidad, materia del concurso y que pueden ser transferidos a otras áreas de la UNSA e Instituciones Públicas (MINEDU, SUNEDU, etc.) de conformidad con las disposiciones contenidas en la Ley Nro. 29733, su Reglamento, Normas y Modificatorias."
-
-    let decCompFormated:string = GenDocumentCoevanHelper.replaceTagsDecComp(tempDecComp, testData)
+    let decCompFormated:string = GenDocumentCoevanHelper.replaceTagsDecComp(testData.text_commitment, testData)
 
     doc.setLineHeightFactor(2)
     this.setFontPrimaryValue(doc)

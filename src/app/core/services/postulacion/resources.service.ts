@@ -1,5 +1,5 @@
 import { IHttpServiceResponse } from './../../../shared/interfaces/transactions/transaction-response.interface';
-import { EMPTY } from 'rxjs';
+import { EMPTY, of } from 'rxjs';
 import { AppRoutingModule } from './../../../modules/app/app.routes';
 
 import { ResourcesHelper } from './resources.helper';
@@ -21,20 +21,24 @@ export class ResourcesService extends ResourcesHelper{
 
   getImageToFile(url: string):Observable<
   IHttpServiceResponse<File>>{
+
     const response = {
       error:false,
       msg:'',
       data: {} as File
     };
-    return from(fetch(url)
-    .then(resp=>resp.blob())
-    .then(blob=>{
 
-      const file = new File([blob],'pdf',{type:blob.type})
-
-      response.data= file
-      return response
-    }))
+    return this.http.get(url,{observe:'response',responseType:'blob'}).pipe(
+      map(data=>{
+        console.log("file test:", data)
+        let name = data.url?.split('/')
+        const file = new File([data.body!],name![name!.length-1],{type:data.body?.type})
+        console.log("file test:", file)
+        response.data= file
+        return response
+      }),
+      catchError(this.errorFile)
+    )
   }
 
   getPDFToFile(url: string):Observable<
@@ -53,7 +57,7 @@ export class ResourcesService extends ResourcesHelper{
         response.data= file
         return response
       }),
-      catchError(this.errorPDF)
+      catchError(this.errorFile)
     )
   }
   downloadDocument(url: string):Observable<

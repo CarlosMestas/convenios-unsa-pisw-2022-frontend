@@ -10,9 +10,9 @@ export class PostulationHelper {
   public isProduction = environment.production
 
   protected static API_ROUTES = {
-    GET_POSTULATION:"postulations",
+    GET_POSTULATION:"postulation",
     POST_POSTULATION:"create-postulation-coevan",
-    GET_POSTULATION_CONVOCATION_USER: "postulation-convocation-user"
+    GET_POSTULATION_CONVOCATION_USER: "postulation-coevan-convocation-user"
   }
 
   constructor(
@@ -22,6 +22,7 @@ export class PostulationHelper {
   error(error:HttpErrorResponse){
     let dataTest:IPostulationCoevanResponseDetail ={
       id_convocation: 1,
+      id_user:1,
       id: 1,
       photo:'https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       lastname: 'Pérez',

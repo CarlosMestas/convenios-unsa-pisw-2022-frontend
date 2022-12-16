@@ -1,4 +1,3 @@
-import { SteperComponent } from '../../shared/components/steper/steper.component';
 import { NgModule } from '@angular/core';
 import {AccordionModule} from 'primeng/accordion';
 import {FileUploadModule} from 'primeng/fileupload';

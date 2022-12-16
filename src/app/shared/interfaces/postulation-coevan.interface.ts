@@ -38,12 +38,16 @@ export interface IPostulationCoevanDocFormat {
   semester:ISemesterResponse,
   university_target:IUniversityResponse,
   academic_network:IAcademicNetworkResponse,
-  courses:IPostulationCoevanCourse[]
+  courses:IPostulationCoevanCourse[],
+  text_aval:string,
+  text_courses:string,
+  text_commitment:string
 }
 
 export interface IPostulationCoevanResponseDetail{
   id_convocation:number,
   id:number,
+  id_user:number,
   photo:string,
   lastname:string,
   name:string,

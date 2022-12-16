@@ -108,6 +108,7 @@ export class ConvocationService extends ConvocationHelper{
     return this.http.get<IHttpResponse<IConvocationCoevanResponseDetail>>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.GET_CONVOCATION_COEVAN,{params})
     .pipe(
       map( resp =>{
+        console.log("convocation coevan detail: ",resp)
         response.data = resp.data;
         return response;
       }),

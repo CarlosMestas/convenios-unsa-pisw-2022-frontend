@@ -410,7 +410,7 @@
             <div class="title">{{document.type.name}}</div>
             <div class="card-content">
               <div class="item-container" >
-                <div class="item-circle-number">
+                <div class="item-circle-number" [ngStyle]="{background:'#daad19'}">
                   <span class="icon-container" (click)="downloadDocument(document)">
                     <i class="icon pi pi-cloud-download">
                     </i>
@@ -420,6 +420,39 @@
                   <blockquote>
                     <i>
                       {{document.description}}
+                    </i>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-header-container" *ngIf="convocationCoevan?.documents">
+      <div class="sub-header-title">
+        Links a Considerar
+      </div>
+      <div class="sub-header-body">
+        <div class="item-sub-header">
+
+          <div class="card-container" *ngFor="let link of convocationCoevan?.links">
+            <div class="title">{{link.type.name}}</div>
+            <div class="card-content">
+              <div class="item-container" >
+                <div class="item-circle-number" [ngStyle]="{background:'#2571ff'}">
+                  <span class="icon-container" (click)="downloadDocument(link)">
+                    <i class="icon pi pi-globe">
+                    </i>
+                  </span>
+                </div>
+                <div class="item-description">
+                  <blockquote>
+                    <i>
+                      {{link.description}}
                     </i>
                   </blockquote>
                 </div>
@@ -475,9 +508,9 @@
     </div>
 
     <div class="actions">
-      <button (click)="generateDoc()" pButton pRipple type="button"  icon="pi pi-sign-out" class="p-button-rounded p-button-secondary" pTooltip="Regresar"></button>
+      <button (click)="goBack()" pButton pRipple type="button"  icon="pi pi-sign-out" class="p-button-rounded p-button-secondary" pTooltip="Regresar"></button>
       <button (click)="generateDoc()" pButton pRipple type="button"  icon="pi pi-cloud-download" class="p-button-rounded p-button-warning" pTooltip="Descargar"></button>
       <button (click)="savePostulation()" pButton pRipple type="button"  icon="pi pi-save" class="p-button-rounded p-button-primary" pTooltip="Guardar"></button>
-      <button (click)="generateDoc()" pButton pRipple type="button"  icon="pi pi-send" class="p-button-rounded p-button-success" pTooltip="Enviar"></button>
-      <button (click)="generateDoc()" pButton pRipple type="button"  icon="pi pi-trash" class="p-button-rounded p-button-danger" pTooltip="Anular"></button>
+      <button (click)="sendPostulation()" pButton pRipple type="button"  icon="pi pi-send" class="p-button-rounded p-button-success" pTooltip="Enviar"></button>
+      <button (click)="deletePostulation()" pButton pRipple type="button"  icon="pi pi-trash" class="p-button-rounded p-button-danger" pTooltip="Anular"></button>
     </div>

@@ -56,7 +56,7 @@ export class BodyComponent implements OnInit, OnDestroy {
   /**
 	 * On Destroy
 	 */
-	ngOnDestroy() {
+	ngOnDestroy():void {
 		this.unsubscribe.forEach(sb => sb.unsubscribe());
 	}
 }

@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './../../../../../app/app.routes';
 import { IConvocationResponseDetail } from './../../../../../../shared/interfaces/convocation.interface';
 import { IDocumentResponseDetail } from './../../../../../../shared/interfaces/convocation-document.interface';
 import { ConvocationService } from './../../../../../../core/services/convocation/convocation.service';
@@ -10,7 +11,7 @@ import { IPostulationCoevanCourse } from '../../../../../../shared/interfaces/po
 import { ProgramaProfesionalService } from '../../../../../../core/services/programa-profesional/programa-profesional.service';
 import { IAppState } from 'src/app/ngrx/app.state';
 import { profileImageStateSelector } from '../../../../../../ngrx/selectors/profile/profile.selector';
-import { mergeMap, Subscription } from 'rxjs';
+import { mergeMap, Subscription, of } from 'rxjs';
 import { FacultiesService } from 'src/app/core/services/faculties/faculties.service';
 import { map } from 'rxjs';
 import { Observable } from 'rxjs';
@@ -18,7 +19,7 @@ import { Validators } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import { IFacultyResponse } from 'src/app/shared/interfaces/convocation/faculties.interface';
 import { IProfessionalProgramResponse } from 'src/app/shared/interfaces/professional-program.interface';
 import { ICycleResponse } from 'src/app/shared/interfaces/cycle.interface';
@@ -51,7 +52,7 @@ export class PostulationComponent implements OnInit, OnDestroy {
     picture$:Observable<File[]>
     picture:File
     postulationDocument$:Observable<File[]>
-    postulationDocument:File
+    postulationDocument:File|undefined
     userImage$:Observable<string|undefined>;
 //POSTULATION
 
@@ -91,7 +92,9 @@ export class PostulationComponent implements OnInit, OnDestroy {
       this.postulationCourses.splice(row,1)
       this.numerationCourses--
     }
-
+    /**
+     *  to save a postulation but not to send to be review
+     */
     savePostulation(){
       let userId = Number(localStorage.getItem(AuthHelper.USER_ID_ENCODED))
       let tempData:IPostulationCoevan ={
@@ -179,11 +182,19 @@ export class PostulationComponent implements OnInit, OnDestroy {
       })
 
     }
+
+    /**
+     * send postulation to be reviewed
+     */
     sendPostulation(){
       if(this.id !=null && this.id != undefined){
 
       }
     }
+
+    /**
+     * Remove postulation
+     */
     deletePostulation(){
 
     }
@@ -197,7 +208,8 @@ export class PostulationComponent implements OnInit, OnDestroy {
         private genDocumentCoevanService: GenDocumentCoevanService,
         private resoucesService:ResourcesService,
         private convocationService:ConvocationService,
-        private store:Store<IAppState>
+        private store:Store<IAppState>,
+        private router:Router
     ) {
 
       this.convocationCoevan = {} as IConvocationCoevanResponseDetail
@@ -212,8 +224,8 @@ export class PostulationComponent implements OnInit, OnDestroy {
       this.picture$ = new Observable<File[]>()
       this.picture = new File([],"")
 
-      this.postulationDocument$ = new Observable<File[]>()
-      this.postulationDocument = new File([],"")
+      this.postulationDocument$ = of([])
+      this.postulationDocument = undefined
 
       this.postulationCourses = [
         {
@@ -326,6 +338,7 @@ export class PostulationComponent implements OnInit, OnDestroy {
     })
 
     if(this.id !=undefined && this.id != null){
+
       this.postulationService.getPostulationById(this.id).subscribe(data=>{
 
         this.formPostulation.patchValue(
@@ -379,23 +392,26 @@ export class PostulationComponent implements OnInit, OnDestroy {
         }))
 
         this.postulationDocument$ = this.resoucesService.getPDFToFile(data.data.postulation_document).pipe(map(data=>{
-
           if(!data.error){
             this.postulationDocument = data.data
             return [data.data]
           }else{
             return []
           }
-
         }))
-
       })
 
     }else{
       this.picture$ = this.store.select(profileImageStateSelector).pipe(mergeMap(resp=>{
         return this.resoucesService.getImageToFile(resp+"?r="+Math.floor(Math.random()*100000)).pipe(map(data=>{
-          this.picture = data.data
-          return [data.data]
+
+          if(!data.error){
+            this.picture = data.data
+            return [data.data]
+          }else{
+            return []
+          }
+
         }))
       }))
     }
@@ -487,12 +503,18 @@ export class PostulationComponent implements OnInit, OnDestroy {
         description:"Es una red peruana de universidades",
         logo:"https://2.bp.blogspot.com/_BSRFkkxuSEI/SxQfTMOP2nI/AAAAAAAAFfk/V1atsKgvGsM/s1600/logoRPU.jpg"
       },
-      courses: this.postulationCourses
+      courses: this.postulationCourses,
+      text_aval:this.convocationCoevan.avaltext,
+      text_courses:this.convocationCoevan.coursestext,
+      text_commitment:this.convocationCoevan.commitment
     }
     console.log("form data:",tempData)
     this.genDocumentCoevanService.generateDocumentPostulation(tempData)
   }
 
+  goBack(){
+    this.router.navigate([AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
+  }
   photoLoaded(event:any){
     this.picture = event.files[0]
   }

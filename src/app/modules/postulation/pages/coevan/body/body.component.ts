@@ -60,7 +60,7 @@ export class BodyComponent implements OnInit, OnDestroy {
     console.log("userid", userId, "convocation id:",this.id)
     if(userId!=null && userId!=undefined && this.id!=null && this.id!=undefined){
       const convocationSub = this.postulationService.getPostulationByConvocationUser(this.id,userId).subscribe(data=>{
-        console.log("is there any error?", data.error)
+        console.log("is there any error?", data)
         if(!data.error){
           switch(data.data.post_state.id){
             case ENUMPostulationCoevanStatus.SIN_ENVIAR:{
@@ -98,7 +98,7 @@ export class BodyComponent implements OnInit, OnDestroy {
 /**
 	 * On Destroy
 	 */
-	ngOnDestroy() {
+	ngOnDestroy():void {
 		this.unsubscribe.forEach(sb => sb.unsubscribe());
 	}
 

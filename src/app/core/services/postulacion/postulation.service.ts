@@ -36,13 +36,18 @@ export class PostulationService extends PostulationHelper{
       data:{} as IPostulationCoevanResponseDetail
     };
 
-    const params:HttpParams = new HttpParams()
-    params.set("id_convocation",idConvocation)
-    params.set("id_user",idUser)
+    let params:HttpParams = new HttpParams()
+    params=params.set("id_convocation",idConvocation)
+    params=params.set("id_user",idUser)
     return this.http.get<IHttpResponse<IPostulationCoevanResponseDetail>>(this.url + PostulationHelper.API_ROUTES.GET_POSTULATION_CONVOCATION_USER, {params})
     .pipe(
       map( r =>{
-        response.data = r.data;
+        if(r.code!=200){
+          response.error = true;
+        }else{
+          response.data = r.data;
+        }
+
         return response;
       }),
       catchError(this.error)
@@ -84,8 +89,8 @@ export class PostulationService extends PostulationHelper{
       data:{} as IPostulationCoevanResponseDetail
     };
 
-    const params:HttpParams = new HttpParams()
-    params.set("id",id)
+    let params:HttpParams = new HttpParams()
+    params = params.set("id",id)
     return this.http.get<IHttpResponse<IPostulationCoevanResponseDetail>>(this.url + PostulationHelper.API_ROUTES.GET_POSTULATION, {params})
     .pipe(
       map( r =>{

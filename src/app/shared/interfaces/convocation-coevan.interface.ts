@@ -11,6 +11,12 @@ export interface IConvocationCoevanResponseDetail{
     university:IUniversityResponse,
     documents:IDocumentResponseDetail[],
     links:ILinkResponseDetail[],
-    requirements:IRequirementResponse[]
+    requirements:IRequirementResponse[],
+    semester:string,
+    avaltext:string,
+    coursestext:string,
+    commitment:string
+
+
   }
 
