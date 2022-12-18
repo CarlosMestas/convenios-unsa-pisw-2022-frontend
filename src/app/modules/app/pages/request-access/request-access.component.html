@@ -31,13 +31,19 @@
               Justificación (pdf)
             </div>
             <div class="input-file-container">
-                <input class="input-file" type="file" id="file" name="file"
-                       accept="application/pdf"
-                       (input)="change($event)"
-                       formControlName="document">
-                <label tabindex="0" for="file" class="input-file-trigger">Selecciona un archivo</label>
+              <p-fileUpload
+                            class="request-document"
+                            #fileUpload
+                            (onSelect)="onUpload($event, fileUpload)"
+                            [multiple]="false"
+                            accept="*.pdf, application/pdf"
+                            chooseLabel="Seleccionar"
+                            [maxFileSize]="50000000"
+                            [showUploadButton]="false"
+                            [showCancelButton]="false"
+              >
+              </p-fileUpload>
               </div>
-            <div class="file-return">{{text}}</div>
           </div>
 
           <input class="submit-form" type="submit" [disabled] = "requestForm.invalid" value="Enviar Solicitud" >
