@@ -60,6 +60,7 @@
 
   .fields-form{
     display: grid;
+    gap: 1rem;
   }
 
   .header-form-signin{
@@ -72,7 +73,9 @@
 
   .form-item{
     width: 100%;
-    padding-bottom: 0.5rem;
+    display: grid;
+    grid-template-rows: 1rem 40px 0rem;
+    gap: .25rem;
   }
   .document{
     height: 8rem;
@@ -103,46 +106,6 @@
     font-weight: 400;
     cursor: pointer;
   }
-
-  .input-file-trigger {
-    display: block;
-    padding: 14px 45px;
-    background: #3cb29c;
-    color: #fff;
-    font-size: 1em;
-    transition: all .4s;
-    cursor: pointer;
-  }
-  .input-file {
-    position: absolute;
-    top: 0; left: 0;
-    width: 225px;
-    opacity: 0;
-    padding: 14px 0;
-    cursor: pointer;
-  }
-  .input-file:hover + .input-file-trigger,
-  .input-file:focus + .input-file-trigger,
-  .input-file-trigger:hover,
-  .input-file-trigger:focus {
-    background: #156e5e;
-    color: #ffffff;
-  }
-
-  .file-return {
-    margin: 0;
-  }
-  .file-return:not(:empty) {
-    margin: 1em 0;
-  }
-  .file-return {
-    font-style: italic;
-    font-size: .9em;
-    font-weight: bold;
-  }
-  .file-return:not(:empty):before {
-    content: "Archivo seleccionado: ";
-    font-style: normal;
-    font-weight: normal;
-  }
 }
+
+
