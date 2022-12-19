@@ -16,8 +16,9 @@ import {MessageService} from "primeng/api";
 })
 export class RequestAccessComponent implements OnInit {
   public requestForm: FormGroup
-  text=""
-
+  documentSelected=false
+  documentReq:File = new File([],'')
+  fileUpload = null
   constructor(
     private externalStudent: ExternalStudentsService,
     private messageService: MessageService
@@ -26,7 +27,6 @@ export class RequestAccessComponent implements OnInit {
       name: new FormControl('',[Validators.required]),
       lastname: new FormControl('',[Validators.required]),
       email: new FormControl('',[Validators.required,Validators.email]),
-      document: new FormControl('',[Validators.required])
     })
   }
 
@@ -43,17 +43,20 @@ export class RequestAccessComponent implements OnInit {
   public get email() : AbstractControl | null {
     return this.requestForm.get('email');
   }
-  public get password() : AbstractControl | null {
-    return this.requestForm.get('password');
-  }
 
   submitSignIn() {
     let requestAux = {} as IExternalStudent
     requestAux.name = this.requestForm.value["name"]
     requestAux.lastname =  this.requestForm.value["lastname"]
     requestAux.email = this.requestForm.value["email"]
-    requestAux.justification = this.requestForm.value["document"]
-    this.externalStudent.sendRequest(requestAux).subscribe(r=>{
+    requestAux.justification = this.documentReq
+    let formData = new FormData()
+    formData.append("name",requestAux.name)
+    formData.append("lastname",requestAux.lastname)
+    formData.append("email",requestAux.email)
+    if(requestAux.justification!=null&& requestAux.justification!=undefined)
+      formData.append("justification",requestAux.justification,requestAux.justification.name)
+    this.externalStudent.sendRequest(formData).subscribe(r=>{
       if (r.error){
         this.messageService.add({key: 'tl', severity: 'error', summary: 'Error en el envío', detail: 'El correo ya fue usado para una solicitud'});
       }else{
@@ -62,11 +65,13 @@ export class RequestAccessComponent implements OnInit {
       }
     })
   }
-  change(event: any){
-    this.text = event.target.value;
+  onUpload(event:any, fileUpload: any) {
+    this.documentReq = event.files[0]
+    this.fileUpload = fileUpload
   }
   clear(){
     this.requestForm.reset();
-    this.text = ""
+    // @ts-ignore
+    this.fileUpload.clear()
   }
 }

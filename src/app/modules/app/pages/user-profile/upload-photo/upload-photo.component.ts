@@ -29,13 +29,11 @@ export class uploadPhotoComponent implements OnInit {
   }
   sendMessage() {
     this.stringImage.emit(this.imgSendProfile)
-    console.log("EVEMNTO IAMGEN ENVIO", this.imgSendProfile)
   }
   onFileSelected (event:any) {
     this.isUpload = true
     let files = event.target.files
     if (files.length === 0) {
-      console.log('Empty')
     }
     const mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {

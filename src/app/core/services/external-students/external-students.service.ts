@@ -17,7 +17,7 @@ export class ExternalStudentsService extends ExternalStudentsHelper{
   }
 
 
-  sendRequest(infoRequest: IExternalStudent):Observable<
+  sendRequest(formData: FormData):Observable<
     {
       error: boolean,
       msg: string,
@@ -35,12 +35,7 @@ export class ExternalStudentsService extends ExternalStudentsHelper{
       msg:string,
       data: IExternalStudent
     }>(this.url + ExternalStudentsHelper.API_EXTERNAL_STUDENTS_SERVICE_ROUTES.SEND_REQUEST,
-      {
-        name : infoRequest.name,
-        lastname: infoRequest.lastname,
-        email: infoRequest.email,
-        justification: JSON.stringify(infoRequest.justification),
-      }
+      formData
     ).pipe(
         map(resp =>{
             response.data = resp.data
