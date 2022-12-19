@@ -1,4 +1,3 @@
-import { PostulationComponent } from './pages/coevan/pages/postulation/postulation.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
