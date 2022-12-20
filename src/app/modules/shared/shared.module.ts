@@ -20,6 +20,7 @@ import { CardListFormComponent } from 'src/app/shared/components/card-list-form/
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 import { StepperComponent } from 'src/app/shared/components/stepper/stepper.component';
+import { NgxDocViewerModule } from 'ngx-doc-viewer';
 
 
 
@@ -48,7 +49,8 @@ import { StepperComponent } from 'src/app/shared/components/stepper/stepper.comp
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    PrimeNgModule
+    PrimeNgModule,
+    NgxDocViewerModule
   ],
   exports:[
     SteperComponent,
@@ -69,7 +71,8 @@ import { StepperComponent } from 'src/app/shared/components/stepper/stepper.comp
     PrimeNgModule,
     StepperComponent,
     DialogNotificationComponent,
-    PrimeNgModule
+    PrimeNgModule,
+    NgxDocViewerModule
   ]
 
 })
