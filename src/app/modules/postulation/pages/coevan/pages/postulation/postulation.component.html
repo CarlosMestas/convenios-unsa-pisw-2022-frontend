@@ -443,12 +443,12 @@
             <div class="title">{{link.type.name}}</div>
             <div class="card-content">
               <div class="item-container" >
-                <div class="item-circle-number" [ngStyle]="{background:'#2571ff'}">
-                  <span class="icon-container" (click)="downloadDocument(link)">
+                <a class="item-circle-number" [href]="link.url" target="_blank" [ngStyle]="{background:'#2571ff'}">
+                  <span class="icon-container" >
                     <i class="icon pi pi-globe">
                     </i>
                   </span>
-                </div>
+                </a>
                 <div class="item-description">
                   <blockquote>
                     <i>
