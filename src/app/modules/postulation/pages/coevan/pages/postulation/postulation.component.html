@@ -407,7 +407,7 @@
         <div class="item-sub-header">
 
           <div class="card-container" *ngFor="let document of convocationCoevan?.documents">
-            <div class="title">{{document.type.name}}</div>
+            <div class="title">{{document.name}}</div>
             <div class="card-content">
               <div class="item-container" >
                 <div class="item-circle-number" [ngStyle]="{background:'#daad19'}">
@@ -475,32 +475,12 @@
           accept="*.pdf, application/pdf" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
                   [files] = "postulationDocuments"
                   >
-                  <!-- <ng-template pTemplate="toolbar">
-                  </ng-template>
-                  <ng-template let-file pTemplate="file">
-                      <div class="image-container">
-                        <p-button (click)="temptestFile(file)">{{file.name}}</p-button>
-                      </div>
-                  </ng-template>
-                  <ng-template pTemplate="content" let-files>
-                      <div></div>
-                  </ng-template> -->
           </p-fileUpload>
 
           <ng-template #wopicture>
             <p-fileUpload class="postulation-document" (onSelect)="documentLoaded($event)" name="myfile" [multiple]="false"
             accept="*.pdf, application/pdf" chooseLabel="Seleccionar" [maxFileSize]="50000000" [showUploadButton]="false" [showCancelButton]="false"
                     >
-                    <!-- <ng-template pTemplate="toolbar">
-                    </ng-template>
-                    <ng-template let-file pTemplate="file">
-                      <div class="image-container">
-                        <p-button (click)="temptestFile(file)">{{file.name}}</p-button>
-                      </div>
-                    </ng-template>
-                    <ng-template pTemplate="content" let-files>
-                        <div></div>
-                    </ng-template> -->
             </p-fileUpload>
           </ng-template>
 
@@ -514,3 +494,5 @@
       <button (click)="sendPostulation()" pButton pRipple type="button"  icon="pi pi-send" class="p-button-rounded p-button-success" pTooltip="Enviar"></button>
       <button (click)="deletePostulation()" pButton pRipple type="button"  icon="pi pi-trash" class="p-button-rounded p-button-danger" pTooltip="Anular"></button>
     </div>
+    <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+    <p-messages [(value)]="msgs"></p-messages>

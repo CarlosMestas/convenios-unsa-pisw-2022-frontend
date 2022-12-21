@@ -34,7 +34,7 @@ export interface IConvocationResponseDetail{
   end_date:string,
   important_notes:string,
   conv_state:IConvocationStateResponse,
-  banner:string
+  afiche:string
 }
 
 export interface IConvocationStateResponse{

@@ -13,6 +13,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import { MatRippleModule } from '@angular/material/core';
 import {ChipsModule} from 'primeng/chips';
 
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {ChipsModule} from 'primeng/chips';
     TooltipModule,
     MatRippleModule,
     ChipsModule,
+    ConfirmDialogModule
   ],
   exports:[
     AccordionModule,
@@ -43,7 +45,8 @@ import {ChipsModule} from 'primeng/chips';
     ToastModule,
     TooltipModule,
     MatRippleModule,
-    ChipsModule
+    ChipsModule,
+    ConfirmDialogModule
   ]
 
 })

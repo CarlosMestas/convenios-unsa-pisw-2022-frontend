@@ -30,10 +30,8 @@ export class ResourcesService extends ResourcesHelper{
 
     return this.http.get(url,{observe:'response',responseType:'blob'}).pipe(
       map(data=>{
-        console.log("file test:", data)
         let name = data.url?.split('/')
         const file = new File([data.body!],name![name!.length-1],{type:data.body?.type})
-        console.log("file test:", file)
         response.data= file
         return response
       }),

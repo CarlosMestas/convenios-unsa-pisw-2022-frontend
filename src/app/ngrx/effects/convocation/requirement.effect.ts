@@ -14,19 +14,19 @@ export class RequirementEffect{
 
   }
 
-  convocationFetchSuccessToRequirementEffect = createEffect(()=>this.actions$.pipe(
-    ofType(convocationFetchSuccessAction),
-    mergeMap((action)=>this.requirementService.getRequirements(action.convocation.id)
-    .pipe(
-      map((resp)=>{
-        return {
-          type: RequirementActions.REQUIREMENTS_FETCH_SUCCESS_ACTION,
-          requirements:resp.data
-        }
-      }),
-      catchError(()=>EMPTY)
-    ))
-  ))
+  // convocationFetchSuccessToRequirementEffect = createEffect(()=>this.actions$.pipe(
+  //   ofType(convocationFetchSuccessAction),
+  //   mergeMap((action)=>this.requirementService.getRequirements(action.convocation.id)
+  //   .pipe(
+  //     map((resp)=>{
+  //       return {
+  //         type: RequirementActions.REQUIREMENTS_FETCH_SUCCESS_ACTION,
+  //         requirements:resp.data
+  //       }
+  //     }),
+  //     catchError(()=>EMPTY)
+  //   ))
+  // ))
 
   requirementsGetAllRequestEffect = createEffect(()=>this.actions$.pipe(
     ofType(requirementsGetAllRequestAction),
@@ -42,18 +42,18 @@ export class RequirementEffect{
     ))
   ))
 
-  requirementPostRequestEffect = createEffect(()=>this.actions$.pipe(
-    ofType(requirementPostRequestAction),
-    mergeMap((action)=> this.requirementService.postRequirement(action.value)
-    .pipe(
-      map(resp =>{
-        return {
-          type:RequirementActions.REQUIREMENTS_GET_ALL_REQUEST_ACTION
-        }
-      }
-      )
-    )
-    )
-  ))
+  // requirementPostRequestEffect = createEffect(()=>this.actions$.pipe(
+  //   ofType(requirementPostRequestAction),
+  //   mergeMap((action)=> this.requirementService.postRequirement(action.value)
+  //   .pipe(
+  //     map(resp =>{
+  //       return {
+  //         type:RequirementActions.REQUIREMENTS_GET_ALL_REQUEST_ACTION
+  //       }
+  //     }
+  //     )
+  //   )
+  //   )
+  // ))
 
 }

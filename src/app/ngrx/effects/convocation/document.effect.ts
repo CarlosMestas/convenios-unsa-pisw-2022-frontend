@@ -15,17 +15,17 @@ export class DocumentEffect{
   ){
 
   }
-  convocationFetchSuccessToDocumentEffect = createEffect(()=>this.actions$.pipe(
-    ofType(convocationFetchSuccessAction),
-    mergeMap((action)=>this.documentService.getDocuments(action.convocation.id)
-    .pipe(
-      map((resp)=>{
-        return {
-          type: DocumentActions.DOCUMENTS_GET_SUCCESS_ACTION,
-          documents:resp.data
-        }
-      }),
-      catchError(()=>EMPTY)
-    ))
-  ))
+  // convocationFetchSuccessToDocumentEffect = createEffect(()=>this.actions$.pipe(
+  //   ofType(convocationFetchSuccessAction),
+  //   mergeMap((action)=>this.documentService.getDocuments(action.convocation.id)
+  //   .pipe(
+  //     map((resp)=>{
+  //       return {
+  //         type: DocumentActions.DOCUMENTS_GET_SUCCESS_ACTION,
+  //         documents:resp.data
+  //       }
+  //     }),
+  //     catchError(()=>EMPTY)
+  //   ))
+  // ))
 }

@@ -1,3 +1,4 @@
+import { ENUMConvocationTypeAcronym } from 'src/app/shared/enum/convocation.enum';
 import { IConvocationResponseDetail } from './../../../../shared/interfaces/convocation.interface';
 import { AppRoutingModule } from './../../../app/app.routes';
 import { IDocument } from '../../../../shared/interfaces/documents-convocation/document.interface';
@@ -26,38 +27,14 @@ import { convocationDocumentBannerStateSelector } from 'src/app/ngrx/selectors/c
 export class DetailComponent implements OnInit {
   id: number;
   convocation$: Observable<IConvocationResponseDetail | null>;
-  requirements$: Observable<IRequirement[]>;
-  banner$: Observable<string>;
-  events$: Observable<IEventType[]>;
 
-  events1: any[] = [
-    {
-      status: 'Inicio Convocatoria',
-      date: '15/10/2022 10:30',
-      icon: 'pi pi-shopping-cart',
-      color: '#9C27B0',
-    },
-    {
-      status: 'Entrega de Documentos',
-      date: '15/10/2022 14:00',
-      icon: PrimeIcons.COG,
-      color: '#673AB7',
-    },
-    {
-      status: 'Fin de la convocatoria',
-      date: '15/10/2022 16:15',
-      icon: PrimeIcons.ENVELOPE,
-      color: '#FF9800',
-    },
-    {
-      status: 'Publicación de ganadores',
-      date: '16/10/2022 10:00',
-      icon: PrimeIcons.CHECK,
-      color: '#607D8B',
-    },
-  ];
+  TYPE_COEVAN:ENUMConvocationTypeAcronym = ENUMConvocationTypeAcronym.COEVAN
+  TYPE_COEVIENEN:ENUMConvocationTypeAcronym = ENUMConvocationTypeAcronym.COEVIENEN
+  TYPE_CODVAN:ENUMConvocationTypeAcronym = ENUMConvocationTypeAcronym.CODVAN
+  TYPE_CODVIENEN:ENUMConvocationTypeAcronym = ENUMConvocationTypeAcronym.CODVIENEN
+  TYPE_PIVE:ENUMConvocationTypeAcronym = ENUMConvocationTypeAcronym.PIVE
+  TYPE_PIVDO:ENUMConvocationTypeAcronym = ENUMConvocationTypeAcronym.PIVDO
 
-  events2: any[] = ['2020', '2021', '2022', '2023'];
 
   constructor(
     private store: Store<IAppState>,
@@ -65,21 +42,14 @@ export class DetailComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.convocation$ = new Observable<IConvocationResponseDetail>();
-    this.requirements$ = new Observable<IRequirement[]>();
-    this.events$ = new Observable<IEventType[]>();
-    this.banner$ = new Observable<string>();
 
     this.id = activatedRoute.parent?.snapshot.params['id'];
   }
   ngOnInit() {
     this.convocation$ = this.store.select(convocationConvocationStateSelector).pipe(map(data=>{
-
+      console.log("convocatoriaaa", data)
       return data
     }));
-    this.requirements$ = this.store.select(
-      convocationRequirementsStateSelector
-    );
-    this.banner$ = this.store.select(convocationDocumentBannerStateSelector);
   }
 
   apply() {

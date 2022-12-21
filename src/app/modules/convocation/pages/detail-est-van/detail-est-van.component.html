@@ -1,1 +1,75 @@
-<p>detail-est-van works!</p>
+
+
+<div class="container">
+
+
+<div class="card-container">
+  <div class="title">Red Académica</div>
+  <div class="card-content">
+    <div class="description">
+      {{convocationDetailData.academicNetwork?.name}}
+    </div>
+  </div>
+</div>
+
+<div class="card-container">
+  <div class="title">Universidad Destino</div>
+  <div class="card-content">
+    <div class="description">
+      {{convocationDetailData.university?.name}}
+    </div>
+  </div>
+</div>
+
+
+  <div class="card-container">
+    <div class="title">Documentos</div>
+    <div class="card-content">
+      <div class="item-container" *ngFor="let item of convocationDetailData.documents">
+        <div class="item-circle-number" [ngStyle]="{background:'#48a773'}" (click)="downloadDoc()">
+          <span class="icon-container" >
+            <i class="icon pi pi-cloud-download" >
+            </i>
+          </span>
+        </div>
+        <div class="item-description">
+          {{item.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-container">
+    <div class="title">Links</div>
+    <div class="card-content">
+      <div class="item-container" *ngFor="let item of convocationDetailData.links">
+        <div class="item-circle-number" [ngStyle]="{background:'#0271DF'}" (click)="openLink()">
+          <span class="icon-container" >
+            <i class="icon pi pi-globe" >
+            </i>
+          </span>
+        </div>
+        <div class="item-description">
+          {{item.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-container">
+    <div class="title">Requerimientos</div>
+    <div class="card-content">
+      <div class="item-container" *ngFor="let item of convocationDetailData.requirements">
+        <div class="item-circle-number" [ngStyle]="{background:'#0271DF'}" (click)="openLink()">
+          <span class="icon-container" >
+            <i class="icon pi pi-check" >
+            </i>
+          </span>
+        </div>
+        <div class="item-description">
+          {{item.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

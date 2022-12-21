@@ -27,7 +27,7 @@ import { CycleService } from 'src/app/core/services/cycle/cycle.service';
 import { IAcademicYearResponse } from 'src/app/shared/interfaces/academic-year.interface';
 import { AcademicYearService } from 'src/app/core/services/academic-year/academic-year.service';
 import { GenDocumentCoevanService } from 'src/app/core/services/postulacion/gen-doc-coevan.service';
-import { SelectItem } from 'primeng/api';
+import { ConfirmationService, Message, MessageService, SelectItem } from 'primeng/api';
 import { ResourcesService } from 'src/app/core/services/postulacion/resources.service';
 import { Store } from '@ngrx/store';
 import { IConvocationCoevanResponseDetail } from 'src/app/shared/interfaces/convocation-coevan.interface';
@@ -35,9 +35,11 @@ import { IConvocationCoevanResponseDetail } from 'src/app/shared/interfaces/conv
 @Component({
   selector: 'app-postulation',
   templateUrl: './postulation.component.html',
-  styleUrls: ['./postulation.component.scss']
+  styleUrls: ['./postulation.component.scss'],
+  providers:[MessageService, ConfirmationService]
 })
 export class PostulationComponent implements OnInit, OnDestroy {
+    msgs: Message[] = [];
     private unsubscribe: Subscription[] = [];
     id:number;
     convocationId:number
@@ -177,9 +179,24 @@ export class PostulationComponent implements OnInit, OnDestroy {
 
       console.log("test form data",formData.getAll("courses[]"))
 
+      this.confirmationService.confirm({
+        message: 'Está seguro que desea concretar esta acción?',
+        accept: () => {
+          this.msgs = [{severity:'success', summary:'Postulación Guardada', detail:'Usted ha guardado su postulación'}];
+        },
+        reject: () => {
+            this.msgs = [{severity:'error', summary:'Acción Cancelada', detail:'Usted ha cancelado la acción'}];
+        }
+    });
+
+
+
       this.postulationService.postPostulationCoevan(formData).subscribe(data=>{
+
         // console.log("services response postulation save:",data.msg)
       })
+
+
 
     }
 
@@ -209,7 +226,8 @@ export class PostulationComponent implements OnInit, OnDestroy {
         private resoucesService:ResourcesService,
         private convocationService:ConvocationService,
         private store:Store<IAppState>,
-        private router:Router
+        private router:Router,
+        private confirmationService: ConfirmationService
     ) {
 
       this.convocationCoevan = {} as IConvocationCoevanResponseDetail
@@ -405,7 +423,7 @@ export class PostulationComponent implements OnInit, OnDestroy {
     }else{
       this.picture$ = this.store.select(profileImageStateSelector).pipe(mergeMap(resp=>{
         return this.resoucesService.getImageToFile(resp+"?r="+Math.floor(Math.random()*100000)).pipe(map(data=>{
-
+          console.log("image progile:", data)
           if(!data.error){
             this.picture = data.data
             return [data.data]
@@ -483,27 +501,13 @@ export class PostulationComponent implements OnInit, OnDestroy {
       coordinator: this.formPostulation.controls["u_program_coordinator"].value,
       coordinator_charge: this.formPostulation.controls["u_charge"].value,
       coordinator_email: this.formPostulation.controls["u_email"].value,
-      modality: {
-        id:1,
-        name:'Virtual'
-      },
+      modality: this.convocationGeneral.modality,
       semester: {
         id:1,
-        name:'2022-B'
+        name:this.convocationCoevan.semester
       },
-      university_target: {
-        id:1,
-        name:"Universidad Nacional de Ingeniería",
-        acronym:"UNI",
-        logo:"https://upload.wikimedia.org/wikipedia/commons/3/3a/LOGO_UNSA.png"
-      },
-      academic_network: {
-        id:1,
-        name:"Red Peruana de Universidades",
-        acronym:"RPU",
-        description:"Es una red peruana de universidades",
-        logo:"https://2.bp.blogspot.com/_BSRFkkxuSEI/SxQfTMOP2nI/AAAAAAAAFfk/V1atsKgvGsM/s1600/logoRPU.jpg"
-      },
+      university_target: this.convocationCoevan.university,
+      academic_network: this.convocationCoevan.academicNetwork,
       courses: this.postulationCourses,
       text_aval:this.convocationCoevan.avaltext,
       text_courses:this.convocationCoevan.coursestext,
@@ -514,16 +518,17 @@ export class PostulationComponent implements OnInit, OnDestroy {
   }
 
   goBack(){
-    this.router.navigate([AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
+    this.router.navigate([AppRoutingModule.ROUTES_VALUES.ROUTE_APP_CONVOCATORIA,this.convocationGeneral.id])
   }
   photoLoaded(event:any){
     this.picture = event.files[0]
   }
 
   downloadDocument(doc:IDocumentResponseDetail){
+    console.log("download:", doc)
     this.resoucesService.downloadDocument(doc.url).subscribe(data=>{
       let a  = document.createElement('a')
-      a.download = doc.type.name
+      a.download = doc.name
       a.href = window.URL.createObjectURL(data.data)
       a.click()
     })

@@ -1,15 +1,18 @@
 
-<div class="convocation-timeline-container" *ngIf="convocation$ | async as convocation">
+<div class="convocation-detail-container" *ngIf="convocation$ | async as convocation">
   <div class="convocation-container">
     <div class="header">
       <div class="title">
         {{convocation.title}}
       </div>
-      <app-button-form bordercolor = "#FFFFFF" text = "Postular" cdkFocusInitial (click)="apply()"></app-button-form>
+      <div class="modality">
+        Modalidad: {{convocation.modality.name}}
+      </div>
+      <app-button-form bordercolor = "#dd3565" background="#dd3565" text = "Postular" cdkFocusInitial (click)="apply()"></app-button-form>
     </div>
     <div class="convocatoria-image-container">
       <div class="convocatoria-image-container">
-        <img [src]="convocation.banner" class="image" alt="convocation image">
+        <img [src]="convocation.afiche" class="image" alt="convocation image">
         <!-- <img src="https://www.unsa.edu.pe/wp-content/uploads/2022/06/DIFUSION-CONVOCATORIA-USTAMED-2022-2-e1654808685465-878x426.jpg" class="image" alt="convocation image"> -->
 
         <div class="gray-layer">
@@ -28,6 +31,25 @@
         </div>
       </div>
 
+      <div class="card-container">
+        <div class="title">Fecha de postulación</div>
+        <div class="card-content">
+          <div class="description">
+            Puede postular desde el {{convocation.start_date}} hasta {{convocation.end_date}}
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="title">Notas Importantes</div>
+        <div class="card-content">
+          <div class="description">
+            {{convocation.important_notes}}
+          </div>
+        </div>
+      </div>
+
+<!--
       <div class="card-container" *ngIf=" requirements$ | async as requirements">
         <div class="title">Requerimientos</div>
 
@@ -45,13 +67,23 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
-      <router-outlet></router-outlet>
+
 
   </div>
-  <div class="timeline-container">
-    <p-timeline [value]="events1" align="alternate">
+  <div class="detail-container" [ngSwitch]="convocation.type.acronym">
+
+
+
+    <app-detail-est-van *ngSwitchCase="TYPE_COEVAN" [idConvocation]="id"></app-detail-est-van>
+    <app-detail-est-vienen *ngSwitchCase="TYPE_COEVIENEN"></app-detail-est-vienen>
+    <app-detail-doc-van *ngSwitchCase="TYPE_CODVAN"></app-detail-doc-van>
+    <app-detail-doc-vienen *ngSwitchCase="TYPE_CODVIENEN"></app-detail-doc-vienen>
+    <app-detail-pive *ngSwitchCase="TYPE_PIVE"></app-detail-pive>
+    <app-detail-pivdo *ngSwitchCase="TYPE_PIVDO" ></app-detail-pivdo>
+
+    <!-- <p-timeline [value]="events1" align="alternate">
       <ng-template pTemplate="marker" let-event>
           <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
               <i [ngClass]="event.icon"></i>
@@ -63,7 +95,7 @@
               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
           </p-card>
       </ng-template>
-    </p-timeline>
+    </p-timeline> -->
 
   </div>
 </div>

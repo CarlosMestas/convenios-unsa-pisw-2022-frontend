@@ -11,13 +11,7 @@ import { DetailEstVienenComponent } from './pages/detail-est-vienen/detail-est-v
 import { DetailEstVanComponent } from './pages/detail-est-van/detail-est-van.component';
 
 const ConvocatoriaRoutesValues = {
-  ROUTE_CONVOCATORIA_DETAIL: "detalle",
-  ROUTE_CONVOCATORIA_PIVE_DETAIL: "detalle-pive",
-  ROUTE_CONVOCATORIA_PIVDO_DETAIL: "detalle-pivdo",
-  ROUTE_CONVOCATORIA_DOC_VIENEN_DETAIL: "detalle-doc-vienen",
-  ROUTE_CONVOCATORIA_DOC_VAN_DETAIL: "detalle-doc-van",
-  ROUTE_CONVOCATORIA_EST_VIENEN_DETAIL: "detalle-est-vienen",
-  ROUTE_CONVOCATORIA_EST_VAN_DETAIL: "detalle-est-van"
+  ROUTE_CONVOCATORIA_DETAIL: "detalle"
 };
 
 const ConvocatoriaRoutes: Routes = [
@@ -32,33 +26,7 @@ const ConvocatoriaRoutes: Routes = [
        },
       {
         path: ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_DETAIL,
-        component:DetailComponent,
-        children:[
-          {
-            path:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_PIVE_DETAIL,
-            component:DetailPiveComponent
-          },
-          {
-            path:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_PIVDO_DETAIL,
-            component:DetailPivdoComponent
-          },
-          {
-            path:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_DOC_VIENEN_DETAIL,
-            component:DetailDocVienenComponent
-          },
-          {
-            path:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_DOC_VAN_DETAIL,
-            component:DetailDocVanComponent
-          },
-          {
-            path:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_EST_VIENEN_DETAIL,
-            component:DetailEstVienenComponent
-          },
-          {
-            path:ConvocatoriaRoutesValues.ROUTE_CONVOCATORIA_EST_VAN_DETAIL,
-            component:DetailEstVanComponent
-          }
-        ]
+        component:DetailComponent
       }
     ]
   }
