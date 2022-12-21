@@ -39,7 +39,7 @@ import { IConvocationCoevanResponseDetail } from 'src/app/shared/interfaces/conv
   providers:[MessageService, ConfirmationService]
 })
 export class PostulationComponent implements OnInit, OnDestroy {
-    msgs: Message[] = [];
+
     private unsubscribe: Subscription[] = [];
     id:number;
     convocationId:number
@@ -182,19 +182,21 @@ export class PostulationComponent implements OnInit, OnDestroy {
       this.confirmationService.confirm({
         message: 'Está seguro que desea concretar esta acción?',
         accept: () => {
-          this.msgs = [{severity:'success', summary:'Postulación Guardada', detail:'Usted ha guardado su postulación'}];
+          this.postulationService.postPostulationCoevan(formData).subscribe(data=>{
+            this.messageService.add({severity:'success', summary:'Postulación Guardada', detail:'Usted ha guardado su postulación'})
+
+            // this.msgs = [{severity:'success', summary:'Postulación Guardada', detail:'Usted ha guardado su postulación'}];
+          })
+
         },
         reject: () => {
-            this.msgs = [{severity:'error', summary:'Acción Cancelada', detail:'Usted ha cancelado la acción'}];
+          this.messageService.add({severity:'error', summary:'Acción Cancelada', detail:'Usted ha cancelado la acción'})
         }
     });
 
 
 
-      this.postulationService.postPostulationCoevan(formData).subscribe(data=>{
 
-        // console.log("services response postulation save:",data.msg)
-      })
 
 
 
@@ -227,7 +229,8 @@ export class PostulationComponent implements OnInit, OnDestroy {
         private convocationService:ConvocationService,
         private store:Store<IAppState>,
         private router:Router,
-        private confirmationService: ConfirmationService
+        private confirmationService: ConfirmationService,
+        private messageService: MessageService
     ) {
 
       this.convocationCoevan = {} as IConvocationCoevanResponseDetail
