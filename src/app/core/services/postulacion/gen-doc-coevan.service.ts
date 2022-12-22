@@ -110,13 +110,10 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
     let currentX=this.sangria_left
     currentY = currentY + this.headerSize + this.space_between_components
     /*-------------------------TITLE----------------------------- */
-    let program_name = "Red peruana de universidades nacionales para la internacionalización"
-    let network_acronym = "RUNAI"
 
-    let correlative = "2022-2(VAN)"
 
-    let D_TITLE = "PROGRAMA DE INTERCAMBIO ESTUDIANTIL " + program_name.toUpperCase() + " - " + network_acronym.toUpperCase() +
-    " FORMULARIO DE POSTULACIÓN " + testData.modality.name + " " + correlative
+    let D_TITLE = "PROGRAMA DE INTERCAMBIO ESTUDIANTIL " + (testData.academic_network.name).toUpperCase() + " - " + (testData.academic_network.acronym).toUpperCase() +
+    " FORMULARIO DE POSTULACIÓN " + testData.modality.name + " " + testData.semester.name
 
 
     doc.setFontSize(this.fontSizeTitle)

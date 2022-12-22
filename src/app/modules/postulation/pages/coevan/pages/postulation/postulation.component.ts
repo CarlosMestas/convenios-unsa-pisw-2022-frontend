@@ -194,12 +194,6 @@ export class PostulationComponent implements OnInit, OnDestroy {
         }
     });
 
-
-
-
-
-
-
     }
 
     /**
