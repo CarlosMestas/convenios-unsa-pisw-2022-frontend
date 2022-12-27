@@ -1,25 +1,43 @@
-<template [ngClass]="prefix">
-  <div #divToMeasure class="carrousel-container">
-    <carousel
-      [height]="heightCarousel"
-      [width]="widthCarousel"
-      cellWidth="100%"
-      [cellsToShow]="1"
-    >
-      <div class="carousel-cell">
-        <img
-          src="../../../../assets/images/poster1.jpg"
-          alt="poster1"
-          routerLink="/convocatorias/1"
-        />
+<div class="container-header">
+  <div class="label-news">NOTICIAS</div>
+  <div class="left-news-box">
+    <template [ngClass]="prefix">
+      <div #divToMeasure class="carrousel-container">
+        <carousel
+          [height]="heightCarousel"
+          [width]="widthCarousel"
+          cellWidth="100%"
+          [cellsToShow]="1"
+          [autoplay]="true"
+          [loop]="true"
+          [autoplayInterval]="5000"
+        >
+          <div class="carousel-cell" *ngFor="let convocation of convocations">
+            <img
+              [src]="convocation.afiche"
+              alt="poster1"
+              [routerLink]="'/convocatorias/'+convocation.id"
+            />
+          </div>
+
+        </carousel>
       </div>
-      <div class="carousel-cell">
-        <img
-          src="../../../../assets/images/poster2.jpg"
-          alt="poster2"
-          routerLink="/convocatorias/2"
-        />
-      </div>
-    </carousel>
+    </template>
   </div>
-</template>
+
+  <div class="right-help-box">
+    <div class="guides-box">
+      <p class="text-guide">Instructivo para la postulación en Línea: <strong><a href="#" class="text-guide">Ver Instructivo</a></strong></p>
+      <p class="text-guide">Para una orientación técnica puede enviar su consulta al siguiente correo:
+        <strong><a href="#" class="text-guide">convenios@unsa.edu.pe</a></strong>
+      </p>
+    </div>
+    <div class="application-index">
+      <p class="text-program"> PROGRAMA DE INTERCAMBIO EDUCATIVO VIRTUAL - PIE 2022-2</p>
+      <app-button-customized colorProp="primary" textBtn="Postular" size="big"></app-button-customized>
+    </div>
+  </div>
+
+</div>
+
+

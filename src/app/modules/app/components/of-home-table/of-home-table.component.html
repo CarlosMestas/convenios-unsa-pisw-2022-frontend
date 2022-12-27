@@ -15,11 +15,12 @@
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [globalFilterFields]="[
         'title',
-        'correlative',
         'type',
+        'correlative',
         'modality',
         'start_date',
-        'end_date'
+        'end_date',
+        'conv_state'
       ]"
     >
       <ng-template pTemplate="caption">
@@ -41,70 +42,84 @@
           <th *ngFor="let col of displayedColumns">
             {{ col.label }}
           </th>
+          <th>Actions</th>
         </tr>
         <tr>
           <th *ngFor="let col of displayedColumns">
-            <p-columnFilter
-              *ngIf="col.key == 'type'"
-              field="type"
-              matchMode="equals"
-              [showMenu]="false"
-            >
-              <ng-template
-                pTemplate="filter"
-                let-value
-                let-filter="filterCallback"
+
+            <div [ngSwitch]="col.key">
+              <p-columnFilter
+                *ngSwitchCase="'type'"
+                field="type"
+                matchMode="equals"
+                [showMenu]="false"
               >
-                <p-dropdown
-                  *ngIf="typesConvocation$ | async as typesConvocation"
-                  [ngModel]="value"
-                  [options]="typesConvocation"
-                  placeholder="tipo"
-                  (onChange)="filter($event.value.id)"
-                  optionLabel="acronym"
+                <ng-template
+                  pTemplate="filter"
+                  let-value
+                  let-filter="filterCallback"
                 >
-                  <ng-template let-option pTemplate="item">
-                    <div class="p-multiselect-representative-option">
-                      <span class="ml-1">{{ option.acronym }}</span>
-                    </div>
-                  </ng-template>
-                </p-dropdown>
-              </ng-template>
-            </p-columnFilter>
-            <p-columnFilter
-              *ngIf="col.key == 'modality'"
-              field="modality"
-              matchMode="equals"
-              [showMenu]="false"
-            >
-              <ng-template
-                pTemplate="filter"
-                let-value
-                let-filter="filterCallback"
+                  <p-dropdown
+                    *ngIf="typesConvocation$ | async as typesConvocation"
+                    [ngModel]="value"
+                    [options]="typesConvocation"
+                    placeholder="tipo"
+                    (onChange)="filter($event.value.acronym)"
+                    optionLabel="acronym"
+                  >
+                    <ng-template let-option pTemplate="item">
+                      <div class="p-multiselect-representative-option">
+                        <span class="ml-1">{{option.acronym}}</span>
+                      </div>
+                    </ng-template>
+                  </p-dropdown>
+                </ng-template>
+              </p-columnFilter>
+
+              <p-columnFilter
+                *ngSwitchCase="'modality'"
+                field="modality"
+                matchMode="equals"
+                [showMenu]="false"
               >
-                <p-dropdown
-                  *ngIf="modalities$ | async as modalities"
-                  [ngModel]="value"
-                  [options]="modalities"
-                  (onChange)="filter($event.value.id)"
-                  placeholder="modalidad"
-                  optionLabel="name"
+                <ng-template
+                  pTemplate="filter"
+                  let-value
+                  let-filter="filterCallback"
                 >
-                  <ng-template let-convocation pTemplate="item">
-                    <span [class]="'customer-badge status-' + convocation.id">{{
-                      convocation.name
-                    }}</span>
-                  </ng-template>
-                </p-dropdown>
-              </ng-template>
-            </p-columnFilter>
+                <p-dropdown
+                *ngIf="modalities$ | async as modalities"
+                [ngModel]="value"
+                [options]="modalities"
+                (onChange)="filter($event.value.id)"
+                placeholder="modalidad"
+                optionLabel="name"
+              >
+                <ng-template let-convocation pTemplate="item">
+                  <span [class]="'customer-badge status-' + convocation.id">{{
+                    convocation.name
+                  }}</span>
+                </ng-template>
+              </p-dropdown>
+                </ng-template>
+              </p-columnFilter>
+
+              <div *ngSwitchDefault></div>
+            </div>
           </th>
+          <th></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-convocation>
         <tr>
           <td *ngFor="let col of displayedColumns">
-            {{ convocation[col.key] }}
+
+              <div [ngSwitch]="col.key">
+                <div *ngSwitchCase="'type'">{{convocation[col.key].acronym}}</div>
+                <div *ngSwitchCase="'modality'">{{convocation[col.key].name}}</div>
+                <div *ngSwitchCase="'conv_state'">{{convocation[col.key].name}}</div>
+                <div *ngSwitchDefault>{{convocation[col.key]}}</div>
+              </div>
           </td>
           <td>
             <div class="table-actions flex-table-options flex-center">

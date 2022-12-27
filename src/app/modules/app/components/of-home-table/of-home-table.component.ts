@@ -1,6 +1,6 @@
 import { ModalityConvocationService } from './../../../../core/services/convocation/modality-convocation.service';
 import { TypeConvocationService } from './../../../../core/services/convocation/type-convocation.service';
-import { IConvocationField, IModalityConvocationResponse, ITypeConvocationResponse } from './../../../../shared/interfaces/convocation.interface';
+import { IConvocationField, IModalityConvocationResponse, ITypeConvocationResponse, IConvocationResponseDetail } from './../../../../shared/interfaces/convocation.interface';
 import { IConvocation, IConvocationResponse } from 'src/app/shared/interfaces/convocation.interface';
 import { map, Observable } from 'rxjs';
 import { ConvocationService } from './../../../../core/services/convocation/convocation.service';
@@ -67,7 +67,7 @@ export class OfHomeTableComponent implements OnInit {
     this.checkDisplayColumns();
   }
 
-  convocations$:Observable<IConvocationResponse[]>
+  convocations$:Observable<IConvocationResponseDetail[]>
   typesConvocation$: Observable<ITypeConvocationResponse[]>;
   modalities$: Observable<IModalityConvocationResponse[]>;
   loading: boolean = false;
@@ -83,7 +83,7 @@ export class OfHomeTableComponent implements OnInit {
     private modalityConvocationService:ModalityConvocationService,
     ) {
     this.prefix = 'of-home-table';
-    this.convocations$ = new Observable<IConvocationResponse[]>()
+    this.convocations$ = new Observable<IConvocationResponseDetail[]>()
     this.typesConvocation$ = new Observable<ITypeConvocationResponse[]>();
 
     this.modalities$ = new Observable<IModalityConvocationResponse[]>();
@@ -101,7 +101,7 @@ export class OfHomeTableComponent implements OnInit {
   }
 
   checkDisplayColumns(): void {
-    this.convocations$ = new Observable<IConvocationResponse[]>()
+    this.convocations$ = new Observable<IConvocationResponseDetail[]>()
     switch (this._typeConv) {
       case 'prox': {
         this.displayedColumns = []
@@ -116,7 +116,8 @@ export class OfHomeTableComponent implements OnInit {
           {key:'correlative', label:'Correlativo'},
           {key:'modality', label:'Modalidad'},
           {key:'start_date', label:'Fecha Inicio'},
-          {key:'end_date', label:'Fecha Finalización'}
+          {key:'end_date', label:'Fecha Finalización'},
+          {key:'conv_state', label:'estado'},
         ];
         this.convocations$ = this.convocationService.getAllConvocationsByDate(Date.now()).pipe(map(data=>{
           this.loading = false;
@@ -148,5 +149,8 @@ export class OfHomeTableComponent implements OnInit {
   }
   returnValue(type: EventTarget | null): string {
     return (type as HTMLInputElement).value;
+  }
+  test(value:string){
+    console.log("value test:", value)
   }
 }

@@ -19,6 +19,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 import { ConvocatoriaRoutingModule } from '../../convocatoria.routes';
 import { convocationDocumentBannerStateSelector } from 'src/app/ngrx/selectors/convocation/document.selector';
+import { UrlService } from 'src/app/core/services/url/url.service';
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html',
@@ -39,7 +40,8 @@ export class DetailComponent implements OnInit {
   constructor(
     private store: Store<IAppState>,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private urlService:UrlService
   ) {
     this.convocation$ = new Observable<IConvocationResponseDetail>();
 
@@ -57,5 +59,9 @@ export class DetailComponent implements OnInit {
       ['../../../' + AppRoutingModule.ROUTES_VALUES.ROUTE_APP_APPLY + '/' + this.id],
       { relativeTo: this.activatedRoute }
     );
+  }
+  back(){
+    console.log(this.urlService.getPreviousUrl())
+    this.router.navigate(["/"+AppRoutingModule.ROUTES_VALUES.ROUTE_APP_HOME])
   }
 }

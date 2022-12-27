@@ -2,6 +2,13 @@
 <div class="convocation-detail-container" *ngIf="convocation$ | async as convocation">
   <div class="convocation-container">
     <div class="header">
+      <div class="back-button-container ml-2">
+        <div (click)="back()"
+                          class="url-action back"
+                          mat-icon-button>
+                          <mat-icon class="action-icon icon-sm" svgIcon="mat:arrow_back_ios"></mat-icon>
+                        </div>
+      </div>
       <div class="title">
         {{convocation.title}}
       </div>

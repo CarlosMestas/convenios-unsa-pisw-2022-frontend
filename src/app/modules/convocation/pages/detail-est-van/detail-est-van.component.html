@@ -25,15 +25,15 @@
   <div class="card-container">
     <div class="title">Documentos</div>
     <div class="card-content">
-      <div class="item-container" *ngFor="let item of convocationDetailData.documents">
-        <div class="item-circle-number" [ngStyle]="{background:'#48a773'}" (click)="downloadDoc()">
+      <div class="item-container" *ngFor="let document of convocationDetailData.documents">
+        <div class="item-circle-number" [ngStyle]="{background:'#48a773'}" (click)="downloadDoc(document)">
           <span class="icon-container" >
             <i class="icon pi pi-cloud-download" >
             </i>
           </span>
         </div>
         <div class="item-description">
-          {{item.description}}
+          {{document.name}}
         </div>
       </div>
     </div>
@@ -42,15 +42,16 @@
   <div class="card-container">
     <div class="title">Links</div>
     <div class="card-content">
-      <div class="item-container" *ngFor="let item of convocationDetailData.links">
-        <div class="item-circle-number" [ngStyle]="{background:'#0271DF'}" (click)="openLink()">
+      <div class="item-container" *ngFor="let link of convocationDetailData.links">
+        <a class="item-circle-number" [ngStyle]="{background:'#0271DF'}" [href]="link.url" target="_blank" [ngStyle]="{background:'#2571ff'}">
           <span class="icon-container" >
-            <i class="icon pi pi-globe" >
+            <i class="icon pi pi-globe">
             </i>
           </span>
-        </div>
+        </a>
+
         <div class="item-description">
-          {{item.description}}
+          {{link.name}}
         </div>
       </div>
     </div>

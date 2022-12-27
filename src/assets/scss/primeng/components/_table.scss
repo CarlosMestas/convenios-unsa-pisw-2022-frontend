@@ -112,3 +112,9 @@ $table-paginator-border-height: 1px;
 .table-actions .table-action:hover, .table-action:hover{
   cursor:pointer;
 }
+
+
+
+.p-inputtext, .p-multiselect-item, label, .p-dropdown-item, .p-datepicker, .p-datepicker table{
+  font-size: 13px;
+}

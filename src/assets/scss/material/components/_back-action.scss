@@ -1,0 +1,20 @@
+.url-action{
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: fit-content;
+  padding: .2rem;
+  .mat-icon{
+    margin: 0;
+  }
+}
+
+.url-action.back{
+  color:rgb(230, 230, 230);
+}
+.url-action.back:hover{
+  color:rgb(230, 230, 230);
+  background-color: rgba(230, 230, 230, 0.404);
+}

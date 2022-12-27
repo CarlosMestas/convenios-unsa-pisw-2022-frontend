@@ -32,17 +32,17 @@ export class ConvocationService extends ConvocationHelper{
    *
    * @returns Return all convocation by date in order to get all convocations which have current date greater than start convocation date and less that end convocation date and are also available
    */
-  getAllConvocationsByDate(date:number):Observable<IHttpServiceResponse<IConvocationResponse[]>>{
+  getAllConvocationsByDate(date:number):Observable<IHttpServiceResponse<IConvocationResponseDetail[]>>{
 
-    const response:IHttpServiceResponse<IConvocationResponse[]> = {
+    const response:IHttpServiceResponse<IConvocationResponseDetail[]> = {
       error:false,
       msg:'',
-      data:{} as IConvocationResponse[]
+      data:{} as IConvocationResponseDetail[]
     };
 
     let params = new HttpParams();
     params = params.append("date",date)
-    return this.http.get<IHttpResponse<IConvocationResponse[]>>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.ALL_CONVOCATIONS)
+    return this.http.get<IHttpResponse<IConvocationResponseDetail[]>>(this.url + ConvocationHelper.API_CONV_SERVICE_ROUTES.ALL_CONVOCATIONS)
     .pipe(
       map( resp =>{
         console.log("all convocation general:", resp.data)
