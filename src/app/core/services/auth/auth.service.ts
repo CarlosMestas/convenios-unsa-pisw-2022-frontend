@@ -18,7 +18,7 @@ import { User } from './../../../shared/models/user.model';
 import { IUser } from './../../../shared/interfaces/user.interface';
 import { Injectable } from "@angular/core";
 import { CredentialResponse, PromptMomentNotification } from 'google-one-tap';
-import { BehaviorSubject, catchError, map, Observable, Subject } from "rxjs";
+import { BehaviorSubject, catchError, map, Observable, of, Subject } from "rxjs";
 
 import { Store } from '@ngrx/store';
 
@@ -195,8 +195,17 @@ export class AuthService extends AuthHelper{
     msg: string;
     data: IUser;
   }>{
-      const userId:number = Number(localStorage.getItem(AuthHelper.USER_ID_ENCODED))
+    const userId:number|undefined=AuthHelper.getLocalStorageSesionUser()?.id
+    if(userId)
       return this.fetchUser(userId)
+    else{
+      return of({
+          error:true,
+          msg: '',
+          data: {} as IUser
+      })
+    }
+
   }
 
   isSesionUp(){

@@ -1,3 +1,4 @@
+import { InitializationComponent } from './pages/initialization/initialization.component';
 import { PostulationComponent } from './pages/postulation/postulation.component';
 import { BodyComponent } from './body/body.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -5,7 +6,8 @@ import { NgModule } from '@angular/core';
 
 
 const routesValues = {
-  ROUTE_POSTULACION_COEVAN: "postulacion",
+  ROUTE_POSTULATION_COEVAN: "postulacion-coevan",
+  ROUTE_INITIALIZATION_COEVAN:"iniciacion-coevan"
 };
 const routes: Routes = [
   {
@@ -13,12 +15,16 @@ const routes: Routes = [
     component:BodyComponent,
     children:[
       {
-        path: routesValues.ROUTE_POSTULACION_COEVAN,
+        path: routesValues.ROUTE_POSTULATION_COEVAN,
         component:PostulationComponent,
       },
       {
-        path: routesValues.ROUTE_POSTULACION_COEVAN+"/:id",
+        path: routesValues.ROUTE_POSTULATION_COEVAN+"/:id",
         component:PostulationComponent,
+      },
+      {
+        path: routesValues.ROUTE_INITIALIZATION_COEVAN+"/:id",
+        component:InitializationComponent,
       },
     ]
   }

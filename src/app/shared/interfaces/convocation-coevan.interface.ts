@@ -16,7 +16,5 @@ export interface IConvocationCoevanResponseDetail{
     avaltext:string,
     coursestext:string,
     commitment:string
-
-
   }
 

@@ -8,6 +8,7 @@ export class AuthHelper{
   public static USER_OMBP_SESION:string = "userOMBPSession";
   public static USER_LOGIN_TOKEN:string = "userLoginToken";
   public static USER_ID_ENCODED:string = "userIdCoded";
+  public static USER_EMAIL_ENCODED:string = "userEmailCoded";
 
   protected static API_AUTH_SERVICE_ROUTES = {
     LOGOUT:"logout",
@@ -28,13 +29,19 @@ export class AuthHelper{
   //INSTEAD
   saveLocalStorageSesionToken(token:string, userId:number,email:string){
     localStorage.setItem(AuthHelper.USER_LOGIN_TOKEN,token)
-    localStorage.setItem(AuthHelper.USER_ID_ENCODED,userId.toString())
+    let user:User = new User(userId,email)
+    localStorage.setItem(AuthHelper.USER_ID_ENCODED,JSON.stringify(user))
+
   }
   getLocalStorageSesionToken():string|null{
     return localStorage.getItem(AuthHelper.USER_LOGIN_TOKEN)
   }
-  getLocalStorageSesionId():string|null{
-    return localStorage.getItem(AuthHelper.USER_ID_ENCODED)
+  static getLocalStorageSesionUser():User|null{
+    let userDataLocal = localStorage.getItem(AuthHelper.USER_ID_ENCODED)
+    if(userDataLocal){
+      return JSON.parse(userDataLocal)
+    }
+    return null
   }
 
 

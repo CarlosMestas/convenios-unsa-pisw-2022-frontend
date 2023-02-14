@@ -13,13 +13,15 @@ import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { BodyComponent } from './body/body.component';
 import { PostulationCoevanRoutingModule } from './postulation-coevan.routes';
 import { PostulationComponent } from './pages/postulation/postulation.component';
+import { InitializationComponent } from './pages/initialization/initialization.component';
 
 // @ts-ignore
 // @ts-ignore
 @NgModule({
   declarations: [
     BodyComponent,
-    PostulationComponent
+    PostulationComponent,
+    InitializationComponent
   ],
   imports: [
     CommonModule,

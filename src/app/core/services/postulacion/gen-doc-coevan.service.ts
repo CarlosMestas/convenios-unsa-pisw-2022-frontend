@@ -8,11 +8,6 @@ import jsPDF from 'jspdf'
 import autoTable, { RowInput } from 'jspdf-autotable'
 import { IPostulationCoevanDocFormat } from 'src/app/shared/interfaces/postulation-coevan.interface';
 
-interface IFormRowItem{
-  label:string,
-  value:string
-}
-
 
 
 @Injectable({
@@ -854,6 +849,7 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
     }
     doc.save("doc.pdf")
+
   }
 
   private genTableCourses(doc:jsPDF,x:number,y:number,width:number,dataRows:IPostulationCoevanCourse[]){
@@ -942,13 +938,6 @@ export class GenDocumentCoevanService extends GenDocumentCoevanHelper{
 
 
 
-  // private drawRowItemsWithObstacule(dic:jsPDF,rowItems:IFormRowItem[], obstacleWidth:number,x:number,y:number){
-
-  //   for(let rowItem of rowItems){
-
-  //   }
-
-  // }
 
 }
 

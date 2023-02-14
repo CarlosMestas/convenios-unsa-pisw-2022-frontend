@@ -1,0 +1,139 @@
+<!--               INDUCCIÓN           -->
+<div class="sub-header-container">
+  <div class="sub-header-title">
+    Inducción
+  </div>
+  <div class="sub-header-body">
+    Se programa una inducción para el 18/05/2023 con el objetivo de dar mayor conocimiento sobre el beneficio de becarios
+
+    el enlace de acceso es el siguiente <a href="https://meet.google.com/ynu-zmay-ika" target="_blank">LINK INDUCCIÓN</a>
+  </div>
+</div>
+
+
+<!--               GENERACIÓN SOLICITUD DE CONSTANCIA DE BECARIO              -->
+
+<form class="form-container" [formGroup]="scrForm" >
+
+<div class="sub-header-container">
+  <div class="sub-header-title">
+    Formulario de Solicitud de constancia de becario
+  </div>
+  <div class="sub-header-body">
+
+
+      <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>Apellidos</mat-label>
+        <input formControlName="lastname" matInput type="text" class="example-right-align" placeholder="0">
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:manage_accounts"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+
+
+
+       <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input formControlName="name" matInput type="text" class="example-right-align" placeholder="0">
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:supervised_user_circle"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>DNI</mat-label>
+        <input formControlName="dni" matInput type="number" class="example-right-align" placeholder="0">
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:credit_card"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+
+
+
+      <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>Dirección actual</mat-label>
+        <input formControlName="address" matInput type="text" class="example-right-align" placeholder="0">
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:share_location"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+
+
+      <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>Programa Profesional</mat-label>
+        <mat-select formControlName="professionalprogram">
+          <mat-option *ngFor="let program of programs" [value]="program.id">
+            {{program.name}}
+          </mat-option>
+        </mat-select>
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:cast_for_education"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+
+
+      <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>CUI</mat-label>
+        <input formControlName="cui" matInput type="number" class="example-right-align" placeholder="0">
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:card_membership"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+
+
+      <mat-form-field class="flex-auto" appearance="fill">
+        <mat-label>Año Académico</mat-label>
+        <mat-select formControlName="academicyear">
+          <mat-option *ngFor="let academicYear of academicYears" [value]="academicYear.id">
+            {{academicYear.description}}
+          </mat-option>
+        </mat-select>
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:moving"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field class="flex-auto" appearance="fill">
+        <!-- par o impar -->
+        <mat-label>Semestre</mat-label>
+        <mat-select formControlName="semester">
+          <mat-option *ngFor="let cycle of cycles" [value]="cycle.id">
+            {{cycle.description}}
+          </mat-option>
+        </mat-select>
+        <mat-icon class="mr-3" matPrefix svgIcon="mat:insights"></mat-icon>
+        <mat-hint>(obligatorio)</mat-hint>
+      </mat-form-field>
+
+
+        <mat-form-field class="flex-auto" appearance="fill">
+          <mat-label>Carrera Universidad Destino</mat-label>
+          <input formControlName="careerdestinyuniversity" matInput type="text" class="example-right-align" placeholder="0">
+          <mat-icon class="mr-3" matPrefix svgIcon="mat:card_membership"></mat-icon>
+          <mat-hint>(obligatorio)</mat-hint>
+        </mat-form-field>
+  </div>
+
+</div>
+
+</form>
+
+ <div class="sub-header-container">
+  <div class="sub-header-title">
+    Constancia de Becario
+  </div>
+  <div class="sub-header-body">
+    Para la generación de la solicitud de la constancia de becario, usted debe descargar el archivo de solicitud luego de completar el formulario, este documento debe ser firmado por la autoridad correspondiente y cargado nuevamente en la plataforma, en el apartado de cargar solicitud de constancia de becario.
+
+    <div class="documents datalist">
+
+      <div class="document item">
+        <div class="card-container">
+          <div class="header">
+            <div class="title">Solicitud de contancia de Becario</div>
+            <div class="item-circle" (click)="downloadDocument()" pTooltip="Descargar" tooltipPosition="left">
+              <span class="icon-container" >
+                <i class="icon pi pi-cloud-download">
+                </i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
